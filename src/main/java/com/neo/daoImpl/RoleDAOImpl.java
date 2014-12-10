@@ -11,7 +11,7 @@ import com.neo.utility.HibernateUtil;
 public class RoleDAOImpl implements RoleDAO{
 
 	@Override
-	public Role parId(int id) {
+	public Role findById(int id) {
 		Session session=HibernateUtil.getSession();
 		return (Role) session.get(Role.class, id);
 	}

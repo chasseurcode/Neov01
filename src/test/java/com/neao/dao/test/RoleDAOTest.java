@@ -25,14 +25,14 @@ public class RoleDAOTest {
 	public void allTest() {
 		//Creation
 		roleDAO.creer(role1);
-		Role role=roleDAO.parId(2);
+		Role role=roleDAO.findById(2);
 		assertNotNull(role);
 		assertEquals(role.getNom(), role1.getNom());
 		
 		//Modifier
 		role.setNom("Neurologue");
 		roleDAO.modifier(role);
-		Role mRole=roleDAO.parId(2);
+		Role mRole=roleDAO.findById(2);
 		assertNotNull(mRole);
 		assertEquals(mRole.getNom(), "Neurologue");
 		

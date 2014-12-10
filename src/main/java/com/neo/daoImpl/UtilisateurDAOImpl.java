@@ -34,12 +34,12 @@ public class UtilisateurDAOImpl implements UtilisateurDAO{
 				.setBoolean("etat", false).list();
 	}
 
-	public Utilisateur parId(int id) {
+	public Utilisateur findById(int id) {
 		Session session=HibernateUtil.getSession();
 		return (Utilisateur) session.get(Utilisateur.class, id);
 	}
 
-	public Utilisateur parCompte(String compte) {
+	public Utilisateur findByCompte(String compte) {
 		Session session=HibernateUtil.getSession();
 		return (Utilisateur) session.createQuery("FROM Utilisateur where compte= :nom")
 				.setString("nom", compte).uniqueResult();

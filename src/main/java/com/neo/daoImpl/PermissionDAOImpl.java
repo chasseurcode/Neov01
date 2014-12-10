@@ -11,7 +11,7 @@ import com.neo.utility.HibernateUtil;
 public class PermissionDAOImpl implements PermissionDAO {
 
 	@Override
-	public Permission parId(int id) {
+	public Permission findById(int id) {
 		Session session=HibernateUtil.getSession();
 		return (Permission) session.get(Permission.class, id);
 	}

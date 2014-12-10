@@ -5,7 +5,7 @@ import java.util.List;
 import com.neo.domaine.Permission;
 
 public interface PermissionDAO {
-	public Permission parId(int id);
+	public Permission findById(int id);
 	public void creer(Permission permission);
 	public void modifier(Permission permission);
 	public void supprimer(Permission permission);

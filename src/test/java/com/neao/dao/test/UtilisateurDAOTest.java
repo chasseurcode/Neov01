@@ -30,7 +30,7 @@ public class UtilisateurDAOTest {
 		
 		//creation
 		dao.creer(user1);
-		Utilisateur user=dao.parCompte("taram");
+		Utilisateur user=dao.findByCompte("taram");
 		assertNotNull(user);
 		assertEquals(user.getCompte(), user1.getCompte());
 		
@@ -41,7 +41,7 @@ public class UtilisateurDAOTest {
 		role.addPermission(new Permission("Campagne:creer"));
 		user.addRole(role);
 		dao.modifier(user);
-		Utilisateur modifUser=dao.parCompte("Mohamed");
+		Utilisateur modifUser=dao.findByCompte("Mohamed");
 		assertNotNull(modifUser);
 		assertEquals(modifUser.getMotDePasse(), "anou123");
 		

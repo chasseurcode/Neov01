@@ -27,7 +27,7 @@ public class NeoRealm extends AuthorizingRealm {
 	protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
 		
 		String compte=(String) principals.fromRealm(getName()).iterator().next();
-		Utilisateur utilisateur=UtilisateurDAO.parCompte(compte);
+		Utilisateur utilisateur=UtilisateurDAO.findByCompte(compte);
 		if(utilisateur!=null){
 			SimpleAuthorizationInfo info=new SimpleAuthorizationInfo();
 			
@@ -49,7 +49,7 @@ public class NeoRealm extends AuthorizingRealm {
 			AuthenticationToken token) throws AuthenticationException {
 		UsernamePasswordToken mToken=(UsernamePasswordToken) token;
 		
-		Utilisateur utilisateur=UtilisateurDAO.parCompte(mToken.getUsername());
+		Utilisateur utilisateur=UtilisateurDAO.findByCompte(mToken.getUsername());
 		if(utilisateur==null){
 			throw new AuthenticationException("Ce compte n'existe pas");
 		}
