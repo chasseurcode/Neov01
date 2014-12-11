@@ -29,7 +29,6 @@ public class AbonneDAOImpl implements AbonneeDAO{
 
 	@Override
 	public void supprimer(Abonne abonne) {
-		// TODO Auto-generated method stub
 		
 	}
 	

@@ -30,9 +30,7 @@ public class TarifDaoImpl implements TarifDAO{
 
 
 	@Override
-	public void supprimer(Tarif tarif) {
-		// TODO Auto-generated method stub
-		
+	public void supprimer(Tarif tarif) {		
 	}
 	
 	@Override

@@ -30,7 +30,6 @@ public class CarteDaoImpl implements CarteDAO{
 	
 	@Override
 	public void supprimer(Carte carte) {
-		// TODO Auto-generated method stub
 		
 	}
 

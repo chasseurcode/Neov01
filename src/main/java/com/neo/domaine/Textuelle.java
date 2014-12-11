@@ -9,7 +9,6 @@ public class Textuelle extends Publicite{
 
 	public Textuelle() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public String getContenu() {

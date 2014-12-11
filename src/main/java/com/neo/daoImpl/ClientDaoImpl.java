@@ -30,7 +30,6 @@ public class ClientDaoImpl implements ClientDAO{
 
 	@Override
 	public void supprimer(Client client) {
-		// TODO Auto-generated method stub
 		
 	}
 	

@@ -30,7 +30,6 @@ public class CampagneDaoimpl implements CampagneDAO{
 
 	@Override
 	public void supprimer(Campagne campagne) {
-		// TODO Auto-generated method stub
 		
 	}
 	

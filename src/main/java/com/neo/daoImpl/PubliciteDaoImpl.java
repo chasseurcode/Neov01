@@ -30,7 +30,6 @@ public class PubliciteDaoImpl implements PubliciteDAO{
 
 	@Override
 	public void supprimer(Publicite publicite) {
-		// TODO Auto-generated method stub
 		
 	}
 	

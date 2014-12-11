@@ -22,7 +22,6 @@ public class Client extends Utilisateur implements Serializable{
 	
 	public Client() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 	
 	/**
