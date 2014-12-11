@@ -1,5 +1,5 @@
 package com.neo.service;
 
-public class Api {
+public class NeoAPI {
 
 }
