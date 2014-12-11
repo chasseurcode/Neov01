@@ -16,7 +16,6 @@ public class PubliciteDaoImpl implements PubliciteDAO{
 		session.beginTransaction();
 		session.save(publicite);
 		session.getTransaction().commit();
-		session.close();
 	}
 
 	@Override
@@ -25,7 +24,6 @@ public class PubliciteDaoImpl implements PubliciteDAO{
 		session.beginTransaction();
 		session.update(publicite);
 		session.getTransaction().commit();
-		session.close();
 	}
 
 	@Override
@@ -34,7 +32,7 @@ public class PubliciteDaoImpl implements PubliciteDAO{
 	}
 	
 	@Override
-	public Publicite findById(int id) {
+	public Publicite findById(long id) {
 		Session session=HibernateUtil.getSession();
 		return (Publicite) session.get(Publicite.class, id);
 	}

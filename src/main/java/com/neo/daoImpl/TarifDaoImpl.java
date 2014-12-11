@@ -16,7 +16,6 @@ public class TarifDaoImpl implements TarifDAO{
 		session.beginTransaction();
 		session.save(tarif);
 		session.getTransaction().commit();
-		session.close();
 	}
 
 	@Override
@@ -25,7 +24,6 @@ public class TarifDaoImpl implements TarifDAO{
 		session.beginTransaction();
 		session.update(tarif);
 		session.getTransaction().commit();
-		session.close();
 	}
 
 
@@ -34,7 +32,7 @@ public class TarifDaoImpl implements TarifDAO{
 	}
 	
 	@Override
-	public Tarif findById(int id) {
+	public Tarif findById(long id) {
 		Session session=HibernateUtil.getSession();
 		return (Tarif) session.get(Tarif.class, id);
 	}

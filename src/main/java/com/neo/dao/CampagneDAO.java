@@ -9,6 +9,6 @@ public interface CampagneDAO {
 	public void creer(Campagne campagne);
 	public void modifier(Campagne campagne);
 	public void supprimer(Campagne campagne);
-	public Campagne findById(int id);
+	public Campagne findById(long id);
 	public List<Campagne> lister();
 }

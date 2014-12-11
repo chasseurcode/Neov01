@@ -9,6 +9,6 @@ public interface TarifDAO {
 	public void creer(Tarif tarif);
 	public void modifier(Tarif tarif);
 	public void supprimer(Tarif tarif);
-	public Tarif findById(int id);
+	public Tarif findById(long id);
 	public List<Tarif>lister();
 }

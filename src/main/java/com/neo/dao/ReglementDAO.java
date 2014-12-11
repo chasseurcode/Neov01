@@ -8,6 +8,6 @@ public interface ReglementDAO {
 
 	public void creer(Reglement reglement);
 	public void modifier(Reglement reglement);
-	public Reglement findById(int id);
+	public Reglement findById(long id);
 	public List<Reglement> lister();
 }

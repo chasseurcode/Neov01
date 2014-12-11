@@ -16,7 +16,6 @@ public class DepenseDaoImpl implements DepenseDAO{
 		session.beginTransaction();
 		session.save(depense);
 		session.getTransaction().commit();
-		session.close();
 	}
 
 	@Override
@@ -25,11 +24,10 @@ public class DepenseDaoImpl implements DepenseDAO{
 		session.beginTransaction();
 		session.update(depense);
 		session.getTransaction().commit();
-		session.close();
 	}
 
 	@Override
-	public Depense findById(int id) {
+	public Depense findById(long id) {
 		Session session=HibernateUtil.getSession();
 		return (Depense) session.get(Depense.class, id);
 	}

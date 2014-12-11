@@ -16,7 +16,6 @@ public class CarteDaoImpl implements CarteDAO{
 		session.beginTransaction();
 		session.save(carte);
 		session.getTransaction().commit();
-		session.close();
 	}
 
 	@Override
@@ -25,12 +24,17 @@ public class CarteDaoImpl implements CarteDAO{
 		session.beginTransaction();
 		session.update(carte);
 		session.getTransaction().commit();
-		session.close();
 	}
 	
 	@Override
 	public void supprimer(Carte carte) {
 		
+	}
+	
+	@Override
+	public Carte findById(long id) {
+		Session session=HibernateUtil.getSession();
+		return (Carte) session.get(Carte.class, id);
 	}
 
 	@SuppressWarnings("unchecked")
@@ -39,6 +43,8 @@ public class CarteDaoImpl implements CarteDAO{
 		Session session=HibernateUtil.getSession();
 			return session.createQuery("from Carte").list();
 	}
+
+	
 
 	
 

@@ -42,7 +42,7 @@ public class AbonneDAOImpl implements AbonneeDAO{
 	@Override
 	public List<Abonne> lister() {
 		Session session=HibernateUtil.getSession();
-		return session.createQuery("form Abonne a").list();
+		return session.createQuery("from Abonne a").list();
 	}
 
 }

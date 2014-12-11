@@ -16,7 +16,6 @@ public class CampagneDaoimpl implements CampagneDAO{
 		session.beginTransaction();
 		session.save(campagne);
 		session.getTransaction().commit();
-		session.close();
 	}
 
 	@Override
@@ -25,7 +24,6 @@ public class CampagneDaoimpl implements CampagneDAO{
 		session.beginTransaction();
 		session.update(campagne);
 		session.getTransaction().commit();
-		session.close();
 	}
 
 	@Override
@@ -34,7 +32,7 @@ public class CampagneDaoimpl implements CampagneDAO{
 	}
 	
 	@Override
-	public Campagne findById(int id) {
+	public Campagne findById(long id) {
 		Session session=HibernateUtil.getSession();
 		return (Campagne) session.get(Campagne.class, id);
 	}

@@ -3,7 +3,6 @@ package com.neo.dao;
 import java.util.List;
 
 import com.neo.domaine.Abonne;
-import com.neo.domaine.Campagne;
 
 public interface AbonneeDAO {
 

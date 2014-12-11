@@ -7,7 +7,7 @@ import com.neo.domaine.Paiement;
 public interface PaiementDAO {
 	public void creer(Paiement paiement);
 	public void modifier(Paiement paiement);
-	public Paiement  findById(int id);
+	public Paiement  findById(long id);
 	public List<Paiement> lister();
 
 }

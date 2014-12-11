@@ -16,7 +16,6 @@ public class PaiementDaoImpl implements PaiementDAO{
 		session.beginTransaction();
 		session.save(paiement);
 		session.getTransaction().commit();
-		session.close();
 	}
 
 	@Override
@@ -25,11 +24,10 @@ public class PaiementDaoImpl implements PaiementDAO{
 		session.beginTransaction();
 		session.update(paiement);
 		session.getTransaction().commit();
-		session.close();
 	}
 
 	@Override
-	public Paiement findById(int id) {
+	public Paiement findById(long id) {
 		Session session=HibernateUtil.getSession();
 		return (Paiement) session.get(Paiement.class, id);
 	}

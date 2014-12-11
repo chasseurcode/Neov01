@@ -16,7 +16,6 @@ public class ReglementDaoImpl implements ReglementDAO{
 		session.beginTransaction();
 		session.save(reglement);
 		session.getTransaction().commit();
-		session.close();
 	}
 
 	@Override
@@ -25,11 +24,10 @@ public class ReglementDaoImpl implements ReglementDAO{
 		session.beginTransaction();
 		session.update(reglement);
 		session.getTransaction().commit();
-		session.close();
 	}
 
 	@Override
-	public Reglement findById(int id) {
+	public Reglement findById(long id) {
 		Session session=HibernateUtil.getSession();
 		return (Reglement)session.get(Reglement.class, id);
 	}

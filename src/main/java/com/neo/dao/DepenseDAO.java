@@ -8,6 +8,6 @@ public interface DepenseDAO {
 
 	public void creer(Depense depense);
 	public void modifier(Depense depense);
-	public Depense findById(int id);
+	public Depense findById(long id);
 	public List<Depense> lister();
 }

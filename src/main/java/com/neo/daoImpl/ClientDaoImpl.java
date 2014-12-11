@@ -16,7 +16,6 @@ public class ClientDaoImpl implements ClientDAO{
 		session.beginTransaction();
 		session.save(client);
 		session.getTransaction().commit();
-		session.close();
 	}
 
 	@Override
@@ -25,7 +24,6 @@ public class ClientDaoImpl implements ClientDAO{
 		session.beginTransaction();
 		session.update(client);
 		session.getTransaction().commit();
-		session.close();
 	}
 
 	@Override
