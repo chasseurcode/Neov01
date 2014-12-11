@@ -15,7 +15,9 @@ import com.neo.domaine.Permission;
 import com.neo.domaine.Publicite;
 import com.neo.domaine.Reglement;
 import com.neo.domaine.Role;
-import com.neo.domaine.Tarif;
+import com.neo.domaine.TarifAppel;
+import com.neo.domaine.TarifNotification;
+import com.neo.domaine.TarifTextuelle;
 import com.neo.domaine.Utilisateur;
 import com.neo.domaine.Vue;
 
@@ -37,11 +39,12 @@ public class HibernateUtil {
 			conf.addAnnotatedClass(Client.class);
 			conf.addAnnotatedClass(Paiement.class);
 			conf.addAnnotatedClass(Publicite.class);
-			conf.addAnnotatedClass(Tarif.class);
 			conf.addAnnotatedClass(Vue.class);
 			conf.addAnnotatedClass(Carte.class);
 			conf.addAnnotatedClass(Depense.class);
-
+			conf.addAnnotatedClass(TarifAppel.class);
+			conf.addAnnotatedClass(TarifNotification.class);
+			conf.addAnnotatedClass(TarifTextuelle.class);
 
 			conf.configure();
 			StandardServiceRegistryBuilder ssrb = new StandardServiceRegistryBuilder().applySettings(conf.getProperties());

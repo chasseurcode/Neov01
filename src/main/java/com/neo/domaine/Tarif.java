@@ -4,15 +4,16 @@ import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 
 @Entity
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
-public  class Tarif {
+public abstract class Tarif {
 
-	@Id @GeneratedValue
+	@Id @GeneratedValue(strategy=GenerationType.TABLE)
 	private long id;
 	private float client;
 	private float abonne;

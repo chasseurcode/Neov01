@@ -1,12 +1,10 @@
 package com.neao.dao.test;
 
-import static org.junit.Assert.fail;
-
 import org.junit.Before;
 import org.junit.Test;
 
 import com.neo.dao.TarifDAO;
-import com.neo.domaine.Tarif;
+import com.neo.daoImpl.TarifDaoImpl;
 import com.neo.domaine.TarifAppel;
 import com.neo.domaine.TarifNotification;
 import com.neo.domaine.TarifTextuelle;
@@ -20,13 +18,26 @@ public class TarifDAOTest {
 
 	@Before
 	public void setUp() throws Exception {
-
-	
+		appl=new TarifAppel();
+		appl.setClient(11);
+		appl.setAbonne(12);
+		notif=new TarifNotification();
+		notif.setAbonne(20);
+		notif.setClient(30);
+		texte=new TarifTextuelle();
+		texte.setAbonne(50);
+		texte.setClient(60);
+		dao=new TarifDaoImpl();
 	}
 
 	@Test
 	public void test() {
-		fail("Not yet implemented");
+		//creation
+		dao.creer(appl);
+		dao.creer(notif);
+		dao.creer(texte);
+		
+		
 	}
 
 }
