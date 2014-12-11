@@ -9,9 +9,12 @@ import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import javax.persistence.OneToMany;
 
 @Entity
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public class Utilisateur implements Serializable{
 	/**
 	 * 
@@ -27,7 +30,9 @@ public class Utilisateur implements Serializable{
 	private String saltMotDePasse;
 	private boolean actif=true;
 	@OneToMany(cascade=CascadeType.ALL)
-	private List<Role> roles=new ArrayList<Role>();;
+	private List<Role> roles=new ArrayList<Role>();
+	@OneToMany(cascade=CascadeType.ALL)
+	private List<Message> messages=new ArrayList<Message>();
 	private Date creation=new Date();
 	private Date miseAJour=new Date();
 	private boolean supprimer=false;
@@ -122,6 +127,14 @@ public class Utilisateur implements Serializable{
 
 	public void setSaltMotDePasse(String saltMotDePasse) {
 		this.saltMotDePasse = saltMotDePasse;
+	}
+
+	public List<Message> getMessages() {
+		return messages;
+	}
+
+	public void setMessages(List<Message> messages) {
+		this.messages = messages;
 	}
 	
 }

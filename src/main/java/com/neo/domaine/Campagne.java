@@ -1,13 +1,30 @@
 package com.neo.domaine;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+
+@Entity
 public class Campagne {
 
-	private int id;
+	@Id @GeneratedValue
+	private long id;
 	private String intitule;
 	private Date dateDebut;
 	private Date dateFin;
+	@OneToMany(cascade=CascadeType.ALL)
+	private List<Reglement> reglements=new ArrayList<Reglement>();
+	@ManyToOne
+	private Utilisateur utilisateur;
+	@OneToMany(cascade=CascadeType.ALL)
+	private List<Publicite> publicites=new ArrayList<Publicite>();
 	private Date dateCreation=new Date();
 	private Date dateMaj=new Date();
 	private boolean supprimer=false;
@@ -26,11 +43,11 @@ public class Campagne {
 	}
 
 
-	public int getId() {
+	public long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 
@@ -86,6 +103,30 @@ public class Campagne {
 
 	public void setSupprimer(boolean supprimer) {
 		this.supprimer = supprimer;
+	}
+
+	public List<Reglement> getReglements() {
+		return reglements;
+	}
+
+	public void setReglements(List<Reglement> reglements) {
+		this.reglements = reglements;
+	}
+
+	public Utilisateur getUtilisateur() {
+		return utilisateur;
+	}
+
+	public void setUtilisateur(Utilisateur utilisateur) {
+		this.utilisateur = utilisateur;
+	}
+
+	public List<Publicite> getPublicites() {
+		return publicites;
+	}
+
+	public void setPublicites(List<Publicite> publicites) {
+		this.publicites = publicites;
 	}
 
 

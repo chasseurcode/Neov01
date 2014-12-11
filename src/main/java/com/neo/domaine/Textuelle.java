@@ -1,5 +1,8 @@
 package com.neo.domaine;
 
+import javax.persistence.Entity;
+
+@Entity
 public class Textuelle extends Publicite{
 
 	private String contenu;

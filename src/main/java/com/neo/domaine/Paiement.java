@@ -2,15 +2,23 @@ package com.neo.domaine;
 
 import java.util.Date;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+
+@Entity
 public class Paiement {
 
-	private int id;
+	@Id @GeneratedValue
+	private long id;
 	private Date date;
 	private float montant;
 	private Date dateCreation=new Date();
 	private Date dateMaj=new Date();
 	private boolean supprimer=false;
-	
+	@ManyToOne
+	private Abonne abonne;
 	
 	public Paiement() {
 		
@@ -20,12 +28,12 @@ public class Paiement {
  * 
  * Getters and Setters
  */
-	public int getId() {
+	public long getId() {
 		return id;
 	}
 
 
-	public void setId(int id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 
@@ -77,6 +85,14 @@ public class Paiement {
 
 	public void setSupprimer(boolean supprimer) {
 		this.supprimer = supprimer;
+	}
+
+	public Abonne getAbonne() {
+		return abonne;
+	}
+
+	public void setAbonne(Abonne abonne) {
+		this.abonne = abonne;
 	}
 	
 	

@@ -1,7 +1,14 @@
 package com.neo.domaine;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.OneToMany;
+
+@Entity
 public class Abonne extends Utilisateur {
 
 	/**
@@ -15,6 +22,9 @@ public class Abonne extends Utilisateur {
 	private Date dateCreation=new Date();
 	private Date dateMaj=new Date();
 	private boolean supprimer=false;
+	@OneToMany(cascade=CascadeType.ALL)
+	private List<Paiement>paiements=new ArrayList<Paiement>();
+	
 	
 	
 	public Abonne() {
@@ -23,6 +33,17 @@ public class Abonne extends Utilisateur {
 	
 	
 	
+	public Abonne(String prenom, Date dateDeNaissance, String codeParrainege,
+			String codeFilleule) {
+		super();
+		this.prenom = prenom;
+		this.dateDeNaissance = dateDeNaissance;
+		this.codeParrainege = codeParrainege;
+		this.codeFilleule = codeFilleule;
+	}
+
+
+
 	/**
 	 * 
 	 * Getters and Setters
@@ -68,6 +89,12 @@ public class Abonne extends Utilisateur {
 	}
 	public void setSupprimer(boolean supprimer) {
 		this.supprimer = supprimer;
+	}
+	public List<Paiement> getPaiements() {
+		return paiements;
+	}
+	public void setPaiements(List<Paiement> paiements) {
+		this.paiements = paiements;
 	}
 	
 	

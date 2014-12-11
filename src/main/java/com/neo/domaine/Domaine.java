@@ -2,9 +2,15 @@ package com.neo.domaine;
 
 import java.util.Date;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
+@Entity
 public class Domaine {
 	
-	private int id;
+	@Id @GeneratedValue
+	private long id;
 	private String ibelle;
 	private Date dateCreation=new Date();
 	private Date dateMaj=new Date();
@@ -19,12 +25,12 @@ public class Domaine {
  * 
  * Getters and Setters
  */
-	public int getId() {
+	public long getId() {
 		return id;
 	}
 
 
-	public void setId(int id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 

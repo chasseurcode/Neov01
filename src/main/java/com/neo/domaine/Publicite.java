@@ -2,13 +2,27 @@ package com.neo.domaine;
 
 import java.util.Date;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+import javax.persistence.ManyToOne;
+
+@Entity
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public class Publicite {
 
-	private int id;
+	@Id @GeneratedValue
+	private long id;
 	private String intitule;
 	private Date dateDebut;
 	private Date dateFin;
 	private long nbreVue;
+	@ManyToOne
+	private Campagne campagne;
+	@ManyToOne
+	private Tarif tarif;
 	private Date dateCreation=new Date();
 	private Date dateMaj=new Date();
 	private boolean supprimer=false;
@@ -22,12 +36,12 @@ public class Publicite {
  * 
  * Getters and Setters
  */
-	public int getId() {
+	public long getId() {
 		return id;
 	}
 
 
-	public void setId(int id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 
@@ -99,6 +113,22 @@ public class Publicite {
 
 	public void setSupprimer(boolean supprimer) {
 		this.supprimer = supprimer;
+	}
+
+	public Campagne getCampagne() {
+		return campagne;
+	}
+
+	public void setCampagne(Campagne campagne) {
+		this.campagne = campagne;
+	}
+
+	public Tarif getTarif() {
+		return tarif;
+	}
+
+	public void setTarif(Tarif tarif) {
+		this.tarif = tarif;
 	}
 	
 	

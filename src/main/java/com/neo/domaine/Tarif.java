@@ -2,9 +2,15 @@ package com.neo.domaine;
 
 import java.util.Date;
 
-public class Tarif {
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 
-	private int id;
+@Entity
+public  abstract class Tarif {
+
+	@Id @GeneratedValue
+	private long id;
 	private float client;
 	private float abonne;
 	private boolean enVigueur;
@@ -20,11 +26,11 @@ public class Tarif {
 	 * 
 	 * Getters and Setters
 	 */
-	public int getId() {
+	public long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 

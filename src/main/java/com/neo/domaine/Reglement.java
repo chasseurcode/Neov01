@@ -2,12 +2,23 @@ package com.neo.domaine;
 
 import java.util.Date;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+
+@Entity
 public class Reglement {
 
-	private int id;
+	@Id @GeneratedValue
+	private long id;
 	private Date date;
 	private String type;
 	private float montant;
+	@ManyToOne
+	private Client client;
+	@ManyToOne
+	private Campagne campagne;
 	private Date dateCreation=new Date();
 	private Date dateMaj=new Date();
 	private boolean supprimer=false;
@@ -21,12 +32,12 @@ public class Reglement {
  * 
  * Getters and Setters
  */
-	public int getId() {
+	public long getId() {
 		return id;
 	}
 
 
-	public void setId(int id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 
@@ -88,6 +99,22 @@ public class Reglement {
 
 	public void setSupprimer(boolean supprimer) {
 		this.supprimer = supprimer;
+	}
+
+	public Client getClient() {
+		return client;
+	}
+
+	public void setClient(Client client) {
+		this.client = client;
+	}
+
+	public Campagne getCampagne() {
+		return campagne;
+	}
+
+	public void setCampagne(Campagne campagne) {
+		this.campagne = campagne;
 	}
 	
 	
