@@ -12,7 +12,7 @@ public class VueDaoImpl  implements VueDao{
 	public void creer(Vue vue) {
 		Session session=HibernateUtil.getSession();
 		session.beginTransaction();
-		session.save(vue);
+		session.merge(vue);
 		session.getTransaction().commit();
 		session.close();
 	}

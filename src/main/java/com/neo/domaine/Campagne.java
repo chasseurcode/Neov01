@@ -128,7 +128,10 @@ public class Campagne {
 	public void setPublicites(List<Publicite> publicites) {
 		this.publicites = publicites;
 	}
-
+    public void addPublicite(Publicite publicite){
+    	publicite.setCampagne(this);
+    	publicites.add(publicite);
+    }
 
 
 }
