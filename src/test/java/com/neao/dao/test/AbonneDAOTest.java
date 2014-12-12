@@ -29,7 +29,7 @@ public class AbonneDAOTest {
 		
 		// creartion
 		dao.creer(a1);
-		Abonne a2= dao.findById(1);
+		Abonne a2= dao.findById(a1.getId());
 		assertNotNull(a2);
 		assertEquals(a1.getPrenom(), a2.getPrenom());
 		
