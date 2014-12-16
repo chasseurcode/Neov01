@@ -57,7 +57,18 @@
 			<artifactId>jsp-api</artifactId>
 			<version>2.2.1-b03</version>
 		</dependency>
-
+		<!-- PrettyFaces -->
+		<dependency>
+			<groupId>org.ocpsoft.rewrite</groupId>
+			<artifactId>rewrite-servlet</artifactId>
+			<version>2.0.12.Final</version>
+		</dependency>
+		<dependency>
+			<groupId>org.ocpsoft.rewrite</groupId>
+			<artifactId>rewrite-config-prettyfaces</artifactId>
+			<version>2.0.12.Final</version>
+		</dependency>
+		
 		<!-- Apache Shiro -->
 		<dependency>
 			<groupId>org.apache.shiro</groupId>
@@ -81,11 +92,10 @@
 			<version>1.18.3</version>
 		</dependency>
 
-		<!-- Gson -->
 		<dependency>
-			<groupId>com.google.code.gson</groupId>
-			<artifactId>gson</artifactId>
-			<version>2.3.1</version>
+			<groupId>org.codehaus.jackson</groupId>
+			<artifactId>jackson-mapper-asl</artifactId>
+			<version>1.9.13</version>
 		</dependency>
 
 		<!-- Hibernate -->
