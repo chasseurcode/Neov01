@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:h="http://java.sun.com/jsf/html">
+<h:head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta name="description" content="" />
+	<meta name="author" content="Mosaddek" />
+	<meta name="keyword" content="FlatLab, Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina" />
+	
+	<title>Society name</title>
+
+	<!-- Bootstrap core CSS -->
+	<h:outputStylesheet library="css" name="bootstrap.min.css" />
+	<h:outputStylesheet library="css" name="css/bootstrap-reset.css" />
+
+	<!--external css-->
+	<h:outputStylesheet library="assets/font-awesome/css"
+		name="font-awesome.css" />
+	<h:outputStylesheet library="css" name="style.css" />
+	<h:outputStylesheet library="css" name="style-responsive.css" />
+
+</h:head>
+
+<h:body>
+
+	<section id="container" class="">
+		<!--header start-->
+		<header class="header white-bg">
+			<div class="sidebar-toggle-box">
+				<div data-original-title="Toggle Navigation" data-placement="right"
+					class="icon-reorder tooltips"></div>
+			</div>
+			<!--logo start-->
+			<a href="index.html" class="logo">Flat<span>lab</span></a>
+			<!--logo end-->
+			<div class="nav notify-row" id="top_menu">
+				<!--  notification start -->
+				<ul class="nav top-menu">
+					<!-- inbox dropdown start-->
+					<li id="header_inbox_bar" class="dropdown"><a
+						data-toggle="dropdown" class="dropdown-toggle" href="#"> <i
+							class="icon-envelope-alt"></i> <span class="badge bg-important">5</span>
+					</a>
+						<ul class="dropdown-menu extended inbox">
+							<div class="notify-arrow notify-arrow-red"></div>
+							<li>
+								<p class="red">You have 5 new messages</p>
+							</li>
+							<li><a href="#"> <span class="photo"><h:graphicImage
+											library="img" name="avatar-mini.jpg" /></span> <span
+									class="subject"> <span class="from">Jonathan
+											Smith</span> <span class="time">Just now</span>
+								</span> <span class="message"> Hello, this is an example msg. </span>
+							</a></li>
+							<li><a href="#">See all messages</a></li>
+						</ul></li>
+					<!-- inbox dropdown end -->
+					<!-- notification dropdown start-->
+					<li id="header_notification_bar" class="dropdown"><a
+						data-toggle="dropdown" class="dropdown-toggle" href="#"> <i
+							class="icon-bell-alt"></i> <span class="badge bg-warning">7</span>
+					</a>
+						<ul class="dropdown-menu extended notification">
+							<div class="notify-arrow notify-arrow-yellow"></div>
+							<li>
+								<p class="yellow">You have 7 new notifications</p>
+							</li>
+							<li><a href="#"> <span class="label label-danger"><i
+										class="icon-bolt"></i></span> Server #3 overloaded. <span
+									class="small italic">34 mins</span>
+							</a></li>
+							<li><a href="#">See all notifications</a></li>
+						</ul></li>
+					<!-- notification dropdown end -->
+				</ul>
+			</div>
+			<div class="top-nav ">
+				<ul class="nav pull-right top-menu">
+					<li> <input type="text" class="form-control search" placeholder="Search" /></li>
+					<!-- user login dropdown start-->
+					<li class="dropdown"><a data-toggle="dropdown"
+						class="dropdown-toggle" href="#"> <h:graphicImage
+								library="img" name="avatar1_small.jpg" /> <span class="username">Jhon
+								Doue</span> <b class="caret"></b>
+					</a>
+						<ul class="dropdown-menu extended logout">
+							<div class="log-arrow-up"></div>
+							<li><a href="login.html"><i class="icon-key"></i> Log
+									Out</a></li>
+						</ul></li>
+					<!-- user login dropdown end -->
+				</ul>
+			</div>
+		</header>
+		<!--header end-->
+		<!--sidebar start-->
+		<aside>
+			<div id="sidebar" class="nav-collapse ">
+				<!-- sidebar menu start-->
+				<ul class="sidebar-menu" id="nav-accordion">
+					<li><a href="#"> <i class="icon-dashboard"></i> <span>Dashboard</span>
+					</a></li>
+
+					<li class="sub-menu"><a href="javascript:;"> <i
+							class="icon-laptop"></i> <span>Layouts</span>
+					</a>
+						<ul class="sub">
+							<li><a href="boxed_page.html">Boxed Page</a></li>
+							<li><a href="horizontal_menu.html">Horizontal Menu</a></li>
+							<li><a href="language_switch_bar.html">Language Switch
+									Bar</a></li>
+						</ul></li>
+
+				</ul>
+				<!-- sidebar menu end-->
+			</div>
+		</aside>
+		<!--sidebar end-->
+		<!--main content start-->
+		<section id="main-content">
+			<section class="wrapper site-min-height">
+				<!-- page start-->
+				Page content goes here <i class="icon-envelope-alt"></i>
+				<!-- page end-->
+			</section>
+		</section>
+		<!--main content end-->
+		<!--footer start-->
+		<footer class="site-footer">
+			<div class="text-center">
+				2014 FlatLab by VectorLab. <a href="#" class="go-top"> <i
+					class="icon-angle-up"></i>
+				</a>
+			</div>
+		</footer>
+		<!--footer end-->
+	</section>
+
+	<!-- js placed at the end of the document so the pages load faster -->
+	<h:outputScript library="js" name="jquery.js" />
+	<h:outputScript library="js" name="bootstrap.min.js" />
+	<h:outputScript library="js" name="jquery.dcjqaccordion.2.7.js" />
+	<h:outputScript library="js" name="jquery.scrollTo.min.js" />
+	<h:outputScript library="js" name="jquery.nicescroll.js" />
+	<h:outputScript library="js" name="respond.min.js" />
+
+	<!--common script for all pages-->
+	<h:outputScript library="js" name="common-scripts.js" />
+
+
+</h:body>
+</html>

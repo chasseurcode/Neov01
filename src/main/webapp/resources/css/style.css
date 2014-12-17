@@ -188,7 +188,7 @@ a, a:hover, a:focus {
     height:17px;
     width:17px;
     display:inline-block;
-    background: url(../img/nav-expand.png) no-repeat top;
+    background: url("#{resource['img/nav-expand.png']}") no-repeat top;
     border-radius:3px;
     -moz-border-radius:3px;
     -webkit-border-radius:3px;
@@ -676,7 +676,7 @@ ul.top-menu > li > a:hover, ul.top-menu > li > a:focus {
     transition: all .3s ease;
     border: 1px solid #fff;
     box-shadow: none;
-    background: url("../img/search-icon.jpg") no-repeat 10px 8px;
+    background: url("#{resource['img/search-icon.jpg']}") no-repeat 10px 8px;
     padding:0 5px 0 35px;
     color: #fff;
 }
