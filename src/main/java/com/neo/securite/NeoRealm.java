@@ -46,6 +46,7 @@ public class NeoRealm extends AuthorizingRealm {
 	@Override
 	protected AuthenticationInfo doGetAuthenticationInfo(
 			AuthenticationToken token) throws AuthenticationException {
+		
 		UsernamePasswordToken mToken=(UsernamePasswordToken) token;
 		
 		Utilisateur utilisateur=UtilisateurDAO.findByCompte(mToken.getUsername());
