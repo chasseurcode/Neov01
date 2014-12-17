@@ -3,7 +3,6 @@ package com.neo.securite;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationInfo;
 import org.apache.shiro.authc.AuthenticationToken;
-import org.apache.shiro.authc.SimpleAuthenticationInfo;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
@@ -53,8 +52,8 @@ public class NeoRealm extends AuthorizingRealm {
 		if(utilisateur==null){
 			throw new AuthenticationException("Ce compte n'existe pas");
 		}
-			
-		SimpleAuthenticationInfo info=new SimpleAuthenticationInfo(utilisateur.getCompte(), utilisateur.getMotDePasse(), getName());
+		//SimpleAuthenticationInfo info=new SimpleAuthenticationInfo(utilisateur.getCompte(), utilisateur.getMotDePasse(), getName());
+		SaltAuthInfo info=new SaltAuthInfo(utilisateur.getCompte(), utilisateur.getMotDePasse(), utilisateur.getSaltMotDePasse());
 		return info;
 	}
 

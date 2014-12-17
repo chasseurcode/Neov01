@@ -4,6 +4,9 @@ import static org.junit.Assert.*;
 
 import java.util.List;
 
+import org.apache.shiro.crypto.RandomNumberGenerator;
+import org.apache.shiro.crypto.SecureRandomNumberGenerator;
+import org.apache.shiro.crypto.hash.Sha256Hash;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -21,8 +24,16 @@ public class UtilisateurDAOTest {
 	@Before
 	public void setUp() throws Exception {
 		dao=new UtilisateurDAOImpl();
-		user1=new Utilisateur("taram", "ass2011", "tsayouba@gmail.com", true);
-		user2=new Utilisateur("bodie", "plus123", "abd.diallo@gmail.com", true);
+		 RandomNumberGenerator rng = new SecureRandomNumberGenerator();
+		 Object salt = rng.nextBytes();
+
+		user1=new Utilisateur();
+		user1.setCompte("taram");
+		String hashPass = new Sha256Hash("123456", salt,1024).toBase64();
+		user1.setMotDePasse(hashPass);
+		user1.setSaltMotDePasse(salt.toString());
+		System.out.println(user1.getMotDePasse()+" : "+user1.getSaltMotDePasse());
+		user2=new Utilisateur("bodie", "plus123", "abd.diallo@gmail.com", true);	
 	}
 
 	@Test
@@ -36,14 +47,12 @@ public class UtilisateurDAOTest {
 		
 		//Modification
 		user.setCompte("Mohamed");
-		user.setMotDePasse("anou123");
 		Role role=new Role("Ingenieur");
 		role.addPermission(new Permission("Campagne:creer"));
 		user.addRole(role);
 		dao.modifier(user);
 		Utilisateur modifUser=dao.findByCompte("Mohamed");
 		assertNotNull(modifUser);
-		assertEquals(modifUser.getMotDePasse(), "anou123");
 		
 		//lister
 		dao.creer(user2);
