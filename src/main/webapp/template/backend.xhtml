@@ -2,6 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:shiro="http://shiro.apache.org/tags"
 	xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
 	xmlns:h="http://java.sun.com/jsf/html">
 <h:head>
@@ -84,13 +85,19 @@
 					<!-- user login dropdown start-->
 					<li class="dropdown"><a data-toggle="dropdown"
 						class="dropdown-toggle" href="#"> <h:graphicImage
-								library="img" name="avatar1_small.jpg" /> <span class="username">Jhon
-								Doue</span> <b class="caret"></b>
+								library="img" name="avatar1_small.jpg" /> 
+								<span class="username">
+									<shiro:principal/>
+								</span> <b class="caret"></b>
 					</a>
 						<ul class="dropdown-menu extended logout">
 							<div class="log-arrow-up"></div>
-							<li><a href="login.html"><i class="icon-key"></i> Log
-									Out</a></li>
+							<li>
+							<h:form>
+							<h:commandLink action="#{auth.logout()}" ><i class="icon-key"></i> Log
+								</h:commandLink>
+									</h:form>
+									</li>
 						</ul></li>
 					<!-- user login dropdown end -->
 				</ul>
