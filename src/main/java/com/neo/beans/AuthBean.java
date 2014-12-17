@@ -25,19 +25,21 @@ public class AuthBean {
 		desable=true;
 		Subject currentUser=SecurityUtils.getSubject();
 		UsernamePasswordToken token=new UsernamePasswordToken(username, password,remember);
-		
-		try {
-			System.out.println("Nom : "+username+" password : "+password);
-			currentUser.login(token);
-		} catch (AuthenticationException e) {
-			FacesContext.getCurrentInstance().addMessage(null,
-					new FacesMessage("Veillez saisir des idenfiants corrects."));
-			desable=false;
-			return "pretty:login";
+		if (!currentUser.isAuthenticated()) {
+			System.out.println("pas authentifié");
+			try {
+				System.out.println("Nom : "+username+" password : "+password);
+				currentUser.login(token);
+			} catch (AuthenticationException e) {
+				FacesContext.getCurrentInstance().addMessage(null,
+						new FacesMessage("Veillez saisir des idenfiants corrects."));
+				desable=false;
+				return "pretty:login";
+			}
 		}
-		
 		return "pretty:home";
 	}
+	
 	
 	/*
 	 * deconnection de l'utilisateur
