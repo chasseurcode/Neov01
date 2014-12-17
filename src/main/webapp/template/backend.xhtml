@@ -11,7 +11,7 @@
 	<meta name="author" content="Mosaddek" />
 	<meta name="keyword" content="FlatLab, Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina" />
 	
-	<title>Society name</title>
+	<title>Society name::<ui:insert name="titre"/> </title>
 
 	<!-- Bootstrap core CSS -->
 	<h:outputStylesheet library="css" name="bootstrap.min.css" />
@@ -124,7 +124,8 @@
 		<section id="main-content">
 			<section class="wrapper site-min-height">
 				<!-- page start-->
-				Page content goes here <i class="icon-envelope-alt"></i>
+				<ui:insert name="contenu" />
+				
 				<!-- page end-->
 			</section>
 		</section>
