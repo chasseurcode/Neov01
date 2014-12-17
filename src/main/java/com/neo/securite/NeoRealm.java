@@ -25,7 +25,7 @@ public class NeoRealm extends AuthorizingRealm {
 	@Override
 	protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
 		
-		String compte=(String) principals.fromRealm(getName()).iterator().next();
+		String compte=principals.getPrimaryPrincipal().toString();
 		Utilisateur utilisateur=UtilisateurDAO.findByCompte(compte);
 		if(utilisateur!=null){
 			SimpleAuthorizationInfo info=new SimpleAuthorizationInfo();

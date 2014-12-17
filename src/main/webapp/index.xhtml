@@ -67,8 +67,14 @@
     </header>
     <!--header end-->
     <p>
-    	Essai de phrase
     	<shiro:principal/>
+    	<shiro:hasRole name="Ingenieur">
+    		a le role d'ingenieur
+    	</shiro:hasRole>
+    	<shiro:hasPermission name="Campagne:creer">
+    	,a le droit de creer une campagne
+    	</shiro:hasPermission>
+   
     </p>
 
 </h:body>
