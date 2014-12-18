@@ -1,6 +1,7 @@
 package com.neao.dao.test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 import java.util.Date;
 import java.util.List;
@@ -10,7 +11,12 @@ import org.junit.Test;
 
 import com.neo.dao.CampagneDAO;
 import com.neo.daoImpl.CampagneDaoimpl;
+import com.neo.domaine.Banniere;
 import com.neo.domaine.Campagne;
+import com.neo.domaine.Client;
+import com.neo.domaine.Publicite;
+import com.neo.domaine.Tarif;
+import com.neo.domaine.TarifNotification;
 
 public class CampagneDAOTest {
 
@@ -24,6 +30,32 @@ public class CampagneDAOTest {
 		c1.setIntitule("campagne1");
 		c1.setDateDebut(new Date());
 		c1.setDateFin(new Date());
+		
+		Client client=new Client();
+		client.setNom("ALSOME");
+		client.setAdresse("10,Res Assabah imm Berkane Apt7");
+		client.setRaisonSociale("Vendeur de chaussure");
+		
+		c1.setClient(client);
+		
+		Publicite p1=new Banniere();
+		p1.setIntitule("Promo 401");
+		p1.setNbreVue(30000);
+		Tarif t1=new TarifNotification();
+		t1.setClient((float) 0.08);
+		t1.setEnVigueur(true);
+		p1.setTarif(t1);
+		
+		Publicite p2=new Banniere();
+		p2.setIntitule("Promo 401");
+		p2.setNbreVue(30000);
+		Tarif t2=new TarifNotification();
+		t2.setClient((float) 0.08);
+		t2.setEnVigueur(true);
+		p2.setTarif(t2);
+		
+		c1.addPublicite(p1);
+		c
 	}
 
 	@Test

@@ -2,6 +2,7 @@ package com.neo.domaine;
 
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -19,9 +20,9 @@ public class Publicite {
 	private Date dateDebut;
 	private Date dateFin;
 	private long nbreVue;
-	@ManyToOne
+	@ManyToOne(cascade=CascadeType.ALL)
 	private Campagne campagne;
-	@ManyToOne
+	@ManyToOne(cascade=CascadeType.ALL)
 	private Tarif tarif;
 	private Date dateCreation=new Date();
 	private Date dateMaj=new Date();
@@ -131,5 +132,8 @@ public class Publicite {
 		this.tarif = tarif;
 	}
 	
+	public double getTotal() {
+		return nbreVue*tarif.getClient();
+	}
 	
 }

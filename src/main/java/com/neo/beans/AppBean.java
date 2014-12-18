@@ -26,7 +26,6 @@ public class AppBean {
 	private List<Message> msgList;
 	Subject currentUser;
 	private MessageDAO msgDAO;
-	
 	private UtilisateurDAO userDAO;
 	
 	@PostConstruct

@@ -45,6 +45,7 @@ public class AuthBean {
 		
 		try {
 			currentUser.logout();
+			desable=false;
 			return "pretty:login";
 		} catch (Exception e) {
 			e.printStackTrace();

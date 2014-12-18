@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
@@ -21,9 +22,9 @@ public class Campagne {
 	private Date dateFin;
 	@OneToMany(cascade=CascadeType.ALL)
 	private List<Reglement> reglements=new ArrayList<Reglement>();
-	@ManyToOne
-	private Utilisateur utilisateur;
-	@OneToMany(cascade=CascadeType.ALL)
+	@ManyToOne(cascade=CascadeType.ALL)
+	private Client client;
+	@OneToMany(cascade=CascadeType.ALL,fetch=FetchType.EAGER)
 	private List<Publicite> publicites=new ArrayList<Publicite>();
 	private Date dateCreation=new Date();
 	private Date dateMaj=new Date();
@@ -31,13 +32,13 @@ public class Campagne {
 
 
 	public Campagne() {
-		
+
 	}
 
 	/**
 	 * Getters and Setters
 	 */
-	
+
 	public String getIntitule() {
 		return intitule;
 	}
@@ -113,14 +114,6 @@ public class Campagne {
 		this.reglements = reglements;
 	}
 
-	public Utilisateur getUtilisateur() {
-		return utilisateur;
-	}
-
-	public void setUtilisateur(Utilisateur utilisateur) {
-		this.utilisateur = utilisateur;
-	}
-
 	public List<Publicite> getPublicites() {
 		return publicites;
 	}
@@ -129,6 +122,27 @@ public class Campagne {
 		this.publicites = publicites;
 	}
 
+	public Client getClient() {
+		return client;
+	}
 
+	public void setClient(Client client) {
+		this.client = client;
+	}
 
+	public void addPublicite(Publicite publicite) {
+		publicites.add(publicite);
+	}
+
+	public void removePublicite(Publicite publicite) {
+		publicites.remove(publicite);
+	}
+
+	public double getTotal() {
+		double somme=0;
+		for(Publicite p: publicites){
+			somme=somme+p.getTotal();
+		}
+		return somme;
+	}
 }
