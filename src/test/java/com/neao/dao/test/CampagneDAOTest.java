@@ -62,6 +62,7 @@ public class CampagneDAOTest {
 		reg1.setMontant(200);
 		
 		c1.addReglement(reg1);
+		
 	}
 
 	@Test
