@@ -7,6 +7,7 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -32,7 +33,7 @@ public class Utilisateur implements Serializable{
 	private boolean actif=true;
 	@OneToMany(cascade=CascadeType.ALL)
 	private List<Role> roles=new ArrayList<Role>();
-	@OneToMany(cascade=CascadeType.ALL)
+	@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
 	private List<Message> messages=new ArrayList<Message>();
 	private Date creation=new Date();
 	private Date miseAJour=new Date();

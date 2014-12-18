@@ -63,17 +63,25 @@
 					<!-- notification dropdown start-->
 					<li id="header_notification_bar" class="dropdown"><a
 						data-toggle="dropdown" class="dropdown-toggle" href="#"> <i
-							class="icon-bell-alt"></i> <span class="badge bg-warning">7</span>
+							class="icon-bell-alt"></i> <span class="badge bg-warning">
+								<h:outputText value="#{appBean.nbreMessage}" />
+							</span>
 					</a>
 						<ul class="dropdown-menu extended notification">
 							<div class="notify-arrow notify-arrow-yellow"></div>
 							<li>
-								<p class="yellow">You have 7 new notifications</p>
+								<p class="yellow">vous avez <h:outputText value="#{appBean.nbreMessage}" /> nouvelle(s) notification(s)</p>
 							</li>
-							<li><a href="#"> <span class="label label-danger"><i
-										class="icon-bolt"></i></span> Server #3 overloaded. <span
-									class="small italic">34 mins</span>
-							</a></li>
+							<ui:repeat var="#{appBean.msgList}" value="msg">
+								<li><a href="#">
+								 <span class="label label-danger">
+								 <i class="icon-bolt"></i></span> 
+									#{msg.corps} 
+								 <span class="small italic">34 mins</span>
+								</a>
+								</li>
+							</ui:repeat>
+						
 							<li><a href="#">See all notifications</a></li>
 						</ul></li>
 					<!-- notification dropdown end -->
@@ -114,13 +122,48 @@
 					</a></li>
 
 					<li class="sub-menu"><a href="javascript:;"> <i
-							class="icon-laptop"></i> <span>Layouts</span>
+							class="icon-laptop"></i> <span>Gestion des Clients</span>
 					</a>
 						<ul class="sub">
 							<li><a href="boxed_page.html">Boxed Page</a></li>
 							<li><a href="horizontal_menu.html">Horizontal Menu</a></li>
-							<li><a href="language_switch_bar.html">Language Switch
-									Bar</a></li>
+							
+						</ul></li>
+						
+						<li class="sub-menu"><a href="javascript:;"> <i
+							class="icon-laptop"></i> <span>Gestion des utilisateurs</span>
+					</a>
+						<ul class="sub">
+							<li><a href="boxed_page.html">Boxed Page</a></li>
+							<li><a href="horizontal_menu.html">Horizontal Menu</a></li>
+						
+						</ul></li>
+						
+						<li class="sub-menu"><a href="javascript:;"> <i
+							class="icon-laptop"></i> <span>Gestion de Campagne</span>
+					</a>
+						<ul class="sub">
+							<li><a href="boxed_page.html">Boxed Page</a></li>
+							<li><a href="horizontal_menu.html">Horizontal Menu</a></li>
+							
+						</ul></li>
+						
+						<li class="sub-menu"><a href="javascript:;"> <i
+							class="icon-laptop"></i> <span>Gestion de Carte de recharge</span>
+					</a>
+						<ul class="sub">
+							<li><a href="boxed_page.html">Boxed Page</a></li>
+							<li><a href="horizontal_menu.html">Horizontal Menu</a></li>
+							
+						</ul></li>
+						
+						<li class="sub-menu"><a href="javascript:;"> <i
+							class="icon-laptop"></i> <span>Gestion de la Tresorerie</span>
+					</a>
+						<ul class="sub">
+							<li><a href="boxed_page.html">Boxed Page</a></li>
+							<li><a href="horizontal_menu.html">Horizontal Menu</a></li>
+							
 						</ul></li>
 
 				</ul>
