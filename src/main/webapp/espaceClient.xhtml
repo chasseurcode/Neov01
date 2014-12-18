@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:shiro="http://shiro.apache.org/tags"
+	xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:h="http://java.sun.com/jsf/html">
+<h:head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta name="description" content="" />
+	<meta name="author" content="Mosaddek" />
+	<meta name="keyword"
+		content="FlatLab, Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina" />
+
+	<title>Society name::<ui:insert name="titre" />
+	</title>
+
+	<!-- Bootstrap core CSS -->
+	<h:outputStylesheet library="css" name="bootstrap.min.css" />
+	<h:outputStylesheet library="css" name="css/bootstrap-reset.css" />
+
+	<!--external css-->
+	<h:outputStylesheet library="assets/font-awesome/css"
+		name="font-awesome.css" />
+	<h:outputStylesheet library="css" name="style.css" />
+	<h:outputStylesheet library="css" name="style-responsive.css" />
+
+</h:head>
+
+<h:body>
+
+	<section id="container" class="">
+		<!--header start-->
+		<header class="header white-bg">
+			<div class="sidebar-toggle-box"></div>
+			<!--logo start-->
+			<h:link styleClass="logo" outcome="pretty:home">
+				Neo<span>ONE</span>
+			</h:link>
+			<!--logo end-->
+			<div class="nav notify-row" id="top_menu">
+				<!--  notification start -->
+				<ul class="nav top-menu">
+					<!-- notification dropdown start-->
+					<li id="header_notification_bar" class="dropdown"><h:link
+							outcome="pretty:userhome">
+							<i class="icon-dashboard"></i>
+							<span>Tableaux de bord</span>
+						</h:link>
+					</li>
+					<li id="header_inbox_bar" class="dropdown"><h:link
+							outcome="pretty:userhome">
+							<i class="icon-dashboard"></i>
+							<span>Campagne</span>
+						</h:link>
+					</li>
+					<!-- notification dropdown end -->
+				</ul>
+			</div>
+			<div class="top-nav ">
+				<ul class="nav pull-right top-menu">
+					<li><input type="text" class="form-control search"
+						placeholder="Search" /></li>
+					<!-- user login dropdown start-->
+					<li class="dropdown"><a data-toggle="dropdown"
+						class="dropdown-toggle" href="#"> <h:graphicImage
+								library="img" name="avatar-mini.jpg" /> <span class="username">
+								<shiro:principal />
+						</span> <b class="caret"></b>
+					</a>
+						<ul class="dropdown-menu extended logout">
+							<div class="log-arrow-up"></div>
+							<li><h:form>
+									<h:commandLink action="#{auth.logout()}">
+										<i class="icon-key"></i> DECONNEXION
+							</h:commandLink>
+								</h:form></li>
+						</ul></li>
+					<!-- user login dropdown end -->
+				</ul>
+			</div>
+		</header>
+		<!--header end-->
+
+		<!--main content start-->
+		<section id="main-content">
+			<section class="wrapper site-min-height">
+				<!-- page start-->
+				<ui:insert name="contenu" />
+
+				<!-- page end-->
+			</section>
+		</section>
+		<!--main content end-->
+		<!--footer start-->
+		<footer class="site-footer">
+			<div class="text-center">
+				2014 NEO ONE. <a href="#" class="go-top"> <i
+					class="icon-angle-up"></i>
+				</a>
+			</div>
+		</footer>
+		<!--footer end-->
+	</section>
+
+	<!-- js placed at the end of the document so the pages load faster -->
+	<h:outputScript library="js" name="jquery.js" />
+	<h:outputScript library="js" name="bootstrap.min.js" />
+	<h:outputScript library="js" name="jquery.dcjqaccordion.2.7.js" />
+	<h:outputScript library="js" name="jquery.scrollTo.min.js" />
+	<h:outputScript library="js" name="jquery.nicescroll.js" />
+	<h:outputScript library="js" name="respond.min.js" />
+
+	<!--common script for all pages-->
+	<h:outputScript library="js" name="common-scripts.js" />
+
+
+</h:body>
+</html>

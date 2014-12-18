@@ -55,7 +55,7 @@ public class CampagneDAOTest {
 		p2.setTarif(t2);
 		
 		c1.addPublicite(p1);
-		c
+		
 	}
 
 	@Test
