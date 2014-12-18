@@ -36,7 +36,9 @@
 					class="icon-reorder tooltips"></div>
 			</div>
 			<!--logo start-->
-			<a href="index.html" class="logo">Flat<span>lab</span></a>
+			<h:link styleClass="logo" outcome="pretty:home">
+				Neo<span>ONE</span>
+			</h:link>
 			<!--logo end-->
 			<div class="nav notify-row" id="top_menu">
 				<!--  notification start -->
@@ -62,7 +64,7 @@
 								</li>
 							</ui:repeat>
 							<li>
-								<h:link value="voir tous les messages" outcome="pretty:messagerie" />
+								<h:link value="Toutes les notifications" outcome="pretty:messagerie" />
 							</li>
 						</ul>
 					</li>
@@ -100,53 +102,56 @@
 			<div id="sidebar" class="nav-collapse ">
 				<!-- sidebar menu start-->
 				<ul class="sidebar-menu" id="nav-accordion">
-					<li><a href="#"> <i class="icon-dashboard"></i> <span>Dashboard</span>
-					</a></li>
+					<li>
+						<h:link outcome="pretty:userhome">
+							<i class="icon-dashboard"></i> 
+							<span>Dashboard</span>
+						</h:link>
+					</li>
 
 					<li class="sub-menu"><a href="javascript:;"> <i
-							class="icon-laptop"></i> <span>Gestion des Clients</span>
+							class="icon-book"></i> <span>Gestion des Clients</span>
 					</a>
 						<ul class="sub">
-							<li><a href="boxed_page.html">Boxed Page</a></li>
-							<li><a href="horizontal_menu.html">Horizontal Menu</a></li>
+							<li><a href="boxed_page.html">Nouveau client</a></li>
+							<li><a href="horizontal_menu.html">Liste des clients</a></li>
 							
 						</ul></li>
 						
 						<li class="sub-menu"><a href="javascript:;"> <i
-							class="icon-laptop"></i> <span>Gestion des utilisateurs</span>
+							class="icon-group"></i> <span>Gestion des Comptes</span>
 					</a>
 						<ul class="sub">
-							<li><a href="boxed_page.html">Boxed Page</a></li>
-							<li><a href="horizontal_menu.html">Horizontal Menu</a></li>
+							<li><a href="boxed_page.html">Nouveau compte</a></li>
+							<li><a href="horizontal_menu.html">Liste des comptes</a></li>
 						
 						</ul></li>
 						
 						<li class="sub-menu"><a href="javascript:;"> <i
-							class="icon-laptop"></i> <span>Gestion de Campagne</span>
+							class="icon-laptop"></i> <span>Gestion des Campagnes</span>
 					</a>
-						<ul class="sub">
-							<li><a href="boxed_page.html">Boxed Page</a></li>
-							<li><a href="horizontal_menu.html">Horizontal Menu</a></li>
-							
-						</ul></li>
+							<ul class="sub">
+								<li><a href="boxed_page.html">Nouvelle campagne</a></li>
+								<li><a href="horizontal_menu.html">Campagnes en cours</a></li>
+								<li><a href="horizontal_menu.html">Campagnes en terminées</a></li>
+							</ul>
+						</li>
+						
+						<li>
+							<h:link outcome="pretty:messagerie">
+								<i class="icon-ticket"></i> <span>Carte de Recharge</span>
+							</h:link>
+						</li>
 						
 						<li class="sub-menu"><a href="javascript:;"> <i
-							class="icon-laptop"></i> <span>Gestion de Carte de recharge</span>
+							class="icon-money"></i> <span>Tresorerie</span>
 					</a>
 						<ul class="sub">
-							<li><a href="boxed_page.html">Boxed Page</a></li>
-							<li><a href="horizontal_menu.html">Horizontal Menu</a></li>
+							<li><a href="boxed_page.html">Gérer les dépenses</a></li>
+							<li><a href="horizontal_menu.html">Gérer les paiements</a></li>
 							
-						</ul></li>
-						
-						<li class="sub-menu"><a href="javascript:;"> <i
-							class="icon-laptop"></i> <span>Gestion de la Tresorerie</span>
-					</a>
-						<ul class="sub">
-							<li><a href="boxed_page.html">Boxed Page</a></li>
-							<li><a href="horizontal_menu.html">Horizontal Menu</a></li>
-							
-						</ul></li>
+						</ul>
+						</li>
 					<li>
 					<h:link outcome="pretty:messagerie">
 						<i class="icon-bell-alt"></i> <span>Notifications</span>
@@ -173,7 +178,7 @@
 		<!--footer start-->
 		<footer class="site-footer">
 			<div class="text-center">
-				2014 FlatLab by VectorLab. <a href="#" class="go-top"> <i
+				2014 NEO ONE. <a href="#" class="go-top"> <i
 					class="icon-angle-up"></i>
 				</a>
 			</div>

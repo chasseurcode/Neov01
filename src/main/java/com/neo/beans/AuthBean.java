@@ -33,7 +33,7 @@ public class AuthBean {
 				desable=false;
 				return "pretty:login";
 			}
-		return "pretty:home";
+		return "pretty:userhome";
 	}
 	
 	
