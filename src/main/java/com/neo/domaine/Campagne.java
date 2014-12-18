@@ -138,6 +138,25 @@ public class Campagne {
 		publicites.remove(publicite);
 	}
 
+	public void addReglement(Reglement reglement) {
+		reglements.add(reglement);
+	}
+
+	public void removeReglement(Reglement reglement) {
+		reglements.remove(reglement);
+	}
+
+	public double totalReglement() {
+		double somme=0;
+		for(Reglement r: reglements){
+			somme=somme+r.getMontant();
+		}
+		return somme;
+	}
+	
+	public double resteAPayer() {
+		return getTotal()-totalReglement();
+	}
 	public double getTotal() {
 		double somme=0;
 		for(Publicite p: publicites){

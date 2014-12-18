@@ -15,6 +15,7 @@ import com.neo.domaine.Banniere;
 import com.neo.domaine.Campagne;
 import com.neo.domaine.Client;
 import com.neo.domaine.Publicite;
+import com.neo.domaine.Reglement;
 import com.neo.domaine.Tarif;
 import com.neo.domaine.TarifNotification;
 
@@ -47,7 +48,7 @@ public class CampagneDAOTest {
 		p1.setTarif(t1);
 		
 		Publicite p2=new Banniere();
-		p2.setIntitule("Promo 401");
+		p2.setIntitule("Chaussure Fresh");
 		p2.setNbreVue(30000);
 		Tarif t2=new TarifNotification();
 		t2.setClient((float) 0.08);
@@ -55,7 +56,12 @@ public class CampagneDAOTest {
 		p2.setTarif(t2);
 		
 		c1.addPublicite(p1);
-		c
+		c1.addPublicite(p2);
+		
+		Reglement reg1=new Reglement();
+		reg1.setMontant(200);
+		
+		c1.addReglement(reg1);
 	}
 
 	@Test
@@ -77,10 +83,6 @@ public class CampagneDAOTest {
 		List<Campagne> listes=dao.lister();
 		assertNotNull(listes);
 		assertEquals(listes.size(), 1);
-
-
-
-
 	}
 
 }

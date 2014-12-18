@@ -16,7 +16,6 @@ public class FacturationBean {
 	public FacturationBean() {
 		setCmpDAO(new CampagneDaoimpl());
 		campagne=cmpDAO.findById(1);
-		System.out.println(campagne.getIntitule());
 	}
 	
 	public void createFacture() {

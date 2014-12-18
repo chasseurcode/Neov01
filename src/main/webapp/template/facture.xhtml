@@ -19,7 +19,6 @@
                                   <!-- Logo ici -->
                               </div>
                               <div class="col-lg-4 col-sm-4">
-                                  <h4>CLIENT</h4>
                                   <p>
                                   	  #{facturationBean.campagne.client.nom} <br/>
                                        #{facturationBean.campagne.client.adresse} <br/>
@@ -27,7 +26,6 @@
                                   </p>
                               </div>
                               <div class="col-lg-4 col-sm-4">
-                                  <h4>SHIPPING ADDRESS</h4>
                                   <p>
                                       NEO ONE<br/>
                                       10,Res Assabah imm Berkane<br/>
@@ -49,7 +47,6 @@
                           <table class="table table-striped table-hover">
                               <thead>
                               <tr>
-                                  <th>#</th>
                                   <th>Intitulé</th>
                                   <th class="">Prix/vue</th>
                                   <th class="">Nombre de vue</th>
@@ -59,7 +56,6 @@
                               <tbody>
                               <ui:repeat var="pub" value="#{facturationBean.campagne.publicites}">
 	                              <tr>
-	                                  <td>1</td>
 	                                  <td>#{pub.intitule}</td>
 	                                  <td class="">#{pub.tarif.client}</td>
 	                                  <td class="">#{pub.nbreVue}</td>
@@ -75,9 +71,8 @@
                           <div class="row">
                               <div class="col-lg-4 invoice-block pull-right">
                                   <ul class="unstyled amounts">
-                                      <li><strong>Montant reglé :</strong> $6820</li>
-                                      <li><strong>TVA :</strong> 20%</li>
-                                      <li><strong>VAT :</strong> -----</li>
+                                      <li><strong>Montant reglé :</strong> #{facturationBean.campagne.totalReglement()}</li>
+                                      <li><strong>Reste à payer :</strong>#{facturationBean.campagne.resteAPayer()}</li>
                                       <li><strong>Grand Total :</strong> #{facturationBean.campagne.total}</li>
                                   </ul>
                               </div>
