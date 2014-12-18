@@ -39,7 +39,6 @@ public class SaltAuthInfo implements SaltedAuthenticationInfo{
 	@Override
 	public ByteSource getCredentialsSalt() {
 		ByteSource byteSource=new SimpleByteSource(Base64.decode(saltMotDePasse));
-		System.out.println(Base64.decode(saltMotDePasse));
 		return byteSource;
 	}
 

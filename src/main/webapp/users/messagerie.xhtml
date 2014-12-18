@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:h="http://java.sun.com/jsf/html">
+<h:head>
+
+</h:head>
+
+<h:body>
+	<ui:composition template="/template/backend.xhtml">
+	<ui:define name="titre">Essai</ui:define>
+	
+		<ui:define name="contenu">
+         <section class="panel">
+                          <header class="panel-heading">
+                              <b>Timeline des Notifications</b>
+                              <span class="tools pull-right">
+            
+                            </span>
+                          </header>
+                          <div class="panel-body profile-activity">
+                          <ui:repeat var="msg" value="#{appBean.msgList}">
+                              <div class="activity terques">
+                                  <span>
+                                      <i class="icon-shopping-cart"></i>
+                                  </span>
+                                  <div class="activity-desk">
+                                      <div class="panel">
+                                          <div class="panel-body">
+                                              <div class="arrow"></div>
+                                              <i class=" icon-time"></i>
+                                              <h4>
+	                                              	<h:outputText value="#{msg.dateCreation}" >
+							            			  	<f:convertDateTime pattern="dd/MM/yyyy HH:mm" />
+							 						</h:outputText>
+							 						- #{msg.objet}
+						 					</h4>
+                                              <p>#{msg.corps} ...</p>
+                                          </div>
+                                      </div>
+                                  </div>
+                              </div>
+                               <div class="activity blue">
+                                  <span>
+                                      <i class="icon-bullhorn"></i>
+                                  </span>
+                                  <div class="activity-desk">
+                                      <div class="panel">
+                                          <div class="panel-body">
+                                              <div class="arrow"></div>
+                                              <i class=" icon-time"></i>
+                                              <h4>10:45 AM</h4>
+                                              <p>Please note naging.. </p>
+                                          </div>
+                                      </div>
+                                  </div>
+                              </div>
+                             </ui:repeat>
+                             
+                          </div>
+                      </section>
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>

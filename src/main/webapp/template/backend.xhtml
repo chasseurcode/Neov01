@@ -41,25 +41,6 @@
 			<div class="nav notify-row" id="top_menu">
 				<!--  notification start -->
 				<ul class="nav top-menu">
-					<!-- inbox dropdown start-->
-					<li id="header_inbox_bar" class="dropdown"><a
-						data-toggle="dropdown" class="dropdown-toggle" href="#"> <i
-							class="icon-envelope-alt"></i> <span class="badge bg-important">5</span>
-					</a>
-						<ul class="dropdown-menu extended inbox">
-							<div class="notify-arrow notify-arrow-red"></div>
-							<li>
-								<p class="red">You have 5 new messages</p>
-							</li>
-							<li><a href="#"> <span class="photo"><h:graphicImage
-											library="img" name="avatar-mini.jpg" /></span> <span
-									class="subject"> <span class="from">Jonathan
-											Smith</span> <span class="time">Just now</span>
-								</span> <span class="message"> Hello, this is an example msg. </span>
-							</a></li>
-							<li><a href="#">See all messages</a></li>
-						</ul></li>
-					<!-- inbox dropdown end -->
 					<!-- notification dropdown start-->
 					<li id="header_notification_bar" class="dropdown"><a
 						data-toggle="dropdown" class="dropdown-toggle" href="#"> <i
@@ -70,20 +51,21 @@
 						<ul class="dropdown-menu extended notification">
 							<div class="notify-arrow notify-arrow-yellow"></div>
 							<li>
-								<p class="yellow">vous avez <h:outputText value="#{appBean.nbreMessage}" /> nouvelle(s) notification(s)</p>
+								<p class="yellow">Vous avez <h:outputText value="#{appBean.nbreMessage}" /> notification(s)</p>
 							</li>
-							<ui:repeat var="#{appBean.msgList}" value="msg">
+							<ui:repeat var="msg" value="#{appBean.msgList}">
 								<li><a href="#">
 								 <span class="label label-danger">
 								 <i class="icon-bolt"></i></span> 
-									#{msg.corps} 
-								 <span class="small italic">34 mins</span>
+									<h:outputText value="#{msg.objet}" /> 
 								</a>
 								</li>
 							</ui:repeat>
-						
-							<li><a href="#">See all notifications</a></li>
-						</ul></li>
+							<li>
+								<h:link value="voir tous les messages" outcome="pretty:messagerie" />
+							</li>
+						</ul>
+					</li>
 					<!-- notification dropdown end -->
 				</ul>
 			</div>
@@ -165,7 +147,14 @@
 							<li><a href="horizontal_menu.html">Horizontal Menu</a></li>
 							
 						</ul></li>
-
+					<li>
+					<h:link outcome="pretty:messagerie">
+						<i class="icon-bell-alt"></i> <span>Notifications</span>
+						<span class="label label-danger pull-right mail-info">
+							<h:outputText value="#{appBean.nbreMessage}" />
+						</span>
+					</h:link>
+					</li>
 				</ul>
 				<!-- sidebar menu end-->
 			</div>

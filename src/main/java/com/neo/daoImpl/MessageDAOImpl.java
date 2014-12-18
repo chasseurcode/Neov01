@@ -2,9 +2,7 @@ package com.neo.daoImpl;
 
 import java.util.List;
 
-import org.hibernate.FetchMode;
 import org.hibernate.Session;
-import org.hibernate.criterion.Restrictions;
 
 import com.neo.dao.MessageDAO;
 import com.neo.domaine.Message;
@@ -39,10 +37,11 @@ public class MessageDAOImpl implements MessageDAO {
 	@Override
 	public List<Message> lister(Utilisateur utilisateur) {
 		Session session=HibernateUtil.getSession();
-		return session.createCriteria(Message.class)
-				.setFetchMode("utilisateur", FetchMode.JOIN)
-				.add(Restrictions.idEq(new Long(utilisateur.getId())))
-				.list();
+		return session.createQuery("SELECT msg FROM Message msg "
+									+ "where vue= :etat and msg.utilisateur= :userid")
+					  .setBoolean("etat", false)
+					  .setLong("userid", new Long(utilisateur.getId()))
+				      .list();
 	}
 
 }
