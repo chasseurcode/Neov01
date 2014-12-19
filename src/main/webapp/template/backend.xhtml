@@ -12,7 +12,7 @@
 	<meta name="author" content="Mosaddek" />
 	<meta name="keyword" content="FlatLab, Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina" />
 	
-	<title>Society name::<ui:insert name="titre"/> </title>
+	<title>NEONE::<ui:insert name="titre"/> </title>
 
 	<!-- Bootstrap core CSS -->
 	<h:outputStylesheet library="css" name="bootstrap.min.css" />
@@ -37,7 +37,7 @@
 			</div>
 			<!--logo start-->
 			<h:link styleClass="logo" outcome="pretty:home">
-				Neo<span>ONE</span>
+				NE<span>ONE</span>
 			</h:link>
 			<!--logo end-->
 			<div class="nav notify-row" id="top_menu">
@@ -156,11 +156,18 @@
 							<i class="icon-group"></i> <span>Gérer les Comptes</span>
 						</a>
 						<ul class="sub">
-							<li><a href="boxed_page.html">Nouveau compte</a></li>
-							<li><a href="horizontal_menu.html">Liste des comptes</a></li>
-							<li><a href="horizontal_menu.html">Gérer les roles</a></li>
-							<li><a href="horizontal_menu.html">Gérer les permissions</a></li>
-						
+							<li>
+								<h:link value="Nouveau compte" outcome="pretty:newuser"/>
+							</li>
+							<li>
+								<h:link value="Liste des comptes" outcome="pretty:listusers"/>
+							</li>
+							<li>
+								<h:link value="Gérer les roles" outcome="pretty:roles"/>
+							</li>
+							<li>
+								<h:link value="Gérer les permissions" outcome="pretty:permissions"/>
+							</li>
 						</ul>
 					</li>
 						

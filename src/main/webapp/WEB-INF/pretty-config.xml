@@ -27,6 +27,27 @@
 		<view-id value="/users/login.xhtml" />
 	</url-mapping>
 
+	<!-- Compte -->
+	<url-mapping id="listusers">
+		<pattern value="/users/list" />
+		<view-id value="/users/listusers.xhtml" />
+	</url-mapping>
+	
+	<url-mapping id="newuser">
+		<pattern value="/users/nouveau" />
+		<view-id value="/users/newuser.xhtml" />
+	</url-mapping>
+	
+	<url-mapping id="roles">
+		<pattern value="/users/roles" />
+		<view-id value="/users/roles.xhtml" />
+	</url-mapping>
+		
+	<url-mapping id="permissions">
+		<pattern value="/users/permissions" />
+		<view-id value="/users/permissions.xhtml" />
+	</url-mapping>
+			
 	<url-mapping>
 		<pattern value="/404" />
 		<view-id value="/erreur/erreur404.xhtml" />
