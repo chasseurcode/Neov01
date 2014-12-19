@@ -113,24 +113,26 @@
 							class="icon-book"></i> <span>Gérer Clients</span>
 					</a>
 						<ul class="sub">
-							<li><a href="boxed_page.html">Nouveau client</a></li>
-							<li><a href="horizontal_menu.html">Liste des clients</a></li>
+							<li> <h:link outcome="pretty:newclient" value="Nouveau client"> </h:link> </li>
+							<li> <h:link outcome="pretty:listeclient" value="Liste client"> </h:link> </li>
 							
-						</ul></li>
+						</ul>
+						
+						</li>
 						
 						<li class="sub-menu"><a href="javascript:;"> <i
 							class="icon-truck"></i> <span>Gérer les Campagnes</span>
 					</a>
 							<ul class="sub">
-								<li><a href="boxed_page.html">Nouvelle campagne</a></li>
-								<li><a href="horizontal_menu.html">Campagnes en cours</a></li>
-								<li><a href="horizontal_menu.html">Campagnes en terminées</a></li>
+								<li> <h:link outcome="pretty:newcampagne" value="Nouvelle campagne"> </h:link> </li>
+							   	<li> <h:link outcome="pretty:encours" value="Campagnes en cours"> </h:link> </li>
+							   	<li> <h:link outcome="pretty:terminees" value="Campagnes terminées"> </h:link> </li>
 							</ul>
 						</li>
 						
 						<li>
-							<h:link outcome="pretty:messagerie">
-								<i class="icon-ticket"></i> <span>Gérer les Recharge</span>
+							<h:link outcome="pretty:recharge">
+								<i class="icon-ticket"></i> <span>Gérer les Recharges</span>
 							</h:link>
 						</li>
 						
@@ -138,9 +140,8 @@
 							class="icon-money"></i> <span>Gérer la Tresorerie</span>
 					</a>
 						<ul class="sub">
-							<li><a href="boxed_page.html">Gérer les dépenses</a></li>
-							<li><a href="horizontal_menu.html">Gérer les paiements</a></li>
-							
+							<li> <h:link outcome="pretty:depense" value="Gérer les dépenses"> </h:link> </li>
+							<li> <h:link outcome="pretty:paiement" value="Gérer les paiements"> </h:link> </li>
 						</ul>
 						</li>
 					<li>
