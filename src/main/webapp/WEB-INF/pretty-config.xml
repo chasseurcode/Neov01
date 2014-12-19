@@ -14,19 +14,73 @@
 		<pattern value="/messagerie" />
 		<view-id value="/users/messagerie.xhtml" />
 	</url-mapping>
-	
-		<!-- Dashbord -->
+
+	<!-- Dashbord -->
 	<url-mapping id="userhome">
 		<pattern value="/dashboard" />
 		<view-id value="/users/userdashboard.xhtml" />
 	</url-mapping>
-	
+
 	<!-- page de login -->
 	<url-mapping id="login">
 		<pattern value="/login" />
 		<view-id value="/users/login.xhtml" />
 	</url-mapping>
 
+	<!-- ********* Gestion client ************ -->
+	<!-- page nouveau client -->
+	<url-mapping id="newclient">
+		<pattern value="/nouveau" />
+		<view-id value="/client/nouveau.xhtml" />
+	</url-mapping>
+
+	<!-- page de la liste client -->
+	<url-mapping id="listeclient">
+		<pattern value="/liste" />
+		<view-id value="/client/liste.xhtml" />
+	</url-mapping>
+
+	<!-- ********* Gestion de campagne ********** -->
+	<!-- page nouvelle campagne -->
+	<url-mapping id="newcampagne">
+		<pattern value="/nouveau" />
+		<view-id value="/campagne/nouveau.xhtml" />
+	</url-mapping>
+
+	<!-- page campagne en cours -->
+	<url-mapping id="encours">
+		<pattern value="/encours" />
+		<view-id value="/campagne/encours.xhtml" />
+	</url-mapping>
+
+	<!-- page campagne terminees -->
+	<url-mapping id="terminees">
+		<pattern value="/terminees" />
+		<view-id value="/campagne/terminees.xhtml" />
+	</url-mapping>
+
+	<!-- ********* Gestion des cartes de recharges ********** -->
+	<!-- page gestion de carte -->
+	<url-mapping id="recharge">
+		<pattern value="/recharges" />
+		<view-id value="/recharge/recharges.xhtml" />
+	</url-mapping>
+
+	<!-- ********* Gestion de la tresorerie *************** -->
+	<!-- page des depenses -->
+	<url-mapping id="depense">
+		<pattern value="/depenses" />
+		<view-id value="/tresorerie/depense.xhtml" />
+	</url-mapping>
+	
+	<!-- page des paiements -->
+	<url-mapping id="paiement">
+		<pattern value="/paiements" />
+		<view-id value="/tresorerie/paiement.xhtml" />
+	</url-mapping>
+
+	<!-- ********* Page d'erreur ********** -->
+	<!-- page d'erreur -->
 	<url-mapping>
 		<pattern value="/404" />
 		<view-id value="/erreur/erreur404.xhtml" />
