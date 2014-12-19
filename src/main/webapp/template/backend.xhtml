@@ -12,7 +12,7 @@
 	<meta name="author" content="Mosaddek" />
 	<meta name="keyword" content="FlatLab, Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina" />
 	
-	<title>NEONE::<ui:insert name="titre"/> </title>
+	<title>NEONE-<ui:insert name="titre"/> </title>
 
 	<!-- Bootstrap core CSS -->
 	<h:outputStylesheet library="css" name="bootstrap.min.css" />
@@ -71,6 +71,7 @@
 					<!-- notification dropdown end -->
 				</ul>
 			</div>
+			
 			<div class="top-nav ">
 				<ul class="nav pull-right top-menu">
 					<li> <input type="text" class="form-control search" placeholder="Search" /></li>
@@ -97,6 +98,7 @@
 			</div>
 		</header>
 		<!--header end-->
+		
 		<!--sidebar start-->
 		<aside>
 			<div id="sidebar" class="nav-collapse ">
@@ -108,37 +110,32 @@
 							<span>Dashboard</span>
 						</h:link>
 					</li>
-
-					<li class="sub-menu"><a href="javascript:;"> <i
-							class="icon-book"></i> <span>Gérer Clients</span>
-					</a>
+					
+					<!-- Menu des clients -->
+					<li class="sub-menu">
+						<a href="javascript:;"><i class="icon-book"></i> <span>Gérer Clients</span></a>
 						<ul class="sub">
 							<li> <h:link outcome="pretty:newclient" value="Nouveau client"> </h:link> </li>
-							<li> <h:link outcome="pretty:listeclient" value="Liste client"> </h:link> </li>
-							
+							<li> <h:link outcome="pretty:listeclient" value="Liste client"> </h:link> </li>	
 						</ul>
-						
-						</li>
-						
-						<li class="sub-menu"><a href="javascript:;"> <i
-							class="icon-truck"></i> <span>Gérer les Campagnes</span>
-					</a>
-							<ul class="sub">
-								<li> <h:link outcome="pretty:newcampagne" value="Nouvelle campagne"> </h:link> </li>
-							   	<li> <h:link outcome="pretty:encours" value="Campagnes en cours"> </h:link> </li>
-							   	<li> <h:link outcome="pretty:terminees" value="Campagnes terminées"> </h:link> </li>
-							</ul>
-						</li>
-						
-						<li>
-							<h:link outcome="pretty:recharge">
-								<i class="icon-ticket"></i> <span>Gérer les Recharges</span>
-							</h:link>
-						</li>
-						
-						<li class="sub-menu"><a href="javascript:;"> <i
-							class="icon-money"></i> <span>Gérer la Tresorerie</span>
-					</a>
+					</li>
+					
+					<!-- Menu des campagnes -->
+					<li class="sub-menu"><a href="javascript:;"><i class="icon-truck"></i> <span>Gérer les Campagnes</span></a>
+						<ul class="sub">
+							<li> <h:link outcome="pretty:newcampagne" value="Nouvelle campagne"> </h:link> </li>
+							<li> <h:link outcome="pretty:encours" value="Campagnes en cours"> </h:link> </li>
+							<li> <h:link outcome="pretty:terminees" value="Campagnes terminées"> </h:link> </li>
+						</ul>
+					</li>
+					<li>
+						<h:link outcome="pretty:recharge">
+							<i class="icon-ticket"></i> <span>Gérer les Recharges</span>
+						</h:link>
+					</li>
+					
+					<!-- Menu de la trésorerie -->
+					<li class="sub-menu"><a href="javascript:;"><i class="icon-money"></i> <span>Gérer la Tresorerie</span></a>
 						<ul class="sub">
 							<li> <h:link outcome="pretty:depense" value="Gérer les dépenses"> </h:link> </li>
 							<li> <h:link outcome="pretty:paiement" value="Gérer les paiements"> </h:link> </li>
@@ -152,10 +149,9 @@
 						</span>
 					</h:link>
 					</li>
-					<li class="sub-menu">
-						<a href="javascript:;"> 
-							<i class="icon-group"></i> <span>Gérer les Comptes</span>
-						</a>
+					
+					<!-- Menu des comptes -->
+					<li class="sub-menu"><a href="javascript:;"><i class="icon-group"></i> <span>Gérer les Comptes</span></a>
 						<ul class="sub">
 							<li>
 								<h:link value="Nouveau compte" outcome="pretty:newuser"/>
@@ -176,28 +172,26 @@
 				<!-- sidebar menu end-->
 			</div>
 		</aside>
-		<!--sidebar end-->
+		
 		<!--main content start-->
 		<section id="main-content">
 			<section class="wrapper site-min-height">
 				<!-- page start-->
-				<ui:insert name="contenu" />
-				
+				<ui:insert name="contenu" />	
 				<!-- page end-->
 			</section>
 		</section>
 		<!--main content end-->
+		
 		<!--footer start-->
 		<footer class="site-footer">
 			<div class="text-center">
-				2014 NEO ONE. <a href="#" class="go-top"> <i
-					class="icon-angle-up"></i>
-				</a>
+				2014 NEONE. <a href="#" class="go-top"> <i class="icon-angle-up"></i></a>
 			</div>
 		</footer>
 		<!--footer end-->
 	</section>
-
+	
 	<!-- js placed at the end of the document so the pages load faster -->
 	<h:outputScript library="js" name="jquery.js" />
 	<h:outputScript library="js" name="bootstrap.min.js" />
@@ -208,7 +202,6 @@
 
 	<!--common script for all pages-->
 	<h:outputScript library="js" name="common-scripts.js" />
-
 
 </h:body>
 </html>
