@@ -78,6 +78,28 @@
 		<pattern value="/paiements" />
 		<view-id value="/tresorerie/paiement.xhtml" />
 	</url-mapping>
+	
+	
+	<!-- ********* Gestion compte*************** -->
+	<url-mapping id="newuser">
+		<pattern value="/users/newuser" />
+		<view-id value="/users/newuser.xhtml" />
+	</url-mapping>
+	
+	<url-mapping id="userslist">
+		<pattern value="/users/list" />
+		<view-id value="/users/listusers.xhtml" />
+	</url-mapping>
+		
+	<url-mapping id="roles">
+		<pattern value="/users/roles" />
+		<view-id value="/users/roles.xhtml" />
+	</url-mapping>
+		
+	<url-mapping id="permissions">
+		<pattern value="/users/permissions" />
+		<view-id value="/users/permissions.xhtml" />
+	</url-mapping>
 
 	<!-- ********* Page d'erreur ********** -->
 	<!-- page d'erreur -->
