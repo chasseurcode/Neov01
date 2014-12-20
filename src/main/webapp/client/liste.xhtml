@@ -21,9 +21,9 @@
                           <table class="table table-striped table-advance table-hover">
                               <thead>
                               <tr>
-                                  <th><i class="icon-bullhorn"></i> Nom</th>
-                                  <th class="hidden-phone"><i class="icon-question-sign"></i> E-mail</th>
-                                  <th><i class="icon-bookmark"></i> Telephone</th>
+                                  <th><i class="icon-bullhorn"></i> Entreprise</th>
+                                  <th class="hidden-phone"><i class="icon-envelope-alt"></i> E-mail</th>
+                                  <th><i class="icon-phone-sign"></i> Telephone</th>
                                   <th><i class=" icon-edit"></i> Adresse</th>
                                   <th></th>
                               </tr>
@@ -36,7 +36,11 @@
 	                                  <td>#{client.telehone}</td>
 	                                  <td>#{client.adresse}</td>
 	                                  <td>
-	                                  	<h:commandButton styleClass="btn btn-success btn-xs" value="Editer" action="#{clientBean.editClient(client)}"/>
+	                                  <div class="btn-group  btn-group-sm">
+	                                  		<h:commandButton styleClass="btn btn-warning" value="Editer" action="#{clientBean.editClient(client)}"/>
+	                           	       		<h:commandButton styleClass="btn btn-danger" value="Desactiver" action="#{clientBean.editClient(client)}"/>
+	                                  		<h:commandButton styleClass="btn btn-info" value="Details" action="#{clientBean.editClient(client)}"/>
+	                                  </div>
     	                               </td>
 	                              </tr>
                               </ui:repeat>

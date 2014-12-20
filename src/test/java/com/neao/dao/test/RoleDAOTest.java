@@ -43,25 +43,25 @@ public class RoleDAOTest {
 		assertNotNull(roList);
 		assertEquals(roList.size(), 3);
 		
-//		Role rol1=new Role("Client");
-//		Role rol2=new Role("Caissier");
-//		Role rol3=new Role("Commercial");
-//		Role rol4=new Role("Admin");
-//		
-//		Permission p1=new Permission("Client:view");
-//		Permission p2=new Permission("Client:edit");
-//		Permission p3=new Permission("Client:update");
-//		Permission p4=new Permission("Client:remove");
-//		
-//		rol2.addPermission(p1);
-//		rol2.addPermission(p2);
-//		rol2.addPermission(p3);
-//		rol2.addPermission(p4);
-//		
-//		roleDAO.creer(rol1);
-//		roleDAO.creer(rol2);
-//		roleDAO.creer(rol3);
-//		roleDAO.creer(rol4);
+		Role rol1=new Role("Client");
+		Role rol2=new Role("Caissier");
+		Role rol3=new Role("Commercial");
+		Role rol4=new Role("Admin");
+		
+		Permission p1=new Permission("Client:view");
+		Permission p2=new Permission("Client:edit");
+		Permission p3=new Permission("Client:update");
+		Permission p4=new Permission("Client:remove");
+		
+		rol2.addPermission(p1);
+		rol2.addPermission(p2);
+		rol2.addPermission(p3);
+		rol2.addPermission(p4);
+		
+		roleDAO.creer(rol1);
+		roleDAO.creer(rol2);
+		roleDAO.creer(rol3);
+		roleDAO.creer(rol4);
 	}
 
 }
