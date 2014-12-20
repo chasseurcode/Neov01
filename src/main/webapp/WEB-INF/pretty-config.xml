@@ -30,13 +30,25 @@
 	<!-- ********* Gestion client ************ -->
 	<!-- page nouveau client -->
 	<url-mapping id="newclient">
-		<pattern value="/nouveau" />
+		<pattern value="/client/nouveau" />
 		<view-id value="/client/nouveau.xhtml" />
 	</url-mapping>
+	
+		<!-- espace client -->
+	<url-mapping id="clienthome">
+		<pattern value="/client/espace" />
+		<view-id value="/client/espace.xhtml" />
+	</url-mapping>
 
+		<!-- modification client -->
+	<url-mapping id="modifclient">
+		<pattern value="/client/edit" />
+		<view-id value="/client/modifier.xhtml" />
+	</url-mapping>
+	
 	<!-- page de la liste client -->
 	<url-mapping id="listeclient">
-		<pattern value="/liste" />
+		<pattern value="/client/liste" />
 		<view-id value="/client/liste.xhtml" />
 	</url-mapping>
 

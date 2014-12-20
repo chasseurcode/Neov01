@@ -17,6 +17,7 @@ public class AuthBean {
 	private String username;
 	private String password;
 	private boolean remember=false;
+	
 
 	/*
 	 * connexion de l'utilisateur
@@ -34,7 +35,12 @@ public class AuthBean {
 			desable=false;
 			return "pretty:login";
 		}
-		return "pretty:userhome";
+		if(currentUser.hasRole("Client")){
+			return "pretty:clienthome";
+		}
+		else{
+			return "pretty:userhome";
+		}
 	}
 	
 	public void verifyLogin() {

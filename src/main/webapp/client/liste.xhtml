@@ -11,9 +11,39 @@
 <h:body>
 	<ui:composition template="/template/backend.xhtml">
 	<ui:define name="titre">Liste des clients</ui:define>
-	
+		
 		<ui:define name="contenu">
-         liste client
+		<h:form>
+         <section class="panel">
+                          <header class="panel-heading">
+                            <h4>Liste des Clients</h4>
+                          </header>
+                          <table class="table table-striped table-advance table-hover">
+                              <thead>
+                              <tr>
+                                  <th><i class="icon-bullhorn"></i> Nom</th>
+                                  <th class="hidden-phone"><i class="icon-question-sign"></i> E-mail</th>
+                                  <th><i class="icon-bookmark"></i> Telephone</th>
+                                  <th><i class=" icon-edit"></i> Adresse</th>
+                                  <th></th>
+                              </tr>
+                              </thead>
+                              <tbody>
+                              <ui:repeat var="client" value="#{clientBean.listClient}">
+	                              <tr>
+	                                  <td><STRONG>#{client.nom}</STRONG></td>
+	                                  <td class="hidden-phone">#{client.email}</td>
+	                                  <td>#{client.telehone}</td>
+	                                  <td>#{client.adresse}</td>
+	                                  <td>
+	                                  	<h:commandButton styleClass="btn btn-success btn-xs" value="Editer" action="#{clientBean.editClient(client)}"/>
+    	                               </td>
+	                              </tr>
+                              </ui:repeat>
+                              </tbody>
+                     </table>
+             </section>
+             </h:form>
 		</ui:define>
 	</ui:composition>
 </h:body>

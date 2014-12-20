@@ -10,12 +10,12 @@
 
 <h:body>
 	<ui:composition template="/template/backend.xhtml">
-	<ui:define name="titre">Nouveau client</ui:define>
+	<ui:define name="titre">Modification client</ui:define>
 		<ui:define name="contenu">
 			
 				<section class="panel">
                           <header class="panel-heading">
-                             <h3>NOUVEAU CLIENT</h3>
+                             <h3>Modification client</h3>
                           </header>
                           <div class="panel-body">
                               <h:form styleclass="form-horizontal" p:role="form">
@@ -66,8 +66,8 @@
 
                                   <div class="form-group">
                                       <div class="col-lg-offset-10">
-                                          <h:commandButton action="#{clientBean.saveClient()}" styleClass="btn btn-danger"
-                                           value="Créer fiche" />
+                                          <h:commandButton action="#{clientBean.update()}" styleClass="btn"
+                                           value="Modifier fiche" />
                                       </div>
                                   </div>
                               </h:form>
