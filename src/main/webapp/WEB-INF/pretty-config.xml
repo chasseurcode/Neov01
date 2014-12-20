@@ -105,8 +105,13 @@
 	</url-mapping>
 		
 	<url-mapping id="roles">
-		<pattern value="/users/roles" />
+		<pattern value="/users/role/liste" />
 		<view-id value="/users/roles.xhtml" />
+	</url-mapping>
+	
+	<url-mapping id="newrole">
+		<pattern value="/users/role/new" />
+		<view-id value="/users/newrole.xhtml" />
 	</url-mapping>
 
 	<!-- ********* Page d'erreur ********** -->

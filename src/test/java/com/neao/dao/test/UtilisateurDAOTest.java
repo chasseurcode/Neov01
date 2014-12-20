@@ -47,9 +47,6 @@ public class UtilisateurDAOTest {
 		
 		//Modification
 		user.setCompte("Mohamed");
-		Role role=new Role("Ingenieur");
-		role.addPermission(new Permission("Campagne:creer"));
-		user.addRole(role);
 		dao.modifier(user);
 		Utilisateur modifUser=dao.findByCompte("Mohamed");
 		assertNotNull(modifUser);

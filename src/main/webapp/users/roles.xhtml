@@ -12,7 +12,40 @@
 	<ui:composition template="/template/backend.xhtml">
 	<ui:define name="titre">Gestion des roles</ui:define>
 		<ui:define name="contenu">
-         	<h2>Roles</h2>
+		<h:form>
+	        <h:link styleClass="btn btn-primary btn-sm" outcome="pretty:newrole">
+	        	Nouveau role
+	        </h:link>
+	        <br />
+	        <br />
+			<section class="panel">
+                          <header class="panel-heading">
+                              Advanced Table
+                          </header>
+                          <table class="table table-striped table-advance table-hover">
+                              <thead>
+                              <tr>
+                                  <th>Role</th>
+                                  <th class="hidden-phone">Permissions</th>
+                                  <th></th>
+                              </tr>
+                              </thead>
+                              <tbody>
+                              <tr>
+                                  <td><a href="#">Vector Ltd</a></td>
+                                  <td class="hidden-phone">Lorem Ipsum dorolo imit</td>
+                                  <td>
+                                        <div class="btn-group  btn-group-sm">
+	                                  		<h:commandButton styleClass="btn btn-warning" value="Editer" action="#"/>
+	                           	       		<h:commandButton styleClass="btn btn-danger" value="Desactiver" action="#"/>
+	                                  </div>
+                                  </td>
+                              </tr>
+                           
+                              </tbody>
+                          </table>
+                      </section>
+               </h:form>
 		</ui:define>
 	</ui:composition>
 </h:body>

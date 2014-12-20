@@ -43,7 +43,7 @@ public class ClientDAOTest {
 		//lister
 		List<Client> clients=dao.lister();
 		assertNotNull(clients);
-		assertEquals(clients.size(), 1);
+		assertEquals(clients.size(), 2);
 		
 	}
 
