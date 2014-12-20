@@ -30,33 +30,20 @@
 	<!-- ********* Gestion client ************ -->
 	<!-- page nouveau client -->
 	<url-mapping id="newclient">
-		<pattern value="/client/nouveau" />
+		<pattern value="/nouveauClient" />
 		<view-id value="/client/nouveau.xhtml" />
-		<action>#{clientBean.init}</action>
-	</url-mapping>
-	
-		<!-- espace client -->
-	<url-mapping id="clienthome">
-		<pattern value="/client/espace" />
-		<view-id value="/client/espace.xhtml" />
 	</url-mapping>
 
-		<!-- modification client -->
-	<url-mapping id="modifclient">
-		<pattern value="/client/edit" />
-		<view-id value="/client/modifier.xhtml" />
-	</url-mapping>
-	
 	<!-- page de la liste client -->
 	<url-mapping id="listeclient">
-		<pattern value="/client/liste" />
+		<pattern value="/liste" />
 		<view-id value="/client/liste.xhtml" />
 	</url-mapping>
 
 	<!-- ********* Gestion de campagne ********** -->
 	<!-- page nouvelle campagne -->
 	<url-mapping id="newcampagne">
-		<pattern value="/nouveau" />
+		<pattern value="/nouvelleCampagne" />
 		<view-id value="/campagne/nouveau.xhtml" />
 	</url-mapping>
 
@@ -105,13 +92,13 @@
 	</url-mapping>
 		
 	<url-mapping id="roles">
-		<pattern value="/users/role/liste" />
+		<pattern value="/users/roles" />
 		<view-id value="/users/roles.xhtml" />
 	</url-mapping>
-	
-	<url-mapping id="newrole">
-		<pattern value="/users/role/new" />
-		<view-id value="/users/newrole.xhtml" />
+		
+	<url-mapping id="permissions">
+		<pattern value="/users/permissions" />
+		<view-id value="/users/permissions.xhtml" />
 	</url-mapping>
 
 	<!-- ********* Page d'erreur ********** -->
