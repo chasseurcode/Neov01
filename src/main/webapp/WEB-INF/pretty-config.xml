@@ -32,6 +32,7 @@
 	<url-mapping id="newclient">
 		<pattern value="/client/nouveau" />
 		<view-id value="/client/nouveau.xhtml" />
+		<action>#{clientBean.init}</action>
 	</url-mapping>
 	
 		<!-- espace client -->
