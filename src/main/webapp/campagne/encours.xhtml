@@ -13,7 +13,34 @@
 	<ui:define name="titre">Liste des campagnes en cours</ui:define>
 	
 		<ui:define name="contenu">
-          campagne en cours
+		
+			<div class="col-sm-12">
+				<section class="panel">
+					<header class="panel-heading"> Campagnes en cours </header>
+					<h:dataTable styleClass="table table-striped">
+						
+						<h:column>
+						<f:facet name="header">Intitulé</f:facet>
+						</h:column>
+						<h:column>
+							<f:facet name="header">Date de début</f:facet>
+						</h:column>
+						<h:column>
+							<f:facet name="header">Date de fin</f:facet>
+						</h:column>
+						<h:column>
+							<f:facet name="header">Nombre de vue</f:facet>
+						</h:column>
+						<h:column>
+							<f:facet name="header">Action</f:facet>
+						</h:column>
+						
+						
+					</h:dataTable>
+				</section>
+			</div>
+		
+
 		</ui:define>
 	</ui:composition>
 </h:body>

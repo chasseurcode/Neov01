@@ -16,13 +16,17 @@
 
 	<!-- Bootstrap core CSS -->
 	<h:outputStylesheet library="css" name="bootstrap.min.css" />
-	<h:outputStylesheet library="css" name="css/bootstrap-reset.css" />
+	<h:outputStylesheet library="css" name="bootstrap-reset.css" />
 
 	<!--external css-->
 	<h:outputStylesheet library="assets/font-awesome/css"
 		name="font-awesome.css" />
 	<h:outputStylesheet library="css" name="style.css" />
 	<h:outputStylesheet library="css" name="style-responsive.css" />
+	
+    <!-- 	datapicker -->
+	<h:outputStylesheet library="assets/bootstrap-datepicker/css" name="datepicker.css" />
+	
 
 </h:head>
 
@@ -202,6 +206,9 @@
 
 	<!--common script for all pages-->
 	<h:outputScript library="js" name="common-scripts.js" />
+    <!-- 	datapicker -->
+	<h:outputScript library="assets/bootstrap-datepicker/js" name="bootstrap-datepicker.js" />
+	
 
 </h:body>
 </html>

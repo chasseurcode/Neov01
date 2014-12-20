@@ -30,7 +30,7 @@
 	<!-- ********* Gestion client ************ -->
 	<!-- page nouveau client -->
 	<url-mapping id="newclient">
-		<pattern value="/nouveau" />
+		<pattern value="/nouveauClient" />
 		<view-id value="/client/nouveau.xhtml" />
 	</url-mapping>
 
@@ -43,7 +43,7 @@
 	<!-- ********* Gestion de campagne ********** -->
 	<!-- page nouvelle campagne -->
 	<url-mapping id="newcampagne">
-		<pattern value="/nouveau" />
+		<pattern value="/nouvelleCampagne" />
 		<view-id value="/campagne/nouveau.xhtml" />
 	</url-mapping>
 

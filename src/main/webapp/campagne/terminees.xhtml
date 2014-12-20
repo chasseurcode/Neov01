@@ -10,10 +10,34 @@
 
 <h:body>
 	<ui:composition template="/template/backend.xhtml">
-	<ui:define name="titre">Liste des campagnes terminées</ui:define>
-	
+		<ui:define name="titre">Liste des campagnes terminées</ui:define>
+
 		<ui:define name="contenu">
-           campagne terminees
+
+			<div class="col-sm-12">
+				<section class="panel">
+					<header class="panel-heading"> Campagnes terminées </header>
+					<h:dataTable styleClass="table table-striped">
+						
+						<h:column>
+						<f:facet name="header">Intitulé</f:facet>
+						</h:column>
+						<h:column>
+							<f:facet name="header">Date de début</f:facet>
+						</h:column>
+						<h:column>
+							<f:facet name="header">Date de fin</f:facet>
+						</h:column>
+						<h:column>
+							<f:facet name="header">Nombre de vue</f:facet>
+						</h:column>
+						
+						
+					</h:dataTable>
+				</section>
+			</div>
+
+
 		</ui:define>
 	</ui:composition>
 </h:body>
