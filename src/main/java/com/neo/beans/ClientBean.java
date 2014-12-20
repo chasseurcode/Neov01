@@ -85,6 +85,7 @@ public class ClientBean {
 	}
 	
 	
+	
 	/*
 	 * 
 	 * Getter and Setter
