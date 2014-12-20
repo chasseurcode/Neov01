@@ -108,11 +108,6 @@
 		<pattern value="/users/roles" />
 		<view-id value="/users/roles.xhtml" />
 	</url-mapping>
-		
-	<url-mapping id="permissions">
-		<pattern value="/users/permissions" />
-		<view-id value="/users/permissions.xhtml" />
-	</url-mapping>
 
 	<!-- ********* Page d'erreur ********** -->
 	<!-- page d'erreur -->

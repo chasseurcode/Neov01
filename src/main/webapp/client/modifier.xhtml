@@ -12,10 +12,10 @@
 	<ui:composition template="/template/backend.xhtml">
 	<ui:define name="titre">Modification client</ui:define>
 		<ui:define name="contenu">
-			
+			<div class="col-sm-offset-3 col-sm-6">
 				<section class="panel">
                           <header class="panel-heading">
-                             <h3>Modification client</h3>
+                             <h4>Modification fiche client</h4>
                           </header>
                           <div class="panel-body">
                               <h:form styleclass="form-horizontal" p:role="form">
@@ -65,14 +65,15 @@
                                   </div>
 
                                   <div class="form-group">
-                                      <div class="col-lg-offset-10">
-                                          <h:commandButton action="#{clientBean.update()}" styleClass="btn"
+                                      <div class="col-lg-offset-8">
+                                          <h:commandButton action="#{clientBean.update()}" styleClass="btn btn-warning"
                                            value="Modifier fiche" />
                                       </div>
                                   </div>
                               </h:form>
                           </div>
                       </section>
+                      </div>
 		</ui:define>
 	</ui:composition>
 </h:body>

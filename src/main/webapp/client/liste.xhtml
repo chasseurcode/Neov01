@@ -2,6 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:shiro="http://shiro.apache.org/tags"
 	xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
 	xmlns:h="http://java.sun.com/jsf/html">
 <h:head>
@@ -34,9 +35,14 @@
 	                                  <td><STRONG>#{client.nom}</STRONG></td>
 	                                  <td class="hidden-phone">#{client.email}</td>
 	                                  <td>#{client.telehone}</td>
-	                                  <td>#{client.adresse}</td>
+	                                  <td>	
+	                                  <shiro:hasPermission name="Client:love">
+	                                  	voir client
+	                                  </shiro:hasPermission>
+	                                  		#{client.adresse}</td>
 	                                  <td>
 	                                  <div class="btn-group  btn-group-sm">
+	                                  	
 	                                  		<h:commandButton styleClass="btn btn-warning" value="Editer" action="#{clientBean.editClient(client)}"/>
 	                           	       		<h:commandButton styleClass="btn btn-danger" value="Desactiver" action="#{clientBean.editClient(client)}"/>
 	                                  		<h:commandButton styleClass="btn btn-info" value="Details" action="#{clientBean.editClient(client)}"/>
