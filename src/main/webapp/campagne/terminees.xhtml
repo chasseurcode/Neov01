@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:f="http://java.sun.com/jsf/core"
@@ -10,35 +9,60 @@
 
 <h:body>
 	<ui:composition template="/template/backend.xhtml">
-		<ui:define name="titre">Liste des campagnes terminées</ui:define>
+		<ui:define name="titre">Liste des campagnes en cours</ui:define>
 
 		<ui:define name="contenu">
-
-			<div class="col-sm-12">
+			<!--main content start-->
+			<section class="wrapper">
+				<!-- page start-->
 				<section class="panel">
-					<header class="panel-heading"> Campagnes terminées </header>
-					<h:dataTable styleClass="table table-striped">
-						
-						<h:column>
-						<f:facet name="header">Intitulé</f:facet>
-						</h:column>
-						<h:column>
-							<f:facet name="header">Date de début</f:facet>
-						</h:column>
-						<h:column>
-							<f:facet name="header">Date de fin</f:facet>
-						</h:column>
-						<h:column>
-							<f:facet name="header">Nombre de vue</f:facet>
-						</h:column>
-						
-						
-					</h:dataTable>
-				</section>
-			</div>
+					<header class="panel-heading">
+						<strong> Campagnes terminées </strong>
+					</header>
+					<div class="panel-body">
+						<div class="adv-table editable-table ">
 
+							<div class="space15"></div>
+							<table class="table table-striped table-hover table-bordered"
+								id="editable-sample">
+								<thead>
+									<tr>
+										<th>Intitulé</th>
+										<th>Date de début</th>
+										<th>Date de fin</th>
+										<th>Nombre de vue</th>
+										<th style="text-align: center">Action</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr class="">
+										<td>Jondi Rose</td>
+										<td>Alfred Jondi Rose</td>
+										<td>1234</td>
+										<td class="center">super user</td>
+										<td>
+											<button class="btn btn-success btn-xs">
+												<i class="icon-eye-open"></i>
+											</button>
+											
+											<button class="btn btn-danger btn-xs">
+												<i class="icon-trash "></i>
+											</button>
+										</td>
+									</tr>
+
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</section>
+				<!-- page end-->
+			</section>
 
 		</ui:define>
 	</ui:composition>
+	<!--main content end-->
+
+
 </h:body>
 </html>

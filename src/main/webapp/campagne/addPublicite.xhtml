@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:h="http://java.sun.com/jsf/html">
+<h:head>
+	
+
+</h:head>
+
+<h:body>
+
+	<div class="panel-body">
+
+		<div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog"
+			tabindex="-1" id="myModal" class="modal">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button aria-hidden="true" data-dismiss="modal" class="close"
+							type="button">×</button>
+						<h4 class="modal-title">Ajout de publicité</h4>
+					</div>
+					<div class="modal-body">
+
+						<h:form class="form-horizontal">
+							<div class="form-group">
+								<label for="exampleInputEmail1">Intitule</label>
+								<h:inputText styleClass="form-control" />
+							</div>
+							<div class="form-group">
+								<label>Date</label>
+								<div class="input-group input-large" data-date="13/07/2013"
+									data-date-format="dd/mm/yyyy">
+									<input type="text" class="form-control dpd1" name="from" /> <span
+										class="input-group-addon">To</span> <input type="text"
+										class="form-control dpd2" name="to" />
+								</div>
+							</div>
+							
+							<div class="form-group">
+								<label for="exampleInputPassword1">Nombre de vue</label>
+								<h:inputText styleClass="form-control" />
+							</div>
+							<div class="form-group">
+								<label for="exampleInputFile"> Pièce jointe</label>
+								<h:inputFile label="file" />
+							</div>
+
+							<h:commandButton styleClass="btn btn-default" value="Enregistrer" />
+						</h:form>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</div>
+	
+</h:body>
+</html>
