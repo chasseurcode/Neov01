@@ -65,6 +65,11 @@
 		<pattern value="/recharges" />
 		<view-id value="/recharge/recharges.xhtml" />
 	</url-mapping>
+	<!-- page modification carte -->
+	<url-mapping id="modifcarte">
+		<pattern value="/modification" />
+		<view-id value="/recharge/editRecharge.xhtml" />
+	</url-mapping>
 
 	<!-- ********* Gestion de la tresorerie *************** -->
 	<!-- page des depenses -->
@@ -72,35 +77,35 @@
 		<pattern value="/depenses" />
 		<view-id value="/tresorerie/depense.xhtml" />
 	</url-mapping>
-	
+
 	<!-- page des paiements -->
 	<url-mapping id="paiement">
 		<pattern value="/paiements" />
 		<view-id value="/tresorerie/paiement.xhtml" />
 	</url-mapping>
-	
-	
+
+
 	<!-- ********* Gestion compte*************** -->
 	<url-mapping id="newuser">
 		<pattern value="/users/newuser" />
 		<view-id value="/users/newuser.xhtml" />
 	</url-mapping>
-	
+
 	<url-mapping id="userslist">
 		<pattern value="/users/list" />
 		<view-id value="/users/listusers.xhtml" />
 	</url-mapping>
-		
+
 	<url-mapping id="roles">
 		<pattern value="/users/roles" />
 		<view-id value="/users/roles.xhtml" />
 	</url-mapping>
-	
+
 	<url-mapping id="newrole">
 		<pattern value="/users/roles/nouveau" />
 		<view-id value="/users/newrole.xhtml" />
 	</url-mapping>
-	
+
 	<url-mapping id="permissions">
 		<pattern value="/users/permissions" />
 		<view-id value="/users/permissions.xhtml" />

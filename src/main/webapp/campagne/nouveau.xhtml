@@ -82,7 +82,8 @@
 								<h:form p:role="form" enctype="multipart/form-data">
 									<div class="form-group">
 										<label for="exampleInputEmail1">Intitulé</label> 
-										<h:inputText styleClass="form-control" value="#{campagneBean.publicite.intitule}" />
+										<h:inputText styleClass="form-control" id="intpub" value="#{campagneBean.publicite.intitule}" />
+										<p class="help-block"><h:message for="intpub"/></p>										
 									</div>
 									
 									<div class="form-group">
@@ -95,14 +96,16 @@
 									</div>
 									
 									<div class="form-group">
-										<label for="exampleInputEmail1">Nombre de vue</label> 
-										<h:inputText styleClass="form-control"
+										<label >Nombre de vue</label> 
+										<h:inputText styleClass="form-control" id="nbrevue"
 												value="#{campagneBean.publicite.nbreVue}" />
+									    <p class="help-block"><h:message for="nbrevue"/></p>
 									</div>
 									
 									<div class="form-group">
 										<label for="exampleInputFile">Pièce jointe</label>
-										 <h:inputFile label="file" value="#{campagneBean.fichier}"/>
+										 <h:inputFile label="file" id="file" value="#{campagneBean.fichier}"/>
+									     <p class="help-block"><h:message for="file"/></p>
 									</div>
 									
 									<h:commandButton styleClass="btn btn-default" value="Ajouter" 
