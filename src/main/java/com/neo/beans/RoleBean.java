@@ -1,11 +1,11 @@
 package com.neo.beans;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
 
 import com.neo.dao.PermissionDAO;
 import com.neo.dao.RoleDAO;
@@ -15,10 +15,12 @@ import com.neo.domaine.Permission;
 import com.neo.domaine.Role;
 
 @ManagedBean
-@SessionScoped
+@RequestScoped
 public class RoleBean {
 	private List<Permission> perms;
+	private List<String> selectPerm;
 	private PermissionDAO permDAO;
+	private List<Role> roles;
 	private Role role;
 	private RoleDAO roleDAO;
 	
@@ -27,7 +29,19 @@ public class RoleBean {
 		permDAO=new PermissionDAOImpl();
 		roleDAO=new RoleDAOImpl();
 		perms=permDAO.lister();
-		System.out.println("size: "+perms.size());
+		setRoles(roleDAO.lister());
+		role=new Role();
+		selectPerm=new ArrayList<String>();
+	}
+	
+	public String addRole() {
+		List<Permission> listP=new ArrayList<Permission>();
+		for(String permId: selectPerm){
+			listP.add(permDAO.findById(Integer.parseInt(permId)));
+		}
+		role.setPermissions(listP);
+		roleDAO.creer(role);
+		return "pretty:roles";
 	}
 	
 	public List<Permission> getPerms() {
@@ -53,5 +67,21 @@ public class RoleBean {
 	}
 	public void setRoleDAO(RoleDAO roleDAO) {
 		this.roleDAO = roleDAO;
+	}
+
+	public List<String> getSelectPerm() {
+		return selectPerm;
+	}
+
+	public void setSelectPerm(List<String> selectPerm) {
+		this.selectPerm = selectPerm;
+	}
+
+	public List<Role> getRoles() {
+		return roles;
+	}
+
+	public void setRoles(List<Role> roles) {
+		this.roles = roles;
 	}
 }

@@ -95,7 +95,12 @@
 		<pattern value="/users/roles" />
 		<view-id value="/users/roles.xhtml" />
 	</url-mapping>
-		
+	
+	<url-mapping id="newrole">
+		<pattern value="/users/roles/nouveau" />
+		<view-id value="/users/newrole.xhtml" />
+	</url-mapping>
+	
 	<url-mapping id="permissions">
 		<pattern value="/users/permissions" />
 		<view-id value="/users/permissions.xhtml" />

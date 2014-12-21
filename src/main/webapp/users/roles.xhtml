@@ -20,7 +20,7 @@
 	        <br />
 			<section class="panel">
                           <header class="panel-heading">
-                              Advanced Table
+                              <h4>Liste des roles</h4>
                           </header>
                           <table class="table table-striped table-advance table-hover">
                               <thead>
@@ -31,9 +31,14 @@
                               </tr>
                               </thead>
                               <tbody>
+                              <ui:repeat var="role" value="#{roleBean.roles}">
                               <tr>
-                                  <td><a href="#">Vector Ltd</a></td>
-                                  <td class="hidden-phone">Lorem Ipsum dorolo imit</td>
+                                  <td><b>#{role.nom}</b></td>
+                                  <td class="hidden-phone">
+                                  	<ui:repeat var="perm" value="#{role.permissions}">
+                                  		#{perm.nom}
+                                  	</ui:repeat>
+                                  </td>
                                   <td>
                                         <div class="btn-group  btn-group-sm">
 	                                  		<h:commandButton styleClass="btn btn-warning" value="Editer" action="#"/>
@@ -41,7 +46,7 @@
 	                                  </div>
                                   </td>
                               </tr>
-                           
+                           </ui:repeat>
                               </tbody>
                           </table>
                       </section>
