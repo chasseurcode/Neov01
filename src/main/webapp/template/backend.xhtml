@@ -16,13 +16,15 @@
 
 	<!-- Bootstrap core CSS -->
 	<h:outputStylesheet library="css" name="bootstrap.min.css" />
-	<h:outputStylesheet library="css" name="css/bootstrap-reset.css" />
+	<h:outputStylesheet library="css" name="bootstrap-reset.css" />
 
 	<!--external css-->
 	<h:outputStylesheet library="assets/font-awesome/css"
 		name="font-awesome.css" />
 	<h:outputStylesheet library="css" name="style.css" />
 	<h:outputStylesheet library="css" name="style-responsive.css" />
+    <h:outputStylesheet library="assets/data-tables" name="DT_bootstrap.css" />
+
 
 </h:head>
 
@@ -196,9 +198,21 @@
 	<h:outputScript library="js" name="jquery.scrollTo.min.js" />
 	<h:outputScript library="js" name="jquery.nicescroll.js" />
 	<h:outputScript library="js" name="respond.min.js" />
-
+    <h:outputScript library="js" name="advanced-form-components.js"/>
+    <h:outputScript library="assets/bootstrap-datepicker/js" name="bootstrap-datepicker.js" />
+    <h:outputScript library="assets/bootstrap-daterangepicker" name="daterangepicker.js" />
+    <h:outputScript library="assets/data-tables" name="jquery.dataTables.js" />
+    <h:outputScript library="assets/data-tables" name="DT_bootstrap.js" />
+     <h:outputScript library="js" name="editable-table.js" />
+       
 	<!--common script for all pages-->
 	<h:outputScript library="js" name="common-scripts.js" />
+	<!-- script pour la table -->
+	<script>
+          jQuery(document).ready(function() {
+              EditableTable.init();
+          });
+      </script>
 
 </h:body>
 </html>
