@@ -13,101 +13,113 @@
 		<ui:define name="titre">Nouvelle campagne</ui:define>
 
 		<ui:define name="contenu">
-			<section class="wrapper">
-				<!-- page start-->
+			<!-- page start-->
 
-				<div class="row">
+			<div class="col-lg-12">
+				<section class="panel">
+					<header class="panel-heading"> Nouvelle campagne </header>
+					<div class="panel-body">
+						<h:form class="form-horizontal" >
 
-					<div class="col-lg-12">
-						<section class="panel">
-							<header class="panel-heading"> Nouvelle campagne </header>
-							<div class="panel-body">
-								<h:form class="form-horizontal">
-
-									<div class="form-group">
-										<label class="col-lg-2 col-sm-2 control-label">Intitulé</label>
-										<div class="col-lg-3">
-											<h:inputText styleClass="form-control" value="#{campagneBean.campagne.intitule}"/>
-										</div>
-									</div>
-
-									<div class="form-group">
-										<label class="col-lg-2 col-sm-2 control-label">Date</label>
-										<div class="col-lg-5">
-											<div class="input-group input-large" data-date="13/07/2013"
-												data-date-format="dd/mm/yyyy">
-												<h:inputText styleClass="form-control dpd1" value="#{campagneBean.campagne.dateDebut}" />
-												<span class="input-group-addon">Au</span> 
-												<h:inputText styleClass="form-control dpd2" value="#{campagneBean.campagne.dateFin}" />
-											</div>
-										</div>
-									</div>
-									<div class="form-group">
-										<div class="col-lg-offset-2 col-lg-10">
-											<h:commandButton value="Ajouter des publicites"
-												styleClass="btn btn-xs btn-success"
-												action="#{campagneBean.afficherPub}" />
-
-										</div>
-									</div>
-
-									<h:panelGrid rendered="#{campagneBean.showPub}" style="margin-top: 10px">
-										<header class="panel-heading"> Nouvelle publicité </header>									
-										<h:form class="form-horizontal">
-											<div class="form-group">
-												<label class="col-lg-2 col-sm-2 control-label">Intitulé</label>
-												<div class="col-lg-3">
-													<h:inputText styleClass="form-control" value="#{campagneBean.publicite.intitule}"/>
-												</div>
-											</div>
-											<div class="form-group">
-												<label class="col-lg-2 col-sm-2 control-label">Date</label>
-												<div class="col-lg-5">
-													<div class="input-group input-large" data-date="13/07/2013"
-														data-date-format="dd/mm/yyyy">
-														<h:inputText styleClass="form-control dpd1" value="#{campagneBean.publicite.dateDebut}"  />
-														<span class="input-group-addon">To</span> 
-														<h:inputText styleClass="form-control dpd2" value="#{campagneBean.publicite.dateFin}"/>
-													</div>
-												</div>
-											</div>
-
-											<div class="form-group">
-												<label class="col-lg-2 col-sm-2 control-label">Nombre de vue</label>
-												<div class="col-lg-3">
-													<h:inputText styleClass="form-control"  value="#{campagneBean.publicite.nbreVue}" />
-												</div>
-											</div>
-											<div class="form-group">
-												<label for="exampleInputFile"> Pièce jointe</label>
-												<h:inputFile label="file" />
-											</div>
-
-											<h:commandButton styleClass="btn btn-xs  btn-default" style="margin-left:220px" value="Enregistrer" />
-										</h:form>
-
-									</h:panelGrid>
-
-									<div class="form-group">
-
-										<div class="col-lg-offset-2 col-lg-10">
-											<h:commandButton styleClass="btn btn-danger pull-right"
-												style="margin-left:5px" value="Annuler" type="reset" />
-											<h:commandButton styleClass="btn btn-info pull-right"
-												value="Enregistrer" />
-
-										</div>
-									</div>
-
-								</h:form>
+							<div class="form-group">
+								<label class="col-lg-2 col-sm-2 control-label">Intitulé</label>
+								<div class="col-lg-3">
+									<h:inputText styleClass="form-control"
+										value="#{campagneBean.campagne.intitule}" />
+								</div>
 							</div>
-						</section>
+
+							<div class="form-group">
+								<label class="col-lg-2 col-sm-2 control-label">Date</label>
+								<div class="col-lg-5">
+									<div class="input-group input-large">
+										<INPUT type="date" class="form-control "
+											value="#{campagneBean.campagne.dateDebut}" /> <span
+											class="input-group-addon">Au</span> <INPUT type="date"
+											class="form-control" value="#{campagneBean.campagne.dateFin}" />
+
+									</div>
+								</div>
+							</div>
+							
+							<div class="form-group">
+								<div class="col-lg-offset-2 col-lg-10">
+									<a href="#myModal" data-toggle="modal"
+										class="btn btn-xs btn-success"> Ajouter des publicités</a>
+
+								</div>
+							</div>
+							
+							<div class="form-group">
+
+								<div class="col-lg-offset-2 col-lg-10">
+									<h:commandButton styleClass="btn btn-danger pull-right"
+										style="margin-left:5px" value="Annuler" type="reset" />
+									<h:commandButton styleClass="btn btn-info pull-right"
+										value="Enregistrer" action="#{campagneBean.addCampagne}" />
+
+								</div>
+							</div>
+
+						</h:form>
+						
+						
+					</div>
+				</section>
+
+				<div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog"
+					tabindex="-1" id="myModal" class="modal fade">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button aria-hidden="true" data-dismiss="modal" class="close"
+									type="button">×</button>
+								<h4 class="modal-title">Nouvelle publicité </h4>
+							</div>
+							<div class="modal-body">
+
+
+								<h:form p:role="form" enctype="multipart/form-data">
+									<div class="form-group">
+										<label for="exampleInputEmail1">Intitulé</label> 
+										<h:inputText styleClass="form-control" id="intpub" value="#{campagneBean.publicite.intitule}" />
+										<p class="help-block"><h:message for="intpub"/></p>										
+									</div>
+									
+									<div class="form-group">
+										<label for="exampleInputPassword1">Date</label> 										
+											<div class="input-group input-large">
+												<INPUT type="date"  class="form-control " value="#{campagneBean.publicite.dateDebut}"/>
+												<span class="input-group-addon">Au</span> 
+												<INPUT type="date"  class="form-control " value="#{campagneBean.publicite.dateFin}"/>
+											</div>
+									</div>
+									
+									<div class="form-group">
+										<label >Nombre de vue</label> 
+										<h:inputText styleClass="form-control" id="nbrevue"
+												value="#{campagneBean.publicite.nbreVue}" />
+									    <p class="help-block"><h:message for="nbrevue"/></p>
+									</div>
+									
+									<div class="form-group">
+										<label for="exampleInputFile">Pièce jointe</label>
+										 <h:inputFile label="file" id="file" value="#{campagneBean.fichier}"/>
+									     <p class="help-block"><h:message for="file"/></p>
+									</div>
+									
+									<h:commandButton styleClass="btn btn-default" value="Ajouter" 
+									          actionListener="#{campagneBean.addPublicite}"/>
+								</h:form>
+								
+							</div>
+						</div>
 					</div>
 				</div>
-				<!-- page end-->
-			</section>
-			<ui:include src="/campagne/addPublicite.xhtml" />
 
+
+			</div>
+			<!-- page end-->
 		</ui:define>
 	</ui:composition>
 

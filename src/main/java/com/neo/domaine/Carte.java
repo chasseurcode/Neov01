@@ -14,6 +14,7 @@ public class Carte {
 	private String operateur;
 	private String numero;
 	private float montant;
+	private boolean active=true;
 	private Date dateCreation=new Date();
 	private Date dateMaj=new Date();
 	private boolean supprimer=false;
@@ -94,6 +95,14 @@ public class Carte {
 
 	public void setSupprimer(boolean supprimer) {
 		this.supprimer = supprimer;
+	}
+
+	public boolean isActive() {
+		return active;
+	}
+
+	public void setActive(boolean active) {
+		this.active = active;
 	}
 	
 	

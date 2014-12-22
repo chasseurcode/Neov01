@@ -1,0 +1,113 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:h="http://java.sun.com/jsf/html">
+<h:head>
+
+</h:head>
+
+<h:body>
+	<ui:composition template="/template/backend.xhtml">
+		<ui:define name="titre">Liste des campagnes en cours</ui:define>
+
+		<ui:define name="contenu">
+
+			 <section class="panel">
+                          
+                          <div class="panel-body bio-graph-info">
+                              <h1>Campagne information</h1>
+                              <div class="row">
+                                  <div class="bio-row">
+                                      <p><span>Intitulé </span>: <h:outputLabel value="ok" /> </p>
+                                  </div>
+                                  <div class="bio-row">
+                                      <p><span>Date de début</span>: <h:outputLabel value="ok" /> </p>
+                                  </div>
+                                  <div class="bio-row">
+                                      <p><span> </span><h:outputLabel value=" " /> </p>
+                                  </div>
+                                  <div class="bio-row">
+                                      <p><span>Da de fin</span>: <h:outputLabel value="ok" /> </p>
+                                  </div>
+                                 
+                              </div>
+                          </div>
+                      </section>
+                      
+                       <section class="panel">
+                  <header class="panel-heading">
+                      Image Galley
+                  </header>
+                  <div class="panel-body">
+                      <ul class="grid cs-style-3">
+                        <ui:repeat var="pubs">                        
+                          <li>
+                              <figure>
+                              <h:graphicImage
+								library="img/gallery" name="2.jpg" />
+                                  <figcaption  style="height: 156px">
+                                      <h3 style="text-align: center">intitule</h3><br/> 
+                                      <h3>date de debut : <h:outputLabel value="ok" /> </h3>                               
+                                      <h3>date de fin : <h:outputLabel value="ok" /> </h3>                                
+                                      <h3>Nombre de vue : <h:outputLabel value="ok" /> </h3>  <br/> 
+                                      <h:form>                          
+                                      <h3 class="pull-right"><h:commandButton styleClass="btn btn-info btn-xs " value="Editer" />&#160;
+                                      <h:commandButton styleClass="btn btn-danger btn-xs " value="Supprimer" />
+                                      </h3> 
+                                      </h:form>                                       
+                                  </figcaption>
+                              </figure>
+                          </li>
+                          </ui:repeat>
+                          <li>
+                              <figure>
+                              <h:graphicImage
+								library="img/gallery" name="5.jpg" />
+                                  <figcaption  style="height: 156px">
+                                      <h3 style="text-align: center">intitule</h3><br/> 
+                                      <h3>date de debut : <h:outputLabel value="ok" /> </h3>                               
+                                      <h3>date de fin : <h:outputLabel value="ok" /> </h3>                                
+                                      <h3>Nombre de vue : <h:outputLabel value="ok" /> </h3>  <br/> 
+                                      <h:form>                          
+                                      <h3 class="pull-right"><h:commandButton styleClass="btn btn-info btn-xs " value="Editer" />&#160;
+                                      <h:commandButton styleClass="btn btn-danger btn-xs " value="Supprimer" />
+                                      </h3> 
+                                      </h:form>                                       
+                                  </figcaption>
+                              </figure>
+                          </li>
+                                                 
+                          <li>
+                              <figure>
+                              <h:graphicImage
+								library="img/gallery" name="2.jpg" />
+                                   <figcaption  style="height: 156px">
+                                      <h3 style="text-align: center">intitule</h3><br/> 
+                                      <h3>date de debut : <h:outputLabel value="ok" /> </h3>                               
+                                      <h3>date de fin : <h:outputLabel value="ok" /> </h3>                                
+                                      <h3>Nombre de vue : <h:outputLabel value="ok" /> </h3>  <br/> 
+                                      <h:form>                          
+                                      <h3 class="pull-right"><h:commandButton styleClass="btn btn-info btn-xs " value="Editer" />&#160;
+                                      <h:commandButton styleClass="btn btn-danger btn-xs " value="Supprimer" />
+                                      </h3> 
+                                      </h:form>                                       
+                                  </figcaption>
+                              </figure>
+                          </li>
+                        
+                         
+                      </ul>
+
+                  </div>
+              </section>
+                      
+
+
+
+		</ui:define>
+	</ui:composition>
+
+
+</h:body>
+</html>
