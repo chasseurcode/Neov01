@@ -33,7 +33,7 @@
 		                              <tr>
 		                                  <td>#{user.compte}</td>
 		                                  <td class="hidden-phone">
-		                                  	<ui:repeat var="role" value="#{user.roles}">
+		                                  	<ui:repeat  var="role" value="#{user.roles}">
 		                                  		#{role.nom}
 		                                  	</ui:repeat>
 		                                  </td>
@@ -43,7 +43,7 @@
 		                                  </td>
 		                                  <td>
 		                                      <div class="pull-right btn-group  btn-group-xs">
-			                                  		<h:commandButton styleClass="btn btn-warning" value="Editer" action="#"/>
+			                                  		<h:commandButton styleClass="btn btn-danger" value="Editer" action="#{userBean.editUser(user)}"/>
 													<h:commandButton rendered="#{user.actif}" styleClass="btn btn-primary" value="Desactiver" action="#{userBean.desactiverCompte(user)}"/>
 													<h:commandButton rendered="#{not user.actif}" styleClass="btn btn-primary" value="Activer" action="#{userBean.desactiverCompte(user)}"/>
 			                                  </div>

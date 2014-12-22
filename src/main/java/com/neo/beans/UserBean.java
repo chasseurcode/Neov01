@@ -5,7 +5,7 @@ import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
+import javax.faces.bean.SessionScoped;
 
 import org.apache.shiro.crypto.RandomNumberGenerator;
 import org.apache.shiro.crypto.SecureRandomNumberGenerator;
@@ -19,7 +19,7 @@ import com.neo.domaine.Role;
 import com.neo.domaine.Utilisateur;
 
 @ManagedBean
-@ViewScoped
+@SessionScoped
 public class UserBean {
 	private Utilisateur user;
 	private UtilisateurDAO userDAO;
@@ -58,7 +58,7 @@ public class UserBean {
 		userDAO.modifier(user);
 		user=new Utilisateur();
 		selectRole.clear();
-		
+		refreshListe();
 		return "pretty:userslist";
 	}
 	
@@ -68,12 +68,15 @@ public class UserBean {
 		}else {
 			user.setActif(true);
 		}
-		//userDAO.modifier(user);
+		userDAO.modifier(user);
 		refreshListe();
 		return null;
 	}
 	
-
+	public String editUser(Utilisateur user) {
+		setUser(user);
+		return "pretty:edituser";
+	}
 	public List<Role> getRoleDipo() {
 		return roleDipo;
 	}

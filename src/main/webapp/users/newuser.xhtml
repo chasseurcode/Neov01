@@ -12,14 +12,13 @@
 	<ui:composition template="/template/backend.xhtml">
 	<ui:define name="titre">Nouveau utilisateur</ui:define>
 	<h:outputStylesheet library="css" name="neostyle.css" />
-	
 		<ui:define name="contenu">
-        	<div class="col-lg-offset-2 col-sm-8">
 				<section class="panel">
                           <header class="panel-heading">
                              <h4>Nouveau compte</h4>
                           </header>
                           <div class="panel-body">
+                         	 <div class="col-lg-offset-2 col-sm-8">
                               <h:form styleclass="form-horizontal" p:role="form">
                               
                                   <div class="form-group">
@@ -60,12 +59,11 @@
                                           <p class="help-block"><h:message for="email"/></p>
                                       </div>
                                   </div>
-									<br /><br />
-								<div class="form-group col-lg-10">
-									<h:selectManyCheckbox layout="lineDirection" value="#{userBean.selectRole}">
+					
+									<h:selectManyCheckbox styleClass="pull-right col-lg-10" layout="lineDirection" value="#{userBean.selectRole}">
 										<f:selectItems var="role" itemValue="#{role.id}" itemLabel="#{role.nom}" value="#{userBean.roleDipo}"/>
 									</h:selectManyCheckbox>	 
-								 </div>
+								
 								 
                                   <div class="form-group">
                                       <div class="margehaut pull-right">
@@ -74,11 +72,10 @@
                                       </div>
                                   </div>
                               </h:form>
+                              </div>
                           </div>
                       </section>
-              </div>
 		</ui:define>
-		
 	</ui:composition>
 </h:body>
 </html>

@@ -11,6 +11,7 @@ import com.neo.utility.HibernateUtil;
 public class UtilisateurDAOImpl implements UtilisateurDAO{
 
 	public void creer(Utilisateur utilisateur) {
+		
 		Session session=HibernateUtil.getSession();
 		session.beginTransaction();
 		session.save(utilisateur);
@@ -20,9 +21,8 @@ public class UtilisateurDAOImpl implements UtilisateurDAO{
 
 	public void modifier(Utilisateur utilisateur) {
 		Session session=HibernateUtil.getSession();
-		session.beginTransaction();
-		session.merge(utilisateur);
-		session.getTransaction().commit();
+		session.update(utilisateur);
+		session.flush();
 	}
 
 	public void supprimer(Utilisateur utilisateur) {

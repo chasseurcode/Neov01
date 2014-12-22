@@ -58,4 +58,5 @@ public class HibernateUtil {
 		}
 		return session;
 	}
+	
 }
