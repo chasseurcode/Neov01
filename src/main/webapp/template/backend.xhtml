@@ -24,6 +24,10 @@
 	<h:outputStylesheet library="css" name="style.css" />
 	<h:outputStylesheet library="css" name="style-responsive.css" />
     <h:outputStylesheet library="assets/data-tables" name="DT_bootstrap.css" />
+    <h:outputStylesheet library="css" name="gallery.css" />
+    <h:outputStylesheet library="assets/fancybox/source" name="jquery.fancybox.css" />
+    
+    
 
 
 </h:head>
@@ -126,6 +130,7 @@
 					<li class="sub-menu"><a href="javascript:;"><i class="icon-truck"></i> <span>Gérer les Campagnes</span></a>
 						<ul class="sub">
 							<li> <h:link outcome="pretty:newcampagne" value="Nouvelle campagne"> </h:link> </li>
+							<li> <h:link outcome="pretty:attentecamp" value="Campagnes en attentes"> </h:link> </li>
 							<li> <h:link outcome="pretty:encours" value="Campagnes en cours"> </h:link> </li>
 							<li> <h:link outcome="pretty:terminees" value="Campagnes terminées"> </h:link> </li>
 						</ul>
@@ -203,7 +208,13 @@
     <h:outputScript library="assets/bootstrap-daterangepicker" name="daterangepicker.js" />
     <h:outputScript library="assets/data-tables" name="jquery.dataTables.js" />
     <h:outputScript library="assets/data-tables" name="DT_bootstrap.js" />
-     <h:outputScript library="js" name="editable-table.js" />
+    <h:outputScript library="js" name="editable-table.js" />
+    <h:outputScript library="assets/fancybox/source" name="jquery.fancybox.js"/>
+    <h:outputScript library="js" name="toucheffects.js" />
+     <h:outputScript library="js" name="modernizr.custom.js" />
+    
+    
+     
        
 	<!--common script for all pages-->
 	<h:outputScript library="js" name="common-scripts.js" />

@@ -13,51 +13,52 @@ import com.neo.domaine.Carte;
 @ManagedBean
 @SessionScoped
 public class CarteRechargeBean {
-	
-	private Carte carteRecharge;
+
+	private Carte carteRecharge,current;
 	private CarteDAO carteDAO;
 	private List<Carte> lesCartes;
-	
+
+
+
+
 	public CarteRechargeBean () {
 		carteRecharge=new Carte();
 		carteDAO=new CarteDaoImpl();
 		lesCartes=new ArrayList<Carte>();
-		lesCartes=carteDAO.lister();
+		rafraichirListe();
 	}
 
 	// ajouter carte
 	public String addCarte(){
-		System.out.println("ds carte");
-		carteDAO.creer(carteRecharge);
-		carteRecharge=new Carte();
+		if(current==null){
+			carteDAO.creer(carteRecharge);
+			carteRecharge=new Carte();
+		}
+		else{
+			carteDAO.modifier(current);
+			carteRecharge=new Carte();
+		}
 		rafraichirListe();
+		return null;
+	}
 
-		return null;
-	}
-	
 	//modification de la carte
-	public String updateCarte(){
-		 carteDAO.modifier(carteRecharge);	
-		return null;
+	public void edition(Carte carte) {
+		setCarteRecharge(carte);
+		setCurrent(carteRecharge);
 	}
-	
-	
-	public String editCarte(Carte carte){
-		System.out.println("ds load");
-		return null;
-	}
-	
+
 	//raffraichir la liste des cartes
 	private  void rafraichirListe(){
 		lesCartes=carteDAO.lister();
 	}
-	
-	
+
+
 	/**
 	 * 
 	 * Getters et Setters
 	 */
-	
+
 	public CarteDAO getCarteDAO() {
 		return carteDAO;
 	}
@@ -82,6 +83,14 @@ public class CarteRechargeBean {
 		this.lesCartes = lesCartes;
 	}
 
-	
-	
+	public Carte getCurrent() {
+		return current;
+	}
+
+	public void setCurrent(Carte current) {
+		this.current = current;
+	}
+
+
+
 }

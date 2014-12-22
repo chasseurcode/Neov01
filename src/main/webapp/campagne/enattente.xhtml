@@ -1,0 +1,65 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:h="http://java.sun.com/jsf/html">
+<h:head>
+
+</h:head>
+
+<h:body>
+	<ui:composition template="/template/backend.xhtml">
+		<ui:define name="titre">Liste des campagnes en cours</ui:define>
+
+		<ui:define name="contenu">
+			<!--main content start-->
+				<!-- page start-->
+				<section class="panel">
+                  <header class="panel-heading">
+                     <h3>Campagne en attentes</h3> 
+                  </header>
+                  <div class="panel-body">
+                      <div class="adv-table editable-table ">
+                          
+                          <div class="space15"></div>
+                          <table class="table table-striped table-hover table-bordered" id="editable-sample">
+                              <thead>
+                              <tr>
+										<th>Intitulé</th>
+										<th>Date de début</th>
+										<th>Date de fin</th>
+										<th style="text-align: center">Action</th>
+                              </tr>
+                              </thead>
+                              <tbody>
+                            
+                              <ui:repeat var="attente" value="#{campagneBean.lesCampagnesEnAttentes}">
+
+									<tr class="">
+										<td>#{attente.intitule}</td>
+										<td>#{attente.dateDebut}</td>
+										<td>#{attente.dateFin}</td>
+									<h:form>									
+										<td style="text-align: center">
+										     <h:commandButton styleClass="btn btn-success btn-xs" value="Detail" />&#160;                           
+										   <h:commandButton styleClass="btn btn-primary  btn-xs" value="Editer" />&#160;
+                                           <h:commandButton styleClass="btn btn-danger  btn-xs" value="Supprimer" />&#160;
+                                           <h:commandButton styleClass="btn btn-info  btn-xs" value=" Payer"/>
+										</td>
+									</h:form>	
+									</tr>
+								</ui:repeat>
+                              </tbody>
+                          </table>
+                      </div>
+                  </div>
+              </section>
+				<!-- page end-->
+
+		</ui:define>
+	</ui:composition>
+	<!--main content end-->
+
+
+</h:body>
+</html>

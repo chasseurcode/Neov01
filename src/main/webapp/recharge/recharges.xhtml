@@ -93,13 +93,14 @@
 										<td>#{carte.operateur}</td>
 										<td>#{carte.numero}</td>
 										<td>#{carte.montant}</td>
+										<h:form>
 										<td>
 											<div class="btn-group  btn-group-sm">
-	                                  		<h:commandButton styleClass="btn btn-warning" value="Editer" action="#{carteRechargeBean.editCarte(carte)}"/>
-												<h:commandButton styleClass="btn btn-danger"
-													value="Supprimer" />
+	                                  		<h:commandButton styleClass="btn btn-info btn-xs" 
+	                                  		actionListener="#{carteRechargeBean.edition(carte)}" value="Editer" />
 											</div>
 										</td>
+										</h:form>
 									</tr>
 								</ui:repeat>
 

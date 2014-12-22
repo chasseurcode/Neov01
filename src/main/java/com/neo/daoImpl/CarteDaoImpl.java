@@ -14,10 +14,10 @@ public class CarteDaoImpl implements CarteDAO{
 	public void creer(Carte carte) {
 		Session session=HibernateUtil.getSession();
 		session.beginTransaction();
-		session.save(carte);
+		session.merge(carte);
 		session.getTransaction().commit();
 	}
-
+	
 	@Override
 	public void modifier(Carte carte) {
 		Session session=HibernateUtil.getSession();
@@ -41,7 +41,7 @@ public class CarteDaoImpl implements CarteDAO{
 	@Override
 	public List<Carte> lister() {
 		Session session=HibernateUtil.getSession();
-			return session.createQuery("from Carte").list();
+		return session.createQuery("from Carte where active= :stat").setBoolean("stat", true).list();
 	}
 
 	

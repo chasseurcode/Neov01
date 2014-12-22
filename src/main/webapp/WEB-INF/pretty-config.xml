@@ -52,11 +52,23 @@
 		<pattern value="/encours" />
 		<view-id value="/campagne/encours.xhtml" />
 	</url-mapping>
+	
+	<!-- page campagne en attente -->
+	<url-mapping id="attentecamp">
+		<pattern value="/attentes" />
+		<view-id value="/campagne/enattente.xhtml" />
+	</url-mapping>
 
 	<!-- page campagne terminees -->
 	<url-mapping id="terminees">
 		<pattern value="/terminees" />
 		<view-id value="/campagne/terminees.xhtml" />
+	</url-mapping>
+	
+	<!-- page detail campagne -->
+	<url-mapping id="detailcamp">
+		<pattern value="/details" />
+		<view-id value="/campagne/listePub.xhtml" />
 	</url-mapping>
 
 	<!-- ********* Gestion des cartes de recharges ********** -->

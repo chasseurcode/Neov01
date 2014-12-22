@@ -1,6 +1,7 @@
 package com.neo.beans;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.faces.bean.ManagedBean;
@@ -8,6 +9,7 @@ import javax.faces.bean.RequestScoped;
 import javax.servlet.http.Part;
 
 import com.neo.dao.CampagneDAO;
+import com.neo.daoImpl.CampagneDaoimpl;
 import com.neo.domaine.Campagne;
 import com.neo.domaine.Publicite;
 
@@ -22,13 +24,19 @@ public class CampagneBean {
 	private Publicite publicite;
 	private List<Publicite> lesPublicites;
 	private List<Campagne> lesCampagnes;
+	private List<Campagne> lesCampagnesEncours, lesCampagnesEnAttentes,lesCampagnesterminees;
 
 
 	public CampagneBean() {
 		campagne=new Campagne();
+		campagneDAO=new CampagneDaoimpl();
 		publicite=new Publicite();
 		lesPublicites=new ArrayList<Publicite>();
-		lesCampagnes=new ArrayList<Campagne>();
+		lesCampagnesEnAttentes=new ArrayList<Campagne>();
+		lesCampagnesEncours=new ArrayList<Campagne>();
+		lesCampagnesterminees=new ArrayList<Campagne>();
+		setLesCampagnes(campagneDAO.lister());
+		initListe();
 	}
 
 
@@ -47,14 +55,30 @@ public class CampagneBean {
 
 	//ajout de la publicite
 	public void addPublicite(){
-     System.out.println("ds addpub");
-     
+		System.out.println("ds addpub");
+
 	}
-   
+
 	//ajout de la campagne
 	public void addCampagne(){
 		System.out.println("ds add campagne");
 	}
+
+	// ajout ds les differentes liste de campagne
+	private void initListe(){
+		for(Campagne c:lesCampagnes){
+			if((c.getDateFin().compareTo(new Date())<0) && (c.getReglements().size()>0) ){
+				lesCampagnesterminees.add(c);
+			}
+			if((c.getDateFin().compareTo(new Date()) >0) && (c.getReglements().size()>0)){
+				lesCampagnesEncours.add(c);
+			}
+			if((c.getDateFin().compareTo(new Date()) >0) && (c.getReglements().size()==0)){
+				lesCampagnesEnAttentes.add(c);
+			}
+		}
+	}
+
 
 	/**
 	 * 
@@ -119,6 +143,36 @@ public class CampagneBean {
 
 	public void setLesCampagnes(List<Campagne> lesCampagnes) {
 		this.lesCampagnes = lesCampagnes;
+	}
+
+
+	public List<Campagne> getLesCampagnesEncours() {
+		return lesCampagnesEncours;
+	}
+
+
+	public void setLesCampagnesEncours(List<Campagne> lesCampagnesEncours) {
+		this.lesCampagnesEncours = lesCampagnesEncours;
+	}
+
+
+	public List<Campagne> getLesCampagnesEnAttentes() {
+		return lesCampagnesEnAttentes;
+	}
+
+
+	public void setLesCampagnesEnAttentes(List<Campagne> lesCampagnesEnAttentes) {
+		this.lesCampagnesEnAttentes = lesCampagnesEnAttentes;
+	}
+
+
+	public List<Campagne> getLesCampagnesterminees() {
+		return lesCampagnesterminees;
+	}
+
+
+	public void setLesCampagnesterminees(List<Campagne> lesCampagnesterminees) {
+		this.lesCampagnesterminees = lesCampagnesterminees;
 	}
 
 
