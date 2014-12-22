@@ -13,6 +13,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
 @Entity
@@ -24,14 +25,14 @@ public class Utilisateur implements Serializable{
 	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy=GenerationType.TABLE)
-	private int id;
+	private Long id;
 	private String compte;
 	private String motDePasse;
 	private String email;
 	private String telehone;
 	private String saltMotDePasse;
 	private boolean actif=true;
-	@OneToMany(cascade=CascadeType.ALL)
+	@ManyToMany(cascade=CascadeType.ALL,fetch=FetchType.EAGER)
 	private List<Role> roles=new ArrayList<Role>();
 	@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
 	private List<Message> messages=new ArrayList<Message>();
@@ -78,10 +79,10 @@ public class Utilisateur implements Serializable{
 		this.telehone = telehone;
 	}
 
-	public int getId() {
+	public Long getId() {
 		return id;
 	}
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 	public Date getCreation() {
@@ -137,6 +138,10 @@ public class Utilisateur implements Serializable{
 
 	public void setMessages(List<Message> messages) {
 		this.messages = messages;
+	}
+
+	public void setRoles(List<Role> roles) {
+		this.roles = roles;
 	}
 	
 }

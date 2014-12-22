@@ -35,12 +35,13 @@ public class RoleBean {
 	}
 	
 	public String addRole() {
+		roleDAO.creer(role);
 		List<Permission> listP=new ArrayList<Permission>();
 		for(String permId: selectPerm){
 			listP.add(permDAO.findById(Integer.parseInt(permId)));
 		}
 		role.setPermissions(listP);
-		roleDAO.creer(role);
+		roleDAO.modifier(role);
 		return "pretty:roles";
 	}
 	

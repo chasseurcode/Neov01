@@ -30,11 +30,11 @@
                               </tr>
                               </thead>
                               <tbody>
-                              <ui:repeat var="client" value="#{clientBean.listClient}">
+                              <ui:repeat var="user" value="#{userBean.users}">
 	                              <tr>
-	                                  <td><STRONG>#{client.nom}</STRONG></td>
-	                                  <td class="hidden-phone">#{client.email}</td>
-	                                  <td>#{client.telehone}</td>
+	                                  <td><STRONG>#{user.compte}</STRONG></td>
+	                                  <td class="hidden-phone">#{user.email}</td>
+	                                  <td>#{}</td>
 	                                  <td>	
 	                                  <shiro:hasPermission name="Client:love">
 	                                  	voir client
@@ -42,10 +42,8 @@
 	                                  		#{client.adresse}</td>
 	                                  <td>
 	                                  <div class="btn-group  btn-group-sm">
-	                                  	
 	                                  		<h:commandButton styleClass="btn btn-warning" value="Editer" action="#{clientBean.editClient(client)}"/>
 	                           	       		<h:commandButton styleClass="btn btn-danger" value="Desactiver" action="#{clientBean.editClient(client)}"/>
-	                                  		<h:commandButton styleClass="btn btn-info" value="Details" action="#{clientBean.editClient(client)}"/>
 	                                  </div>
     	                               </td>
 	                              </tr>

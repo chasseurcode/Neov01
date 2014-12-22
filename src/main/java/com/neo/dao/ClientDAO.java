@@ -9,6 +9,6 @@ public interface ClientDAO {
 	public void creer(Client client);
 	public void modifier(Client client);
 	public void supprimer(Client client);
-	public Client findById(int id);
+	public Client findById(Long long1);
 	public List<Client> lister();
 }

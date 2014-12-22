@@ -9,6 +9,6 @@ public interface AbonneeDAO {
 	public void creer(Abonne abonne);
 	public void modifier(Abonne abonne);
 	public void supprimer(Abonne abonne);
-	public Abonne findById(int id);
+	public Abonne findById(Long long1);
 	public List<Abonne> lister();
 }

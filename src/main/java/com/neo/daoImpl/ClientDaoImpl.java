@@ -32,7 +32,7 @@ public class ClientDaoImpl implements ClientDAO{
 	}
 	
 	@Override
-	public Client findById(int id) {
+	public Client findById(Long id) {
 		Session session=HibernateUtil.getSession();
 		return (Client) session.get(Client.class, id);
 	}

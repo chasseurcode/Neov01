@@ -1,6 +1,7 @@
 package com.neao.dao.test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 import java.util.List;
 
@@ -12,8 +13,6 @@ import org.junit.Test;
 
 import com.neo.dao.UtilisateurDAO;
 import com.neo.daoImpl.UtilisateurDAOImpl;
-import com.neo.domaine.Permission;
-import com.neo.domaine.Role;
 import com.neo.domaine.Utilisateur;
 
 public class UtilisateurDAOTest {

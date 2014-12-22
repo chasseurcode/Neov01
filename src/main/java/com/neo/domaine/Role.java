@@ -9,6 +9,7 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
 @Entity
@@ -23,7 +24,8 @@ public class Role implements Serializable{
 	private String nom;
 	@OneToMany(cascade=CascadeType.ALL,fetch=FetchType.EAGER)
 	private List<Permission> permissions=new ArrayList<Permission>();
-
+	@ManyToMany(mappedBy="roles")
+	private List<Utilisateur> utilisateur;
 	public Role() {
 
 	}
@@ -63,6 +65,14 @@ public class Role implements Serializable{
 	
 	public void removePermission(Permission permission) {
 		permissions.remove(permission);
+	}
+
+	public List<Utilisateur> getUtilisateur() {
+		return utilisateur;
+	}
+
+	public void setUtilisateur(List<Utilisateur> utilisateur) {
+		this.utilisateur = utilisateur;
 	}
 	
 }

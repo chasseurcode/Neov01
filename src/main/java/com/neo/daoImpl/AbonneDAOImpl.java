@@ -33,7 +33,7 @@ public class AbonneDAOImpl implements AbonneeDAO{
 	}
 	
 	@Override
-	public Abonne findById(int id) {
+	public Abonne findById(Long id) {
 		Session session=HibernateUtil.getSession();
 		return (Abonne) session.get(Abonne.class, id);
 	}

@@ -11,10 +11,74 @@
 <h:body>
 	<ui:composition template="/template/backend.xhtml">
 	<ui:define name="titre">Nouveau utilisateur</ui:define>
+	<h:outputStylesheet library="css" name="neostyle.css" />
 	
 		<ui:define name="contenu">
-        	<h3>Nouveau Compte</h3>
+        	<div class="col-lg-offset-2 col-sm-8">
+				<section class="panel">
+                          <header class="panel-heading">
+                             <h4>Nouveau compte</h4>
+                          </header>
+                          <div class="panel-body">
+                              <h:form styleclass="form-horizontal" p:role="form">
+                              
+                                  <div class="form-group">
+                                      <label for="compte" class="col-lg-4 col-sm-4 control-label">Compte</label>
+                                      <div class="col-lg-8">
+                                      	  <h:inputText id="compte" label="compte du client" size="6" maxlength="16"
+                                      	  styleClass="form-control" required="true" value="#{userBean.user.compte}" />
+                                          <p class="help-block"><h:message for="compte"/></p>
+                                      </div>
+                                  </div>
+                                  
+                                  <div class="form-group">
+                                      <label for="pass" class="col-lg-4 col-sm-4 control-label">Mot de passe</label>
+                                      <div class="col-lg-8">
+                                      	  <h:inputSecret id="pass" label="pass sociale" styleClass="form-control"
+                                      	   maxlength="20" size="8" required="true" value="#{userBean.motPasse}" />
+                                          <p class="help-block"><h:message for="pass"/></p>
+                                      </div>
+                                  </div>
+                                  
+                                                                    
+                                  <div class="form-group">
+                                      <label for="confirm" class="col-lg-4 col-sm-4 control-label">Confirmer</label>
+                                      <div class="col-lg-8">
+                                      	  <h:inputSecret id="confirm" label="confirm" styleClass="form-control"
+                                      	  size="8" maxlength="20" required="true" value="#{userBean.confirme}" />
+                                          <p class="help-block"><h:message for="confirm"/></p>
+                                      </div>
+                                  </div>
+                                  
+                                    <div class="form-group">
+                                      <label for="email" class="col-lg-4 col-sm-4 control-label">E-mail</label>
+                                      <div class="col-lg-8">
+                                      	  <h:inputText id="email" label="E-mail" styleClass="form-control" required="true"
+                                      	  validatorMessage="#{userBean.user.email} ce email n'est pas valid"  value="#{userBean.user.email}" >
+                                      	  		 <f:validateRegex pattern="[\w\.-]*[a-zA-Z0-9_]@[\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]" />
+                                      	  </h:inputText>
+                                          <p class="help-block"><h:message for="email"/></p>
+                                      </div>
+                                  </div>
+									<br /><br />
+								<div class="form-group col-lg-10">
+									<h:selectManyCheckbox layout="lineDirection" value="#{userBean.selectRole}">
+										<f:selectItems var="role" itemValue="#{role.id}" itemLabel="#{role.nom}" value="#{userBean.roleDipo}"/>
+									</h:selectManyCheckbox>	 
+								 </div>
+								 
+                                  <div class="form-group">
+                                      <div class="margehaut pull-right">
+                                          <h:commandButton action="#{userBean.addUser()}" styleClass="btn btn-primary"
+                                           value="Créer compte" />
+                                      </div>
+                                  </div>
+                              </h:form>
+                          </div>
+                      </section>
+              </div>
 		</ui:define>
+		
 	</ui:composition>
 </h:body>
 </html>

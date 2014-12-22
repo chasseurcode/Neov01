@@ -15,12 +15,14 @@ public class UtilisateurDAOImpl implements UtilisateurDAO{
 		session.beginTransaction();
 		session.save(utilisateur);
 		session.getTransaction().commit();
+		
 	}
 
 	public void modifier(Utilisateur utilisateur) {
 		Session session=HibernateUtil.getSession();
-		session.update(utilisateur);
-		session.flush();
+		session.beginTransaction();
+		session.merge(utilisateur);
+		session.getTransaction().commit();
 	}
 
 	public void supprimer(Utilisateur utilisateur) {
