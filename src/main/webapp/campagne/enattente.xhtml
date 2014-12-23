@@ -37,14 +37,25 @@
 
 									<tr class="">
 										<td>#{attente.intitule}</td>
-										<td>#{attente.dateDebut}</td>
-										<td>#{attente.dateFin}</td>
+										<td>
+										<h:outputText value="#{attente.dateDebut}">
+                                             <f:convertDateTime type="date" pattern="dd-MM-yyyy"/>
+                                        </h:outputText>										
+										</td>
+										<td>
+										<h:outputText value="#{attente.dateFin}">
+                                             <f:convertDateTime type="date" pattern="dd-MM-yyyy"/>
+                                        </h:outputText>											
+										</td>
 									<h:form>									
 										<td style="text-align: center">
-										     <h:commandButton styleClass="btn btn-success btn-xs" value="Detail" />&#160;                           
-										   <h:commandButton styleClass="btn btn-primary  btn-xs" value="Editer" />&#160;
+										   <h:commandButton styleClass="btn btn-success btn-xs" value="Detail" 
+										   action="#{campagneBean.chargementCamp(attente)}" />&#160;  
+										   <h:commandButton styleClass="btn btn-primary  btn-xs" value="Editer"
+										    actionListener="#{campagneBean.afficherPub(attente)}"/>&#160;
                                            <h:commandButton styleClass="btn btn-danger  btn-xs" value="Supprimer" />&#160;
-                                           <h:commandButton styleClass="btn btn-info  btn-xs" value=" Payer"/>
+                                           <h:commandButton styleClass="btn btn-info  btn-xs" value=" Règlement"
+                                           action="#{campagneBean.chargementReg(attente)}"/>
 										</td>
 									</h:form>	
 									</tr>
@@ -55,11 +66,10 @@
                   </div>
               </section>
 				<!-- page end-->
-
+ <ui:include src="/campagne/editerCamp.xhtml" />
 		</ui:define>
 	</ui:composition>
 	<!--main content end-->
-
 
 </h:body>
 </html>

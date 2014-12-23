@@ -38,11 +38,20 @@
 
 									<tr class="">
 										<td>#{termine.intitule}</td>
-										<td>#{termine.dateDebut}</td>
-										<td>#{termine.dateFin}</td>
+										<td>
+										<h:outputText value="#{termine.dateDebut}">
+                                             <f:convertDateTime type="date" pattern="dd-MM-yyyy"/>
+                                        </h:outputText>
+                                        </td>
+										<td>
+										<h:outputText value="#{termine.dateFin}">
+                                             <f:convertDateTime type="date" pattern="dd-MM-yyyy"/>
+                                        </h:outputText>	
+                                        </td>
 										<h:form>
 											<td style="text-align: center">
-										   <h:commandButton styleClass="btn btn-success btn-xs" value="Detail" /> &#160;
+										   <h:commandButton styleClass="btn btn-success btn-xs" value="Detail"
+										   action="#{campagneBean.chargementCamp(termine)}" /> &#160;
                                            <h:commandButton styleClass="btn btn-danger  btn-xs" value="Supprimer" />
 											</td>
 										</h:form>
