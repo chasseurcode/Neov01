@@ -1,0 +1,55 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:h="http://java.sun.com/jsf/html">
+<h:head>
+</h:head>
+
+<h:body>
+	<h:panelGrid rendered="#{campagneBean.showPub}" id="panelCamp"
+		styleClass="panel" style="margin-left: 250px;" p:role="dialog" >
+		
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h4 class="modal-title">Edition de la campagne</h4>
+					</div>
+					<div class="modal-body">
+
+
+						<h:form p:role="form">
+							<div class="form-group">
+								<label style="margin-left: 5px;">Intitulé</label>
+								<h:inputText styleClass="form-control"
+									value="#{campagneBean.campagne.intitule}" p:placeholder="intitulé" />
+							</div>
+
+							<div class="form-group">
+								<label style="margin-left: 5px;">Date</label>
+								<div class="input-group input-large">
+									<h:inputText p:type="date" styleClass="form-control "
+										value="#{campagneBean.campagne.dateDebut}" >
+								       <f:convertDateTime type="date" pattern="yyyy-MM-dd"/>
+										</h:inputText> <span
+										class="input-group-addon">Au</span> <h:inputText p:type="date"
+										styleClass="form-control " value="#{campagneBean.campagne.dateFin}" >                                    
+								         <f:convertDateTime type="date" pattern="yyyy-MM-dd"/>
+										</h:inputText>
+								</div>
+							</div>
+
+
+							<h:commandButton style="margin-right: 15px;" styleClass="btn btn-success pull-right" 
+							value="Editer" actionListener="#{campagneBean.editionCamp}"/>
+						</h:form>
+
+					</div>
+				</div>
+			</div>
+
+	</h:panelGrid>
+
+
+</h:body>
+</html>

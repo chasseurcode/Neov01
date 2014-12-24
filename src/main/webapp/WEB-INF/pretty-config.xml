@@ -44,7 +44,7 @@
 	<!-- page nouvelle campagne -->
 	<url-mapping id="newcampagne">
 		<pattern value="/nouvelleCampagne" />
-		<view-id value="/campagne/nouveau.xhtml" />
+		<view-id value="/campagne/nouveauCamp.xhtml" />
 	</url-mapping>
 
 	<!-- page campagne en cours -->
@@ -52,7 +52,7 @@
 		<pattern value="/encours" />
 		<view-id value="/campagne/encours.xhtml" />
 	</url-mapping>
-	
+
 	<!-- page campagne en attente -->
 	<url-mapping id="attentecamp">
 		<pattern value="/attentes" />
@@ -64,12 +64,20 @@
 		<pattern value="/terminees" />
 		<view-id value="/campagne/terminees.xhtml" />
 	</url-mapping>
-	
+
 	<!-- page detail campagne -->
 	<url-mapping id="detailcamp">
 		<pattern value="/details" />
-		<view-id value="/campagne/listePub.xhtml" />
+		<view-id value="/campagne/detailCamp.xhtml" />
 	</url-mapping>
+
+	<!-- ********* Gestion de campagne ********** -->
+	<!-- page nouvelle campagne -->
+	<url-mapping id="listeReg">
+		<pattern value="/reglements" />
+		<view-id value="/campagne/ficheReglement.xhtml" />
+	</url-mapping>
+
 
 	<!-- ********* Gestion des cartes de recharges ********** -->
 	<!-- page gestion de carte -->

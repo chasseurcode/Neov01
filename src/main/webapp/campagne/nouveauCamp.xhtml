@@ -19,7 +19,7 @@
 				<section class="panel">
 					<header class="panel-heading"> Nouvelle campagne </header>
 					<div class="panel-body">
-						<h:form class="form-horizontal" >
+						<h:form class="form-horizontal">
 
 							<div class="form-group">
 								<label class="col-lg-2 col-sm-2 control-label">Intitulé</label>
@@ -33,15 +33,20 @@
 								<label class="col-lg-2 col-sm-2 control-label">Date</label>
 								<div class="col-lg-5">
 									<div class="input-group input-large">
-										<INPUT type="date" class="form-control "
-											value="#{campagneBean.campagne.dateDebut}" /> <span
-											class="input-group-addon">Au</span> <INPUT type="date"
-											class="form-control" value="#{campagneBean.campagne.dateFin}" />
+										<h:inputText p:type="date" styleClass="form-control "
+											value="#{campagneBean.campagne.dateDebut}">
+											<f:convertDateTime type="date" pattern="yyyy-MM-dd" />
+										</h:inputText>
+										<span class="input-group-addon">Au</span>
+										<h:inputText p:type="date" styleClass="form-control "
+											value="#{campagneBean.campagne.dateFin}">
+											<f:convertDateTime type="date" pattern="yyyy-MM-dd" />
+										</h:inputText>
 
 									</div>
 								</div>
 							</div>
-							
+
 							<div class="form-group">
 								<div class="col-lg-offset-2 col-lg-10">
 									<a href="#myModal" data-toggle="modal"
@@ -49,7 +54,7 @@
 
 								</div>
 							</div>
-							
+
 							<div class="form-group">
 
 								<div class="col-lg-offset-2 col-lg-10">
@@ -62,8 +67,8 @@
 							</div>
 
 						</h:form>
-						
-						
+
+
 					</div>
 				</section>
 
@@ -74,44 +79,58 @@
 							<div class="modal-header">
 								<button aria-hidden="true" data-dismiss="modal" class="close"
 									type="button">×</button>
-								<h4 class="modal-title">Nouvelle publicité </h4>
+								<h4 class="modal-title">Nouvelle publicité</h4>
 							</div>
 							<div class="modal-body">
 
 
 								<h:form p:role="form" enctype="multipart/form-data">
 									<div class="form-group">
-										<label for="exampleInputEmail1">Intitulé</label> 
-										<h:inputText styleClass="form-control" id="intpub" value="#{campagneBean.publicite.intitule}" />
-										<p class="help-block"><h:message for="intpub"/></p>										
+										<label for="exampleInputEmail1">Intitulé</label>
+										<h:inputText styleClass="form-control" id="intpub"
+											value="#{campagneBean.publicite.intitule}" />
+										<p class="help-block">
+											<h:message for="intpub" />
+										</p>
 									</div>
-									
+
 									<div class="form-group">
-										<label for="exampleInputPassword1">Date</label> 										
-											<div class="input-group input-large">
-												<INPUT type="date"  class="form-control " value="#{campagneBean.publicite.dateDebut}"/>
-												<span class="input-group-addon">Au</span> 
-												<INPUT type="date"  class="form-control " value="#{campagneBean.publicite.dateFin}"/>
-											</div>
+										<label for="exampleInputPassword1">Date</label>
+										<div class="input-group input-large">
+											<h:inputText p:type="date" styleClass="form-control "
+												value="#{campagneBean.publicite.dateDebut}">
+												<f:convertDateTime type="date" pattern="yyyy-MM-dd" />
+											</h:inputText>
+											<span class="input-group-addon">Au</span>
+											<h:inputText p:type="date" styleClass="form-control "
+												value="#{campagneBean.publicite.dateFin}">
+												<f:convertDateTime type="date" pattern="yyyy-MM-dd" />
+											</h:inputText>
+										</div>
 									</div>
-									
+
 									<div class="form-group">
-										<label >Nombre de vue</label> 
+										<label>Nombre de vue</label>
 										<h:inputText styleClass="form-control" id="nbrevue"
-												value="#{campagneBean.publicite.nbreVue}" />
-									    <p class="help-block"><h:message for="nbrevue"/></p>
+											value="#{campagneBean.publicite.nbreVue}" />
+										<p class="help-block">
+											<h:message for="nbrevue" />
+										</p>
 									</div>
-									
+
 									<div class="form-group">
 										<label for="exampleInputFile">Pièce jointe</label>
-										 <h:inputFile label="file" id="file" value="#{campagneBean.fichier}"/>
-									     <p class="help-block"><h:message for="file"/></p>
+										<h:inputFile label="file" id="file"
+											value="#{campagneBean.fichier}" />
+										<p class="help-block">
+											<h:message for="file" />
+										</p>
 									</div>
-									
-									<h:commandButton styleClass="btn btn-default" value="Ajouter" 
-									          actionListener="#{campagneBean.addPublicite}"/>
+
+									<h:commandButton styleClass="btn btn-default" value="Ajouter"
+										actionListener="#{campagneBean.addPublicite}" />
 								</h:form>
-								
+
 							</div>
 						</div>
 					</div>

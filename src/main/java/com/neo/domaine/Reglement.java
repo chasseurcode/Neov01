@@ -17,7 +17,7 @@ public class Reglement {
 	@Id @GeneratedValue
 	private long id;
 	@Field
-	private Date date;
+	private Date dateReglement;
 	private String type;
 	private float montant;
 	@ManyToOne
@@ -46,16 +46,13 @@ public class Reglement {
 		this.id = id;
 	}
 
-
-	public Date getDate() {
-		return date;
+	public Date getDateReglement() {
+		return dateReglement;
 	}
 
-
-	public void setDate(Date date) {
-		this.date = date;
+	public void setDateReglement(Date dateReglement) {
+		this.dateReglement = dateReglement;
 	}
-
 
 	public String getType() {
 		return type;

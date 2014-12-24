@@ -38,12 +38,22 @@
 
 									<tr class="">
 										<td>#{encours.intitule}</td>
-										<td>#{encours.dateDebut}</td>
-										<td>#{encours.dateFin}</td>
+										<td>
+										<h:outputText value="#{encours.dateDebut}">
+                                             <f:convertDateTime type="date" pattern="dd-MM-yyyy"/>
+                                        </h:outputText>
+                                        </td>
+										<td>
+										<h:outputText value="#{encours.dateFin}">
+                                             <f:convertDateTime type="date" pattern="dd-MM-yyyy"/>
+                                        </h:outputText>	
+                                        </td>
 										<h:form>
 											<td style="text-align: center">
-										   <h:commandButton styleClass="btn btn-success btn-xs" value="Detail" /> &#160;                          
-										   <h:commandButton styleClass="btn btn-primary  btn-xs" value="Editer" />&#160;
+										   <h:commandButton styleClass="btn btn-success btn-xs" value="Detail" 
+										   action="#{campagneBean.chargementCamp(encours)}"/> &#160;                          
+										   <h:commandButton styleClass="btn btn-primary  btn-xs" value="Editer"
+										    actionListener="#{campagneBean.afficherPub(encours)}"/>&#160;
                                            <h:commandButton styleClass="btn btn-danger  btn-xs" value="Supprimer" />
 											</td>
 										</h:form>
@@ -55,6 +65,7 @@
 				</div>
 			</section>
 			<!-- page end-->
+             <ui:include src="/campagne/editerCamp.xhtml" />
 
 		</ui:define>
 	</ui:composition>
