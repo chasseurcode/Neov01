@@ -12,13 +12,20 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import org.hibernate.search.annotations.Field;
+import org.hibernate.search.annotations.Indexed;
+
 @Entity
+@Indexed
 public class Campagne {
 
 	@Id @GeneratedValue
 	private long id;
+	@Field
 	private String intitule;
+	@Field
 	private Date dateDebut;
+	@Field
 	private Date dateFin;
 	@OneToMany(cascade=CascadeType.ALL)
 	private List<Reglement> reglements=new ArrayList<Reglement>();

@@ -6,13 +6,20 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
+import org.hibernate.search.annotations.Field;
+import org.hibernate.search.annotations.Indexed;
+
 @Entity
+@Indexed
 public class Depense {
 	
 	@Id @GeneratedValue
 	private long id;
+	@Field
 	private String intitule;
+	@Field
 	private String fournisseur;
+	@Field
 	private Date date;
 	private float montant;
 	private Date dateCreation=new Date();

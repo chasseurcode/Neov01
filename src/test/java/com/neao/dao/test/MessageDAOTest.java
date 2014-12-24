@@ -27,7 +27,7 @@ public class MessageDAOTest {
 		m1.setObjet("Raison de vivre");
 		m1.setCorps("Bonjour la mec");
 		m1.setDateMaj(new Date());
-		m1.setUtilisateur(daoUser.findById(1));
+		m1.setUtilisateur(daoUser.findByCompte("Mohamed"));
 		
 		m2=new Message();
 		m2.setUtilisateur(daoUser.findById(1));

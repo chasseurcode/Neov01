@@ -16,7 +16,13 @@ import javax.persistence.InheritanceType;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+import org.hibernate.search.annotations.Field;
+import org.hibernate.search.annotations.Indexed;
+
 @Entity
+@Indexed
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public class Utilisateur implements Serializable{
 	/**
@@ -26,15 +32,21 @@ public class Utilisateur implements Serializable{
 	@Id
 	@GeneratedValue(strategy=GenerationType.TABLE)
 	private Long id;
+	@Field
 	private String compte;
 	private String motDePasse;
+	@Field
 	private String email;
+	@Field
 	private String telehone;
 	private String saltMotDePasse;
 	private boolean actif=true;
 	@ManyToMany(cascade=CascadeType.ALL,fetch=FetchType.EAGER)
+	@Fetch(value=FetchMode.SUBSELECT)
 	private List<Role> roles=new ArrayList<Role>();
-	@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
+	
+	@OneToMany(cascade=CascadeType.ALL,fetch=FetchType.EAGER)
+	@Fetch(value=FetchMode.SUBSELECT)
 	private List<Message> messages=new ArrayList<Message>();
 	private Date creation=new Date();
 	private Date miseAJour=new Date();

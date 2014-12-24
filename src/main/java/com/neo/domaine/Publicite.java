@@ -10,14 +10,21 @@ import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.ManyToOne;
 
+import org.hibernate.search.annotations.DocumentId;
+import org.hibernate.search.annotations.Field;
+
 @Entity
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public class Publicite {
 
 	@Id @GeneratedValue
+	@DocumentId
 	private long id;
+	@Field
 	private String intitule;
+	@Field
 	private Date dateDebut;
+	@Field
 	private Date dateFin;
 	private long nbreVue;
 	@ManyToOne(cascade=CascadeType.ALL)

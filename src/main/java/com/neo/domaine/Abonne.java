@@ -9,17 +9,24 @@ import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import javax.xml.bind.annotation.XmlRootElement;
 
+import org.hibernate.search.annotations.Field;
+import org.hibernate.search.annotations.Indexed;
+
 @Entity
 @XmlRootElement
+@Indexed
 public class Abonne extends Utilisateur {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	@Field
 	private String prenom;
 	private Date dateDeNaissance;
+	@Field
 	private String codeParrainege;
+	@Field
 	private String codeFilleule;
 	@OneToMany(cascade=CascadeType.ALL)
 	private List<Paiement>paiements=new ArrayList<Paiement>();

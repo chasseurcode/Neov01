@@ -7,11 +7,16 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
+import org.hibernate.search.annotations.Field;
+import org.hibernate.search.annotations.Indexed;
+
 @Entity
+@Indexed
 public class Reglement {
 
 	@Id @GeneratedValue
 	private long id;
+	@Field
 	private Date date;
 	private String type;
 	private float montant;

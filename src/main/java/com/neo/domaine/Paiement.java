@@ -7,13 +7,18 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
+import org.hibernate.search.annotations.Field;
+import org.hibernate.search.annotations.Indexed;
+
 @Entity
+@Indexed
 public class Paiement {
 
 	@Id @GeneratedValue
 	private long id;
+	@Field
 	private Date date;
-	private float montant;
+	private double montant;
 	private Date dateCreation=new Date();
 	private Date dateMaj=new Date();
 	private boolean supprimer=false;
@@ -48,12 +53,12 @@ public class Paiement {
 	}
 
 
-	public float getMontant() {
+	public double getMontant() {
 		return montant;
 	}
 
 
-	public void setMontant(float montant) {
+	public void setMontant(double montant) {
 		this.montant = montant;
 	}
 
