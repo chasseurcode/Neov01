@@ -1,33 +1,37 @@
 package com.neo.beans;
 
-import java.util.ArrayList;
 import java.util.List;
 
+import org.hibernate.search.FullTextSession;
+import org.hibernate.search.Search;
+import org.hibernate.search.query.dsl.QueryBuilder;
+
 import com.neo.domaine.Client;
+import com.neo.utility.HibernateUtil;
 
 
 
-public class ClientSearch extends Search {
-	
+public class ClientSearch extends NeoSearch {
 	public ClientSearch() {
 		setNomEntite(Client.class.getName());
 	}
 
 	@SuppressWarnings("rawtypes")
 	@Override
-	protected List chercher(String req) {
-		Client c1=new Client();
-		c1.setCompte("Bongo");
-		Client c2=new Client();
-		c2.setCompte("Bongo");
-		Client c3=new Client();
-		c3.setCompte("Bongo");
-		List<Object> clients=new ArrayList<Object>();
-		clients.add(c1);
-		clients.add(c2);
-		clients.add(c3);
-		return clients;
+	protected List chercher(String requete) {
+		System.out.println("recherche effectuée requete: "+requete);
+		FullTextSession fullTextSession = Search.getFullTextSession(HibernateUtil.getSession()); 
+		QueryBuilder builder = fullTextSession.getSearchFactory()
+			    .buildQueryBuilder().forEntity(Client.class).get();
+		org.apache.lucene.search.Query luceneQuery =
+			    builder.keyword()
+			        .onFields("nom","adresse","raisonSociale")
+			        .matching(requete)
+			        .createQuery();
+		org.hibernate.Query fullTextQuery = fullTextSession.createFullTextQuery(luceneQuery);
+		List resultat = fullTextQuery.list();
+		System.out.println("resultat :"+resultat.size());
+		return resultat;
 	}
 
-	
 }

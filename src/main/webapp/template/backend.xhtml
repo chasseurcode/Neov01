@@ -51,8 +51,8 @@
 				<ul class="nav top-menu">
 					<!-- notification dropdown start-->
 					<li id="header_notification_bar" class="dropdown"><a
-						data-toggle="dropdown" class="dropdown-toggle" href="#"> <i
-							class="icon-bell-alt"></i> <span class="badge bg-warning">
+						data-toggle="dropdown" class="dropdown-toggle" href="#">
+						 <i class="icon-bell-alt"></i> <span class="badge bg-warning">
 								<h:outputText value="#{appBean.nbreMessage}" />
 							</span>
 					</a>
@@ -80,7 +80,14 @@
 			
 			<div class="top-nav ">
 				<ul class="nav pull-right top-menu">
-					<li> <input type="text" class="form-control search" placeholder="Search" /></li>
+						<li> 
+							<h:form>
+								<h:inputText styleClass="form-control search" placeholder="Recherche" 
+								value="#{rechercheBean.requete}" onkeypress="if (event.keyCode == 13) { onchange(); return false; }">
+								    <f:ajax event="change" listener="#{rechercheBean.search()}" />
+								</h:inputText>
+							</h:form>
+						</li>
 					<!-- user login dropdown start-->
 					<li class="dropdown"><a data-toggle="dropdown"
 						class="dropdown-toggle" href="#"> <h:graphicImage

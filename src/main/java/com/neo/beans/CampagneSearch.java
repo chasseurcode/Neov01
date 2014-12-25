@@ -7,7 +7,7 @@ import java.util.List;
 import com.neo.domaine.Campagne;
 
 
-public class CampagneSearch extends Search {
+public class CampagneSearch extends NeoSearch {
 	public CampagneSearch() {
 		setNomEntite(Campagne.class.getName());
 	}

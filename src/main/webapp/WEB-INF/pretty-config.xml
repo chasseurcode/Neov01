@@ -21,6 +21,12 @@
 		<view-id value="/users/userdashboard.xhtml" />
 	</url-mapping>
 
+	<!-- Search page -->
+	<url-mapping id="search">
+		<pattern value="/recherche" />
+		<view-id value="/template/search.xhtml" />
+	</url-mapping>
+	
 	<!-- page de login -->
 	<url-mapping id="login">
 		<pattern value="/login" />

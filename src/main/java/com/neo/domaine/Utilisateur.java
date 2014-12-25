@@ -19,10 +19,8 @@ import javax.persistence.OneToMany;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 import org.hibernate.search.annotations.Field;
-import org.hibernate.search.annotations.Indexed;
 
 @Entity
-@Indexed
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public class Utilisateur implements Serializable{
 	/**

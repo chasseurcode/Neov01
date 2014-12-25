@@ -4,9 +4,9 @@ import java.util.List;
 import java.util.Map;
 
 
-public class Search {
+public class NeoSearch {
 	private String nomEntite;
-	private Search suivant=null;
+	private NeoSearch suivant=null;
 	
 	@SuppressWarnings("rawtypes")
 	protected Map<String, List> requete(String requete,Map<String,List> resultat) {
@@ -18,12 +18,12 @@ public class Search {
 		return resultat;
 	}
 
-	public void setSuivant(Search suivant) {
+	public void setSuivant(NeoSearch suivant) {
 		this.suivant = suivant;
 	}
 	
 	@SuppressWarnings("rawtypes")
-	protected List chercher(String req) {
+	protected List chercher(String requete) {
 		return null;
 	}
 
