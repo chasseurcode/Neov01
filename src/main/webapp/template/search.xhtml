@@ -2,6 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
 	xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
 	xmlns:h="http://java.sun.com/jsf/html">
 <h:head>
@@ -12,8 +13,59 @@
 	<ui:composition template="/template/backend.xhtml">
 	<ui:define name="titre">Recherche</ui:define>
 		<ui:define name="contenu">
-		<h4>Resultat de recherche</h4>
-		
+
+              <!-- page start-->
+              <section class="panel">
+                  <header class="panel-heading">
+                   <h4>Resultat de recherche</h4>
+                   <p class="help-block"><i>#{rechercheBean.nbrResultat} resultat(s) trouvée(s)</i></p>
+                  </header>
+                  <div class="panel-body">
+                     	<c:if test="#{rechercheBean.clients.size()>0}">
+						<span class="label label-warning">Correspondance clients</span>
+						</c:if>
+						<ui:repeat var="client" value="#{rechercheBean.clients}">
+                     	<div class="classic-search">
+                          <h4>
+                          	#{client.nom}
+                          </h4>
+                         	<address>
+							<h:link value="#{client.email}" outcome="#{client.email}"/>
+								<i>Adresse:</i> #{client.adresse}<br />
+								Tel : #{client.telehone}
+							 </address>
+                          <p>#{client.raisonSociale} </p>
+                      	</div>  
+                      	<hr />
+                      	</ui:repeat>    
+                      	
+                      	<c:if test="#{rechercheBean.campagnes.size()>0}">
+						<span class="label label-primary">Correspondance campagnes</span>
+						</c:if>
+						<ui:repeat var="camp" value="#{rechercheBean.campagnes}">
+                     	<div class="classic-search">
+                          <h4>
+                          	#{camp.intitule}
+                          </h4>
+                         
+                      	</div>  
+                      	<hr />
+                      	</ui:repeat> 
+                      	
+                      	<c:if test="#{rechercheBean.publicites.size()>0}">
+						<span class="label label-primary">Correspondance publicités</span>
+						</c:if>
+						<ui:repeat var="pub" value="#{rechercheBean.publicites}">
+                     	<div class="classic-search">
+                          <h4>
+                          	#{pub.intitule}
+                          </h4>
+                         
+                      	</div>  
+                      	<hr />
+                      	</ui:repeat>   
+                  </div>
+              </section>
 		</ui:define>
 	</ui:composition>
 </h:body>

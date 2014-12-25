@@ -10,30 +10,10 @@ public class Moteur {
 		
 		NeoSearch clientSearch=new ClientSearch();
 		NeoSearch campSearch=new CampagneSearch();
+		NeoSearch pubSearch=new PubSearch();
 		
 		clientSearch.setSuivant(campSearch);
+		campSearch.setSuivant(pubSearch);
 		return clientSearch.requete(requete, new HashMap<String, List>());
-//
-//		for (Entry<String, List> mResultat : result.entrySet())
-//		{
-//		    
-//		    if(mResultat.getKey().equalsIgnoreCase(Client.class.getName())){
-//		    	System.out.println("\nListe des clients :");
-//		    	List<Client> listR=(List<Client>)mResultat.getValue();
-//		    	for(Client c: listR){
-//		    		System.out.println(c.getCompte());
-//		    	}
-//		    }
-//		    
-//		    if(mResultat.getKey().equalsIgnoreCase(Campagne.class.getName())){
-//		    	List<Campagne> listR=(List<Campagne>)mResultat.getValue();
-//		    	System.out.println("\nListe des campagnes :");
-//		    	for(Campagne c: listR){
-//		    		System.out.println(c.getIntitule());
-//		    	}
-//		    }
-//		    
-//		}
-		
 	}
 }

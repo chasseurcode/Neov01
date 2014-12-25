@@ -12,9 +12,11 @@ import javax.persistence.ManyToOne;
 
 import org.hibernate.search.annotations.DocumentId;
 import org.hibernate.search.annotations.Field;
+import org.hibernate.search.annotations.Indexed;
 
 @Entity
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+@Indexed
 public class Publicite {
 
 	@Id @GeneratedValue

@@ -33,10 +33,10 @@ public class Campagne {
 	private Client client;
 	@OneToMany(cascade=CascadeType.ALL,fetch=FetchType.EAGER)
 	private List<Publicite> publicites=new ArrayList<Publicite>();
+	@Field
 	private Date dateCreation=new Date();
 	private Date dateMaj=new Date();
 	private boolean supprimer=false;
-
 
 	public Campagne() {
 
