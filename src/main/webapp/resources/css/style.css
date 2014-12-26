@@ -50,17 +50,18 @@ a, a:hover, a:focus {
     max-width: 330px;
     margin: 100px auto 0;
     background: #fff;
-    border-radius: 5px;
-    -webkit-border-radius: 5px;
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+    border: 2px #fff solid;
 }
 
 .form-signin h2.form-signin-heading {
     margin: 0;
     padding:20px 15px;
     text-align: center;
-    background: #41cac0;
-    border-radius: 5px 5px 0 0;
-    -webkit-border-radius: 5px 5px 0 0;
+    background: #02bac6;
+    border-radius: 10px 10px 0 0;
+    -webkit-border-radius: 10px 10px 0 0;
     color: #fff;
     font-size: 18px;
     text-transform: uppercase;
@@ -99,13 +100,13 @@ a, a:hover, a:focus {
 }
 
 .form-signin .btn-login {
-    background: #f67a6e;
+    background: #02B5B5;
     color: #fff;
     text-transform: uppercase;
     font-weight: 300;
     font-family: 'Open Sans', sans-serif;
-    box-shadow: 0 4px #e56b60;
-    margin-bottom: 20px;
+    box-shadow: 0 4px #01a192;
+    margin-bottom: 5px;
 }
 
 .form-signin p {
@@ -683,7 +684,7 @@ ul.top-menu > li > a:hover, ul.top-menu > li > a:focus {
 
 .search:focus {
     margin-top: 5px ;
-    width: 180px;
+    width: 250px;
     border: 1px solid #eaeaea;
     box-shadow: none;
     -webkit-transition: all .3s ease;
@@ -691,7 +692,7 @@ ul.top-menu > li > a:hover, ul.top-menu > li > a:focus {
     -ms-transition: all .3s ease;
     -o-transition: all .3s ease;
     transition: all .3s ease;
-    color: #c8c8c8;
+    color: #6e6e6e;
     font-weight: 300;
 }
 
@@ -4383,7 +4384,7 @@ tr.odd.gradeX td.sorting_1, tr.even.gradeX td.sorting_1, table.display tr.even.g
 /*lock screen*/
 
 .lock-screen {
-    background:#02bac6 url("../img/lock-bg.jpg");
+    background:#02bac6 url("#{resource['img/lock-bg.jpg']}");
     background-size: cover;
     background-repeat: repeat;
 }

@@ -50,12 +50,13 @@
 				<!--  notification start -->
 				<ul class="nav top-menu">
 					<!-- notification dropdown start-->
-					<li id="header_notification_bar" class="dropdown"><a
-						data-toggle="dropdown" class="dropdown-toggle" href="#">
-						 <i class="icon-bell-alt"></i> <span class="badge bg-warning">
+					<li id="header_notification_bar" class="dropdown">
+						<a data-toggle="dropdown" class="dropdown-toggle" href="#">
+							 <i class="icon-bell-alt"></i> 
+							 <span class="badge bg-warning">
 								<h:outputText value="#{appBean.nbreMessage}" />
 							</span>
-					</a>
+						</a>
 						<ul class="dropdown-menu extended notification">
 							<div class="notify-arrow notify-arrow-yellow"></div>
 							<li>
@@ -150,7 +151,7 @@
 					
 					<li>
 					<h:link outcome="pretty:tarifs">
-							<i class="icon-ticket"></i> <span>Definition des tarifs</span>
+							<i class="icon-eur"></i> <span>Definition des tarifs</span>
 						</h:link>
 					</li>
 					
@@ -171,7 +172,7 @@
 					</li>
 					
 					<!-- Menu des comptes -->
-					<li class="sub-menu"><a href="javascript:;"><i class="icon-group"></i> <span>Gérer les Comptes</span></a>
+					<li class="sub-menu"><a href="javascript:;"><i class="icon-user-md"></i> <span>Gérer les Comptes</span></a>
 						<ul class="sub">
 							<li>
 								<h:link value="Nouveau compte" outcome="pretty:newuser"/>

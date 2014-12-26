@@ -131,7 +131,9 @@ public class TarifDaoImpl implements TarifDAO{
 	public void updateAllApp() {
 		Session session=HibernateUtil.getSession();
 		session.beginTransaction();
-		session.createQuery("UPDATE TarifAppel ta SET ta.enVigueur = :etat ").setBoolean("etat", false);
+		session.createQuery("update TarifAppel ta SET ta.enVigueur = :etat ").setBoolean("etat", false)
+		.executeUpdate();
+		
 		session.getTransaction().commit();
 	}
 
@@ -139,7 +141,8 @@ public class TarifDaoImpl implements TarifDAO{
 	public void updateAllText() {
 		Session session=HibernateUtil.getSession();
 		session.beginTransaction();
-		session.createQuery("UPDATE TarifTextuelle  tt SET tt.enVigueur = :etat ").setBoolean("etat", false);
+		session.createQuery("UPDATE TarifTextuelle  tt SET tt.enVigueur = :etat ").setBoolean("etat", false)
+		.executeUpdate();
 		session.getTransaction().commit();
 	}
 
@@ -147,7 +150,8 @@ public class TarifDaoImpl implements TarifDAO{
 	public void updateAllNotif() {
 		Session session=HibernateUtil.getSession();
 		session.beginTransaction();
-		session.createQuery("UPDATE TarifNotification tn SET tn.enVigueur = :etat ").setBoolean("etat", false);
+		session.createQuery("UPDATE TarifNotification tn SET tn.enVigueur = :etat ").setBoolean("etat", false)
+		.executeUpdate();
 		session.getTransaction().commit();
 	
 	}

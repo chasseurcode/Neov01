@@ -4,7 +4,7 @@ import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
+import javax.faces.bean.SessionScoped;
 
 import com.neo.dao.TarifDAO;
 import com.neo.daoImpl.TarifDaoImpl;
@@ -14,7 +14,7 @@ import com.neo.domaine.TarifNotification;
 import com.neo.domaine.TarifTextuelle;
 
 @ManagedBean
-@RequestScoped
+@SessionScoped
 public class TarifBean {
 	private double tclient,tabonn;
 	private List<TarifAppel> tarifAppels;
