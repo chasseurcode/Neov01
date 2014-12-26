@@ -36,7 +36,7 @@ public class UtilisateurDAOImpl implements UtilisateurDAO{
 				.setBoolean("etat", false).list();
 	}
 
-	public Utilisateur findById(int id) {
+	public Utilisateur findById(Long id) {
 		Session session=HibernateUtil.getSession();
 		return (Utilisateur) session.get(Utilisateur.class, id);
 	}

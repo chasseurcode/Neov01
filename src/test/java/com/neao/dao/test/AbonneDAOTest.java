@@ -44,6 +44,43 @@ public class AbonneDAOTest {
 		List<Abonne> liste=dao.lister();
 		assertNotNull(liste);
 		assertEquals(liste.size(), 1);
+		
+		Abonne ab1=new Abonne();
+		ab1.setCompte("Alex");
+		ab1.setPrenom("Ali");
+		ab1.setEmail("aser@gmail.com");
+
+		Abonne ab2=new Abonne();
+		ab2.setCompte("Solaire");
+		ab2.setPrenom("Dosseh");
+		ab2.setEmail("dosel@gmail.com");
+
+		Abonne ab3=new Abonne();
+		ab3.setCompte("Colombo");
+		ab3.setPrenom("Alfred");
+		ab3.setEmail("bolid@gmail.com");
+
+		Abonne ab4=new Abonne();
+		ab4.setCompte("konor");
+		ab4.setPrenom("Floyd");
+		ab4.setEmail("konoto@gmail.com");
+		
+		Abonne ab5=new Abonne();
+		ab5.setCompte("Antoine");
+		ab5.setPrenom("Nolane");
+		ab5.setEmail("solr@gmail.com");
+
+		Abonne ab6=new Abonne();
+		ab6.setCompte("Arisote");
+		ab6.setPrenom("Fred");
+		ab6.setEmail("fred@gmail.com");
+		
+		dao.creer(ab1);
+		dao.creer(ab2);
+		dao.creer(ab3);
+		dao.creer(ab4);
+		dao.creer(ab6);
+
 	}
 
 }

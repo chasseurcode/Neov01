@@ -1,4 +1,4 @@
-package com.neo.beans;
+package com.neo.utility;
 
 public class Generateur {
 	public static enum Mode {

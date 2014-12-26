@@ -64,6 +64,20 @@
                       	</div>  
                       	<hr />
                       	</ui:repeat>   
+                      	
+                      	<c:if test="#{rechercheBean.abonnes.size()>0}">
+						<span class="label label-primary">Correspondance abonnés</span>
+						</c:if>
+						<ui:repeat var="abonne" value="#{rechercheBean.abonnes}">
+                     	<div class="classic-search">
+                          <h4>
+                          	#{abonne.compte} - #{abonne.prenom}
+                          </h4>
+                         <i>E-mail :</i>#{abonne.email} <br />
+                         <i>Telephone :</i>#{abonne.telehone}
+                      	</div>  
+                      	<hr />
+                      	</ui:repeat>   
                   </div>
               </section>
 		</ui:define>

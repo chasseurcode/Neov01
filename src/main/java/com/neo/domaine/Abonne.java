@@ -23,6 +23,7 @@ public class Abonne extends Utilisateur {
 	private static final long serialVersionUID = 1L;
 	@Field
 	private String prenom;
+	@Field
 	private Date dateDeNaissance;
 	@Field
 	private String codeParrainege;
@@ -31,13 +32,9 @@ public class Abonne extends Utilisateur {
 	@OneToMany(cascade=CascadeType.ALL)
 	private List<Paiement>paiements=new ArrayList<Paiement>();
 	
-	
-	
 	public Abonne() {
 		
 	}
-	
-	
 	
 	public Abonne(String prenom, Date dateDeNaissance, String codeParrainege,
 			String codeFilleule) {

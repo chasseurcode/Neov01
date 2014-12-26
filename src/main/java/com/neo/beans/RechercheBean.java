@@ -13,6 +13,7 @@ import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpServletRequest;
 
+import com.neo.domaine.Abonne;
 import com.neo.domaine.Campagne;
 import com.neo.domaine.Client;
 import com.neo.domaine.Publicite;
@@ -24,6 +25,7 @@ public class RechercheBean {
 	private List<Client> clients;
 	private List<Campagne> campagnes;
 	private List<Publicite> publicites;
+	private List<Abonne> abonnes;
 	@SuppressWarnings("rawtypes")
 	private Map<String, List> resultat;
 	private int nbrResultat;
@@ -45,7 +47,7 @@ public class RechercheBean {
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public void search() {
 		nbrResultat=0;
-		resultat=Moteur.chercher(requete);
+		resultat=NeoEngine.chercher(requete);
 		
 		for (Entry<String, List> mResultat : resultat.entrySet())
 		{
@@ -61,6 +63,11 @@ public class RechercheBean {
 		    
 		    if(mResultat.getKey().equalsIgnoreCase(Publicite.class.getName())){
 		    	setPublicites(mResultat.getValue());
+		    	nbrResultat=nbrResultat+mResultat.getValue().size();
+		    }
+		    
+		    if(mResultat.getKey().equalsIgnoreCase(Abonne.class.getName())){
+		    	setAbonnes(mResultat.getValue());
 		    	nbrResultat=nbrResultat+mResultat.getValue().size();
 		    }
 		    
@@ -115,6 +122,14 @@ public class RechercheBean {
 
 	public void setPublicites(List<Publicite> publicites) {
 		this.publicites = publicites;
+	}
+
+	public List<Abonne> getAbonnes() {
+		return abonnes;
+	}
+
+	public void setAbonnes(List<Abonne> abonnes) {
+		this.abonnes = abonnes;
 	}
 	
 }

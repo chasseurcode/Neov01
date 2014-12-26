@@ -12,11 +12,12 @@ import org.apache.shiro.crypto.RandomNumberGenerator;
 import org.apache.shiro.crypto.SecureRandomNumberGenerator;
 import org.apache.shiro.crypto.hash.Sha256Hash;
 
-import com.neo.beans.Generateur.Mode;
 import com.neo.dao.ClientDAO;
 import com.neo.daoImpl.ClientDaoImpl;
 import com.neo.domaine.Client;
 import com.neo.domaine.Role;
+import com.neo.utility.Generateur;
+import com.neo.utility.Generateur.Mode;
 
 @ManagedBean
 @SessionScoped

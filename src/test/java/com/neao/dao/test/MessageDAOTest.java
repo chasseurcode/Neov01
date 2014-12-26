@@ -30,18 +30,18 @@ public class MessageDAOTest {
 		m1.setUtilisateur(daoUser.findByCompte("Mohamed"));
 		
 		m2=new Message();
-		m2.setUtilisateur(daoUser.findById(1));
+		m2.setUtilisateur(daoUser.findById(new Long(1)));
 		m2.setCorps("Allo la terre");
 		m2.setObjet("Bientot rupture de carte");
 		m2.setDateMaj(new Date());
-		m2.setUtilisateur(daoUser.findById(1));
+		m2.setUtilisateur(daoUser.findById(new Long(1)));
 		
 		m3=new Message();
-		m3.setUtilisateur(daoUser.findById(1));
+		m3.setUtilisateur(daoUser.findById(new Long(1)));
 		m3.setCorps("Allo la terre");
 		m3.setObjet("Système load");
 		m3.setDateMaj(new Date());
-		m3.setUtilisateur(daoUser.findById(2));
+		m3.setUtilisateur(daoUser.findById(new Long(1)));
 	}
 
 	@Test
@@ -54,9 +54,9 @@ public class MessageDAOTest {
 		assertNotNull(msg);
 		
 		
-		List<Message> msgList=msgDao.lister(daoUser.findById(1));
+		List<Message> msgList=msgDao.lister(daoUser.findById(new Long(1)));
 		assertNotNull(msgList);
-		assertEquals(msgList.size(), 2);
+		assertEquals(msgList.size(), 3);
 		for(Message m: msgList){
 			System.out.println(m.getCorps());
 		}
