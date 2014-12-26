@@ -26,6 +26,10 @@ public class TarifBean {
 	@PostConstruct
 	public void init() {
 		setDaoTarif(new TarifDaoImpl());
+		refreshList();
+	}
+
+	private void refreshList() {
 		setTarifAppels(daoTarif.listerTarifappel());
 		setTarifNotifications(daoTarif.listerTarifNotif());
 		setTarifTextuelles(daoTarif.listerTarifText());
@@ -56,6 +60,7 @@ public class TarifBean {
 		}
 		setTabonn(0.0);
 		setTclient(0.0);
+		refreshList();
 		return null;
 	}
 	
@@ -70,6 +75,7 @@ public class TarifBean {
 		tarif.setEnVigueur(true);
 		daoTarif.modifier(tarif);
 		System.out.println("modif tarif id: "+tarif.getId()+" type: "+type);
+		refreshList();
 	}
 
 	/*

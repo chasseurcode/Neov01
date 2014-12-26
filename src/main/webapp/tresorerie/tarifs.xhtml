@@ -52,7 +52,7 @@
            <section class="panel">
                           <header class="panel-heading tab-bg-dark-navy-blue ">
                               <ul class="nav nav-tabs">
-                                  <li class="active">
+                                  <li class=" ">
                                       <a data-toggle="tab" href="#bannAp">Tarif Bannièere à Appel</a>
                                   </li>
                                   <li class="">
@@ -96,12 +96,62 @@
 				                          </table>
                                   </div>
                                    <div id="bannNot" class="tab-pane">
-                                  
-                                      Tarif banniere
+                                  <table class="table">
+				                              <thead>
+				                              <tr>
+				                                  <th>Prix Client</th>
+				                                  <th>Prix Abonné</th>
+				                                  <th>En vigueur</th>
+				                                  <th></th>
+				                              </tr>
+				                              </thead>
+				                              <tbody>
+				                              <ui:repeat var="tarif" value="#{tarifBean.tarifNotifications}">
+					                              <tr>
+					                                  <td>#{tarif.tarifclient}</td>
+					                                  <td>#{tarif.tarifabonne}</td>
+					                                  <td>
+					                                  <c:if test="#{ not tarif.enVigueur}">
+					                                 	 <span class="badge center-text bg-primary">Oui</span>
+					                                  </c:if>
+					                            
+					                                  </td>
+					                                  <td><h:commandButton styleClass="pull-right btn btn-xs btn-warning" 
+					                                  actionListener="#{tarifBean.miseEnVigueur(tarif,'notif')}" value="Mise en Vigeur" />
+					                                   </td>
+					                              </tr>
+				                              </ui:repeat>
+				                              </tbody>
+				                          </table>
                                   </div>
                                   <div id="texto" class="tab-pane">
-                                  
-                                  	tarif textuelle
+                                  <table class="table">
+				                              <thead>
+				                              <tr>
+				                                  <th>Prix Client</th>
+				                                  <th>Prix Abonné</th>
+				                                  <th>En vigueur</th>
+				                                  <th></th>
+				                              </tr>
+				                              </thead>
+				                              <tbody>
+				                              <ui:repeat var="tarif" value="#{tarifBean.tarifTextuelles}">
+					                              <tr>
+					                                  <td>#{tarif.tarifclient}</td>
+					                                  <td>#{tarif.tarifabonne}</td>
+					                                  <td>
+					                                  <c:if test="#{ not tarif.enVigueur}">
+					                                 	 <span class="badge center-text bg-primary">Oui</span>
+					                                  </c:if>
+					                            
+					                                  </td>
+					                                  <td><h:commandButton styleClass="pull-right btn btn-xs btn-warning" 
+					                                  actionListener="#{tarifBean.miseEnVigueur(tarif,'text')}" value="Mise en Vigeur" />
+					                                   </td>
+					                              </tr>
+				                              </ui:repeat>
+				                              </tbody>
+				                          </table>
                                   </div>
                               </div>
                           </div>
