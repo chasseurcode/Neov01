@@ -96,7 +96,13 @@
 		<pattern value="/modification" />
 		<view-id value="/recharge/editRecharge.xhtml" />
 	</url-mapping>
-
+	
+	<!-- Definition des tarifs-->
+	<url-mapping id="tarifs">
+		<pattern value="/tarifs" />
+		<view-id value="/tresorerie/tarifs.xhtml" />
+	</url-mapping>
+	
 	<!-- ********* Gestion de la tresorerie *************** -->
 	<!-- page des depenses -->
 	<url-mapping id="depense">

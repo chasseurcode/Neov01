@@ -43,7 +43,7 @@ public class CampagneDAOTest {
 		p1.setIntitule("Promo 401");
 		p1.setNbreVue(30000);
 		Tarif t1=new TarifNotification();
-		t1.setClient((float) 0.08);
+		t1.setTarifclient((float) 0.08);
 		t1.setEnVigueur(true);
 		p1.setTarif(t1);
 		
@@ -51,7 +51,7 @@ public class CampagneDAOTest {
 		p2.setIntitule("Chaussure Fresh");
 		p2.setNbreVue(30000);
 		Tarif t2=new TarifNotification();
-		t2.setClient((float) 0.08);
+		t2.setTarifclient((float) 0.08);
 		t2.setEnVigueur(true);
 		p2.setTarif(t2);
 		

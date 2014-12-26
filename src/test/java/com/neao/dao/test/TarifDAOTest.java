@@ -19,14 +19,14 @@ public class TarifDAOTest {
 	@Before
 	public void setUp() throws Exception {
 		appl=new TarifAppel();
-		appl.setClient(11);
-		appl.setAbonne(12);
+		appl.setTarifabonne((float) 0.5);
+		appl.setTarifabonne((float) 0.3);
 		notif=new TarifNotification();
-		notif.setAbonne(20);
-		notif.setClient(30);
+		notif.setTarifabonne((float) 0.4);
+		notif.setTarifclient((float) 0.2);
 		texte=new TarifTextuelle();
-		texte.setAbonne(50);
-		texte.setClient(60);
+		texte.setTarifabonne((float) 0.6);
+		texte.setTarifclient((float) 0.3);
 		dao=new TarifDaoImpl();
 	}
 

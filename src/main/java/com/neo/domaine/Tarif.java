@@ -15,8 +15,8 @@ public abstract class Tarif {
 
 	@Id @GeneratedValue(strategy=GenerationType.TABLE)
 	private long id;
-	private float client;
-	private float abonne;
+	private float tarifclient;
+	private float tarifabonne;
 	private boolean enVigueur;
 	private Date dateCreation=new Date();
 	private Date dateMaj=new Date();
@@ -38,22 +38,7 @@ public abstract class Tarif {
 		this.id = id;
 	}
 
-	public float getClient() {
-		return client;
-	}
-
-	public void setClient(float client) {
-		this.client = client;
-	}
-
-	public float getAbonne() {
-		return abonne;
-	}
-
-	public void setAbonne(float abonne) {
-		this.abonne = abonne;
-	}
-
+	
 	public boolean isEnVigueur() {
 		return enVigueur;
 	}
@@ -84,6 +69,22 @@ public abstract class Tarif {
 
 	public void setSupprimer(boolean supprimer) {
 		this.supprimer = supprimer;
+	}
+
+	public float getTarifclient() {
+		return tarifclient;
+	}
+
+	public void setTarifclient(float tarifclient) {
+		this.tarifclient = tarifclient;
+	}
+
+	public float getTarifabonne() {
+		return tarifabonne;
+	}
+
+	public void setTarifabonne(float tarifabonne) {
+		this.tarifabonne = tarifabonne;
 	}
 	
 	

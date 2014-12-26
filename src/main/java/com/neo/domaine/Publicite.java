@@ -142,7 +142,7 @@ public class Publicite {
 	}
 	
 	public double getTotal() {
-		return nbreVue*tarif.getClient();
+		return nbreVue*tarif.getTarifclient();
 	}
 	
 }

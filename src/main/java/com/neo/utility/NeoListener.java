@@ -1,12 +1,10 @@
-package com.neo.beans;
+package com.neo.utility;
 
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 
 import org.hibernate.search.FullTextSession;
 import org.hibernate.search.Search;
-
-import com.neo.utility.HibernateUtil;
 
 public class NeoListener implements ServletContextListener{
 

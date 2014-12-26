@@ -5,6 +5,7 @@ import java.util.List;
 import org.hibernate.Session;
 
 import com.neo.dao.TarifDAO;
+import com.neo.domaine.Tarif;
 import com.neo.domaine.TarifAppel;
 import com.neo.domaine.TarifNotification;
 import com.neo.domaine.TarifTextuelle;
@@ -116,6 +117,39 @@ public class TarifDaoImpl implements TarifDAO{
 	public List<TarifTextuelle> listerTarifText() {
 		Session session=HibernateUtil.getSession();
 		return session.createQuery("from TarifTextuelle").list();
+	}
+
+	@Override
+	public void modifier(Tarif tarif) {
+		Session session=HibernateUtil.getSession();
+		session.beginTransaction();
+		session.update(tarif);
+		session.getTransaction().commit();
+	}
+
+	@Override
+	public void updateAllApp() {
+		Session session=HibernateUtil.getSession();
+		session.beginTransaction();
+		session.createQuery("UPDATE TarifAppel ta SET ta.enVigueur = :etat ").setBoolean("etat", false);
+		session.getTransaction().commit();
+	}
+
+	@Override
+	public void updateAllText() {
+		Session session=HibernateUtil.getSession();
+		session.beginTransaction();
+		session.createQuery("UPDATE TarifTextuelle  tt SET tt.enVigueur = :etat ").setBoolean("etat", false);
+		session.getTransaction().commit();
+	}
+
+	@Override
+	public void updateAllNotif() {
+		Session session=HibernateUtil.getSession();
+		session.beginTransaction();
+		session.createQuery("UPDATE TarifNotification tn SET tn.enVigueur = :etat ").setBoolean("etat", false);
+		session.getTransaction().commit();
+	
 	}
 
 

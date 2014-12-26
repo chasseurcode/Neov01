@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:h="http://java.sun.com/jsf/html">
+<h:head>
+
+</h:head>
+
+<h:body>
+	<ui:composition template="/template/backend.xhtml">
+	<ui:define name="titre">Gestion des dépenses</ui:define>
+	
+		<ui:define name="contenu">
+           
+           <div class="col-lg-10 col-lg-offset-1">
+           <section class="panel">
+           		
+	           	<h:form>
+	           	<header>
+	           		<h4><br /> </h4>
+	           	</header>
+	           	
+	           	<fieldset>
+	           		<div class="form-group col-sm-10 col-sm-offset-1">
+		           		<label>Prix Client</label>
+		           		<h:inputText id="prixclient" label="Prix client" styleClass="form-control" required="true" value="#{tarifBean.tclient}">
+		           			<f:validateDoubleRange minimum="0.000" maximum="400.00" />
+		           		</h:inputText>
+	           		</div>
+	           		<div class="form-group col-sm-10 col-sm-offset-1">
+		           		<label>Prix Abonné</label>
+		           		<h:inputText  id="priabonne" label="Prix Abonné" styleClass="form-control" required="true" value="#{tarifBean.tabonn}">
+		           			<f:validateDoubleRange minimum="0.000" maximum="400.00" />
+		           		</h:inputText>
+	           		</div>
+	           		<div class="form-group col-sm-10 col-sm-offset-1">
+	           		<h:selectOneRadio value="#{tarifBean.typeTarif}">
+	           			<f:selectItem itemValue="notifier" itemLabel="Bannière notifier"/><h:outputText value="&#160;" />
+	           			<f:selectItem itemValue="appel" itemLabel="Bannière recption d'appelle"/><h:outputText value="&#160;" />
+	           			<f:selectItem itemValue="textuelle" itemLabel=" Textulle"/><h:outputText value="&#160;" />
+	           		</h:selectOneRadio>
+	           		</div>
+	           		<div class="form-group col-sm-10 col-sm-offset-1">
+	           		<h:commandButton styleClass="pull-right btn btn-primary" action="#{tarifBean.addTarif()}" value="Ajouter ce tarif" />
+	           		</div>
+	           		</fieldset>
+	           	</h:form>
+           </section>
+           <section class="panel">
+                          <header class="panel-heading tab-bg-dark-navy-blue ">
+                              <ul class="nav nav-tabs">
+                                  <li class="active">
+                                      <a data-toggle="tab" href="#bannAp">Tarif Bannièere à Appel</a>
+                                  </li>
+                                  <li class="">
+                                      <a data-toggle="tab" href="#bannNot">Tarifs Banniere Notifier</a>
+                                  </li>
+                                   <li class="">
+                                      <a data-toggle="tab" href="#texto">Tarifs Textuelle</a>
+                                  </li>
+                              </ul>
+                          </header>
+                          <h:form>
+                          <div class="panel-body">
+	                              <div class="tab-content">
+	                                  <div id="bannAp" class="tab-pane">
+	                                  <table class="table">
+				                              <thead>
+				                              <tr>
+				                                  <th>Prix Client</th>
+				                                  <th>Prix Abonné</th>
+				                                  <th>En vigueur</th>
+				                                  <th></th>
+				                              </tr>
+				                              </thead>
+				                              <tbody>
+				                              <ui:repeat var="tarif" value="#{tarifBean.tarifAppels}">
+					                              <tr>
+					                                  <td>#{tarif.tarifclient}</td>
+					                                  <td>#{tarif.tarifabonne}</td>
+					                                  <td>
+					                                  <c:if test="#{ not tarif.enVigueur}">
+					                                 	 <span class="badge center-text bg-primary">Oui</span>
+					                                  </c:if>
+					                            
+					                                  </td>
+					                                  <td><h:commandButton styleClass="pull-right btn btn-xs btn-warning" 
+					                                  actionListener="#{tarifBean.miseEnVigueur(tarif,'app')}" value="Mise en Vigeur" />
+					                                   </td>
+					                              </tr>
+				                              </ui:repeat>
+				                              </tbody>
+				                          </table>
+                                  </div>
+                                   <div id="bannNot" class="tab-pane">
+                                  
+                                      Tarif banniere
+                                  </div>
+                                  <div id="texto" class="tab-pane">
+                                  
+                                  	tarif textuelle
+                                  </div>
+                              </div>
+                          </div>
+                          </h:form>
+                      </section>
+                      </div>
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>
