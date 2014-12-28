@@ -1,13 +1,17 @@
 package com.neo.domaine;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
 import org.hibernate.search.annotations.DocumentId;
@@ -17,9 +21,9 @@ import org.hibernate.search.annotations.Indexed;
 @Entity
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 @Indexed
-public class Publicite {
+public  abstract class Publicite {
 
-	@Id @GeneratedValue
+	@Id @GeneratedValue(strategy=GenerationType.TABLE)
 	@DocumentId
 	private long id;
 	@Field
@@ -33,6 +37,8 @@ public class Publicite {
 	private Campagne campagne;
 	@ManyToOne(cascade=CascadeType.ALL)
 	private Tarif tarif;
+	@ManyToMany(cascade=CascadeType.ALL)
+	private List<Domaine> domaines=new ArrayList<Domaine>();
 	private Date dateCreation=new Date();
 	private Date dateMaj=new Date();
 	private boolean supprimer=false;
@@ -144,5 +150,18 @@ public class Publicite {
 	public double getTotal() {
 		return nbreVue*tarif.getTarifclient();
 	}
+	
+	public void addDomaine(Domaine domaine){
+		domaines.add(domaine);
+	}
+
+	public List<Domaine> getDomaines() {
+		return domaines;
+	}
+
+	public void setDomaines(List<Domaine> domaines) {
+		this.domaines = domaines;
+	}
+	
 	
 }

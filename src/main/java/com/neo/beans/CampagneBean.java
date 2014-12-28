@@ -1,5 +1,9 @@
 package com.neo.beans;
 
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -9,99 +13,200 @@ import javax.faces.bean.SessionScoped;
 import javax.servlet.http.Part;
 
 import com.neo.dao.CampagneDAO;
+import com.neo.dao.PubliciteDAO;
 import com.neo.daoImpl.CampagneDaoimpl;
+import com.neo.daoImpl.PubliciteDaoImpl;
+import com.neo.domaine.Banniere;
 import com.neo.domaine.Campagne;
+import com.neo.domaine.Domaine;
 import com.neo.domaine.Publicite;
 import com.neo.domaine.Reglement;
+import com.neo.domaine.Textuelle;
+import com.neo.utility.Generateur;
+import com.neo.utility.Generateur.Mode;
+import com.neo.utility.TrouverChemin;
 
 @ManagedBean
 @SessionScoped
 public class CampagneBean {
 
-	private boolean showPub=false;
+	private boolean showEditCamp=false;
+	private boolean showPubMenu=false;
 	private Part fichier;
 	private CampagneDAO campagneDAO;
+	private PubliciteDAO pubDAO;
 	private Campagne campagne;
-	private Publicite publicite;
+	private String campListe;
 	private Reglement reglement;
-	private List<Publicite> lesPublicites;
-	private List<Campagne> lesCampagnes;
-	private List<Campagne> lesCampagnesEncours, lesCampagnesEnAttentes,lesCampagnesterminees;
-	private String datefin,datedebut;
+	private List<Publicite> pubTextuelle,pubBaniere;
+	private List<Campagne> lesCampagnes,listeCamp;
+	private List<String> domainesSelected=new ArrayList<String>();
+	private List<Domaine> domaines;
+	private Domaine domaine,current;
+	private Textuelle textuelle;
+	private Banniere banniere;
+
 
 
 	public CampagneBean() {
 		campagne=new Campagne();
+		textuelle=new Textuelle();
+		banniere=new Banniere();
+		domaine=new Domaine();
 		campagneDAO=new CampagneDaoimpl();
-		publicite=new Publicite();
+		pubDAO=new PubliciteDaoImpl();
 		reglement=new Reglement();
-		lesPublicites=new ArrayList<Publicite>();
-		lesCampagnesEnAttentes=new ArrayList<Campagne>();
-		lesCampagnesEncours=new ArrayList<Campagne>();
-		lesCampagnesterminees=new ArrayList<Campagne>();
-		setLesCampagnes(campagneDAO.lister());
-		initListe();
+		setDomaines(pubDAO.listerDomaine());
 
 	}
 
 
-	// affichage du formulaire des pubs
+
+
+	// affichage du formulaire dédition campagne
 	public String afficherPub(Campagne campagne) {
-		if(showPub){
-			setShowPub(false);
+		if(showEditCamp){
+			setShowEditCamp(false);
 		}
 		else{
-			setShowPub(true);
+			setShowEditCamp(true);
 		}
 		setCampagne(campagne);
 		return null;
 	}
 
+
 	//ajout de la publicite
-	public void addPublicite(){
+	public void addPubliciteTextuelle(){
 		System.out.println("ds addpub");
+		for(String check: domainesSelected){
+			Domaine d=pubDAO.findDomaineById(Long.parseLong(check));
+			textuelle.addDomaine(d);
+			d=new Domaine();
+		}
+		campagne.addPublicite(textuelle);
+		campagneDAO.modifier(campagne);
+		textuelle=new Textuelle();
+		domainesSelected.clear();
 
 	}
+
+
+	//upload de fichier
+	public void uploadPubBanniere(){ 
+		System.out.println("ds uplaod "+campagne.getIntitule());
+
+		try {					
+			String cheminImg=TrouverChemin.cheminImg();
+			System.out.println(cheminImg);
+			InputStream inputStream = fichier.getInputStream();          
+			String nomFichier=Generateur.generateRandomString(18, Mode.ALPHANUMERIC).toUpperCase()+"."+getFileExtension(fichier);
+			FileOutputStream outputStream = new FileOutputStream(cheminImg+nomFichier); 
+			byte[] buffer = new byte[4096];          
+			int bytesRead = 0;  
+			while(true) {                          
+				bytesRead = inputStream.read(buffer);  
+				if(bytesRead > 0) {  
+					outputStream.write(buffer, 0, bytesRead);  
+				}else {  
+					break;  
+				}                         
+			}  
+			banniere.setImage(nomFichier);
+			for(String check: domainesSelected){
+				Domaine d=pubDAO.findDomaineById(Long.parseLong(check));
+				banniere.addDomaine(d);
+				d=new Domaine();
+			}
+			campagne.addPublicite(banniere);
+			campagneDAO.modifier(campagne);
+			banniere=new Banniere();
+			domainesSelected.clear();
+			outputStream.close();  
+			inputStream.close();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}  
+
+	}
+
 
 	//ajout de la campagne
 	public void addCampagne(){
 		System.out.println("ds add campagne");
+		campagneDAO.creer(campagne);
+		setShowPubMenu(true);
 	}
+
 
 	//chargement de la campagne en vue d'un règlement
 	public String chargementReg(Campagne camp){
-		System.out.println("reglement");
 		setCampagne(camp);
 		return "pretty:listeReg";
 	}
 
+
 	// mise a jour de la campagne
 	public void editionCamp(){
 		campagneDAO.modifier(campagne);
-		setShowPub(false);
+		setShowEditCamp(false);
 	}
+
 
 	//chargement de la campagne pour voir les details
 	public String chargementCamp(Campagne campagne){
 		setCampagne(campagne);	
+		pubBaniere=new ArrayList<Publicite>();
+		pubTextuelle=new ArrayList<Publicite>();
+		for(Publicite p: campagne.getPublicites()){
+			try {
+				if(((Textuelle)p).getContenu()!=null){
+					pubTextuelle.add(p);
+				}
+			} catch (Exception e) {
+				pubBaniere.add(p);
+			}
+		}
 		return "pretty:detailcamp";
 	}
 
+
 	// ajout ds les differentes liste de campagne
-	private void initListe(){
-		for(Campagne c:lesCampagnes){
-			if((c.getDateFin().compareTo(new Date())<0) && (c.getReglements().size()>0) ){
-				lesCampagnesterminees.add(c);
+	public void initListe(){
+		setLesCampagnes(campagneDAO.lister());
+			if(campListe.equals("attente")){
+				listeCamp=new ArrayList<Campagne>();
+				for(Campagne ca:lesCampagnes){
+					if(ca.getReglements().size()==0){
+						listeCamp.add(ca);
+					}
+				}
 			}
-			if(((c.getDateFin().compareTo(new Date()) >0) || (c.getDateFin().compareTo(new Date()) ==0))
-					&& (c.getReglements().size()>0)){
-				lesCampagnesEncours.add(c);
+			
+			if(campListe.equals("encours")){
+				listeCamp=new ArrayList<Campagne>();
+				for(Campagne ca:lesCampagnes){
+					if(((ca.getDateFin().compareTo(new Date()) >0) || (ca.getDateFin().compareTo(new Date()) ==0))
+							&& (ca.getReglements().size()>0)){
+						listeCamp.add(ca);
+					}
+				}
 			}
-			if(c.getReglements().size()==0){
-				lesCampagnesEnAttentes.add(c);
+			
+			if(campListe.equals("termine")){
+				listeCamp=new ArrayList<Campagne>();
+				for(Campagne ca:lesCampagnes){
+					if((ca.getDateFin().compareTo(new Date())<0) && (ca.getReglements().size()>0) ){
+						listeCamp.add(ca);
+					}
+				}
 			}
-		}
 	}
+
 
 	//ajoutr les reglememts
 	public void addReglement(){
@@ -111,23 +216,64 @@ public class CampagneBean {
 	}
 
 
+	// Extraction de l'extention du fichier depuis le content-disposition header
+	private String getFileExtension(Part part) {
+		for (String content : part.getHeader("content-disposition").split(";")) {
+			if (content.trim().startsWith("filename")) {
+				String nomFichier=content.substring(content.indexOf('=') + 1).trim()
+						.replace("\"", "");
+				System.out.println( );
+				return nomFichier.substring(nomFichier.length()-3);
+			}
+		}
+		return null;
+	}
+
+
+	// ajout de domaine
+	public void addDomaine(){
+		if(current==null){
+			pubDAO.creer(domaine);
+			domaine=new Domaine();
+		}
+		else{
+			pubDAO.modifier(current);
+			domaine=new Domaine();
+		}
+		setDomaines(pubDAO.listerDomaine());
+	}
+	
+	
+	//edition  domaine
+	public void editDomaine(Domaine dom){
+		setDomaine(dom);
+		setCurrent(domaine);
+	}
+	
+	
+	
 	
 	/**
 	 * 
 	 * Getters et Setters
 	 */
 
-	public boolean isShowPub() {
-		return showPub;
-	}
-
-	public void setShowPub(boolean showPub) {
-		this.showPub = showPub;
-	}
 
 	public CampagneDAO getCampagneDAO() {
 		return campagneDAO;
 	}
+
+	public boolean isShowEditCamp() {
+		return showEditCamp;
+	}
+
+
+	public void setShowEditCamp(boolean showEditCamp) {
+		this.showEditCamp = showEditCamp;
+	}
+
+
+
 
 	public void setCampagneDAO(CampagneDAO campagneDAO) {
 		this.campagneDAO = campagneDAO;
@@ -141,21 +287,6 @@ public class CampagneBean {
 		this.campagne = campagne;
 	}
 
-	public Publicite getPublicite() {
-		return publicite;
-	}
-
-	public void setPublicite(Publicite publicite) {
-		this.publicite = publicite;
-	}
-
-	public List<Publicite> getLesPublicites() {
-		return lesPublicites;
-	}
-
-	public void setLesPublicites(List<Publicite> lesPublicites) {
-		this.lesPublicites = lesPublicites;
-	}
 
 
 	public Part getFichier() {
@@ -178,35 +309,6 @@ public class CampagneBean {
 	}
 
 
-	public List<Campagne> getLesCampagnesEncours() {
-		return lesCampagnesEncours;
-	}
-
-
-	public void setLesCampagnesEncours(List<Campagne> lesCampagnesEncours) {
-		this.lesCampagnesEncours = lesCampagnesEncours;
-	}
-
-
-	public List<Campagne> getLesCampagnesEnAttentes() {
-		return lesCampagnesEnAttentes;
-	}
-
-
-	public void setLesCampagnesEnAttentes(List<Campagne> lesCampagnesEnAttentes) {
-		this.lesCampagnesEnAttentes = lesCampagnesEnAttentes;
-	}
-
-
-	public List<Campagne> getLesCampagnesterminees() {
-		return lesCampagnesterminees;
-	}
-
-
-	public void setLesCampagnesterminees(List<Campagne> lesCampagnesterminees) {
-		this.lesCampagnesterminees = lesCampagnesterminees;
-	}
-
 
 	public Reglement getReglement() {
 		return reglement;
@@ -218,24 +320,151 @@ public class CampagneBean {
 	}
 
 
-	public String getDatefin() {
-		return datefin;
+	public List<String> getDomainesSelected() {
+		return domainesSelected;
 	}
 
 
-	public void setDatefin(String datefin) {
-		this.datefin = datefin;
+	public void setDomainesSelected(List<String> domainesSelected) {
+		this.domainesSelected = domainesSelected;
 	}
 
 
-	public String getDatedebut() {
-		return datedebut;
+	public List<Domaine> getDomaines() {
+		return domaines;
 	}
 
 
-	public void setDatedebut(String datedebut) {
-		this.datedebut = datedebut;
+	public void setDomaines(List<Domaine> domaines) {
+		this.domaines = domaines;
 	}
+
+
+	public Textuelle getTextuelle() {
+		return textuelle;
+	}
+
+
+	public void setTextuelle(Textuelle textuelle) {
+		this.textuelle = textuelle;
+	}
+
+
+	public PubliciteDAO getPubDAO() {
+		return pubDAO;
+	}
+
+
+	public void setPubDAO(PubliciteDAO pubDAO) {
+		this.pubDAO = pubDAO;
+	}
+
+	public Banniere getBanniere() {
+		return banniere;
+	}
+
+
+	public void setBanniere(Banniere banniere) {
+		this.banniere = banniere;
+	}
+
+
+
+
+	public boolean isShowPubMenu() {
+		return showPubMenu;
+	}
+
+
+	public void setShowPubMenu(boolean showPubMenu) {
+		this.showPubMenu = showPubMenu;
+	}
+
+
+
+
+	public List<Publicite> getPubTextuelle() {
+		return pubTextuelle;
+	}
+
+
+
+
+	public void setPubTextuelle(List<Publicite> pubTextuelle) {
+		this.pubTextuelle = pubTextuelle;
+	}
+
+
+
+
+	public List<Publicite> getPubBaniere() {
+		return pubBaniere;
+	}
+
+
+
+
+	public void setPubBaniere(List<Publicite> pubBaniere) {
+		this.pubBaniere = pubBaniere;
+	}
+
+
+
+
+	public Domaine getDomaine() {
+		return domaine;
+	}
+
+
+
+
+	public void setDomaine(Domaine domaine) {
+		this.domaine = domaine;
+	}
+
+
+
+
+	public Domaine getCurrent() {
+		return current;
+	}
+
+	public List<Campagne> getListeCamp() {
+		return listeCamp;
+	}
+
+
+
+
+	public void setListeCamp(List<Campagne> listeCamp) {
+		this.listeCamp = listeCamp;
+	}
+
+
+
+
+	public void setCurrent(Domaine current) {
+		this.current = current;
+	}
+
+
+	public String getCampListe() {
+		return campListe;
+	}
+
+
+
+
+	public void setCampListe(String campListe) {
+		this.campListe = campListe;
+	}
+
+
+
+
+
+
+
 
 
 
