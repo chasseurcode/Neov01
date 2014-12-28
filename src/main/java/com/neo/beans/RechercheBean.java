@@ -17,6 +17,7 @@ import com.neo.domaine.Abonne;
 import com.neo.domaine.Campagne;
 import com.neo.domaine.Client;
 import com.neo.domaine.Publicite;
+import com.neo.search.NeoEngine;
 
 @ManagedBean
 @SessionScoped

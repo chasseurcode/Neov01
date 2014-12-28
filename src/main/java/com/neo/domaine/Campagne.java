@@ -12,8 +12,10 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import org.hibernate.search.annotations.DateBridge;
 import org.hibernate.search.annotations.Field;
 import org.hibernate.search.annotations.Indexed;
+import org.hibernate.search.annotations.Resolution;
 
 @Entity
 @Indexed
@@ -24,6 +26,7 @@ public class Campagne {
 	@Field
 	private String intitule;
 	@Field
+	@DateBridge(resolution=Resolution.YEAR)
 	private Date dateDebut;
 	@Field
 	private Date dateFin;

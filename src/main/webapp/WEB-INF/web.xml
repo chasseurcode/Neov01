@@ -26,7 +26,7 @@
  </listener>
  <listener>
   <description>Listener pour d'eventuel initialisation</description>
-  <listener-class>com.neo.utility.NeoListener</listener-class>
+  <listener-class>com.neo.utility.NEOListener</listener-class>
  </listener>
  <servlet>
   <servlet-name>Faces Servlet</servlet-name>

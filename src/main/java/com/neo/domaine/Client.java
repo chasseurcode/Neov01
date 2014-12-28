@@ -17,11 +17,8 @@ import org.hibernate.search.annotations.Indexed;
 @Entity
 @Indexed
 public class Client extends Utilisateur implements Serializable{
-	
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
+	
 	@Field
 	private String nom;
 	@Field

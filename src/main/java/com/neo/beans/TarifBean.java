@@ -72,6 +72,7 @@ public class TarifBean {
 		}else if (type.equalsIgnoreCase("notif")) {
 			daoTarif.updateAllNotif();
 		}
+		
 		tarif.setEnVigueur(true);
 		daoTarif.modifier(tarif);
 		System.out.println("modif tarif id: "+tarif.getId()+" type: "+type);

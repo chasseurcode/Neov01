@@ -15,14 +15,12 @@
 	
 		<ui:define name="contenu">
            
-           <div class="col-lg-10 col-lg-offset-1">
+           <div class="col-lg-12">
            <section class="panel">
-           		
 	           	<h:form>
 	           	<header>
 	           		<h4><br /> </h4>
 	           	</header>
-	           	
 	           	<fieldset>
 	           		<div class="form-group col-sm-10 col-sm-offset-1">
 		           		<label>Prix Client</label>
@@ -37,8 +35,8 @@
 		           		</h:inputText>
 	           		</div>
 	           		<div class="form-group col-sm-10 col-sm-offset-1">
-	           		<h:selectOneRadio value="#{tarifBean.typeTarif}">
-	           			<f:selectItem itemValue="notifier" itemLabel="Bannière notifier"/><h:outputText value="&#160;" />
+	           		<h:selectOneRadio styleClass="spacecheck" value="#{tarifBean.typeTarif}">
+	           			<f:selectItem  itemValue="notifier" itemLabel="Bannière notifier"/><h:outputText value="&#160;" />
 	           			<f:selectItem itemValue="appel" itemLabel="Bannière recption d'appelle"/><h:outputText value="&#160;" />
 	           			<f:selectItem itemValue="textuelle" itemLabel=" Textulle"/><h:outputText value="&#160;" />
 	           		</h:selectOneRadio>
@@ -48,8 +46,7 @@
 	           		</div>
 	           		</fieldset>
 	           	</h:form>
-           </section>
-           <section class="panel">
+	           	<hr />
                           <header class="panel-heading tab-bg-dark-navy-blue ">
                               <ul class="nav nav-tabs">
                                   <li class=" ">
