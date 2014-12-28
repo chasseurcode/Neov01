@@ -114,7 +114,10 @@ public class Depense {
 		this.supprimer = supprimer;
 	}
 	
-	
+	@Override
+	public String toString() {
+		return "["+getIntitule()+"]-["+getFournisseur()+"]["+getMontant()+"]["+getDate()+"]";
+	}
 	
 
 }
