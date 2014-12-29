@@ -23,7 +23,9 @@
                    		<h:form>
                    			Essayez :
                    			<ui:repeat var="suggestion" value="#{rechercheBean.suggestions}">
-                   				<h:commandLink value="#{suggestion}" actionListener="#{rechercheBean.essaiSuggestion(suggestion)}"/>
+                   				<span class="label label-success">
+                   					<h:commandLink style="color:#fff;font-size:11px;" value="#{suggestion}" actionListener="#{rechercheBean.essaiSuggestion(suggestion)}"/>
+                   				</span>
                    			</ui:repeat>
                    		</h:form>
                    </c:if>
