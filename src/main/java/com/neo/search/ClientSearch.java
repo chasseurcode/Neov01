@@ -19,7 +19,6 @@ public class ClientSearch extends NeoSearch {
 	@SuppressWarnings("rawtypes")
 	@Override
 	protected List chercher(String requete) {
-		System.out.println("recherche effectuée requete: "+requete);
 		FullTextSession fullTextSession = Search.getFullTextSession(HibernateUtil.getSession()); 
 		QueryBuilder builder = fullTextSession.getSearchFactory()
 			    .buildQueryBuilder().forEntity(Client.class).get();
@@ -30,7 +29,6 @@ public class ClientSearch extends NeoSearch {
 			        .createQuery();
 		org.hibernate.Query fullTextQuery = fullTextSession.createFullTextQuery(luceneQuery);
 		List resultat = fullTextQuery.list();
-		System.out.println("resultat :"+resultat.size());
 		return resultat;
 	}
 

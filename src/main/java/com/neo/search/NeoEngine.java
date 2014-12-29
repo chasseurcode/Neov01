@@ -20,4 +20,10 @@ public class NeoEngine {
 		pubSearch.setSuivant(abonneSearch);
 		return clientSearch.requete(requete, new HashMap<String, List>());
 	}
+	
+	public static String[] suggestion(String mot) {
+		return IndexeChecker.getInstance()
+				.getSuggestions(mot, 5);
+	}
+	
 }

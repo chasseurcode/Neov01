@@ -22,6 +22,8 @@ public class Abonne extends Utilisateur {
 	 */
 	private static final long serialVersionUID = 1L;
 	@Field
+	private String nom;
+	@Field
 	private String prenom;
 	@Field
 	private Date dateDeNaissance;
@@ -51,9 +53,18 @@ public class Abonne extends Utilisateur {
 	 * 
 	 * Getters and Setters
 	 */
+
 	public String getPrenom() {
 		return prenom;
 	}
+	public String getNom() {
+		return nom;
+	}
+
+	public void setNom(String nom) {
+		this.nom = nom;
+	}
+
 	public void setPrenom(String prenom) {
 		this.prenom = prenom;
 	}
@@ -83,5 +94,8 @@ public class Abonne extends Utilisateur {
 		this.paiements = paiements;
 	}
 	
-	
+	@Override
+	public String toString() {
+		return super.toString()+" - ["+getNom()+"] - ["+getPrenom()+"] - [ "+getDateDeNaissance()+"] - ["+getCodeParrainege()+"] ["+getCodeFilleule()+"]";
+	}
 }

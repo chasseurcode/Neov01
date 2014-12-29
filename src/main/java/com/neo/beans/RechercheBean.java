@@ -27,9 +27,12 @@ public class RechercheBean {
 	private List<Campagne> campagnes;
 	private List<Publicite> publicites;
 	private List<Abonne> abonnes;
+	private List<String> suggestions;
+	final String SUGG_PREFIX="sugg";
 	@SuppressWarnings("rawtypes")
 	private Map<String, List> resultat;
 	private int nbrResultat;
+	
 	@PostConstruct
 	public void init() {
 		clients=new ArrayList<Client>();
@@ -44,45 +47,66 @@ public class RechercheBean {
 	public void setRequete(String requete) {
 		this.requete = requete;
 	}
-	
-	@SuppressWarnings({ "rawtypes", "unchecked" })
+
 	public void search() {
 		nbrResultat=0;
 		resultat=NeoEngine.chercher(requete);
-		
-		for (Entry<String, List> mResultat : resultat.entrySet())
-		{
-		    if(mResultat.getKey().equalsIgnoreCase(Client.class.getName())){
-		    	setClients(mResultat.getValue());
-		    	nbrResultat=nbrResultat+mResultat.getValue().size();
-		    }
-		    
-		    if(mResultat.getKey().equalsIgnoreCase(Campagne.class.getName())){
-		    	setCampagnes(mResultat.getValue());
-		    	nbrResultat=nbrResultat+mResultat.getValue().size();
-		    }
-		    
-		    if(mResultat.getKey().equalsIgnoreCase(Publicite.class.getName())){
-		    	setPublicites(mResultat.getValue());
-		    	nbrResultat=nbrResultat+mResultat.getValue().size();
-		    }
-		    
-		    if(mResultat.getKey().equalsIgnoreCase(Abonne.class.getName())){
-		    	setAbonnes(mResultat.getValue());
-		    	nbrResultat=nbrResultat+mResultat.getValue().size();
-		    }
-		    
+		//Extraction du resultat
+		extractResult();
+		//recuperation des suggestions
+		List<String> listSugg=new ArrayList<String>();
+		for(String sugg: NeoEngine.suggestion(requete)){
+			listSugg.add(sugg);
 		}
+		setSuggestions(listSugg);
 		ExternalContext ctx = FacesContext.getCurrentInstance().getExternalContext();
 		HttpServletRequest request = (HttpServletRequest) ctx.getRequest();
-		
 		try {
+			//redirection vers la page de recherche
 			ctx.redirect(request.getContextPath()+"/recherche");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
+	
+	//Relance la recherche avec la suggestion
+	public void essaiSuggestion(String sugg) {
+		setRequete(sugg);
+		search();
+	}
 
+	@SuppressWarnings({ "rawtypes", "unchecked" })
+	private void extractResult() {
+		for (Entry<String, List> mResultat : resultat.entrySet())
+		{
+			if(mResultat.getKey().equalsIgnoreCase(Client.class.getName())){
+				setClients(mResultat.getValue());
+				nbrResultat=nbrResultat+mResultat.getValue().size();
+			}
+
+			if(mResultat.getKey().equalsIgnoreCase(Campagne.class.getName())){
+				setCampagnes(mResultat.getValue());
+				nbrResultat=nbrResultat+mResultat.getValue().size();
+			}
+
+			if(mResultat.getKey().equalsIgnoreCase(Publicite.class.getName())){
+				setPublicites(mResultat.getValue());
+				nbrResultat=nbrResultat+mResultat.getValue().size();
+			}
+
+			if(mResultat.getKey().equalsIgnoreCase(Abonne.class.getName())){
+				setAbonnes(mResultat.getValue());
+				nbrResultat=nbrResultat+mResultat.getValue().size();
+			}
+
+		}
+	}
+
+	
+	/*
+	 * Getter and Setter
+	 * 
+	 */
 	public List<Client> getClients() {
 		return clients;
 	}
@@ -132,5 +156,13 @@ public class RechercheBean {
 	public void setAbonnes(List<Abonne> abonnes) {
 		this.abonnes = abonnes;
 	}
-	
+
+	public List<String> getSuggestions() {
+		return suggestions;
+	}
+
+	public void setSuggestions(List<String> suggestions) {
+		this.suggestions = suggestions;
+	}
+
 }

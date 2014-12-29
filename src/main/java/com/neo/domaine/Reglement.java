@@ -18,7 +18,9 @@ public class Reglement {
 	private long id;
 	@Field
 	private Date dateReglement;
+	@Field
 	private String type;
+	@Field
 	private float montant;
 	@ManyToOne
 	private Client client;

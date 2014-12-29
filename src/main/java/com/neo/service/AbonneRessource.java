@@ -1,4 +1,4 @@
-package com.neo.service.ressources;
+package com.neo.service;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
@@ -19,6 +19,8 @@ public class AbonneRessource {
 	public Response  getAbonne(@PathParam("id") String numAbonne) {
 		Abonne abonne=new Abonne();
 		abonne.setCompte("Ali");
+		abonne.setPrenom("Mohamed");
+		abonne.setEmail("mhAli@gmail.com");
 		abonne.setTelehone(numAbonne);
 		abonne.setMotDePasse("carcasson");
 		abonne.setActif(true);
@@ -26,17 +28,14 @@ public class AbonneRessource {
 	}
 	
 	
-	@Path("/inscription")
+	@Path("/")
 	@POST
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response incription(Abonne abonne){
-		
-		if(abonne.getId()==2){
-			return Response.status(406).entity("Inscription échouée veillez réessayez").build();
-		}else {
+			
+			System.out.println(abonne);
 			return Response.status(201).entity(abonne).build();
-		}	
 	}
 	
 }

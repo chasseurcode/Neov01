@@ -154,4 +154,8 @@ public class Utilisateur implements Serializable{
 		this.roles = roles;
 	}
 	
+	@Override
+	public String toString() {
+		return "["+getCompte()+"] - ["+getEmail()+"] - ["+getTelehone()+"] - ["+getTelehone()+"]";
+	}
 }
