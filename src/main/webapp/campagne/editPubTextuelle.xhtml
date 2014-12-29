@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:h="http://java.sun.com/jsf/html">
+<h:head>
+
+</h:head>
+
+<h:body>
+	<ui:composition template="/template/backend.xhtml">
+		<ui:define name="titre">Nouvelle campagne</ui:define>
+
+		<ui:define name="contenu">
+			<!-- page start-->
+
+			<div class="col-lg-8 col-lg-offset-2">
+				<section class="panel">
+					<header class="panel-heading"> Edition publicité Textuelle
+					</header>
+					<div class="panel-body">
+						<h:form id="formText">
+							<div class="form-group">
+								<label for="exampleInputEmail1">Intitulé</label>
+								<h:inputText styleClass="form-control" id="intpub"
+									label="Intitulé" value="#{campagneBean.textuelle.intitule}"
+									required="true" />
+								<p class="help-block">
+									<h:message for="intpub" style="color:red" />
+								</p>
+							</div>
+
+							<div class="form-group">
+								<label for="exampleInputPassword1">Date</label>
+								<div class="input-group input-large">
+									<h:inputText p:type="date" styleClass="form-control"
+										id="tdatedebut" value="#{campagneBean.textuelle.dateDebut}">
+										<f:convertDateTime type="date" pattern="yyyy-MM-dd" />
+									</h:inputText>
+									<h:message styleClass="help-block" for="tdatedebut"
+										style="color:red" />
+									<span class="input-group-addon">Au</span>
+									<h:inputText p:type="date" styleClass="form-control"
+										id="tdatefin" value="#{campagneBean.textuelle.dateFin}"
+										required="true">
+										<f:convertDateTime type="date" pattern="yyyy-MM-dd" />
+									</h:inputText>
+									<h:message styleClass="help-block" for="tdatefin"
+										style="color:red" />
+								</div>
+							</div>
+
+							<div class="form-group">
+								<label>Nombre de vue</label>
+								<h:inputText styleClass="form-control" id="tnbrevue"
+									value="#{campagneBean.textuelle.nbreVue}">
+									<f:convertNumber integerOnly="true" />
+								</h:inputText>
+								<p class="help-block">
+									<h:message for="tnbrevue" style="color:red" />
+								</p>
+							</div>
+
+							<div class="form-group">
+								<label for="exampleInputFile">Contenu</label><br />
+								<h:inputTextarea cols="60" rows="3" id="contenu"
+									styleClass="form-control"
+									value="#{campagneBean.textuelle.contenu}" />
+								<p class="help-block">
+									<h:message for="contenu" style="color:red" />
+								</p>
+							</div>
+
+
+							<div class="form-group">
+								<label class="col-lg-2 col-sm-2 control-label">Domaine</label>
+								<div class="col-lg-6">
+									<h:selectManyCheckbox value="#{campagneBean.domainesSelected}">
+										<f:selectItems value="#{campagneBean.domaines}" var="dom"
+											itemValue="#{dom.id}" itemLabel="#{dom.libelle}" />
+									</h:selectManyCheckbox>
+								</div>
+							</div>
+							
+							<h:link styleClass="btn btn-warning pull-right"
+								style="margin-top: 130px" value="Quitter"
+								outcome="pretty:detailcamp" />&#160;
+							<h:commandButton styleClass="btn btn-info pull-right"
+								style="margin-top: 130px" value="Enregistrer"
+								actionListener="#{campagneBean.editPubTextuelle}" />
+								
+								
+						</h:form>
+
+
+
+
+
+					</div>
+				</section>
+			</div>
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>
