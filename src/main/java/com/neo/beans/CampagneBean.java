@@ -10,12 +10,16 @@ import java.util.List;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.ExternalContext;
+import javax.faces.context.FacesContext;
 import javax.servlet.http.Part;
 
 import com.neo.dao.CampagneDAO;
 import com.neo.dao.PubliciteDAO;
+import com.neo.dao.TarifDAO;
 import com.neo.daoImpl.CampagneDaoimpl;
 import com.neo.daoImpl.PubliciteDaoImpl;
+import com.neo.daoImpl.TarifDaoImpl;
 import com.neo.domaine.Banniere;
 import com.neo.domaine.Campagne;
 import com.neo.domaine.Domaine;
@@ -35,6 +39,7 @@ public class CampagneBean {
 	private Part fichier;
 	private CampagneDAO campagneDAO;
 	private PubliciteDAO pubDAO;
+	private TarifDAO tarifDAO;
 	private Campagne campagne;
 	private String campListe;
 	private Reglement reglement;
@@ -55,6 +60,7 @@ public class CampagneBean {
 		domaine=new Domaine();
 		campagneDAO=new CampagneDaoimpl();
 		pubDAO=new PubliciteDaoImpl();
+		tarifDAO=new TarifDaoImpl();
 		reglement=new Reglement();
 		setDomaines(pubDAO.listerDomaine());
 
@@ -135,6 +141,109 @@ public class CampagneBean {
 	}
 
 
+	//edition publicite banniere
+	public void editPubBanniere(){
+		try {					
+			String cheminImg=TrouverChemin.cheminImg();
+			if(fichier==null){
+				if(domainesSelected.size() > banniere.getDomaines().size()){
+					for(String check: domainesSelected){
+						Domaine d=pubDAO.findDomaineById(Long.parseLong(check));
+						banniere.addDomaine(d);
+						d=new Domaine();
+					}
+				}			
+				pubDAO.modifier(banniere);
+			}
+			else{
+				System.out.println("ds else");
+				InputStream inputStream = fichier.getInputStream(); 
+				String nomFichier=Generateur.generateRandomString(18, Mode.ALPHANUMERIC).toUpperCase()+"."+getFileExtension(fichier);
+				FileOutputStream outputStream = new FileOutputStream(cheminImg+nomFichier); 
+				byte[] buffer = new byte[4096];          
+				int bytesRead = 0;  
+				while(true) {                          
+					bytesRead = inputStream.read(buffer);  
+					if(bytesRead > 0) {  
+						outputStream.write(buffer, 0, bytesRead);  
+					}else {  
+						break;  
+					}                         
+				}  
+				banniere.setImage(nomFichier);
+				if(domainesSelected.size() > banniere.getDomaines().size()){
+					for(String check: domainesSelected){
+						Domaine d=pubDAO.findDomaineById(Long.parseLong(check));
+						banniere.addDomaine(d);
+						d=new Domaine();
+					}
+				}		
+				pubDAO.modifier(banniere);
+				outputStream.close();  
+				inputStream.close();
+			}
+			setLesCampagnes(campagneDAO.lister());
+			domainesSelected.clear();
+			banniere=new Banniere();
+
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		ExternalContext context= FacesContext.getCurrentInstance().getExternalContext();
+		try {
+			context.redirect("detailCamp.xhtml");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+
+	//edition publicite textuelle
+	public String editPubTextuelle(){
+		System.out.println("ds edit text");
+		if(domainesSelected.size() > textuelle.getDomaines().size()){
+			for(String check: domainesSelected){
+				Domaine d=pubDAO.findDomaineById(Long.parseLong(check));
+				textuelle.addDomaine(d);
+				d=new Domaine();
+			}
+		}	
+		pubDAO.modifier(textuelle);
+		setLesCampagnes(campagneDAO.lister());
+		textuelle=new Textuelle();
+		return null;
+	}
+
+	//chargement publicite banniere
+	public void loadPubBanniere(Banniere banni){
+		setBanniere(banni);	
+		for(Domaine d: banni.getDomaines()){
+			domainesSelected.add(String.valueOf(d.getId()));
+		}
+		ExternalContext context= FacesContext.getCurrentInstance().getExternalContext();
+		try {
+			context.redirect("campagne/editPubBanniere.xhtml");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+
+	//chargement publicite textuelle
+	public String loadPubTextuelle(Textuelle texte){
+		setTextuelle(texte);
+		for(Domaine d: texte.getDomaines()){
+			domainesSelected.add(String.valueOf(d.getId()));
+		}
+		return "pretty:editPubTexte";
+
+	}
+
+
 	//ajout de la campagne
 	public void addCampagne(){
 		System.out.println("ds add campagne");
@@ -152,8 +261,13 @@ public class CampagneBean {
 
 	// mise a jour de la campagne
 	public void editionCamp(){
-		campagneDAO.modifier(campagne);
-		setShowEditCamp(false);
+		if(!(campagne.getDateFin().compareTo(new Date())<0) ){
+			campagneDAO.modifier(campagne);
+			setLesCampagnes(campagneDAO.lister());
+			campagne=new Campagne();
+			setShowEditCamp(false);
+		}
+		
 	}
 
 
@@ -175,36 +289,53 @@ public class CampagneBean {
 	}
 
 
+	//chargement de la pub pour les detail
+	public String chargementPubTexte(Textuelle texte){
+		setTextuelle(texte);
+		return "pretty:detailPubTexte";
+	}
+	public void chargementPubBanni(Banniere bann){
+		setBanniere(bann);
+		ExternalContext context= FacesContext.getCurrentInstance().getExternalContext();
+		try {
+			context.redirect("campagne/detailPubBanniere.xhtml");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		//return "pretty:detailPubBan";
+	}
+
+
 	// ajout ds les differentes liste de campagne
 	public void initListe(){
 		setLesCampagnes(campagneDAO.lister());
-			if(campListe.equals("attente")){
-				listeCamp=new ArrayList<Campagne>();
-				for(Campagne ca:lesCampagnes){
-					if(ca.getReglements().size()==0){
-						listeCamp.add(ca);
-					}
+		if(campListe.equals("attente")){
+			listeCamp=new ArrayList<Campagne>();
+			for(Campagne ca:lesCampagnes){
+				if(ca.getReglements().size()==0){
+					listeCamp.add(ca);
 				}
 			}
-			
-			if(campListe.equals("encours")){
-				listeCamp=new ArrayList<Campagne>();
-				for(Campagne ca:lesCampagnes){
-					if(((ca.getDateFin().compareTo(new Date()) >0) || (ca.getDateFin().compareTo(new Date()) ==0))
-							&& (ca.getReglements().size()>0)){
-						listeCamp.add(ca);
-					}
+		}
+
+		if(campListe.equals("encours")){
+			listeCamp=new ArrayList<Campagne>();
+			for(Campagne ca:lesCampagnes){
+				if(((ca.getDateFin().compareTo(new Date()) >0) || (ca.getDateFin().compareTo(new Date()) ==0))
+						&& (ca.getReglements().size()>0)){
+					listeCamp.add(ca);
 				}
 			}
-			
-			if(campListe.equals("termine")){
-				listeCamp=new ArrayList<Campagne>();
-				for(Campagne ca:lesCampagnes){
-					if((ca.getDateFin().compareTo(new Date())<0) && (ca.getReglements().size()>0) ){
-						listeCamp.add(ca);
-					}
+		}
+
+		if(campListe.equals("termine")){
+			listeCamp=new ArrayList<Campagne>();
+			for(Campagne ca:lesCampagnes){
+				if((ca.getDateFin().compareTo(new Date())<0) && (ca.getReglements().size()>0) ){
+					listeCamp.add(ca);
 				}
 			}
+		}
 	}
 
 
@@ -242,17 +373,17 @@ public class CampagneBean {
 		}
 		setDomaines(pubDAO.listerDomaine());
 	}
-	
-	
+
+
 	//edition  domaine
 	public void editDomaine(Domaine dom){
 		setDomaine(dom);
 		setCurrent(domaine);
 	}
-	
-	
-	
-	
+
+
+
+
 	/**
 	 * 
 	 * Getters et Setters
@@ -458,6 +589,21 @@ public class CampagneBean {
 	public void setCampListe(String campListe) {
 		this.campListe = campListe;
 	}
+
+
+
+
+	public TarifDAO getTarifDAO() {
+		return tarifDAO;
+	}
+
+
+
+
+	public void setTarifDAO(TarifDAO tarifDAO) {
+		this.tarifDAO = tarifDAO;
+	}
+
 
 
 
