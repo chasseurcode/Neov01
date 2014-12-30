@@ -41,7 +41,6 @@ public class CampagneBean {
 		lesCampagnesterminees=new ArrayList<Campagne>();
 		setLesCampagnes(campagneDAO.lister());
 		initListe();
-
 	}
 
 
@@ -60,6 +59,152 @@ public class CampagneBean {
 	//ajout de la publicite
 	public void addPublicite(){
 		System.out.println("ds addpub");
+
+		for(String check: domainesSelected){
+			Domaine d=pubDAO.findDomaineById(Long.parseLong(check));
+			textuelle.addDomaine(d);
+			d=new Domaine();
+		}
+		campagne.addPublicite(textuelle);
+		campagneDAO.modifier(campagne);
+		textuelle=new Textuelle();
+		domainesSelected.clear();
+
+	}
+
+
+	//upload de fichier
+	public void uploadPubBanniere(){ 
+
+		try {					
+			String cheminImg=TrouverChemin.cheminImg();
+			System.out.println(cheminImg);
+			InputStream inputStream = fichier.getInputStream();          
+			String nomFichier=Generateur.generateRandomString(18, Mode.ALPHANUMERIC).toUpperCase()+"."+getFileExtension(fichier);
+			FileOutputStream outputStream = new FileOutputStream(cheminImg+nomFichier); 
+			byte[] buffer = new byte[4096];          
+			int bytesRead = 0;  
+			while(true) {                          
+				bytesRead = inputStream.read(buffer);  
+				if(bytesRead > 0) {  
+					outputStream.write(buffer, 0, bytesRead);  
+				}else {  
+					break;  
+				}                         
+			}  
+			banniere.setImage(nomFichier);
+			for(String check: domainesSelected){
+				Domaine d=pubDAO.findDomaineById(Long.parseLong(check));
+				banniere.addDomaine(d);
+				d=new Domaine();
+			}
+			campagne.addPublicite(banniere);
+			campagneDAO.modifier(campagne);
+			banniere=new Banniere();
+			domainesSelected.clear();
+			outputStream.close();  
+			inputStream.close();
+			
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}  
+
+	}
+
+
+	//edition publicite banniere
+	public void editPubBanniere(){
+		try {					
+			String cheminImg=TrouverChemin.cheminImg();
+			if(fichier==null){
+				if(domainesSelected.size() > banniere.getDomaines().size()){
+					for(String check: domainesSelected){
+						Domaine d=pubDAO.findDomaineById(Long.parseLong(check));
+						banniere.addDomaine(d);
+						d=new Domaine();
+					}
+				}			
+				pubDAO.modifier(banniere);
+			}
+			else{
+				InputStream inputStream = fichier.getInputStream(); 
+				String nomFichier=Generateur.generateRandomString(18, Mode.ALPHANUMERIC).toUpperCase()+"."+getFileExtension(fichier);
+				FileOutputStream outputStream = new FileOutputStream(cheminImg+nomFichier); 
+				byte[] buffer = new byte[4096];          
+				int bytesRead = 0;  
+				while(true) {                          
+					bytesRead = inputStream.read(buffer);  
+					if(bytesRead > 0) {  
+						outputStream.write(buffer, 0, bytesRead);  
+					}else {  
+						break;  
+					}                         
+				}  
+				banniere.setImage(nomFichier);
+				if(domainesSelected.size() > banniere.getDomaines().size()){
+					for(String check: domainesSelected){
+						Domaine d=pubDAO.findDomaineById(Long.parseLong(check));
+						banniere.addDomaine(d);
+						d=new Domaine();
+					}
+				}		
+				pubDAO.modifier(banniere);
+				outputStream.close();  
+				inputStream.close();
+			}
+			setLesCampagnes(campagneDAO.lister());
+			domainesSelected.clear();
+			banniere=new Banniere();
+
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		ExternalContext context= FacesContext.getCurrentInstance().getExternalContext();
+		try {
+			context.redirect("detailCamp.xhtml");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+
+	//edition publicite textuelle
+	public String editPubTextuelle(){
+		if(domainesSelected.size() > textuelle.getDomaines().size()){
+			for(String check: domainesSelected){
+				Domaine d=pubDAO.findDomaineById(Long.parseLong(check));
+				textuelle.addDomaine(d);
+				d=new Domaine();
+			}
+		}	
+		pubDAO.modifier(textuelle);
+		setLesCampagnes(campagneDAO.lister());
+		textuelle=new Textuelle();
+		return null;
+	}
+
+	
+	//chargement publicite banniere
+	public void loadPubBanniere(Banniere banni){
+		setBanniere(banni);	
+		for(Domaine d: banni.getDomaines()){
+			domainesSelected.add(String.valueOf(d.getId()));
+		}
+		ExternalContext context= FacesContext.getCurrentInstance().getExternalContext();
+		try {
+			context.redirect("campagne/editPubBanniere.xhtml");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 
 	}
 
@@ -86,6 +231,25 @@ public class CampagneBean {
 		setCampagne(campagne);	
 		return "pretty:detailcamp";
 	}
+
+
+
+	//chargement des pubs pour les detail
+	public String chargementPubTexte(Textuelle texte){
+		setTextuelle(texte);
+		return "pretty:detailPubTexte";
+	}
+	public void chargementPubBanni(Banniere bann){
+		setBanniere(bann);
+		ExternalContext context= FacesContext.getCurrentInstance().getExternalContext();
+		try {
+			context.redirect("campagne/detailPubBanniere.xhtml");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		//return "pretty:detailPubBan";
+	}
+
 
 	// ajout ds les differentes liste de campagne
 	private void initListe(){
@@ -119,6 +283,8 @@ public class CampagneBean {
 
 	public boolean isShowPub() {
 		return showPub;
+	public CampagneDAO getCampagneDAO() {
+		return campagneDAO;
 	}
 
 	public void setShowPub(boolean showPub) {

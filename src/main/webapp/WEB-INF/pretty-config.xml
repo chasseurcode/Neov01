@@ -79,6 +79,28 @@
 
 	<!-- ********* Gestion de campagne ********** -->
 	<!-- page nouvelle campagne -->
+
+	<!-- ********* Gestion de la publicité ********** -->
+	<!-- edition publicite textuelle -->
+	<url-mapping id="editPubTexte">
+		<pattern value="/editionPubTextuelle" />
+		<view-id value="/campagne/editPubTextuelle.xhtml" />
+	</url-mapping>
+
+	<!-- detail pub banniere -->
+	<url-mapping id="detailPubBan">
+		<pattern value="/detailPubBanniere" />
+		<view-id value="/campagne/detailPubBanniere.xhtml" />
+	</url-mapping>
+
+	<!-- detail pub textuelle -->
+	<url-mapping id="detailPubTexte">
+		<pattern value="/detailPubTextuelle" />
+		<view-id value="/campagne/detailPubTextuelle.xhtml" />
+	</url-mapping>
+
+	<!-- ********* Gestion des réglements ********** -->
+	<!-- page de règlement -->
 	<url-mapping id="listeReg">
 		<pattern value="/reglements" />
 		<view-id value="/campagne/ficheReglement.xhtml" />

@@ -28,7 +28,6 @@
 								<span>Date de début</span>:
 								<h:outputLabel value="#{campagneBean.campagne.dateDebut}">
 									<f:convertDateTime type="date" pattern="dd-MM-yyyy" />
-									<f:convertDateTime type="date" pattern="dd-MM-yyyy" />
 								</h:outputLabel>
 							</p>
 						</div>
@@ -129,6 +128,19 @@
 										</tr>
 									</ui:repeat>
 								</h:form>
+
+								<ui:repeat var="reg" value="#{campagneBean.campagne.reglements}">
+									<tr>
+										<td><h:outputText value="#{reg.dateReglement}">
+												<f:convertDateTime type="date" pattern="dd-MM-yyyy" />
+											</h:outputText></td>
+										<td>#{reg.type}</td>
+										<td>#{reg.montant}</td>
+										<td><h:outputText styleClass="label label-warning"
+												value="0000" /></td>
+										
+									</tr>
+								</ui:repeat>
 							</tbody>
 						</table>
 					</section>
