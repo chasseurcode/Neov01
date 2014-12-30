@@ -4,15 +4,18 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:shiro="http://shiro.apache.org/tags"
 	xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
-	xmlns:h="http://java.sun.com/jsf/html">
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:pretty="http://ocpsoft.com/prettyfaces">
 <h:head>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<meta name="description" content="" />
 	<meta name="author" content="Mosaddek" />
-	<meta name="keyword" content="FlatLab, Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina" />
-	
-	<title>NEONE-<ui:insert name="titre"/> </title>
+	<meta name="keyword"
+		content="FlatLab, Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina" />
+
+	<title>NEONE-<ui:insert name="titre" />
+	</title>
 
 	<!-- Bootstrap core CSS -->
 	<h:outputStylesheet library="css" name="bootstrap.min.css" />
@@ -23,12 +26,14 @@
 		name="font-awesome.css" />
 	<h:outputStylesheet library="css" name="style.css" />
 	<h:outputStylesheet library="css" name="style-responsive.css" />
-    <h:outputStylesheet library="assets/data-tables" name="DT_bootstrap.css" />
-    <h:outputStylesheet library="css" name="gallery.css" />
-    <h:outputStylesheet library="assets/fancybox/source" name="jquery.fancybox.css" />
-    
-    
-<h:outputStylesheet library="css" name="neostyle.css" />
+	<h:outputStylesheet library="assets/data-tables"
+		name="DT_bootstrap.css" />
+	<h:outputStylesheet library="css" name="gallery.css" />
+	<h:outputStylesheet library="assets/fancybox/source"
+		name="jquery.fancybox.css" />
+
+
+	<h:outputStylesheet library="css" name="neostyle.css" />
 
 </h:head>
 
@@ -50,157 +55,162 @@
 				<!--  notification start -->
 				<ul class="nav top-menu">
 					<!-- notification dropdown start-->
-					<li id="header_notification_bar" class="dropdown">
-						<a data-toggle="dropdown" class="dropdown-toggle" href="#">
-							 <i class="icon-bell-alt"></i> 
-							 <span class="badge bg-warning">
+					<li id="header_notification_bar" class="dropdown"><a
+						data-toggle="dropdown" class="dropdown-toggle" href="#"> <i
+							class="icon-bell-alt"></i> <span class="badge bg-warning">
 								<h:outputText value="#{appBean.nbreMessage}" />
-							</span>
-						</a>
+						</span>
+					</a>
 						<ul class="dropdown-menu extended notification">
 							<div class="notify-arrow notify-arrow-yellow"></div>
 							<li>
-								<p class="yellow">Vous avez <h:outputText value="#{appBean.nbreMessage}" /> notification(s)</p>
+								<p class="yellow">
+									Vous avez
+									<h:outputText value="#{appBean.nbreMessage}" />
+									notification(s)
+								</p>
 							</li>
 							<ui:repeat var="msg" value="#{appBean.msgList}">
-								<li><a href="#">
-								 <span class="label label-danger">
-								 <i class="icon-bolt"></i></span> 
-									<h:outputText value="#{msg.objet}" /> 
-								</a>
-								</li>
+								<li><a href="#"> <span class="label label-danger">
+											<i class="icon-bolt"></i>
+									</span> <h:outputText value="#{msg.objet}" />
+								</a></li>
 							</ui:repeat>
-							<li>
-								<h:link value="Toutes les notifications" outcome="pretty:messagerie" />
-							</li>
-						</ul>
-					</li>
+							<li><h:link value="Toutes les notifications"
+									outcome="pretty:messagerie" /></li>
+						</ul></li>
 					<!-- notification dropdown end -->
 				</ul>
 			</div>
-			
+
 			<div class="top-nav ">
 				<ul class="nav pull-right top-menu">
-						<li> 
-							<h:form>
-								<h:inputText styleClass="form-control search" placeholder="Recherche" 
-								value="#{rechercheBean.requete}" onkeypress="if (event.keyCode == 13) { onchange(); return false; }">
-								    <f:ajax event="change" listener="#{rechercheBean.search()}" />
-								</h:inputText>
-							</h:form>
-						</li>
+					<li><h:form>
+							<h:inputText styleClass="form-control search"
+								placeholder="Recherche" value="#{rechercheBean.requete}"
+								onkeypress="if (event.keyCode == 13) { onchange(); return false; }">
+								<f:ajax event="change" listener="#{rechercheBean.search()}" />
+							</h:inputText>
+						</h:form></li>
 					<!-- user login dropdown start-->
 					<li class="dropdown"><a data-toggle="dropdown"
 						class="dropdown-toggle" href="#"> <h:graphicImage
-								library="img" name="avatar-mini.jpg" /> 
-								<span class="username">
-									<shiro:principal/>
-								</span> <b class="caret"></b>
+								library="img" name="avatar-mini.jpg" /> <span class="username">
+								<shiro:principal />
+						</span> <b class="caret"></b>
 					</a>
 						<ul class="dropdown-menu extended logout">
 							<div class="log-arrow-up"></div>
-							<li>
-							<h:form>
-							<h:commandLink action="#{auth.logout()}" >
-								<i class="icon-key"></i> DECONNEXION
+							<li><h:form>
+									<h:commandLink action="#{auth.logout()}">
+										<i class="icon-key"></i> DECONNEXION
 							</h:commandLink>
-							</h:form>
-									</li>
+								</h:form></li>
 						</ul></li>
 					<!-- user login dropdown end -->
 				</ul>
 			</div>
 		</header>
 		<!--header end-->
-		
+
 		<!--sidebar start-->
 		<aside>
 			<div id="sidebar" class="nav-collapse ">
 				<!-- sidebar menu start-->
 				<ul class="sidebar-menu" id="nav-accordion">
-					<li>
-						<h:link outcome="pretty:userhome">
-							<i class="icon-dashboard"></i> 
+					<li><h:link outcome="pretty:userhome">
+							<i class="icon-dashboard"></i>
 							<span>Dashboard</span>
-						</h:link>
-					</li>
-					
+						</h:link></li>
+
 					<!-- Menu des clients -->
-					<li class="sub-menu">
-						<a href="javascript:;"><i class="icon-book"></i> <span>Gérer Clients</span></a>
+					<li class="sub-menu"><a href="javascript:;"><i
+							class="icon-book"></i> <span>Gérer Clients</span></a>
 						<ul class="sub">
-							<li> <h:link outcome="pretty:newclient" value="Nouveau client"> </h:link> </li>
-							<li> <h:link outcome="pretty:listeclient" value="Liste client"> </h:link> </li>	
-						</ul>
-					</li>
-					
+							<li><h:link outcome="pretty:newclient"
+									value="Nouveau client">
+								</h:link></li>
+							<li><h:link outcome="pretty:listeclient"
+									value="Liste client">
+								</h:link></li>
+						</ul></li>
+
 					<!-- Menu des campagnes -->
-					<li class="sub-menu"><a href="javascript:;"><i class="icon-truck"></i> <span>Gérer les Campagnes</span></a>
+					<li class="sub-menu"><a href="javascript:;"><i
+							class="icon-truck"></i> <span>Gérer les Campagnes</span></a>
 						<ul class="sub">
-							<li> <h:link outcome="pretty:newcampagne" value="Nouvelle campagne"> </h:link> </li>
-							<li> <h:link outcome="pretty:attentecamp" value="Campagnes en attentes"> </h:link> </li>
-							<li> <h:link outcome="pretty:encours" value="Campagnes en cours"> </h:link> </li>
-							<li> <h:link outcome="pretty:terminees" value="Campagnes terminées"> </h:link> </li>
-						</ul>
-					</li>
-					<li>
-						<h:link outcome="pretty:recharge">
-							<i class="icon-ticket"></i> <span>Gérer les Recharges</span>
-						</h:link>
-					</li>
-					
-					<li>
-					<h:link outcome="pretty:tarifs">
-							<i class="icon-eur"></i> <span>Definition des tarifs</span>
-						</h:link>
-					</li>
-					
-					<!-- Menu de la trésorerie -->
-					<li class="sub-menu"><a href="javascript:;"><i class="icon-money"></i> <span>Gérer la Tresorerie</span></a>
-						<ul class="sub">
-							<li> <h:link outcome="pretty:depense" value="Gérer les dépenses"> </h:link> </li>
-							<li> <h:link outcome="pretty:paiement" value="Gérer les paiements"> </h:link> </li>
-						</ul>
-						</li>
-					<li>
-					<h:link outcome="pretty:messagerie">
-						<i class="icon-bell-alt"></i> <span>Notifications</span>
-						<span class="label label-danger pull-right mail-info">
-							<h:outputText value="#{appBean.nbreMessage}" />
-						</span>
-					</h:link>
-					</li>
-					
-					<!-- Menu des comptes -->
-					<li class="sub-menu"><a href="javascript:;"><i class="icon-user-md"></i> <span>Gérer les Comptes</span></a>
-						<ul class="sub">
-							<li>
-								<h:link value="Nouveau compte" outcome="pretty:newuser"/>
-							</li>
-							<li>
-								<h:link value="Liste des comptes" outcome="pretty:userslist"/>
-							</li>
-							<li>
-								<h:link value="Gérer les roles" outcome="pretty:roles"/>
-							</li>
-						</ul>
-					</li>
+							<li><h:link outcome="pretty:newcampagne"
+									value="Nouvelle campagne">
+								</h:link></li>
+							<li><pretty:link mappingId="listescamp">
+									<f:param value="attente" />Campagnes en attentes</pretty:link></li>
+							<li><pretty:link mappingId="listescamp">
+									<f:param value="encours" />Campagnes encours</pretty:link></li>
+							<li><pretty:link mappingId="listescamp">
+									<f:param value="termine" />Campagnes terminées</pretty:link></li>
+						</ul></li>
+					<li><h:link outcome="pretty:recharge">
+							<i class="icon-ticket"></i>
+							<span>Gérer les Recharges</span>
+						</h:link></li>
 						
+						<li>
+						<h:link outcome="pretty:domaines">
+							<i class="icon-bullhorn"></i> <span>Définition des domaines</span>
+						</h:link>
+					</li>
+
+					<li><h:link outcome="pretty:tarifs">
+							<i class="icon-eur"></i>
+							<span>Definition des tarifs</span>
+						</h:link></li>
+
+					<!-- Menu de la trésorerie -->
+					<li class="sub-menu"><a href="javascript:;"><i
+							class="icon-money"></i> <span>Gérer la Tresorerie</span></a>
+						<ul class="sub">
+							<li><h:link outcome="pretty:depense"
+									value="Gérer les dépenses">
+								</h:link></li>
+							<li><h:link outcome="pretty:paiement"
+									value="Gérer les paiements">
+								</h:link></li>
+						</ul></li>
+					<li><h:link outcome="pretty:messagerie">
+							<i class="icon-bell-alt"></i>
+							<span>Notifications</span>
+							<span class="label label-danger pull-right mail-info"> <h:outputText
+									value="#{appBean.nbreMessage}" />
+							</span>
+						</h:link></li>
+
+					<!-- Menu des comptes -->
+					<li class="sub-menu"><a href="javascript:;"><i
+							class="icon-user-md"></i> <span>Gérer les Comptes</span></a>
+						<ul class="sub">
+							<li><h:link value="Nouveau compte" outcome="pretty:newuser" />
+							</li>
+							<li><h:link value="Liste des comptes"
+									outcome="pretty:userslist" /></li>
+							<li><h:link value="Gérer les roles" outcome="pretty:roles" />
+							</li>
+						</ul></li>
+
 				</ul>
 				<!-- sidebar menu end-->
 			</div>
 		</aside>
-		
+
 		<!--main content start-->
 		<section id="main-content">
 			<section class="wrapper site-min-height">
 				<!-- page start-->
-				<ui:insert name="contenu" />	
+				<ui:insert name="contenu" />
 				<!-- page end-->
 			</section>
 		</section>
 		<!--main content end-->
-		
+
 		<!--footer start-->
 		<footer class="site-footer">
 			<div class="text-center">
@@ -209,7 +219,7 @@
 		</footer>
 		<!--footer end-->
 	</section>
-	
+
 	<!-- js placed at the end of the document so the pages load faster -->
 	<h:outputScript library="js" name="jquery.js" />
 	<h:outputScript library="js" name="bootstrap.min.js" />
@@ -217,19 +227,23 @@
 	<h:outputScript library="js" name="jquery.scrollTo.min.js" />
 	<h:outputScript library="js" name="jquery.nicescroll.js" />
 	<h:outputScript library="js" name="respond.min.js" />
-    <h:outputScript library="js" name="advanced-form-components.js"/>
-    <h:outputScript library="assets/bootstrap-datepicker/js" name="bootstrap-datepicker.js" />
-    <h:outputScript library="assets/bootstrap-daterangepicker" name="daterangepicker.js" />
-    <h:outputScript library="assets/data-tables" name="jquery.dataTables.js" />
-    <h:outputScript library="assets/data-tables" name="DT_bootstrap.js" />
-    <h:outputScript library="js" name="editable-table.js" />
-    <h:outputScript library="assets/fancybox/source" name="jquery.fancybox.js"/>
-    <h:outputScript library="js" name="toucheffects.js" />
-     <h:outputScript library="js" name="modernizr.custom.js" />
-    
-    
-     
-       
+	<h:outputScript library="js" name="advanced-form-components.js" />
+	<h:outputScript library="assets/bootstrap-datepicker/js"
+		name="bootstrap-datepicker.js" />
+	<h:outputScript library="assets/bootstrap-daterangepicker"
+		name="daterangepicker.js" />
+	<h:outputScript library="assets/data-tables"
+		name="jquery.dataTables.js" />
+	<h:outputScript library="assets/data-tables" name="DT_bootstrap.js" />
+	<h:outputScript library="js" name="editable-table.js" />
+	<h:outputScript library="assets/fancybox/source"
+		name="jquery.fancybox.js" />
+	<h:outputScript library="js" name="toucheffects.js" />
+	<h:outputScript library="js" name="modernizr.custom.js" />
+
+
+
+
 	<!--common script for all pages-->
 	<h:outputScript library="js" name="common-scripts.js" />
 	<!-- script pour la table -->

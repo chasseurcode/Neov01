@@ -5,19 +5,21 @@ import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
 
 import com.neo.domaine.Abonne;
+import com.neo.domaine.Banniere;
 import com.neo.domaine.Campagne;
 import com.neo.domaine.Carte;
 import com.neo.domaine.Client;
 import com.neo.domaine.Depense;
+import com.neo.domaine.Domaine;
 import com.neo.domaine.Message;
 import com.neo.domaine.Paiement;
 import com.neo.domaine.Permission;
-import com.neo.domaine.Publicite;
 import com.neo.domaine.Reglement;
 import com.neo.domaine.Role;
 import com.neo.domaine.TarifAppel;
 import com.neo.domaine.TarifNotification;
 import com.neo.domaine.TarifTextuelle;
+import com.neo.domaine.Textuelle;
 import com.neo.domaine.Utilisateur;
 import com.neo.domaine.Vue;
 
@@ -38,13 +40,15 @@ public class HibernateUtil {
 			conf.addAnnotatedClass(Reglement.class);
 			conf.addAnnotatedClass(Client.class);
 			conf.addAnnotatedClass(Paiement.class);
-			conf.addAnnotatedClass(Publicite.class);
 			conf.addAnnotatedClass(Vue.class);
 			conf.addAnnotatedClass(Carte.class);
 			conf.addAnnotatedClass(Depense.class);
 			conf.addAnnotatedClass(TarifAppel.class);
 			conf.addAnnotatedClass(TarifNotification.class);
 			conf.addAnnotatedClass(TarifTextuelle.class);
+			conf.addAnnotatedClass(Banniere.class);
+			conf.addAnnotatedClass(Textuelle.class);
+			conf.addAnnotatedClass(Domaine.class);
 
 			conf.configure();
 			StandardServiceRegistryBuilder ssrb = new StandardServiceRegistryBuilder().applySettings(conf.getProperties());

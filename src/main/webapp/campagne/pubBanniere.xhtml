@@ -105,10 +105,13 @@
 							<div class="form-group">
 								<label class="col-lg-2 col-sm-2 control-label">Domaine</label>
 								<div class="col-lg-8">
-									<h:selectManyCheckbox value="#{campagneBean.domainesSelected}" required="true">
+									<h:selectManyCheckbox value="#{campagneBean.domainesSelected}" required="true"
+									label="Le domaine" id="domain">
 										<f:selectItems value="#{campagneBean.domaines}" var="dom"
 											itemValue="#{dom.id}" itemLabel="#{dom.libelle}" />
 									</h:selectManyCheckbox>
+									<h:message styleClass="help-block" for="domain"
+											style="color:red" />
 								</div>
 							</div>
 

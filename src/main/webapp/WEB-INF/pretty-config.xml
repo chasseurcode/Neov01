@@ -53,22 +53,11 @@
 		<view-id value="/campagne/nouveauCamp.xhtml" />
 	</url-mapping>
 
-	<!-- page campagne en cours -->
-	<url-mapping id="encours">
-		<pattern value="/encours" />
-		<view-id value="/campagne/encours.xhtml" />
-	</url-mapping>
-
-	<!-- page campagne en attente -->
-	<url-mapping id="attentecamp">
-		<pattern value="/attentes" />
-		<view-id value="/campagne/enattente.xhtml" />
-	</url-mapping>
-
-	<!-- page campagne terminees -->
-	<url-mapping id="terminees">
-		<pattern value="/terminees" />
-		<view-id value="/campagne/terminees.xhtml" />
+	<!-- liste des campagnes -->
+	<url-mapping id="listescamp">
+		<pattern value="/Liste/#{campagneBean.campListe}" />
+		<view-id value="/campagne/listeCamp.xhtml" />
+		<action>#{campagneBean.initListe}</action>
 	</url-mapping>
 
 	<!-- page detail campagne -->
@@ -77,8 +66,6 @@
 		<view-id value="/campagne/detailCamp.xhtml" />
 	</url-mapping>
 
-	<!-- ********* Gestion de campagne ********** -->
-	<!-- page nouvelle campagne -->
 
 	<!-- ********* Gestion de la publicité ********** -->
 	<!-- edition publicite textuelle -->
@@ -99,6 +86,13 @@
 		<view-id value="/campagne/detailPubTextuelle.xhtml" />
 	</url-mapping>
 
+	<!-- ********* Definition du domaine de la pub ********** -->
+	<!-- page ajout domaine -->
+	<url-mapping id="domaines">
+		<pattern value="/domaines" />
+		<view-id value="/domaine/nouveau.xhtml" />
+	</url-mapping>
+	
 	<!-- ********* Gestion des réglements ********** -->
 	<!-- page de règlement -->
 	<url-mapping id="listeReg">

@@ -11,7 +11,7 @@ public class Domaine {
 	
 	@Id @GeneratedValue
 	private long id;
-	private String ibelle;
+	private String libelle;
 	private Date dateCreation=new Date();
 	private Date dateMaj=new Date();
 	private boolean supprimer=false;
@@ -35,15 +35,14 @@ public class Domaine {
 	}
 
 
-	public String getIbelle() {
-		return ibelle;
+
+	public String getLibelle() {
+		return libelle;
 	}
 
-
-	public void setIbelle(String ibelle) {
-		this.ibelle = ibelle;
+	public void setLibelle(String libelle) {
+		this.libelle = libelle;
 	}
-
 
 	public Date getDateCreation() {
 		return dateCreation;
