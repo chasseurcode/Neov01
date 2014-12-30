@@ -86,12 +86,6 @@
 		<view-id value="/campagne/detailPubTextuelle.xhtml" />
 	</url-mapping>
 
-	<!-- page de pub banniere -->
-	<!-- <url-mapping id="pubBanniere"> -->
-	<!-- <pattern value="/Banniere" /> -->
-	<!-- <view-id value="/campagne/pubBanniere.xhtml" /> -->
-	<!-- </url-mapping> -->
-
 	<!-- ********* Gestion des réglements ********** -->
 	<!-- page de règlement -->
 	<url-mapping id="listeReg">

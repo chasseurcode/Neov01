@@ -63,7 +63,6 @@ public class CampagneBean {
 		tarifDAO=new TarifDaoImpl();
 		reglement=new Reglement();
 		setDomaines(pubDAO.listerDomaine());
-
 	}
 
 
@@ -100,7 +99,6 @@ public class CampagneBean {
 
 	//upload de fichier
 	public void uploadPubBanniere(){ 
-		System.out.println("ds uplaod "+campagne.getIntitule());
 
 		try {					
 			String cheminImg=TrouverChemin.cheminImg();
@@ -130,6 +128,7 @@ public class CampagneBean {
 			domainesSelected.clear();
 			outputStream.close();  
 			inputStream.close();
+			
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
@@ -156,7 +155,6 @@ public class CampagneBean {
 				pubDAO.modifier(banniere);
 			}
 			else{
-				System.out.println("ds else");
 				InputStream inputStream = fichier.getInputStream(); 
 				String nomFichier=Generateur.generateRandomString(18, Mode.ALPHANUMERIC).toUpperCase()+"."+getFileExtension(fichier);
 				FileOutputStream outputStream = new FileOutputStream(cheminImg+nomFichier); 
@@ -204,7 +202,6 @@ public class CampagneBean {
 
 	//edition publicite textuelle
 	public String editPubTextuelle(){
-		System.out.println("ds edit text");
 		if(domainesSelected.size() > textuelle.getDomaines().size()){
 			for(String check: domainesSelected){
 				Domaine d=pubDAO.findDomaineById(Long.parseLong(check));
@@ -218,6 +215,7 @@ public class CampagneBean {
 		return null;
 	}
 
+	
 	//chargement publicite banniere
 	public void loadPubBanniere(Banniere banni){
 		setBanniere(banni);	
@@ -289,7 +287,7 @@ public class CampagneBean {
 	}
 
 
-	//chargement de la pub pour les detail
+	//chargement des pubs pour les detail
 	public String chargementPubTexte(Textuelle texte){
 		setTextuelle(texte);
 		return "pretty:detailPubTexte";
@@ -388,7 +386,6 @@ public class CampagneBean {
 	 * 
 	 * Getters et Setters
 	 */
-
 
 	public CampagneDAO getCampagneDAO() {
 		return campagneDAO;
