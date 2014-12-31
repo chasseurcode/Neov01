@@ -5,6 +5,10 @@ import javax.persistence.Entity;
 @Entity
 public class Banniere extends Publicite{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String image;
 	private boolean parAppel;
 	private boolean parNotification;

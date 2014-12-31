@@ -1,10 +1,9 @@
 package com.neo.domaine;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
 import org.hibernate.search.annotations.Field;
@@ -12,16 +11,16 @@ import org.hibernate.search.annotations.Indexed;
 
 @Entity
 @Indexed
-public class Paiement {
+public class Paiement extends Model implements Serializable{
 
-	@Id @GeneratedValue
-	private long id;
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	@Field
 	private Date date;
 	private double montant;
-	private Date dateCreation=new Date();
-	private Date dateMaj=new Date();
-	private boolean supprimer=false;
 	@ManyToOne
 	private Abonne abonne;
 	
@@ -33,16 +32,6 @@ public class Paiement {
  * 
  * Getters and Setters
  */
-	public long getId() {
-		return id;
-	}
-
-
-	public void setId(long id) {
-		this.id = id;
-	}
-
-
 	public Date getDate() {
 		return date;
 	}
@@ -60,36 +49,6 @@ public class Paiement {
 
 	public void setMontant(double montant) {
 		this.montant = montant;
-	}
-
-
-	public Date getDateCreation() {
-		return dateCreation;
-	}
-
-
-	public void setDateCreation(Date dateCreation) {
-		this.dateCreation = dateCreation;
-	}
-
-
-	public Date getDateMaj() {
-		return dateMaj;
-	}
-
-
-	public void setDateMaj(Date dateMaj) {
-		this.dateMaj = dateMaj;
-	}
-
-
-	public boolean getSupprimer() {
-		return supprimer;
-	}
-
-
-	public void setSupprimer(boolean supprimer) {
-		this.supprimer = supprimer;
 	}
 
 	public Abonne getAbonne() {

@@ -5,7 +5,7 @@ import java.util.List;
 import com.neo.domaine.Role;
 
 public interface RoleDAO {
-	public Role findById(int id);
+	public Role findById(Long id);
 	public void creer(Role role);
 	public void modifier(Role role);
 	public void supprimer(Role role);

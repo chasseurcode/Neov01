@@ -139,15 +139,29 @@
 					<li class="sub-menu"><a href="javascript:;"><i
 							class="icon-truck"></i> <span>Gérer les Campagnes</span></a>
 						<ul class="sub">
-							<li><h:link outcome="pretty:newcampagne"
+							<li>
+								<h:link outcome="pretty:newcampagne"
 									value="Nouvelle campagne">
-								</h:link></li>
-							<li><pretty:link mappingId="listescamp">
-									<f:param value="attente" />Campagnes en attentes</pretty:link></li>
-							<li><pretty:link mappingId="listescamp">
-									<f:param value="encours" />Campagnes encours</pretty:link></li>
-							<li><pretty:link mappingId="listescamp">
-									<f:param value="termine" />Campagnes terminées</pretty:link></li>
+								</h:link>
+							</li>
+							<li>
+								<pretty:link mappingId="listescamp">
+									<f:param value="attente" />
+									Campagnes en attentes
+								</pretty:link>
+							</li>
+							<li>
+								<pretty:link mappingId="listescamp">
+									<f:param value="encours" />
+									Campagnes encours
+								</pretty:link>
+							</li>
+							<li>
+								<pretty:link mappingId="listescamp">
+									<f:param value="termine" />
+									Campagnes terminées
+								</pretty:link>
+							</li>
 						</ul></li>
 					<li><h:link outcome="pretty:recharge">
 							<i class="icon-ticket"></i>

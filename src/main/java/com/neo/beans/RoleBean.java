@@ -38,7 +38,7 @@ public class RoleBean {
 		roleDAO.creer(role);
 		List<Permission> listP=new ArrayList<Permission>();
 		for(String permId: selectPerm){
-			listP.add(permDAO.findById(Integer.parseInt(permId)));
+			listP.add(permDAO.findById(new Long(permId)));
 		}
 		role.setPermissions(listP);
 		roleDAO.modifier(role);

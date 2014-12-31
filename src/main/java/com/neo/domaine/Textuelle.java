@@ -8,6 +8,10 @@ import org.hibernate.search.annotations.Indexed;
 @Indexed
 public class Textuelle extends Publicite{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String contenu;
 
 	public Textuelle() {

@@ -1,20 +1,21 @@
 package com.neo.domaine;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
 
 import org.hibernate.search.annotations.Field;
 import org.hibernate.search.annotations.Indexed;
 
 @Entity
 @Indexed
-public class Depense {
-	
-	@Id @GeneratedValue
-	private long id;
+public class Depense extends Model implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	@Field
 	private String intitule;
 	@Field
@@ -22,10 +23,6 @@ public class Depense {
 	@Field
 	private Date date;
 	private float montant;
-	private Date dateCreation=new Date();
-	private Date dateMaj=new Date();
-	private boolean supprimer=false;
-	
 	
 	public Depense() {
 		
@@ -35,16 +32,6 @@ public class Depense {
  * 
  * Getters and Setters
  */
-	public long getId() {
-		return id;
-	}
-
-
-	public void setId(long id) {
-		this.id = id;
-	}
-
-
 	public String getIntitule() {
 		return intitule;
 	}
@@ -84,35 +71,6 @@ public class Depense {
 		this.montant = montant;
 	}
 
-
-	public Date getDateCreation() {
-		return dateCreation;
-	}
-
-
-	public void setDateCreation(Date dateCreation) {
-		this.dateCreation = dateCreation;
-	}
-
-
-	public Date getDateMaj() {
-		return dateMaj;
-	}
-
-
-	public void setDateMaj(Date dateMaj) {
-		this.dateMaj = dateMaj;
-	}
-
-
-	public boolean getSupprimer() {
-		return supprimer;
-	}
-
-
-	public void setSupprimer(boolean supprimer) {
-		this.supprimer = supprimer;
-	}
 	
 	@Override
 	public String toString() {

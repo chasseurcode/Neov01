@@ -1,8 +1,8 @@
 package com.neao.dao.test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
-import java.util.Date;
 import java.util.List;
 
 import org.junit.Before;
@@ -26,22 +26,19 @@ public class MessageDAOTest {
 		m1=new Message();
 		m1.setObjet("Raison de vivre");
 		m1.setCorps("Bonjour la mec");
-		m1.setDateMaj(new Date());
 		m1.setUtilisateur(daoUser.findByCompte("Mohamed"));
 		
 		m2=new Message();
 		m2.setUtilisateur(daoUser.findById(new Long(1)));
 		m2.setCorps("Allo la terre");
 		m2.setObjet("Bientot rupture de carte");
-		m2.setDateMaj(new Date());
-		m2.setUtilisateur(daoUser.findById(new Long(1)));
+		m2.setUtilisateur(daoUser.findByCompte("Mohamed"));
 		
 		m3=new Message();
-		m3.setUtilisateur(daoUser.findById(new Long(1)));
+		m3.setUtilisateur(daoUser.findByCompte("Mohamed"));
 		m3.setCorps("Allo la terre");
 		m3.setObjet("Système load");
-		m3.setDateMaj(new Date());
-		m3.setUtilisateur(daoUser.findById(new Long(1)));
+		m3.setUtilisateur(daoUser.findByCompte("Mohamed"));
 	}
 
 	@Test
@@ -54,7 +51,7 @@ public class MessageDAOTest {
 		assertNotNull(msg);
 		
 		
-		List<Message> msgList=msgDao.lister(daoUser.findById(new Long(1)));
+		List<Message> msgList=msgDao.lister(daoUser.findByCompte("Mohamed"));
 		assertNotNull(msgList);
 		assertEquals(msgList.size(), 3);
 		for(Message m: msgList){

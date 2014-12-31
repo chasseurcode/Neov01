@@ -1,31 +1,25 @@
 package com.neo.domaine;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
-import org.hibernate.search.annotations.DocumentId;
 import org.hibernate.search.annotations.Field;
 import org.hibernate.search.annotations.Indexed;
 
 @Entity
-@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 @Indexed
-public  abstract class Publicite {
-
-	@Id @GeneratedValue(strategy=GenerationType.TABLE)
-	@DocumentId
-	private long id;
+public  abstract class Publicite extends Model implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	@Field
 	private String intitule;
 	@Field
@@ -39,10 +33,6 @@ public  abstract class Publicite {
 	private Tarif tarif;
 	@ManyToMany(cascade=CascadeType.ALL)
 	private List<Domaine> domaines=new ArrayList<Domaine>();
-	private Date dateCreation=new Date();
-	private Date dateMaj=new Date();
-	private boolean supprimer=false;
-	
 	
 	public Publicite() {
 		
@@ -52,15 +42,6 @@ public  abstract class Publicite {
  * 
  * Getters and Setters
  */
-	public long getId() {
-		return id;
-	}
-
-
-	public void setId(long id) {
-		this.id = id;
-	}
-
 
 	public String getIntitule() {
 		return intitule;
@@ -99,36 +80,6 @@ public  abstract class Publicite {
 
 	public void setNbreVue(long nbreVue) {
 		this.nbreVue = nbreVue;
-	}
-
-
-	public Date getDateCreation() {
-		return dateCreation;
-	}
-
-
-	public void setDateCreation(Date dateCreation) {
-		this.dateCreation = dateCreation;
-	}
-
-
-	public Date getDateMaj() {
-		return dateMaj;
-	}
-
-
-	public void setDateMaj(Date dateMaj) {
-		this.dateMaj = dateMaj;
-	}
-
-
-	public boolean getSupprimer() {
-		return supprimer;
-	}
-
-
-	public void setSupprimer(boolean supprimer) {
-		this.supprimer = supprimer;
 	}
 
 	public Campagne getCampagne() {

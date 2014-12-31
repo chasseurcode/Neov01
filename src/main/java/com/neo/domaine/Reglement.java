@@ -1,10 +1,9 @@
 package com.neo.domaine;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
 import org.hibernate.search.annotations.Field;
@@ -12,10 +11,12 @@ import org.hibernate.search.annotations.Indexed;
 
 @Entity
 @Indexed
-public class Reglement {
+public class Reglement extends Model implements Serializable{
 
-	@Id @GeneratedValue
-	private long id;
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	@Field
 	private Date dateReglement;
 	@Field
@@ -25,11 +26,7 @@ public class Reglement {
 	@ManyToOne
 	private Client client;
 	@ManyToOne
-	private Campagne campagne;
-	private Date dateCreation=new Date();
-	private Date dateMaj=new Date();
-	private boolean supprimer=false;
-	
+	private Campagne campagne;	
 	
 	public Reglement() {
 		
@@ -39,15 +36,6 @@ public class Reglement {
  * 
  * Getters and Setters
  */
-	public long getId() {
-		return id;
-	}
-
-
-	public void setId(long id) {
-		this.id = id;
-	}
-
 	public Date getDateReglement() {
 		return dateReglement;
 	}
@@ -76,35 +64,6 @@ public class Reglement {
 	}
 
 
-	public Date getDateCreation() {
-		return dateCreation;
-	}
-
-
-	public void setDateCreation(Date dateCreation) {
-		this.dateCreation = dateCreation;
-	}
-
-
-	public Date getDateMaj() {
-		return dateMaj;
-	}
-
-
-	public void setDateMaj(Date dateMaj) {
-		this.dateMaj = dateMaj;
-	}
-
-
-	public boolean getSupprimer() {
-		return supprimer;
-	}
-
-
-	public void setSupprimer(boolean supprimer) {
-		this.supprimer = supprimer;
-	}
-
 	public Client getClient() {
 		return client;
 	}
@@ -120,6 +79,5 @@ public class Reglement {
 	public void setCampagne(Campagne campagne) {
 		this.campagne = campagne;
 	}
-	
 	
 }

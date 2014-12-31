@@ -1,14 +1,16 @@
 package com.neo.domaine;
 
+import java.io.Serializable;
+
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
 
 @Entity
-public class Permission {
-	@Id
-	@GeneratedValue
-	private int id;
+public class Permission extends Model implements Serializable{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String nom;
 	
 	public Permission() {
@@ -26,13 +28,11 @@ public class Permission {
 	public void setNom(String nom) {
 		this.nom = nom;
 	}
-
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
+	
+	@Override
+	public String toString() {
+		String[] perms=nom.split(":");
+		return perms[0]+"-"+perms[1];
 	}
 	
 }
