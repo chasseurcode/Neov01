@@ -22,6 +22,7 @@ import com.neo.domaine.TarifTextuelle;
 import com.neo.domaine.Textuelle;
 import com.neo.domaine.Utilisateur;
 import com.neo.domaine.Vue;
+import com.neo.search.NEOInterceptor;
 
 public class HibernateUtil {
 	private static Configuration conf;
@@ -30,6 +31,7 @@ public class HibernateUtil {
 	private static SessionFactory getFactory(){
 		if (factory == null){
 			conf = new Configuration();
+			conf.setInterceptor(new NEOInterceptor());
 			conf.configure("hibernate.cfg.xml");
 			conf.addAnnotatedClass(Utilisateur.class);
 			conf.addAnnotatedClass(Role.class);

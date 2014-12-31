@@ -1,15 +1,16 @@
 package com.neo.search;
 
+import static org.reflections.ReflectionUtils.getAllFields;
+import static org.reflections.ReflectionUtils.withAnnotation;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map.Entry;
+import java.lang.reflect.Field;
 import java.util.Properties;
+import java.util.Set;
 import java.util.logging.Logger;
 
 import org.apache.lucene.analysis.standard.StandardAnalyzer;
@@ -21,22 +22,16 @@ import org.apache.lucene.search.spell.SpellChecker;
 import org.apache.lucene.store.Directory;
 import org.apache.lucene.store.FSDirectory;
 import org.apache.lucene.util.Version;
-
-import com.neo.domaine.Abonne;
-import com.neo.domaine.Campagne;
-import com.neo.domaine.Client;
-import com.neo.domaine.Reglement;
+import org.hibernate.search.annotations.Indexed;
+import org.reflections.Reflections;
 
 public class IndexeChecker {
 	private Logger logger=Logger.getLogger(getClass().getName());
 	private String dirSpellCheck;
 	private String dirIndex;
-	private HashMap<String, List<String>> listEntityAIndexer=new HashMap<String, List<String>>();
 	private Properties properties;
 	private static IndexeChecker INSTANCE=null;
 	private IndexeChecker() {
-		//initialiser les champs à indexer
-		initEntityList();
 		properties=new Properties();
 		try {
 			InputStream inStream=new FileInputStream(getClass().getResource("../../../").getPath()+"searconf.properties");
@@ -57,23 +52,26 @@ public class IndexeChecker {
 		return INSTANCE;
 	}
 
-	@SuppressWarnings("resource")
+	@SuppressWarnings({ "resource", "unchecked" })
 	public void lancerIndexation()  {
 		logger.info("Debut d'indexation NEOSearch Suggestion");
-			
-		for (Entry<String, List<String>> champs : listEntityAIndexer.entrySet()) {
-			logger.info("Indexation de "+champs.getKey());
-			for(String champ: champs.getValue()){
+		Reflections reflection=new Reflections("com.neo.domaine");
+		Set<Class<? extends Object>> listClass=reflection.getTypesAnnotatedWith(Indexed.class);
+		for(Class<?> maClass: listClass){
+			logger.info(maClass.getName());
+			Set<Field> champs = getAllFields(maClass, withAnnotation(org.hibernate.search.annotations.Field.class));
+			for(Field champ: champs){
 				IndexWriterConfig conf=new IndexWriterConfig(Version.LUCENE_36,new StandardAnalyzer(Version.LUCENE_36));
 				Directory repSugg;
+				
 				try {
 					repSugg = FSDirectory.open(new File(dirSpellCheck));
 					SpellChecker mSpell=new SpellChecker(repSugg);
-					Directory indexRep=FSDirectory.open(new File(dirIndex+champs.getKey()));
-					logger.info(champs.getKey()+" : "+champ);
+					Directory indexRep=FSDirectory.open(new File(dirIndex+maClass.getName()));
+					logger.info(maClass.getName()+" : "+champ.getName());
 					IndexReader reader=IndexReader.open(indexRep);
 					try{
-						mSpell.indexDictionary(new LuceneDictionary(reader, champ), conf, true);
+						mSpell.indexDictionary(new LuceneDictionary(reader, champ.getName()), conf, true);
 					}finally{
 						reader.close();
 					}
@@ -82,18 +80,20 @@ public class IndexeChecker {
 				} catch (IOException e) {
 					logger.warning("Erreur d'accès au repertoire "+e.getMessage());
 				}
+				
 			}
 		}
+		
 		logger.info("Fin de l'indexation NEOSearch Suggession");
 	}
-	
+
 
 	@SuppressWarnings("resource")
 	public String[] getSuggestions(String motRechercher,int SuggNbr){
 		Directory rep;
 		try {
 			rep = FSDirectory.open(new File(dirSpellCheck));
-			
+
 			if(!IndexReader.indexExists(rep)){
 				logger.warning("Erreur d'accès au repertoire "+dirSpellCheck);
 				return null;
@@ -108,44 +108,4 @@ public class IndexeChecker {
 		return null;
 	}
 
-	private void initEntityList() {
-		
-		//Index champs client
-		List<String> attClient=new ArrayList<String>();
-		attClient.add("nom");
-		attClient.add("adresse");
-		attClient.add("raisonSociale");
-		attClient.add("email");
-		attClient.add("telehone");
-		listEntityAIndexer.put(Client.class.getName(), attClient);
-		
-		
-		//Index champs Abonné
-		List<String> attAbonne=new ArrayList<String>();
-		attAbonne.add("nom");
-		attAbonne.add("prenom");
-		attAbonne.add("dateDeNaissance");
-		attAbonne.add("codeParrainege");
-		attAbonne.add("codeFilleule");
-		attAbonne.add("email");
-		attAbonne.add("telehone");
-		attAbonne.add("adresse");
-		listEntityAIndexer.put(Abonne.class.getName(), attAbonne);
-		
-		//Index champs Campagne
-		List<String> attCamp=new ArrayList<String>();
-		attCamp.add("intitule");
-		attCamp.add("dateDebut");
-		attCamp.add("dateFin");
-		attCamp.add("dateCreation");
-		listEntityAIndexer.put(Campagne.class.getName(), attCamp);
-		
-		//Index champs Reglement
-		List<String> attReglem=new ArrayList<String>();
-		attReglem.add("dateReglement");
-		attReglem.add("type");
-		attReglem.add("montant");
-		listEntityAIndexer.put(Reglement.class.getName(), attReglem);
-	}
-	
 }
