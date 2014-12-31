@@ -1,4 +1,4 @@
-package com.neo.beans;
+package com.neo.search;
 
 import java.util.List;
 
@@ -7,7 +7,6 @@ import org.hibernate.search.Search;
 import org.hibernate.search.query.dsl.QueryBuilder;
 
 import com.neo.domaine.Abonne;
-import com.neo.search.NeoSearch;
 import com.neo.utility.HibernateUtil;
 
 public class AbonneSearch extends NeoSearch {

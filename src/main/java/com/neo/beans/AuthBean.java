@@ -17,14 +17,11 @@ public class AuthBean {
 	private String username;
 	private String password;
 	private boolean remember=false;
-	
-
 	/*
 	 * connexion de l'utilisateur
 	 */
 	public String login() {
-		System.out.println("appel de la page");
-		desable=true;
+		setDesable(true);
 		Subject currentUser=SecurityUtils.getSubject();
 		UsernamePasswordToken token=new UsernamePasswordToken(username, password,remember);
 		try {
@@ -32,7 +29,7 @@ public class AuthBean {
 		} catch (AuthenticationException e) {
 			FacesContext.getCurrentInstance().addMessage(null,
 					new FacesMessage("Veillez saisir des idenfiants corrects."));
-			desable=false;
+			setDesable(false);
 			return "pretty:login";
 		}
 		if(currentUser.hasRole("Client")){
@@ -42,10 +39,6 @@ public class AuthBean {
 			return "pretty:userhome";
 		}
 	}
-	
-	public void verifyLogin() {
-		System.out.println("Appel de methode");
-	}
 
 	/*
 	 * deconnection de l'utilisateur
@@ -54,7 +47,7 @@ public class AuthBean {
 		Subject currentUser=SecurityUtils.getSubject();
 		try {
 			currentUser.logout();
-			desable=false;
+			setDesable(false);
 			return "pretty:login";
 		} catch (Exception e) {
 			e.printStackTrace();
