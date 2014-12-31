@@ -97,7 +97,7 @@
 	<!-- page de règlement -->
 	<url-mapping id="listeReg">
 		<pattern value="/reglements" />
-		<view-id value="/campagne/ficheReglement.xhtml" />
+		<view-id value="/tresorerie/ficheReglement.xhtml" />
 	</url-mapping>
 
 

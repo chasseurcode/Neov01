@@ -11,4 +11,5 @@ public interface ClientDAO {
 	public void supprimer(Client client);
 	public Client findById(Long long1);
 	public List<Client> lister();
+	public Client findLastRecord();
 }

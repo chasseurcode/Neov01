@@ -44,6 +44,16 @@ public class ClientDaoImpl implements ClientDAO{
 		return session.createQuery("from Client").list();
 	}
 
+	@Override
+	public Client findLastRecord() {
+		Session session=HibernateUtil.getSession();
+		return (Client) session.createQuery("from Client ORDER BY id DESC")
+                .setMaxResults(1)
+                .uniqueResult();
+	}
+
+
+
 	
 
 }
