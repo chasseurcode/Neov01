@@ -413,28 +413,6 @@ public class CampagneBean {
 		return c;
 	}
 	
-	public double resteAPayer() {
-		return total()-campagne.totalReglement();
-	}
-	
-	public double total(){
-		double somme=0;
-		System.out.println(campagne.getPublicites().size());
-
-		for(Publicite p: campagne.getPublicites()){
-			try {
-				if(p instanceof Textuelle){
-					somme=somme+p.getTotal();
-					System.out.println("ici");
-				}
-				if(p instanceof Banniere){
-					somme=somme+(p.getTotal()+((Banniere)p).getTotale());
-					System.out.println("ok "+p.getTotal());
-				}
-			} catch (Exception e) {}
-		}
-		return somme;
-	}
 	
 	/**
 	 * 
