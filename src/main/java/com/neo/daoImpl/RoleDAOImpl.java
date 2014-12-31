@@ -19,13 +19,9 @@ public class RoleDAOImpl implements RoleDAO{
 	@Override
 	public void creer(Role role) {
 		Session session=HibernateUtil.getSession();
-		try {
-			session.beginTransaction();
-			session.save(role);
-			session.getTransaction().commit();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		session.beginTransaction();
+		session.save(role);
+		session.getTransaction().commit();
 	}
 
 	@Override

@@ -25,13 +25,13 @@ import org.apache.lucene.util.Version;
 import org.hibernate.search.annotations.Indexed;
 import org.reflections.Reflections;
 
-public class IndexeChecker {
+public class SuggestionIndex {
 	private Logger logger=Logger.getLogger(getClass().getName());
 	private String dirSpellCheck;
 	private String dirIndex;
 	private Properties properties;
-	private static IndexeChecker INSTANCE=null;
-	private IndexeChecker() {
+	private static SuggestionIndex INSTANCE=null;
+	private SuggestionIndex() {
 		properties=new Properties();
 		try {
 			InputStream inStream=new FileInputStream(getClass().getResource("../../../").getPath()+"searconf.properties");
@@ -45,46 +45,58 @@ public class IndexeChecker {
 		}
 	}
 
-	public static synchronized IndexeChecker getInstance() {
+	public static synchronized SuggestionIndex getInstance() {
 		if(INSTANCE==null)
-			return new IndexeChecker();
+			return new SuggestionIndex();
 
 		return INSTANCE;
 	}
 
-	@SuppressWarnings({ "resource", "unchecked" })
-	public void lancerIndexation()  {
+	public void indexAllClass()  {
 		logger.info("Debut d'indexation NEOSearch Suggestion");
 		Reflections reflection=new Reflections("com.neo.domaine");
 		Set<Class<? extends Object>> listClass=reflection.getTypesAnnotatedWith(Indexed.class);
 		for(Class<?> maClass: listClass){
-			logger.info(maClass.getName());
-			Set<Field> champs = getAllFields(maClass, withAnnotation(org.hibernate.search.annotations.Field.class));
-			for(Field champ: champs){
-				IndexWriterConfig conf=new IndexWriterConfig(Version.LUCENE_36,new StandardAnalyzer(Version.LUCENE_36));
-				Directory repSugg;
-				
-				try {
-					repSugg = FSDirectory.open(new File(dirSpellCheck));
-					SpellChecker mSpell=new SpellChecker(repSugg);
-					Directory indexRep=FSDirectory.open(new File(dirIndex+maClass.getName()));
-					logger.info(maClass.getName()+" : "+champ.getName());
-					IndexReader reader=IndexReader.open(indexRep);
-					try{
-						mSpell.indexDictionary(new LuceneDictionary(reader, champ.getName()), conf, true);
-					}finally{
-						reader.close();
-					}
-					indexRep.close();
-					repSugg.close();
-				} catch (IOException e) {
-					logger.warning("Erreur d'accès au repertoire "+e.getMessage());
-				}
-				
-			}
+			indeOneEntity(maClass);
 		}
-		
 		logger.info("Fin de l'indexation NEOSearch Suggession");
+	}
+	
+	/*
+	 * Indexation des champs d'une entité
+	 */
+	@SuppressWarnings("unchecked")
+	public void indeOneEntity(Class<?> maClass) {
+		Set<Field> champs = getAllFields(maClass, withAnnotation(org.hibernate.search.annotations.Field.class));
+		for(Field champ: champs){
+			logger.info(maClass.getName());
+			indexerChamp(maClass, champ);	
+		}
+	}
+	
+	/*
+	 * Permet d'indexer un champ dans une classe
+	 */
+	@SuppressWarnings("resource")
+	public void indexerChamp(Class<?> maClass, Field champ) {
+		logger.info(maClass.getName()+" : "+champ.getName());
+		IndexWriterConfig conf=new IndexWriterConfig(Version.LUCENE_36,new StandardAnalyzer(Version.LUCENE_36));
+		Directory repSugg;
+		try {
+			repSugg = FSDirectory.open(new File(dirSpellCheck));
+			SpellChecker mSpell=new SpellChecker(repSugg);
+			Directory indexRep=FSDirectory.open(new File(dirIndex+maClass.getName()));
+			IndexReader reader=IndexReader.open(indexRep);
+			try{
+				mSpell.indexDictionary(new LuceneDictionary(reader, champ.getName()), conf, true);
+			}finally{
+				reader.close();
+			}
+			indexRep.close();
+			repSugg.close();
+		} catch (IOException e) {
+			logger.warning("Erreur d'accès au repertoire "+e.getMessage());
+		}
 	}
 
 

@@ -22,7 +22,7 @@ public class NeoEngine {
 	}
 	
 	public static String[] suggestion(String mot) {
-		return IndexeChecker.getInstance()
+		return SuggestionIndex.getInstance()
 				.getSuggestions(mot, 5);
 	}
 	
