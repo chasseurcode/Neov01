@@ -154,5 +154,23 @@ public class TarifDaoImpl implements TarifDAO{
 	
 	}
 
+	@Override
+	public TarifTextuelle tarifTextuelleEnvigueur() {
+		Session session=HibernateUtil.getSession();
+		return (TarifTextuelle) session.createQuery("from TarifTextuelle where enVigueur = :etat").setBoolean("etat", true).uniqueResult();
+	}
+
+	@Override
+	public TarifAppel tarifAppelEnvigueur() {
+		Session session=HibernateUtil.getSession();
+		return (TarifAppel) session.createQuery("from TarifAppel where enVigueur = :etat").setBoolean("etat", true).uniqueResult();
+	}
+
+	@Override
+	public TarifNotification tarifNotificationEnvigueur() {
+		Session session=HibernateUtil.getSession();
+		return (TarifNotification) session.createQuery("from TarifNotification where enVigueur = :etat").setBoolean("etat", true).uniqueResult();
+	}
+
 
 }

@@ -28,4 +28,7 @@ public interface TarifDAO {
 	public List<TarifAppel> listerTarifappel();
 	public List<TarifNotification> listerTarifNotif();
 	public List<TarifTextuelle> listerTarifText();
+	public TarifTextuelle tarifTextuelleEnvigueur();
+	public TarifAppel tarifAppelEnvigueur();
+	public TarifNotification tarifNotificationEnvigueur();
 }

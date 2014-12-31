@@ -1,6 +1,8 @@
 package com.neo.domaine;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Banniere extends Publicite{
@@ -10,8 +12,8 @@ public class Banniere extends Publicite{
 	 */
 	private static final long serialVersionUID = 1L;
 	private String image;
-	private boolean parAppel;
-	private boolean parNotification;
+	@ManyToOne(cascade=CascadeType.ALL)
+	private TarifNotification tarifNotification;
 	private int nbreAppel;
 	private int nbreNotification;
 	
@@ -31,22 +33,6 @@ public class Banniere extends Publicite{
 		this.image = image;
 	}
 
-	public boolean isParAppel() {
-		return parAppel;
-	}
-
-	public void setParAppel(boolean parAppel) {
-		this.parAppel = parAppel;
-	}
-
-	public boolean isParNotification() {
-		return parNotification;
-	}
-
-	public void setParNotification(boolean parNotification) {
-		this.parNotification = parNotification;
-	}
-
 	public int getNbreAppel() {
 		return nbreAppel;
 	}
@@ -62,6 +48,17 @@ public class Banniere extends Publicite{
 	public void setNbreNotification(int nbreNotification) {
 		this.nbreNotification = nbreNotification;
 	}
-	
+
+	public Tarif getTarifNotification() {
+		return tarifNotification;
+	}
+
+	public void setTarifNotification(TarifNotification tarifNotification) {
+		this.tarifNotification = tarifNotification;
+	}
+
+	public double getTotale() {
+		return nbreNotification*tarifNotification.getTarifclient();
+	}
 	
 }

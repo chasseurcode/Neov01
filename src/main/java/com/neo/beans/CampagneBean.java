@@ -15,13 +15,16 @@ import javax.faces.context.FacesContext;
 import javax.servlet.http.Part;
 
 import com.neo.dao.CampagneDAO;
+import com.neo.dao.ClientDAO;
 import com.neo.dao.PubliciteDAO;
 import com.neo.dao.TarifDAO;
 import com.neo.daoImpl.CampagneDaoimpl;
+import com.neo.daoImpl.ClientDaoImpl;
 import com.neo.daoImpl.PubliciteDaoImpl;
 import com.neo.daoImpl.TarifDaoImpl;
 import com.neo.domaine.Banniere;
 import com.neo.domaine.Campagne;
+import com.neo.domaine.Client;
 import com.neo.domaine.Domaine;
 import com.neo.domaine.Publicite;
 import com.neo.domaine.Reglement;
@@ -36,10 +39,12 @@ public class CampagneBean {
 
 	private boolean showEditCamp=false;
 	private boolean showPubMenu=false;
+	private boolean parAppel,parNotification;
 	private Part fichier;
 	private CampagneDAO campagneDAO;
 	private PubliciteDAO pubDAO;
 	private TarifDAO tarifDAO;
+	private ClientDAO clientDAO;
 	private Campagne campagne;
 	private String campListe;
 	private Reglement reglement;
@@ -63,6 +68,7 @@ public class CampagneBean {
 		setPubDAO(new PubliciteDaoImpl());
 		setTarifDAO(new TarifDaoImpl());
 		setDomaines(pubDAO.listerDomaine());
+
 	}
 
 
@@ -89,6 +95,7 @@ public class CampagneBean {
 			textuelle.addDomaine(d);
 			d=new Domaine();
 		}
+		textuelle.setTarif(tarifDAO.tarifTextuelleEnvigueur());
 		campagne.addPublicite(textuelle);
 		campagneDAO.modifier(campagne);
 		textuelle=new Textuelle();
@@ -117,6 +124,11 @@ public class CampagneBean {
 				}                         
 			}  
 			banniere.setImage(nomFichier);
+			if(isParAppel())
+				banniere.setTarif(tarifDAO.tarifAppelEnvigueur());
+			if(isParNotification())
+				banniere.setTarifNotification(tarifDAO.tarifNotificationEnvigueur());;
+
 			for(String check: domainesSelected){
 				Domaine d=pubDAO.findDomaineById(Long.parseLong(check));
 				banniere.addDomaine(d);
@@ -128,7 +140,7 @@ public class CampagneBean {
 			domainesSelected.clear();
 			outputStream.close();  
 			inputStream.close();
-			
+
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
@@ -215,7 +227,7 @@ public class CampagneBean {
 		return null;
 	}
 
-	
+
 	//chargement publicite banniere
 	public void loadPubBanniere(Banniere banni){
 		setBanniere(banni);	
@@ -245,6 +257,8 @@ public class CampagneBean {
 	//ajout de la campagne
 	public void addCampagne(){
 		System.out.println("ds add campagne");
+		Client cli=getLastClient();
+		campagne.setClient(cli);
 		campagneDAO.creer(campagne);
 		setShowPubMenu(true);
 	}
@@ -265,7 +279,7 @@ public class CampagneBean {
 			campagne=new Campagne();
 			setShowEditCamp(false);
 		}
-		
+
 	}
 
 
@@ -379,18 +393,27 @@ public class CampagneBean {
 		setCurrent(domaine);
 	}
 
-public void annuler(){
-	campagne=new Campagne();
-	textuelle=new Textuelle();
-	banniere=new Banniere();
-	domaine=new Domaine();
-	campagneDAO=new CampagneDaoimpl();
-	pubDAO=new PubliciteDaoImpl();
-	tarifDAO=new TarifDaoImpl();
-	reglement=new Reglement();
-}
+	
+	public void annuler(){
+		campagne=new Campagne();
+		textuelle=new Textuelle();
+		banniere=new Banniere();
+		domaine=new Domaine();
+		campagneDAO=new CampagneDaoimpl();
+		pubDAO=new PubliciteDaoImpl();
+		tarifDAO=new TarifDaoImpl();
+		reglement=new Reglement();
+	}
 
-
+	//recuperer le dernier client enregistrer
+	private Client getLastClient(){
+		setClientDAO(new ClientDaoImpl());
+		Client c=clientDAO.findLastRecord();
+		System.out.println(c.getId());
+		return c;
+	}
+	
+	
 	/**
 	 * 
 	 * Getters et Setters
@@ -608,6 +631,48 @@ public void annuler(){
 
 	public void setTarifDAO(TarifDAO tarifDAO) {
 		this.tarifDAO = tarifDAO;
+	}
+
+
+
+
+	public ClientDAO getClientDAO() {
+		return clientDAO;
+	}
+
+
+
+
+	public void setClientDAO(ClientDAO clientDAO) {
+		this.clientDAO = clientDAO;
+	}
+
+
+
+
+	public boolean isParAppel() {
+		return parAppel;
+	}
+
+
+
+
+	public void setParAppel(boolean parAppel) {
+		this.parAppel = parAppel;
+	}
+
+
+
+
+	public boolean isParNotification() {
+		return parNotification;
+	}
+
+
+
+
+	public void setParNotification(boolean parNotification) {
+		this.parNotification = parNotification;
 	}
 
 

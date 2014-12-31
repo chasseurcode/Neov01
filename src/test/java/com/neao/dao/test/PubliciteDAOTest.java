@@ -24,7 +24,6 @@ public class PubliciteDAOTest {
 		dao=new PubliciteDaoImpl();
 		banniere=new Banniere();
 		banniere.setIntitule("maa banniere");
-		banniere.setParAppel(true);
 		banniere.setNbreAppel(2);
 		texte=new Textuelle();
 		texte.setIntitule("monn texte");

@@ -61,30 +61,37 @@
 
 								<div class="form-group">
 									<label class="control-label">Date :</label>
-									<h:inputText p:type="date" styleClass="form-control "
-										value="#{campagneBean.reglement.dateReglement}">
+									<h:inputText p:type="date" styleClass="form-control" required="true"
+										value="#{campagneBean.reglement.dateReglement}" id="datereg" label="La date">
 										<f:convertDateTime type="date" pattern="yyyy-MM-dd" />
 									</h:inputText>
+									<p class="help-block">
+										<h:message for="datereg" style="color:red" />
+									</p>
 								</div>&#160;&#160;
                                   
                                    <div class="form-group">
 									<label class="control-label">Mode :</label>
-									<h:selectOneMenu styleClass="form-control"
-										style="height: 32px;" value="#{campagneBean.reglement.type}">
+									<h:selectOneMenu styleClass="form-control" style="height: 32px;position:relative; top:-5px;" 
+									value="#{campagneBean.reglement.type}">
 										<f:selectItem itemValue="Espèce" itemLabel="Espèce" />
 										<f:selectItem itemValue="Chèque" itemLabel="Chèque" />
 									</h:selectOneMenu>
+									
 								</div>&#160;&#160;
                                   
                                   <div class="form-group">
 									<label class="control-label">Montant :</label>
-									<h:inputText styleClass="form-control"
-										value="#{campagneBean.reglement.montant}" />
+									<h:inputText styleClass="form-control" id="montantreg" required="true"
+										value="#{campagneBean.reglement.montant}" label="Le montant" />
+										<p class="help-block">
+										<h:message for="montantreg" style="color:red" />
+									</p>
 								</div>&#160;&#160;&#160;&#160;
                                   
                                   <h:commandButton
-									styleClass="btn btn-success" style="margin-top:25px;"
-									value="Enregistrer"
+									styleClass="btn btn-success" style="position:relative; top:5px;"
+									value="Enregistrer" disabled="#{campagneBean.campagne.resteAPayer()==0}"
 									actionListener="#{campagneBean.addReglement}" />
 							</h:form>
 
@@ -115,15 +122,15 @@
 										<td>#{reg.type}</td>
 										<td>#{reg.montant}</td>
 										<td><h:outputText styleClass="label label-warning"
-												value="0000" /></td>
+												value="#{campagneBean.campagne.resteAPayer()}" /></td>
 										
 									</tr>
 								</ui:repeat>
 							</tbody>
 							<tfoot>
 								<tr>
+								<th></th>
 									<th>Montant reglé:</th>
-									<th></th>
 									<th class="hidden-phone"><h:outputText
 											value="#{campagneBean.campagne.totalReglement()}" /></th>
 									<th class="hidden-phone"></th>
