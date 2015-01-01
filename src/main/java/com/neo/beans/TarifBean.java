@@ -67,13 +67,23 @@ public class TarifBean {
 	public void miseEnVigueur(Tarif tarif,String type) {
 		if(type.equalsIgnoreCase("app")){
 			daoTarif.updateAllApp();
+			TarifAppel appt=daoTarif.findTarifAppelById(tarif.getId());
+			appt.setEnVigueur(true);
+			System.out.println("id :"+appt.getId()+" etat :"+appt.isEnVigueur());
+			daoTarif.modifier(appt);
 		}else if (type.equalsIgnoreCase("text")) {
 			daoTarif.updateAllText();
+			TarifTextuelle textTar=daoTarif.findTarifTextuelleById(tarif.getId());
+			textTar.setEnVigueur(true);
+			System.out.println("id :"+textTar.getId()+" etat :"+textTar.isEnVigueur());
+			daoTarif.modifier(textTar);
 		}else if (type.equalsIgnoreCase("notif")) {
 			daoTarif.updateAllNotif();
+			TarifNotification Not=daoTarif.findNotificationById(tarif.getId());
+			Not.setEnVigueur(true);
+			daoTarif.modifier(Not);
 		}
 		
-		tarif.setEnVigueur(true);
 		daoTarif.modifier(tarif);
 		System.out.println("modif tarif id: "+tarif.getId()+" type: "+type);
 		refreshList();

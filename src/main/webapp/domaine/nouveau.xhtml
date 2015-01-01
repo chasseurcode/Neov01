@@ -12,7 +12,7 @@
 	<ui:composition template="/template/backend.xhtml">
 	<ui:define name="titre">Nouveau client</ui:define>
 		<ui:define name="contenu">
-			<div class="col-lg-offset-3 col-sm-6">
+			<div class="col-lg-offset-2 col-sm-8">
 				<section class="panel">
                           <header class="panel-heading">
                              <h4>Nouveau domaine</h4>
@@ -57,10 +57,10 @@
 	                                  <TD></TD><TD></TD><TD></TD><TD></TD>
 	                                  <TD></TD><TD></TD><TD></TD><TD></TD>
 	                                  <td>
-	                                  <div class="btn-group  btn-group-sm">
+	                                  <div class="pull-right btn-group  btn-group-sm">
 	                                  <h:form>
-	                                  		<h:commandButton styleClass="btn btn-warning" value="Editer" actionListener="#{campagneBean.editDomaine(dom)}"/>
-	                           	       		<h:commandButton styleClass="btn btn-danger" value="Supprimer" />
+	                                  		<h:commandButton styleClass="btn btn-warning btn-xs" value="Editer" actionListener="#{campagneBean.editDomaine(dom)}"/>
+	                           	       		<h:commandButton styleClass="btn btn-danger btn-xs" value="Supprimer" />
 	                           	       	</h:form>	
 	                                  </div>
     	                               </td>

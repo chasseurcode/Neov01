@@ -4,9 +4,16 @@ import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 
+import org.hibernate.search.annotations.Indexed;
+
 @Entity
+@Indexed
 public class Banniere extends Publicite{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String image;
 	@ManyToOne(cascade=CascadeType.ALL)
 	private TarifNotification tarifNotification;

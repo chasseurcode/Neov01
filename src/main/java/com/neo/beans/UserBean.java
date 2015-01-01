@@ -52,7 +52,7 @@ public class UserBean {
 		userDAO.creer(user);
 		List<Role> mRoles=new ArrayList<Role>();
 		for(String roleId: selectRole){
-			mRoles.add(roleDAO.findById(Integer.parseInt(roleId)));
+			mRoles.add(roleDAO.findById(new Long(roleId)));
 		}
 		user.setRoles(mRoles);
 		userDAO.modifier(user);

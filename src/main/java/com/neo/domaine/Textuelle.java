@@ -2,12 +2,18 @@ package com.neo.domaine;
 
 import javax.persistence.Entity;
 
+import org.hibernate.search.annotations.Field;
 import org.hibernate.search.annotations.Indexed;
 
 @Entity
 @Indexed
 public class Textuelle extends Publicite{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	@Field
 	private String contenu;
 
 	public Textuelle() {

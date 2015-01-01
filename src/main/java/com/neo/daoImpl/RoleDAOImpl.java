@@ -11,7 +11,7 @@ import com.neo.utility.HibernateUtil;
 public class RoleDAOImpl implements RoleDAO{
 
 	@Override
-	public Role findById(int id) {
+	public Role findById(Long id) {
 		Session session=HibernateUtil.getSession();
 		return (Role) session.get(Role.class, id);
 	}
@@ -19,13 +19,9 @@ public class RoleDAOImpl implements RoleDAO{
 	@Override
 	public void creer(Role role) {
 		Session session=HibernateUtil.getSession();
-		try {
-			session.beginTransaction();
-			session.save(role);
-			session.getTransaction().commit();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		session.beginTransaction();
+		session.save(role);
+		session.getTransaction().commit();
 	}
 
 	@Override

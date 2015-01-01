@@ -20,6 +20,8 @@ public class ClientDAOTest {
 	@Before
 	public void setUp() throws Exception {
 		c=new Client();
+		c.setNom("Meditel");
+		c.setEmail("meditel@meditel.ma");
 		c.setRaisonSociale("meditel");
 		c.setAdresse("rabat");
 		dao=new ClientDaoImpl();
@@ -49,24 +51,28 @@ public class ClientDAOTest {
 		c3.setNom("Bonita Soft");
 		c3.setAdresse("La rue de la rosé");
 		c3.setRaisonSociale("Editeur de logiciel");
+		c3.setEmail("bonita@bonital.fr");
 		c3.setTelehone("0656321275");
 		
 		Client c4=new Client();
 		c4.setNom("Microsoft");
 		c4.setAdresse("La 24ème rue Assault");
 		c4.setRaisonSociale("Système d'exploitation");
+		c4.setEmail("microsoft@live.fr");
 		c4.setTelehone("0610321223");
 		
 		Client c5=new Client();
 		c5.setNom("Loreal");
 		c5.setAdresse("Paris 19 rue");
 		c5.setRaisonSociale("Veudeur de produit cosmetique");
+		c5.setEmail("loreal@paris.fr");
 		c5.setTelehone("0656321231");
 		
 		Client C6=new Client();
 		C6.setNom("France 3");
 		C6.setAdresse("Avenue thom cruse");
 		C6.setRaisonSociale("chaine de television");
+		C6.setEmail("franceinfo@france3.fr");
 		C6.setTelehone("0656321209");
 		
 		Client c7=new Client();
@@ -74,6 +80,7 @@ public class ClientDAOTest {
 		c7.setAdresse("casablanca tour");
 		c7.setRaisonSociale("Demarcheur d'assurance");
 		c7.setTelehone("0578312288");
+		c7.setEmail("novassure@novassure.ma");
 		
 		dao.creer(c3);
 		dao.creer(c4);

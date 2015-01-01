@@ -3,14 +3,9 @@ package com.neo.domaine;
 import java.util.Date;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
 
 @Entity
-public class TypeAffichage {
-	
-	@Id @GeneratedValue
-	private long id;
+public class TypeAffichage extends Model{
 	private String intitule;
 	private Date dateCreation=new Date();
 	private Date dateMaj=new Date();
@@ -24,13 +19,6 @@ public class TypeAffichage {
 	 * 
 	 * Getters and Setters@return
 	 */
-	public long getId() {
-		return id;
-	}
-
-	public void setId(long id) {
-		this.id = id;
-	}
 
 	public String getIntitule() {
 		return intitule;
@@ -64,7 +52,4 @@ public class TypeAffichage {
 		this.supprimer = supprimer;
 	}
 	
-	
-	
-
 }

@@ -4,8 +4,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.neo.beans.AbonneSearch;
-
 public class NeoEngine {
 	@SuppressWarnings({ "rawtypes" })
 	public static Map<String, List> chercher(String requete) {
@@ -22,7 +20,7 @@ public class NeoEngine {
 	}
 	
 	public static String[] suggestion(String mot) {
-		return IndexeChecker.getInstance()
+		return SuggestionIndex.getInstance()
 				.getSuggestions(mot, 5);
 	}
 	

@@ -4,7 +4,7 @@ import java.util.logging.Logger;
 
 public class DemonSuggestion implements Runnable{
 	private Logger logger=Logger.getLogger(getClass().getName());
-	private IndexeChecker mChecker=IndexeChecker.getInstance();
+	private SuggestionIndex mChecker=SuggestionIndex.getInstance();
 	private long sleepTime=1000*60;
 	
 	public DemonSuggestion() {
@@ -19,9 +19,9 @@ public class DemonSuggestion implements Runnable{
 	public void run() {
 		while(true){
 			try {
-				mChecker.lancerIndexation();
+				mChecker.indexAllClass();
 				logger.info("DemonSuggestion en fond");
-				Thread.sleep(100000);
+				Thread.sleep(sleepTime);
 			} catch (InterruptedException e) {
 				logger.warning("Arrèt du minuteur de DemoSuggestion");
 			}

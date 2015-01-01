@@ -2,17 +2,11 @@ package com.neo.domaine;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
@@ -21,15 +15,11 @@ import org.hibernate.annotations.FetchMode;
 import org.hibernate.search.annotations.Field;
 
 @Entity
-@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
-public class Utilisateur implements Serializable{
+public class Utilisateur extends Model implements Serializable{
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	@Id
-	@GeneratedValue(strategy=GenerationType.TABLE)
-	private Long id;
 	@Field
 	private String compte;
 	private String motDePasse;
@@ -46,10 +36,6 @@ public class Utilisateur implements Serializable{
 	@OneToMany(cascade=CascadeType.ALL,fetch=FetchType.EAGER)
 	@Fetch(value=FetchMode.SUBSELECT)
 	private List<Message> messages=new ArrayList<Message>();
-	private Date creation=new Date();
-	private Date miseAJour=new Date();
-	private boolean supprimer=false;
-	
 	
 	public Utilisateur() {
 	
@@ -87,31 +73,6 @@ public class Utilisateur implements Serializable{
 	}
 	public void setTelehone(String telehone) {
 		this.telehone = telehone;
-	}
-
-	public Long getId() {
-		return id;
-	}
-	public void setId(Long id) {
-		this.id = id;
-	}
-	public Date getCreation() {
-		return creation;
-	}
-	public void setCreation(Date creation) {
-		this.creation = creation;
-	}
-	public Date getMiseAJour() {
-		return miseAJour;
-	}
-	public void setMiseAJour(Date miseAJour) {
-		this.miseAJour = miseAJour;
-	}
-	public boolean isSupprimer() {
-		return supprimer;
-	}
-	public void setSupprimer(boolean supprimer) {
-		this.supprimer = supprimer;
 	}
 
 	public boolean isActif() {

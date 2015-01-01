@@ -39,7 +39,7 @@ public class PaiementDAOTest {
 		dao.modifier(p);
 		Paiement p2=dao.findById(p.getId());
 		assertNotNull(p2);
-		assertEquals(p2.getId(), 1);
+		assertEquals(p2.getId(), p.getId());
 		
 		//lister
 		List<Paiement> liste=dao.lister();

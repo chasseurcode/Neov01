@@ -28,7 +28,7 @@ public class NEOListener implements ServletContextListener{
 			
 			//Lancer le demon pour l'indexation chaque 1h
 			new Thread(new DemonSuggestion(1000*60*60*60*24)).start();
-			
+						
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}

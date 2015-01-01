@@ -32,7 +32,7 @@ public class UtilisateurDAOImpl implements UtilisateurDAO{
 	@SuppressWarnings("unchecked")
 	public List<Utilisateur> lister() {
 		Session session=HibernateUtil.getSession();
-		return	(List<Utilisateur>) session.createQuery("From Utilisateur where supprimer = :etat")
+		return	(List<Utilisateur>) session.createQuery("From Utilisateur where deleted = :etat")
 				.setBoolean("etat", false).list();
 	}
 

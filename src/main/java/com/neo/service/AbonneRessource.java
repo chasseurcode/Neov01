@@ -1,7 +1,5 @@
 package com.neo.service;
 
-import java.util.Date;
-
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -46,7 +44,6 @@ public class AbonneRessource {
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response updateAbonne(Abonne abonne){
 		if(abonne!=null){
-			abonne.setMiseAJour(new Date());
 			daoAbonne.modifier(abonne);
 			return Response.status(201).entity(abonne).build();
 		}

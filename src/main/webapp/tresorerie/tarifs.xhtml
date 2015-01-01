@@ -78,13 +78,7 @@
 					                              <tr>
 					                                  <td>#{tarif.tarifclient}</td>
 					                                  <td>#{tarif.tarifabonne}</td>
-					                                  <td>
-					                                  <c:if test="#{ not tarif.enVigueur}">
-					                                 	 <span class="badge center-text bg-primary">Oui</span>
-					                                  </c:if>
-					                            
-					                                  </td>
-					                                  <td><h:commandButton styleClass="pull-right btn btn-xs btn-warning" 
+					                                  <td><h:commandButton disabled="#{tarif.enVigueur}" styleClass="pull-right btn btn-xs btn-primary" 
 					                                  actionListener="#{tarifBean.miseEnVigueur(tarif,'app')}" value="Mise en Vigeur" />
 					                                   </td>
 					                              </tr>
@@ -98,7 +92,6 @@
 				                              <tr>
 				                                  <th>Prix Client</th>
 				                                  <th>Prix Abonné</th>
-				                                  <th>En vigueur</th>
 				                                  <th></th>
 				                              </tr>
 				                              </thead>
@@ -106,14 +99,8 @@
 				                              <ui:repeat var="tarif" value="#{tarifBean.tarifNotifications}">
 					                              <tr>
 					                                  <td>#{tarif.tarifclient}</td>
-					                                  <td>#{tarif.tarifabonne}</td>
-					                                  <td>
-					                                  <c:if test="#{ not tarif.enVigueur}">
-					                                 	 <span class="badge center-text bg-primary">Oui</span>
-					                                  </c:if>
-					                            
-					                                  </td>
-					                                  <td><h:commandButton styleClass="pull-right btn btn-xs btn-warning" 
+					                                  <td>#{tarif.tarifabonne}</td>					                             
+					                                  <td><h:commandButton disabled="#{tarif.enVigueur}" styleClass="pull-right btn btn-xs btn-primary" 
 					                                  actionListener="#{tarifBean.miseEnVigueur(tarif,'notif')}" value="Mise en Vigeur" />
 					                                   </td>
 					                              </tr>
@@ -135,14 +122,9 @@
 				                              <ui:repeat var="tarif" value="#{tarifBean.tarifTextuelles}">
 					                              <tr>
 					                                  <td>#{tarif.tarifclient}</td>
-					                                  <td>#{tarif.tarifabonne}</td>
 					                                  <td>
-					                                  <c:if test="#{ not tarif.enVigueur}">
-					                                 	 <span class="badge center-text bg-primary">Oui</span>
-					                                  </c:if>
-					                            
-					                                  </td>
-					                                  <td><h:commandButton styleClass="pull-right btn btn-xs btn-warning" 
+					                                  #{tarif.tarifabonne}</td>
+					                                  <td><h:commandButton disabled="#{tarif.enVigueur}" styleClass="pull-right btn btn-xs btn-primary" 
 					                                  actionListener="#{tarifBean.miseEnVigueur(tarif,'text')}" value="Mise en Vigeur" />
 					                                   </td>
 					                              </tr>

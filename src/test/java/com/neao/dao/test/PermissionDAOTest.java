@@ -35,14 +35,14 @@ public class PermissionDAOTest {
 	public void AllTest() {
 		//creation
 		permissionDAO.creer(p1);
-		Permission p=permissionDAO.findById(1);
+		Permission p=permissionDAO.findById(new Long(1));
 		assertNotNull(p);
 		assertEquals(p.getNom(), p1.getNom());
 		
 		//Modification
 		p.setNom("Diagnostic:creer");
 		permissionDAO.modifier(p);
-		Permission mPerm=permissionDAO.findById(1);
+		Permission mPerm=permissionDAO.findById(new Long(1));
 		assertNotNull(mPerm);
 		assertEquals(mPerm.getNom(), "Diagnostic:creer");
 		

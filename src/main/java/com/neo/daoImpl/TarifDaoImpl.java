@@ -63,13 +63,11 @@ public class TarifDaoImpl implements TarifDAO{
 
 	@Override
 	public void supprimer(TarifAppel appel) {
-		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
 	public void supprimer(TarifNotification tarif) {
-		// TODO Auto-generated method stub
 		
 	}
 
