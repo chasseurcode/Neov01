@@ -127,7 +127,7 @@ public class CampagneBean {
 			if(isParAppel())
 				banniere.setTarif(tarifDAO.tarifAppelEnvigueur());
 			if(isParNotification())
-				banniere.setTarifNotification(tarifDAO.tarifNotificationEnvigueur());;
+				banniere.setTarifNotification(tarifDAO.tarifNotificationEnvigueur());
 
 			for(String check: domainesSelected){
 				Domaine d=pubDAO.findDomaineById(Long.parseLong(check));
@@ -356,6 +356,7 @@ public class CampagneBean {
 		System.out.println("ds addregle");
 		campagne.addReglement(reglement);
 		campagneDAO.modifier(campagne);
+		reglement=new Reglement();
 	}
 
 
