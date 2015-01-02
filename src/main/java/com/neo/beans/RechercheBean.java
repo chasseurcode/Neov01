@@ -17,7 +17,7 @@ import com.neo.domaine.Abonne;
 import com.neo.domaine.Campagne;
 import com.neo.domaine.Client;
 import com.neo.domaine.Publicite;
-import com.neo.search.NeoEngine;
+import com.neo.search.NEOEngine;
 
 @ManagedBean
 @SessionScoped
@@ -50,12 +50,12 @@ public class RechercheBean {
 
 	public void search() {
 		nbrResultat=0;
-		resultat=NeoEngine.chercher(requete);
+		resultat=NEOEngine.chercher(requete);
 		//Extraction du resultat
 		extractResult();
 		//recuperation des suggestions
 		List<String> listSugg=new ArrayList<String>();
-		for(String sugg: NeoEngine.suggestion(requete)){
+		for(String sugg: NEOEngine.suggestion(requete)){
 			listSugg.add(sugg);
 		}
 		setSuggestions(listSugg);

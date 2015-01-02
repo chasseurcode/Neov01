@@ -1,22 +1,21 @@
 package com.neo.search;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class NeoEngine {
+public class NEOEngine {
 	@SuppressWarnings({ "rawtypes" })
 	public static Map<String, List> chercher(String requete) {
 		
-		NeoSearch clientSearch=new ClientSearch();
-		NeoSearch campSearch=new CampagneSearch();
-		NeoSearch pubSearch=new PubSearch();
-		NeoSearch abonneSearch=new AbonneSearch(); 
+		NEOSearch clientSearch=new ClientSearch();
+		NEOSearch campSearch=new CampagneSearch();
+		NEOSearch pubSearch=new PubSearch();
+		NEOSearch abonneSearch=new AbonneSearch(); 
 		
 		clientSearch.setSuivant(campSearch);
 		campSearch.setSuivant(pubSearch);
 		pubSearch.setSuivant(abonneSearch);
-		return clientSearch.requete(requete, new HashMap<String, List>());
+		return clientSearch.requete(requete);
 	}
 	
 	public static String[] suggestion(String mot) {

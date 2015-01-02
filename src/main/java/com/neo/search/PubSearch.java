@@ -9,10 +9,11 @@ import org.hibernate.search.query.dsl.QueryBuilder;
 import com.neo.domaine.Publicite;
 import com.neo.utility.HibernateUtil;
 
-public class PubSearch extends NeoSearch{
+public class PubSearch extends NEOSearch{
 
 	public PubSearch() {
 		setNomEntite(Publicite.class.getName());
+		System.out.println(getResultat().size());
 	}
 	
 	@SuppressWarnings("rawtypes")

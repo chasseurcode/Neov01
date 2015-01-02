@@ -21,9 +21,10 @@ public class Campagne extends Model {
 	@Field
 	private String intitule;
 	@Field
-	@DateBridge(resolution=Resolution.YEAR)
+	@DateBridge(resolution=Resolution.DAY)
 	private Date dateDebut;
 	@Field
+	@DateBridge(resolution=Resolution.DAY)
 	private Date dateFin;
 	@OneToMany(cascade=CascadeType.ALL)
 	private List<Reglement> reglements=new ArrayList<Reglement>();

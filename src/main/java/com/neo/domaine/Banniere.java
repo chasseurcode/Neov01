@@ -27,7 +27,7 @@ public class Banniere extends Publicite{
 /**
  * 
  * Getters and Setters
- */
+ */ 
 	public String getImage() {
 		return image;
 	}

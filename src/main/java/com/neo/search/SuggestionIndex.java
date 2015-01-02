@@ -34,7 +34,8 @@ public class SuggestionIndex {
 	private SuggestionIndex() {
 		properties=new Properties();
 		try {
-			InputStream inStream=new FileInputStream(getClass().getResource("../../../").getPath()+"searconf.properties");
+			InputStream inStream=new FileInputStream(getClass().getResource("../../../")
+															   .getPath()+"searconf.properties");
 			properties.load(inStream);
 			dirIndex=properties.get("RepIndex").toString();
 			dirSpellCheck=properties.get("DirSugg").toString();

@@ -11,7 +11,7 @@ import com.neo.utility.HibernateUtil;
 
 
 
-public class ClientSearch extends NeoSearch {
+public class ClientSearch extends NEOSearch {
 	public ClientSearch() {
 		setNomEntite(Client.class.getName());
 	}

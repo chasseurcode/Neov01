@@ -10,11 +10,12 @@ import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
+import org.hibernate.search.annotations.DateBridge;
 import org.hibernate.search.annotations.Field;
-import org.hibernate.search.annotations.Indexed;
+import org.hibernate.search.annotations.Resolution;
 
 @Entity
-@Indexed
+
 public  abstract class Publicite extends Model implements Serializable{
 	/**
 	 * 
@@ -23,8 +24,10 @@ public  abstract class Publicite extends Model implements Serializable{
 	@Field
 	private String intitule;
 	@Field
+	@DateBridge(resolution=Resolution.DAY)
 	private Date dateDebut;
 	@Field
+	@DateBridge(resolution=Resolution.DAY)
 	private Date dateFin;
 	private long nbreVue;
 	@ManyToOne(cascade=CascadeType.ALL)

@@ -9,8 +9,10 @@ import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import javax.xml.bind.annotation.XmlRootElement;
 
+import org.hibernate.search.annotations.DateBridge;
 import org.hibernate.search.annotations.Field;
 import org.hibernate.search.annotations.Indexed;
+import org.hibernate.search.annotations.Resolution;
 
 @Entity
 @XmlRootElement
@@ -26,6 +28,7 @@ public class Abonne extends Utilisateur {
 	@Field
 	private String prenom;
 	@Field
+	@DateBridge(resolution=Resolution.DAY)
 	private Date dateDeNaissance;
 	@Field
 	private String codeParrainege;
