@@ -12,6 +12,7 @@ import javax.persistence.OneToMany;
 
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
+import org.hibernate.search.annotations.Analyze;
 import org.hibernate.search.annotations.Field;
 
 @Entity
@@ -23,7 +24,7 @@ public class Utilisateur extends Model implements Serializable{
 	@Field
 	private String compte;
 	private String motDePasse;
-	@Field
+	@Field(analyze=Analyze.NO)
 	private String email;
 	@Field
 	private String telehone;

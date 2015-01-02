@@ -13,7 +13,6 @@ import com.neo.utility.HibernateUtil;
 public class CampagneSearch extends NEOSearch {
 	public CampagneSearch() {
 		setNomEntite(Campagne.class.getName());
-		System.out.println(getResultat().size());
 	}
 
 	@SuppressWarnings("rawtypes")

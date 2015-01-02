@@ -21,9 +21,9 @@
                    <p class="help-block"><i>#{rechercheBean.nbrResultat} resultat(s) trouvée(s)</i></p>
                    <c:if test="#{rechercheBean.suggestions.size() > 0 }">
                    		<h:form>
-                   			Essayez :
+                   			<i>voulez-vous essayez :</i>
                    			<ui:repeat var="suggestion" value="#{rechercheBean.suggestions}">
-                   				<span class="label label-success">
+                   				<span class="espace label label-success">
                    					<h:commandLink style="color:#fff;font-size:11px;" value="#{suggestion}" actionListener="#{rechercheBean.essaiSuggestion(suggestion)}"/>
                    				</span>
                    			</ui:repeat>

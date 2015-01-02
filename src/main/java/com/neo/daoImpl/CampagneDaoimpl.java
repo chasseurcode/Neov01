@@ -43,9 +43,5 @@ public class CampagneDaoimpl implements CampagneDAO{
 		Session session=HibernateUtil.getSession();
 		return session.createQuery("from Campagne c").list();
 	}
-
 	
-
-	
-
 }

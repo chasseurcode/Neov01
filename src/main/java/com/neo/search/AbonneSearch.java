@@ -12,7 +12,6 @@ import com.neo.utility.HibernateUtil;
 public class AbonneSearch extends NEOSearch {
 	public AbonneSearch() {
 		setNomEntite(Abonne.class.getName());
-		System.out.println(getResultat().size());
 	}
 
 	@SuppressWarnings("rawtypes")
