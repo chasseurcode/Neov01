@@ -123,12 +123,17 @@ public class Campagne extends Model {
 	public double getTotal() {
 		double somme=0;
 		for(Publicite p: publicites){
-			//somme=somme+p.getTotal();
 			if(p instanceof Textuelle){
 				somme=somme+p.getTotal();
 			}
 			if(p instanceof Banniere){
-				somme=somme+(p.getTotal()+((Banniere)p).getTotale());
+				if(((Banniere)p).getNbreAppel()!=0 || ((Banniere)p).getNbreNotification()!=0 ){
+					somme=somme+((((Banniere)p).getNbreAppel()*p.getTarif().getTarifclient())+
+							((Banniere)p).getTotale());
+				}
+				else{
+					somme=somme+p.getTotal();
+				}
 			}
 		}
 		return somme;

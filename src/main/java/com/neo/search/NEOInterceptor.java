@@ -1,12 +1,15 @@
 package com.neo.search;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.Set;
 
 import org.hibernate.EmptyInterceptor;
 import org.hibernate.search.annotations.Indexed;
 import org.hibernate.type.Type;
 import org.reflections.Reflections;
+
+import com.neo.domaine.Model;
 
 public class NEOInterceptor extends EmptyInterceptor {
 	
@@ -23,6 +26,7 @@ public class NEOInterceptor extends EmptyInterceptor {
 	public boolean onFlushDirty(Object entity, Serializable id,
 			Object[] currentState, Object[] previousState,
 			String[] propertyNames, Type[] types) {
+		((Model) entity).setUpdated(new Date());
 		verifyAndIndex(entity);
 		return super.onFlushDirty(entity, id, currentState, previousState,propertyNames, types);
 	}
@@ -33,6 +37,8 @@ public class NEOInterceptor extends EmptyInterceptor {
 		verifyAndIndex(entity);
 		return super.onSave(entity, id, state, propertyNames, types);
 	}	
+	
+	
 
 	private void verifyAndIndex(Object entity) {
 		setEntite(entity);
