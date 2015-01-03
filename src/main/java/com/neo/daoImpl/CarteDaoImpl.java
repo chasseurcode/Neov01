@@ -14,7 +14,7 @@ public class CarteDaoImpl implements CarteDAO{
 	public void creer(Carte carte) {
 		Session session=HibernateUtil.getSession();
 		session.beginTransaction();
-		session.merge(carte);
+		session.save(carte);
 		session.getTransaction().commit();
 	}
 	

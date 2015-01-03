@@ -32,12 +32,11 @@ public class CarteRechargeBean {
 	public String addCarte(){
 		if(current==null){
 			carteDAO.creer(carteRecharge);
-			carteRecharge=new Carte();
 		}
 		else{
 			carteDAO.modifier(current);
-			carteRecharge=new Carte();
 		}
+		carteRecharge=new Carte();
 		rafraichirListe();
 		return null;
 	}
