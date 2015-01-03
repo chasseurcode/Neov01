@@ -92,7 +92,11 @@
 									<tr class="">
 										<td>#{carte.operateur}</td>
 										<td>#{carte.numero}</td>
-										<td>#{carte.montant}</td>
+										<td><h:outputText
+											value="#{carte.montant}" >
+											<f:convertNumber pattern="#0.00" />
+											</h:outputText>
+										</td>
 										<h:form>
 										<td>
 											<div class="btn-group  btn-group-sm" >

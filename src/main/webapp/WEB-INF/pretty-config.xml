@@ -32,6 +32,37 @@
 		<pattern value="/login" />
 		<view-id value="/users/login.xhtml" />
 	</url-mapping>
+	
+	<!-- page de la facture -->
+	<url-mapping id="facture">
+		<pattern value="/facture" />
+		<view-id value="/template/facture.xhtml" />
+	</url-mapping>
+	
+	<!-- ********* Frontend pages ************ -->
+	<!-- page contact -->
+	<url-mapping id="contact">
+		<pattern value="/contact" />
+		<view-id value="/frontend/contact.xhtml" />
+	</url-mapping>
+	
+	<!-- page services -->
+	<url-mapping id="services">
+		<pattern value="/services" />
+		<view-id value="/frontend/services.xhtml" />
+	</url-mapping>
+	
+	<!-- page partenaires -->
+	<url-mapping id="partenaires">
+		<pattern value="/partenaires" />
+		<view-id value="/frontend/partenaires.xhtml" />
+	</url-mapping>
+	
+	<!-- page noeApp -->
+	<url-mapping id="neoApp">
+		<pattern value="/neoApp" />
+		<view-id value="/frontend/oneApp.xhtml" />
+	</url-mapping>
 
 	<!-- ********* Gestion client ************ -->
 	<!-- page nouveau client -->

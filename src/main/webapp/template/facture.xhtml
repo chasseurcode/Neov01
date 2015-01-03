@@ -21,9 +21,9 @@
                               </div>
                               <div class="col-lg-4 col-sm-4">
                                   <p>
-                                  	  #{facturationBean.campagne.client.nom} <br/>
-                                       #{facturationBean.campagne.client.adresse} <br/>
-                                       Tel: #{facturationBean.campagne.client.telehone} 
+                                  	  #{facturationBean.facture.campagne.client.nom} <br/>
+                                       #{facturationBean.facture.campagne.client.adresse} <br/>
+                                       Tel: #{facturationBean.facture.campagne.client.telehone} 
                                   </p>
                               </div>
                               <div class="col-lg-4 col-sm-4">
@@ -35,10 +35,10 @@
                               </div>
                               <div class="col-lg-4 col-sm-4">
                                   <ul class="unstyled">
-                                      <li>N°FACTURE		: <strong>69626</strong></li>
+                                      <li>N°FACTURE		: <strong>#{facturationBean.facture.numero}</strong></li>
                                       <li>Date		:
-                                      <h:outputText value="#{facturationBean.campagne.dateCreation}" >
-                                      	<f:convertDateTime pattern="MM / mm / yyyy"/>
+                                      <h:outputText value="#{facturationBean.facture.date}" >
+                                      	<f:convertDateTime pattern="dd / MM / yyyy"/>
                                       </h:outputText>
                                       </li>
                                       <li>Etat		: Paid</li>
@@ -55,32 +55,32 @@
                               </tr>
                               </thead>
                               <tbody>
-                              <ui:repeat var="pub" value="#{facturationBean.campagne.publicites}">
+                              <ui:repeat var="pub" value="#{facturationBean.facture.campagne.publicites}">
 	                              <tr>
 	                                  <td>#{pub.intitule}</td>
-	                                  <td class="">#{pub.tarif.client}</td>
+	                                  <td class="">#{pub.tarif.tarifclient}</td>
 	                                  <td class="">#{pub.nbreVue}</td>
 	                                  <td>
 	                                  <h:outputText value="#{pub.total }" >
-										<f:convertNumber pattern="#0.000" />
+										<f:convertNumber pattern="#0.00" />
 									</h:outputText>
 									</td>
 	                              </tr>
                              </ui:repeat>
                               </tbody>
-                          </table>
+                          </table> <br/>
                           <div class="row">
                               <div class="col-lg-4 invoice-block pull-right">
                                   <ul class="unstyled amounts">
-                                      <li><strong>Montant reglé :</strong> #{facturationBean.campagne.totalReglement()}</li>
-                                      <li><strong>Reste à payer :</strong>#{facturationBean.campagne.resteAPayer()}</li>
-                                      <li><strong>Grand Total :</strong> #{facturationBean.campagne.total}</li>
+                                      <li><strong>Montant reglé :</strong> #{facturationBean.facture.campagne.totalReglement()}</li>
+                                      <li><strong>Reste à payer :</strong>#{facturationBean.facture.campagne.resteAPayer()}</li>
+                                      <li><strong>Grand Total :</strong> #{facturationBean.facture.campagne.total}</li>
                                   </ul>
                               </div>
                           </div>
                           <div class="text-center invoice-btn">
-                              <a class="btn btn-danger btn-lg"><i class="icon-check"></i> valider la facture </a>
-                              <a class="btn btn-info btn-lg" onclick="javascript:window.print();"><i class="icon-print"></i> Imprimer </a>
+<!--                               <a class="btn btn-danger btn-lg"><i class="icon-check"></i> valider la facture </a> -->
+                              <a class="btn btn-info btn-lg" id="btnprint" onclick="javascript:window.print();"><i class="icon-print"></i> Imprimer </a>
                           </div>
                       </div>
              </div>
