@@ -19,7 +19,6 @@ import com.neo.dao.ClientDAO;
 import com.neo.dao.PubliciteDAO;
 import com.neo.dao.TarifDAO;
 import com.neo.daoImpl.CampagneDaoimpl;
-import com.neo.daoImpl.ClientDaoImpl;
 import com.neo.daoImpl.PubliciteDaoImpl;
 import com.neo.daoImpl.TarifDaoImpl;
 import com.neo.domaine.Banniere;
@@ -90,7 +89,6 @@ public class CampagneBean {
 
 	//ajout de la publicite
 	public void addPubliciteTextuelle(){
-		System.out.println("ds addpub");
 		for(String check: domainesSelected){
 			Domaine d=pubDAO.findDomaineById(Long.parseLong(check));
 			textuelle.addDomaine(d);
@@ -257,8 +255,7 @@ public class CampagneBean {
 
 	//ajout de la campagne
 	public void addCampagne(){
-		System.out.println("ds add campagne");
-		Client cli=getLastClient();
+		Client cli=clientDAO.findLastRecord();
 		campagne.setClient(cli);
 		campagneDAO.creer(campagne);
 		setShowPubMenu(true);
@@ -378,12 +375,11 @@ public class CampagneBean {
 	public void addDomaine(){
 		if(current==null){
 			pubDAO.creer(domaine);
-			domaine=new Domaine();
 		}
 		else{
 			pubDAO.modifier(current);
-			domaine=new Domaine();
 		}
+		domaine=new Domaine();
 		setDomaines(pubDAO.listerDomaine());
 	}
 
@@ -404,14 +400,6 @@ public class CampagneBean {
 		pubDAO=new PubliciteDaoImpl();
 		tarifDAO=new TarifDaoImpl();
 		reglement=new Reglement();
-	}
-
-	//recuperer le dernier client enregistrer
-	private Client getLastClient(){
-		setClientDAO(new ClientDaoImpl());
-		Client c=clientDAO.findLastRecord();
-		System.out.println(c.getId());
-		return c;
 	}
 
 	//passage de la campagne a la facturation
