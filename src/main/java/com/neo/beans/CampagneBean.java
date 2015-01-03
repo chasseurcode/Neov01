@@ -26,6 +26,7 @@ import com.neo.domaine.Banniere;
 import com.neo.domaine.Campagne;
 import com.neo.domaine.Client;
 import com.neo.domaine.Domaine;
+import com.neo.domaine.Facture;
 import com.neo.domaine.Publicite;
 import com.neo.domaine.Reglement;
 import com.neo.domaine.Textuelle;
@@ -353,7 +354,6 @@ public class CampagneBean {
 
 	//ajoutr les reglememts
 	public void addReglement(){
-		System.out.println("ds addregle");
 		campagne.addReglement(reglement);
 		campagneDAO.modifier(campagne);
 		reglement=new Reglement();
@@ -394,7 +394,7 @@ public class CampagneBean {
 		setCurrent(domaine);
 	}
 
-	
+
 	public void annuler(){
 		campagne=new Campagne();
 		textuelle=new Textuelle();
@@ -413,8 +413,23 @@ public class CampagneBean {
 		System.out.println(c.getId());
 		return c;
 	}
-	
-	
+
+	//passage de la campagne a la facturation
+	public String campToFacturation(Campagne camp){
+		try {
+			Facture facture=new Facture();
+			String numero=Generateur.generateRandomString(10, Mode.ALPHANUMERIC).toUpperCase();
+			facture.setNumero(numero);
+			facture.setDate(new Date());
+			facture.setCampagne(camp);
+			campagneDAO.creer(facture);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "pretty:facture";
+	}
+
+
 	/**
 	 * 
 	 * Getters et Setters

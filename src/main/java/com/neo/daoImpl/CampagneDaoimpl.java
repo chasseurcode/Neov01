@@ -6,6 +6,7 @@ import org.hibernate.Session;
 
 import com.neo.dao.CampagneDAO;
 import com.neo.domaine.Campagne;
+import com.neo.domaine.Facture;
 import com.neo.utility.HibernateUtil;
 
 public class CampagneDaoimpl implements CampagneDAO{
@@ -42,6 +43,22 @@ public class CampagneDaoimpl implements CampagneDAO{
 	public List<Campagne> lister() {
 		Session session=HibernateUtil.getSession();
 		return session.createQuery("from Campagne c").list();
+	}
+
+	@Override
+	public void creer(Facture facture) {
+		Session session=HibernateUtil.getSession();
+		session.beginTransaction();
+		session.save(facture);
+		session.getTransaction().commit();
+	}
+
+	@Override
+	public Facture findLastRecord() {
+		Session session=HibernateUtil.getSession();
+		return (Facture) session.createQuery("from Facture ORDER BY date DESC")
+                .setMaxResults(1)
+                .uniqueResult();
 	}
 
 	

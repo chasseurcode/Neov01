@@ -11,6 +11,7 @@ import com.neo.domaine.Carte;
 import com.neo.domaine.Client;
 import com.neo.domaine.Depense;
 import com.neo.domaine.Domaine;
+import com.neo.domaine.Facture;
 import com.neo.domaine.Message;
 import com.neo.domaine.Paiement;
 import com.neo.domaine.Permission;
@@ -51,6 +52,8 @@ public class HibernateUtil {
 			conf.addAnnotatedClass(Banniere.class);
 			conf.addAnnotatedClass(Textuelle.class);
 			conf.addAnnotatedClass(Domaine.class);
+			conf.addAnnotatedClass(Facture.class);
+
 
 			conf.configure();
 			StandardServiceRegistryBuilder ssrb = new StandardServiceRegistryBuilder().applySettings(conf.getProperties());

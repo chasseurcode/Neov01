@@ -73,7 +73,10 @@
 											<td><h:outputText value="#{dep.date}">
 												<f:convertDateTime type="date" pattern="dd-MM-yyyy" />
 											</h:outputText></td>
-											<td>#{dep.montant}</td>
+											<td><h:outputText
+											value="#{dep.montant}" >
+											<f:convertNumber pattern="#0.00" />
+											</h:outputText></td>
 										</tr>
 									</ui:repeat>
 

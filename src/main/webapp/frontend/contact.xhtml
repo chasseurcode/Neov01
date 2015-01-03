@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:shiro="http://shiro.apache.org/tags"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+<h:head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="" />
+    <meta name="author" content="Mosaddek" />
+    <meta name="keyword" content="FlatLab, Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina" />
+
+    <title>NEONE | Contact</title>
+
+    <!-- Bootstrap core CSS -->
+   <h:outputStylesheet library="css_front" name="bootstrap.min.css" />
+	<h:outputStylesheet library="css_front" name="theme.css" />
+	<h:outputStylesheet library="css_front" name="bootstrap-reset.css" />
+	
+    <!--external css-->
+    <h:outputStylesheet library="assets/font-awesome/css" name="font-awesome.css" />
+    <h:outputStylesheet library="css_front" name="flexslider.css" />
+    <h:outputStylesheet library="assets_front/bxslider" name="jquery.bxslider.css" />
+
+ <!-- Custom styles for this template -->
+     <h:outputStylesheet library="css_front" name="style.css" />
+	<h:outputStylesheet library="css_front" name="style-responsive.css" />
+
+  </h:head>
+
+  <h:body>
+     <!--header start-->
+    <header class="header-frontend">
+        <div class="navbar navbar-default navbar-static-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="logo navbar-brand" href="index.xhtml">NE<span>ONE</span></a>
+                </div>
+                <div class="navbar-collapse collapse ">
+                    <ul class="nav navbar-nav">                   
+                        <li><h:link value="Accueil" outcome="pretty:home" /></li>
+                        <li><h:link value="Nos services" outcome="pretty:home" /></li>
+                        <li><h:link value="Parteniares" outcome="pretty:home" /></li>
+                        <li><h:link value="OneApp" outcome="pretty:home" /></li>
+                        <li><h:link value="Mon compte" outcome="pretty:login" /></li>
+                        <li class="active"><h:link value="Contact" outcome="pretty:contact" /></li>
+<!--                         <li><input type="text" placeholder=" Search" class="form-control search" /></li> -->
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!--header end-->
+
+
+    <!--google map start-->
+     <div class="contact-map">
+         <div id="map-canvas" style="width: 100%; height: 400px"></div>
+     </div>
+     <!--google map end-->
+
+     <!--container start-->
+    <div class="container">
+
+
+        <div class="row">
+            <div class="col-lg-5 col-sm-5 address">
+                <h4>IGA RABAT</h4>
+                <p> 
+                    27, rue oqba agdal rabat, <br/>
+                    27 Avenue Oqba Ibn Naafi, <br/>
+                    Rabat, Maroc.
+                </p>
+                <br/>
+                <br/>
+                <br/>
+                <p>
+                    Phone <br/>
+                    <span class="muted">(212) 210-2100</span><br/>
+
+                    Email <br/>
+                    <span class="muted">neone@gmail.com</span>
+                </p>
+            </div>
+            <div class="col-lg-7 col-sm-7 address">
+                <h4>Nous contacter</h4>
+                <div class="contact-form">
+                    <form role="form">
+                        <div class="form-group">
+                            <label for="name">Nom</label>
+                            <input type="text" placeholder="Votre nom" id="name" class="form-control" />
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="text" placeholder="Votre email" id="email" class="form-control"/>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Message</label>
+                            <textarea placeholder="" rows="5" class="form-control"/>
+                        </div>
+                        <button class="btn btn-danger" type="submit">Submit</button>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <!--container end-->
+
+     <!--footer start-->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-sm-3">
+                    <h1>contact info</h1>
+                    <address>
+                        <p>Address: Kamat sabah</p>
+                        <p>Rabat, Maroc</p>
+                        <p>Téléphone: (212) 651-8195-31</p>
+                        <p>Email : <a href="javascript:;">neone@gmail.com</a></p>
+                    </address>
+                </div>
+                <div class="col-lg-5 col-sm-5">
+                   
+                </div>
+                <div class="col-lg-3 col-sm-3 col-lg-offset-1">
+                    <h1>retrouvez-nous sur:</h1>
+                    <ul class="social-link-footer list-unstyled">
+                        <li><a href="#"><i class="icon-facebook"></i></a></li>
+                        <li><a href="#"><i class="icon-google-plus"></i></a></li>
+                        <li><a href="#"><i class="icon-linkedin"></i></a></li>
+                        <li><a href="#"><i class="icon-twitter"></i></a></li>
+                        <li><a href="#"><i class="icon-skype"></i></a></li>
+                        <li><a href="#"><i class="icon-youtube"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!--footer end-->
+
+  <!-- js placed at the end of the document so the pages load faster -->
+      <h:outputScript library="js_front" name="jquery.js" />
+	<h:outputScript library="js_front" name="bootstrap.min.js" />
+    <h:outputScript library="js_front" name="hover-dropdown.js" />
+    <h:outputScript library="assets_front/bxslider" name="jquery.bxslider.js" />
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=false"/>
+
+    <!--common script for all pages-->
+	<h:outputScript library="js_front" name="common-scripts.js" />
+
+
+  <script>
+
+      //google map   
+      function initialize() {
+          var myLatlng = new google.maps.LatLng(34.008930, -6.844192);
+          var mapOptions = {
+              zoom: 18,
+              center: myLatlng,
+              mapTypeId: google.maps.MapTypeId.ROADMAP
+          }
+          var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+          var marker = new google.maps.Marker({
+              position: myLatlng,
+              map: map,
+              title: 'IGA RABAT'
+          });
+      }
+      google.maps.event.addDomListener(window, 'load', initialize);
+  </script>
+  
+ </h:body>
+</html>

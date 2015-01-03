@@ -16,7 +16,8 @@
 
 	<title>NEONE-<ui:insert name="titre" />
 	</title>
-
+	<!-- 	 print css -->
+	<h:outputStylesheet library="css" name="print.css" media="print" />
 	<!-- Bootstrap core CSS -->
 	<h:outputStylesheet library="css" name="bootstrap.min.css" />
 	<h:outputStylesheet library="css" name="bootstrap-reset.css" />
@@ -41,7 +42,7 @@
 
 	<section id="container" class="">
 		<!--header start-->
-		<header class="header white-bg">
+		<header class="header white-bg" id="header">
 			<div class="sidebar-toggle-box">
 				<div data-original-title="Toggle Navigation" data-placement="right"
 					class="icon-reorder tooltips"></div>
@@ -114,7 +115,7 @@
 		<!--header end-->
 
 		<!--sidebar start-->
-		<aside>
+		<aside id="aside">
 			<div id="sidebar" class="nav-collapse ">
 				<!-- sidebar menu start-->
 				<ul class="sidebar-menu" id="nav-accordion">
@@ -139,40 +140,31 @@
 					<li class="sub-menu"><a href="javascript:;"><i
 							class="icon-truck"></i> <span>Gérer les Campagnes</span></a>
 						<ul class="sub">
-							<li>
-								<h:link outcome="pretty:newcampagne"
+							<li><h:link outcome="pretty:newcampagne"
 									value="Nouvelle campagne">
-								</h:link>
-							</li>
-							<li>
-								<pretty:link mappingId="listescamp">
+								</h:link></li>
+							<li><pretty:link mappingId="listescamp">
 									<f:param value="attente" />
 									Campagnes en attentes
-								</pretty:link>
-							</li>
-							<li>
-								<pretty:link mappingId="listescamp">
+								</pretty:link></li>
+							<li><pretty:link mappingId="listescamp">
 									<f:param value="encours" />
 									Campagnes encours
-								</pretty:link>
-							</li>
-							<li>
-								<pretty:link mappingId="listescamp">
+								</pretty:link></li>
+							<li><pretty:link mappingId="listescamp">
 									<f:param value="termine" />
 									Campagnes terminées
-								</pretty:link>
-							</li>
+								</pretty:link></li>
 						</ul></li>
 					<li><h:link outcome="pretty:recharge">
 							<i class="icon-ticket"></i>
 							<span>Gérer les Recharges</span>
 						</h:link></li>
-						
-						<li>
-						<h:link outcome="pretty:domaines">
-							<i class="icon-bullhorn"></i> <span>Définition des domaines</span>
-						</h:link>
-					</li>
+
+					<li><h:link outcome="pretty:domaines">
+							<i class="icon-bullhorn"></i>
+							<span>Définition des domaines</span>
+						</h:link></li>
 
 					<li><h:link outcome="pretty:tarifs">
 							<i class="icon-eur"></i>
@@ -226,7 +218,7 @@
 		<!--main content end-->
 
 		<!--footer start-->
-		<footer class="site-footer">
+		<footer class="site-footer" id="footer">
 			<div class="text-center">
 				2014 NEONE. <a href="#" class="go-top"> <i class="icon-angle-up"></i></a>
 			</div>
@@ -254,9 +246,6 @@
 		name="jquery.fancybox.js" />
 	<h:outputScript library="js" name="toucheffects.js" />
 	<h:outputScript library="js" name="modernizr.custom.js" />
-
-
-
 
 	<!--common script for all pages-->
 	<h:outputScript library="js" name="common-scripts.js" />

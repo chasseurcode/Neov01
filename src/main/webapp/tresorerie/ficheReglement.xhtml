@@ -61,8 +61,10 @@
 
 								<div class="form-group">
 									<label class="control-label">Date :</label>
-									<h:inputText p:type="date" styleClass="form-control" required="true"
-										value="#{campagneBean.reglement.dateReglement}" id="datereg" label="La date">
+									<h:inputText p:type="date" styleClass="form-control"
+										required="true"
+										value="#{campagneBean.reglement.dateReglement}" id="datereg"
+										label="La date">
 										<f:convertDateTime type="date" pattern="yyyy-MM-dd" />
 									</h:inputText>
 									<p class="help-block">
@@ -72,26 +74,29 @@
                                   
                                    <div class="form-group">
 									<label class="control-label">Mode :</label>
-									<h:selectOneMenu styleClass="form-control" style="height: 32px;position:relative; top:-5px;" 
-									value="#{campagneBean.reglement.type}">
+									<h:selectOneMenu styleClass="form-control"
+										style="height: 32px;position:relative; top:-5px;"
+										value="#{campagneBean.reglement.type}">
 										<f:selectItem itemValue="Espèce" itemLabel="Espèce" />
 										<f:selectItem itemValue="Chèque" itemLabel="Chèque" />
 									</h:selectOneMenu>
-									
+
 								</div>&#160;&#160;
                                   
                                   <div class="form-group">
 									<label class="control-label">Montant :</label>
-									<h:inputText styleClass="form-control" id="montantreg" required="true"
-										value="#{campagneBean.reglement.montant}" label="Le montant" />
-										<p class="help-block">
+									<h:inputText styleClass="form-control" id="montantreg"
+										required="true" value="#{campagneBean.reglement.montant}"
+										label="Le montant" />
+									<p class="help-block">
 										<h:message for="montantreg" style="color:red" />
 									</p>
 								</div>&#160;&#160;&#160;&#160;
                                   
                                   <h:commandButton
-									styleClass="btn btn-success" style="position:relative; top:5px;"
-									value="Enregistrer" disabled="#{campagneBean.campagne.resteAPayer()==0}"
+									styleClass="btn btn-success"
+									style="position:relative; top:5px;" value="Enregistrer"
+									disabled="#{campagneBean.campagne.resteAPayer()==0}"
 									actionListener="#{campagneBean.addReglement}" />
 							</h:form>
 
@@ -108,7 +113,6 @@
 									<th>Date</th>
 									<th class="hidden-phone">Mode</th>
 									<th class="hidden-phone">Montant</th>
-									<th class="hidden-phone">Reste à payer</th>
 									<th></th>
 								</tr>
 							</thead>
@@ -120,21 +124,33 @@
 												<f:convertDateTime type="date" pattern="dd-MM-yyyy" />
 											</h:outputText></td>
 										<td>#{reg.type}</td>
-										<td>#{reg.montant}</td>
-										<td><h:outputText styleClass="label label-warning"
-												value="#{campagneBean.campagne.resteAPayer()}" /></td>
-										
+										<td><h:outputText
+											value="#{reg.montant}" >
+											<f:convertNumber pattern="#0.00" />
+											</h:outputText></td>
+
 									</tr>
 								</ui:repeat>
 							</tbody>
 							<tfoot>
 								<tr>
-								<th></th>
+									<th></th>
 									<th>Montant reglé:</th>
 									<th class="hidden-phone"><h:outputText
-											value="#{campagneBean.campagne.totalReglement()}" /></th>
-									<th class="hidden-phone"></th>
+											value="#{campagneBean.campagne.totalReglement()}" >
+											<f:convertNumber pattern="#0.00" />
+											</h:outputText>
+											</th>
+
+								</tr>
+								<tr>
 									<th></th>
+									<th class="hidden-phone">Reste à payer:</th>
+									<th><h:outputText styleClass="label label-warning"
+											value="#{campagneBean.campagne.resteAPayer()}" >
+											<f:convertNumber pattern="#0.00" />
+											</h:outputText>
+											</th>
 								</tr>
 							</tfoot>
 						</table>
@@ -145,11 +161,19 @@
 									<th></th>
 									<th class="hidden-phone"></th>
 									<th class="hidden-phone"></th>
-									<th class="hidden-phone"></th>																
-									<th class="hidden-phone"></th>									
 									<th class="hidden-phone"></th>
-									<th>Total á payer =&#160;&#160; <h:outputText
-											value="#{campagneBean.campagne.total}" style="color: red" /></th>
+									<th class="hidden-phone"></th>
+									<th class="hidden-phone"></th>
+									<th>Total à payer =&#160;&#160; <h:outputText
+											value="#{campagneBean.campagne.total}" style="color: red" >
+											<f:convertNumber pattern="#0.00" />
+											</h:outputText>
+											</th>
+									<th class="pull-right"><h:form>
+											<h:commandButton styleClass="btn btn-xs btn-primary"
+												action="#{campagneBean.campToFacturation(campagneBean.campagne)}"
+												value="Générer une facture" />
+										</h:form></th>
 
 								</tr>
 							</thead>
