@@ -86,7 +86,6 @@ public class CampagneBean {
 		return null;
 	}
 
-
 	//ajout de la publicite
 	public void addPubliciteTextuelle(){
 		for(String check: domainesSelected){
@@ -645,6 +644,10 @@ public class CampagneBean {
 	public void setParNotification(boolean parNotification) {
 		this.parNotification = parNotification;
 	}
+
+
+
+
 
 
 
