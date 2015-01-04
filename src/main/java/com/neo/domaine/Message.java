@@ -4,8 +4,14 @@ import java.io.Serializable;
 
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 @Entity
+@XmlRootElement
+@XmlAccessorType(XmlAccessType.FIELD)
 public class Message extends Model implements Serializable{
 	/**
 	 * 
@@ -15,6 +21,7 @@ public class Message extends Model implements Serializable{
 	private String corps;
 	private boolean vue=false;
 	@ManyToOne
+	@XmlTransient
 	private Utilisateur utilisateur;
 	
 	public Message() {

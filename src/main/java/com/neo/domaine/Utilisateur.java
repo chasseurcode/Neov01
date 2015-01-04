@@ -120,4 +120,17 @@ public class Utilisateur extends Model implements Serializable{
 	public String toString() {
 		return "["+getCompte()+"] - ["+getEmail()+"] - ["+getTelehone()+"] - ["+getTelehone()+"]";
 	}
+	
+	public List<Message> getLastMessages() {
+		List<Message> msgs=new ArrayList<Message>();
+		System.out.println(this.messages.size());
+		for(Message m: this.messages){
+			System.out.println(m.getCorps()+" - "+m.getObjet()+" - "+m.getCreated()+" et "+this.getUpdated());
+			if(this.getUpdated().before(m.getCreated())){
+				System.out.println("trouver");
+				msgs.add(m);
+			}
+		}
+		return msgs;
+	}
 }
