@@ -49,7 +49,7 @@ public class CampagneBean {
 	private String campListe;
 	private Reglement reglement;
 	private List<Publicite> pubTextuelle,pubBaniere;
-	private List<Campagne> lesCampagnes,listeCamp;
+	private List<Campagne> lesCampagnes;
 	private List<String> domainesSelected=new ArrayList<String>();
 	private List<Domaine> domaines;
 	private Domaine domaine,current;
@@ -273,7 +273,6 @@ public class CampagneBean {
 	public void editionCamp(){
 		if(!(campagne.getDateFin().compareTo(new Date())<0) ){
 			campagneDAO.modifier(campagne);
-			setLesCampagnes(campagneDAO.lister());
 			campagne=new Campagne();
 			setShowEditCamp(false);
 		}
@@ -318,33 +317,14 @@ public class CampagneBean {
 
 	// ajout ds les differentes liste de campagne
 	public void initListe(){
-		setLesCampagnes(campagneDAO.lister());
 		if(campListe.equals("attente")){
-			listeCamp=new ArrayList<Campagne>();
-			for(Campagne ca:lesCampagnes){
-				if(ca.getReglements().size()==0){
-					listeCamp.add(ca);
-				}
-			}
+			setLesCampagnes(campagneDAO.listerCampAttente());
 		}
-
 		if(campListe.equals("encours")){
-			listeCamp=new ArrayList<Campagne>();
-			for(Campagne ca:lesCampagnes){
-				if(((ca.getDateFin().compareTo(new Date()) >0) || (ca.getDateFin().compareTo(new Date()) ==0))
-						&& (ca.getReglements().size()>0)){
-					listeCamp.add(ca);
-				}
-			}
+			setLesCampagnes(campagneDAO.listerCampEncours());
 		}
-
 		if(campListe.equals("termine")){
-			listeCamp=new ArrayList<Campagne>();
-			for(Campagne ca:lesCampagnes){
-				if((ca.getDateFin().compareTo(new Date())<0) && (ca.getReglements().size()>0) ){
-					listeCamp.add(ca);
-				}
-			}
+			setLesCampagnes(campagneDAO.listerCampTerminees());
 		}
 	}
 
@@ -592,19 +572,6 @@ public class CampagneBean {
 	public Domaine getCurrent() {
 		return current;
 	}
-
-	public List<Campagne> getListeCamp() {
-		return listeCamp;
-	}
-
-
-
-
-	public void setListeCamp(List<Campagne> listeCamp) {
-		this.listeCamp = listeCamp;
-	}
-
-
 
 
 	public void setCurrent(Domaine current) {
