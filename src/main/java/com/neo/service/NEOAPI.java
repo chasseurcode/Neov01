@@ -12,6 +12,7 @@ public class NEOAPI extends javax.ws.rs.core.Application{
 	{
 		Set<Class<?>> s = new HashSet<Class<?>>();
 		s.add(AbonneRessource.class);
+		s.add(MessageRessource.class);
 		return s;
 	}
 }

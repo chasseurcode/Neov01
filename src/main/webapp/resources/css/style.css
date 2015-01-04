@@ -59,7 +59,7 @@ a, a:hover, a:focus {
     margin: 0;
     padding:20px 15px;
     text-align: center;
-    background: #02bac6;
+    background: #FF6C60;
     border-radius: 10px 10px 0 0;
     -webkit-border-radius: 10px 10px 0 0;
     color: #fff;
@@ -100,12 +100,12 @@ a, a:hover, a:focus {
 }
 
 .form-signin .btn-login {
-    background: #02B5B5;
+    background: #FF6C60;
     color: #fff;
     text-transform: uppercase;
     font-weight: 300;
     font-family: 'Open Sans', sans-serif;
-    box-shadow: 0 4px #01a192;
+    box-shadow: 0 4px #f4504b;
     margin-bottom: 5px;
 }
 
@@ -4384,7 +4384,7 @@ tr.odd.gradeX td.sorting_1, tr.even.gradeX td.sorting_1, table.display tr.even.g
 /*lock screen*/
 
 .lock-screen {
-    background:#babcbe url("#{resource['img/lock-bg.jpg']}");
+    background:#F77B6F url("#{resource['img/lock-bg.jpg']}");
     background-size: cover;
     background-repeat: repeat;
 }

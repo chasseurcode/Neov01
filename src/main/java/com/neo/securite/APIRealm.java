@@ -30,7 +30,7 @@ public class APIRealm extends AuthorizingRealm{
 	@Override
 	protected AuthenticationInfo doGetAuthenticationInfo(
 			AuthenticationToken token) throws AuthenticationException {
-		
+		System.out.println("Connection abonnée");
 		UsernamePasswordToken mToken=(UsernamePasswordToken) token;
 		
 		Utilisateur utilisateur=UtilisateurDAO.findByCompte(mToken.getUsername());
