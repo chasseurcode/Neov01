@@ -7,7 +7,8 @@ public class TrouverChemin {
 	String chemin;
 	ClassLoader classLoader;
     classLoader=TrouverChemin.class.getClassLoader();
-	chemin=classLoader.getResource("../../resources/pubs").getPath();
+	chemin=classLoader.getResource("../../WEB-INF/classes/pubs").getPath();
+
 		return chemin;
 	}
 

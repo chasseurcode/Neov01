@@ -19,7 +19,6 @@ import com.neo.dao.ClientDAO;
 import com.neo.dao.PubliciteDAO;
 import com.neo.dao.TarifDAO;
 import com.neo.daoImpl.CampagneDaoimpl;
-import com.neo.daoImpl.ClientDaoImpl;
 import com.neo.daoImpl.PubliciteDaoImpl;
 import com.neo.daoImpl.TarifDaoImpl;
 import com.neo.domaine.Banniere;
@@ -50,7 +49,7 @@ public class CampagneBean {
 	private String campListe;
 	private Reglement reglement;
 	private List<Publicite> pubTextuelle,pubBaniere;
-	private List<Campagne> lesCampagnes,listeCamp;
+	private List<Campagne> lesCampagnes;
 	private List<String> domainesSelected=new ArrayList<String>();
 	private List<Domaine> domaines;
 	private Domaine domaine,current;
@@ -87,10 +86,8 @@ public class CampagneBean {
 		return null;
 	}
 
-
 	//ajout de la publicite
 	public void addPubliciteTextuelle(){
-		System.out.println("ds addpub");
 		for(String check: domainesSelected){
 			Domaine d=pubDAO.findDomaineById(Long.parseLong(check));
 			textuelle.addDomaine(d);
@@ -257,8 +254,7 @@ public class CampagneBean {
 
 	//ajout de la campagne
 	public void addCampagne(){
-		System.out.println("ds add campagne");
-		Client cli=getLastClient();
+		Client cli=clientDAO.findLastRecord();
 		campagne.setClient(cli);
 		campagneDAO.creer(campagne);
 		setShowPubMenu(true);
@@ -276,7 +272,6 @@ public class CampagneBean {
 	public void editionCamp(){
 		if(!(campagne.getDateFin().compareTo(new Date())<0) ){
 			campagneDAO.modifier(campagne);
-			setLesCampagnes(campagneDAO.lister());
 			campagne=new Campagne();
 			setShowEditCamp(false);
 		}
@@ -321,33 +316,14 @@ public class CampagneBean {
 
 	// ajout ds les differentes liste de campagne
 	public void initListe(){
-		setLesCampagnes(campagneDAO.lister());
 		if(campListe.equals("attente")){
-			listeCamp=new ArrayList<Campagne>();
-			for(Campagne ca:lesCampagnes){
-				if(ca.getReglements().size()==0){
-					listeCamp.add(ca);
-				}
-			}
+			setLesCampagnes(campagneDAO.listerCampAttente());
 		}
-
 		if(campListe.equals("encours")){
-			listeCamp=new ArrayList<Campagne>();
-			for(Campagne ca:lesCampagnes){
-				if(((ca.getDateFin().compareTo(new Date()) >0) || (ca.getDateFin().compareTo(new Date()) ==0))
-						&& (ca.getReglements().size()>0)){
-					listeCamp.add(ca);
-				}
-			}
+			setLesCampagnes(campagneDAO.listerCampEncours());
 		}
-
 		if(campListe.equals("termine")){
-			listeCamp=new ArrayList<Campagne>();
-			for(Campagne ca:lesCampagnes){
-				if((ca.getDateFin().compareTo(new Date())<0) && (ca.getReglements().size()>0) ){
-					listeCamp.add(ca);
-				}
-			}
+			setLesCampagnes(campagneDAO.listerCampTerminees());
 		}
 	}
 
@@ -378,12 +354,11 @@ public class CampagneBean {
 	public void addDomaine(){
 		if(current==null){
 			pubDAO.creer(domaine);
-			domaine=new Domaine();
 		}
 		else{
 			pubDAO.modifier(current);
-			domaine=new Domaine();
 		}
+		domaine=new Domaine();
 		setDomaines(pubDAO.listerDomaine());
 	}
 
@@ -404,14 +379,6 @@ public class CampagneBean {
 		pubDAO=new PubliciteDaoImpl();
 		tarifDAO=new TarifDaoImpl();
 		reglement=new Reglement();
-	}
-
-	//recuperer le dernier client enregistrer
-	private Client getLastClient(){
-		setClientDAO(new ClientDaoImpl());
-		Client c=clientDAO.findLastRecord();
-		System.out.println(c.getId());
-		return c;
 	}
 
 	//passage de la campagne a la facturation
@@ -605,19 +572,6 @@ public class CampagneBean {
 		return current;
 	}
 
-	public List<Campagne> getListeCamp() {
-		return listeCamp;
-	}
-
-
-
-
-	public void setListeCamp(List<Campagne> listeCamp) {
-		this.listeCamp = listeCamp;
-	}
-
-
-
 
 	public void setCurrent(Domaine current) {
 		this.current = current;
@@ -690,6 +644,10 @@ public class CampagneBean {
 	public void setParNotification(boolean parNotification) {
 		this.parNotification = parNotification;
 	}
+
+
+
+
 
 
 

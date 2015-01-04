@@ -1,5 +1,7 @@
 package com.neo.daoImpl;
 
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.hibernate.Session;
@@ -29,9 +31,9 @@ public class CampagneDaoimpl implements CampagneDAO{
 
 	@Override
 	public void supprimer(Campagne campagne) {
-		
+
 	}
-	
+
 	@Override
 	public Campagne findById(long id) {
 		Session session=HibernateUtil.getSession();
@@ -58,11 +60,45 @@ public class CampagneDaoimpl implements CampagneDAO{
 	public Facture findLastRecord() {
 		Session session=HibernateUtil.getSession();
 		return (Facture) session.createQuery("from Facture ORDER BY date DESC")
-                .setMaxResults(1)
-                .uniqueResult();
+				.setMaxResults(1)
+				.uniqueResult();
 	}
 
-	
+	@Override
+	public List<Campagne> listerCampAttente() {
+		List<Campagne> camps=new ArrayList<Campagne>();
+		for(Campagne ca:lister()){
+			if(ca.getReglements().size()==0){
+				camps.add(ca);
+			}
+		}
+		return camps;
+	}
 
-	
+	@Override
+	public List<Campagne> listerCampEncours() {
+		List<Campagne> camps=new ArrayList<Campagne>();
+		for(Campagne ca:lister()){
+			if(((ca.getDateFin().compareTo(new Date()) >0) || (ca.getDateFin().compareTo(new Date()) ==0))
+					&& (ca.getReglements().size()>0)){
+				camps.add(ca);
+			}
+		}
+		return camps;
+	}
+
+	@Override
+	public List<Campagne> listerCampTerminees() {
+		List<Campagne> camps=new ArrayList<Campagne>();
+		for(Campagne ca:lister()){
+			if((ca.getDateFin().compareTo(new Date())<0) && (ca.getReglements().size()>0) ){
+				camps.add(ca);
+			}
+		}	
+		return camps;
+	}
+
+
+
+
 }
