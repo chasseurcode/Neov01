@@ -8,7 +8,6 @@ public class TrouverChemin {
 	ClassLoader classLoader;
     classLoader=TrouverChemin.class.getClassLoader();
 	chemin=classLoader.getResource("../../WEB-INF/classes/pubs").getPath();
-
 		return chemin;
 	}
 

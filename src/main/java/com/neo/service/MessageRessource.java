@@ -7,9 +7,6 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-import org.apache.shiro.SecurityUtils;
-import org.apache.shiro.subject.Subject;
-
 import com.neo.dao.UtilisateurDAO;
 import com.neo.daoImpl.UtilisateurDAOImpl;
 import com.neo.domaine.Message;
@@ -22,8 +19,8 @@ public class MessageRessource {
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	public List<Message> getMessage() {
-		Subject subject=SecurityUtils.getSubject();
-		String compte=(String) subject.getPrincipal();
+		//Subject subject=SecurityUtils.getSubject();
+		//String compte=(String) subject.getPrincipal();
 		Utilisateur user=dao.findByCompte("Mohamed");
 		List<Message> mesages=user.getLastMessages();
 		if (mesages.size()>0) {
