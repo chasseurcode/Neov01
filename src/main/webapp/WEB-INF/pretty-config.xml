@@ -26,38 +26,38 @@
 		<pattern value="/recherche" />
 		<view-id value="/template/search.xhtml" />
 	</url-mapping>
-	
+
 	<!-- page de login -->
 	<url-mapping id="login">
 		<pattern value="/login" />
 		<view-id value="/users/login.xhtml" />
 	</url-mapping>
-	
+
 	<!-- page de la facture -->
 	<url-mapping id="facture">
 		<pattern value="/facture" />
 		<view-id value="/template/facture.xhtml" />
 	</url-mapping>
-	
+
 	<!-- ********* Frontend pages ************ -->
 	<!-- page contact -->
 	<url-mapping id="contact">
 		<pattern value="/contact" />
 		<view-id value="/frontend/contact.xhtml" />
 	</url-mapping>
-	
+
 	<!-- page services -->
 	<url-mapping id="services">
 		<pattern value="/services" />
 		<view-id value="/frontend/services.xhtml" />
 	</url-mapping>
-	
+
 	<!-- page partenaires -->
 	<url-mapping id="partenaires">
 		<pattern value="/partenaires" />
 		<view-id value="/frontend/partenaires.xhtml" />
 	</url-mapping>
-	
+
 	<!-- page noeApp -->
 	<url-mapping id="neoApp">
 		<pattern value="/neoApp" />
@@ -123,7 +123,7 @@
 		<pattern value="/domaines" />
 		<view-id value="/domaine/nouveau.xhtml" />
 	</url-mapping>
-	
+
 	<!-- ********* Gestion des réglements ********** -->
 	<!-- page de règlement -->
 	<url-mapping id="listeReg">
@@ -131,6 +131,11 @@
 		<view-id value="/tresorerie/ficheReglement.xhtml" />
 	</url-mapping>
 
+	<url-mapping id="ficheabonne">
+		<pattern value="/abonnes/#{paiementBean.idAbonne}" />
+		<view-id value="/abonne/ficheAbonne.xhtml" />
+		<action>#{paiementBean.load()}</action>
+	</url-mapping>
 
 	<!-- ********* Gestion des cartes de recharges ********** -->
 	<!-- page gestion de carte -->
@@ -143,13 +148,13 @@
 		<pattern value="/modification" />
 		<view-id value="/recharge/editRecharge.xhtml" />
 	</url-mapping>
-	
-	<!-- Definition des tarifs-->
+
+	<!-- Definition des tarifs -->
 	<url-mapping id="tarifs">
 		<pattern value="/tarifs" />
 		<view-id value="/tresorerie/tarifs.xhtml" />
 	</url-mapping>
-	
+
 	<!-- ********* Gestion de la tresorerie *************** -->
 	<!-- page des depenses -->
 	<url-mapping id="depense">

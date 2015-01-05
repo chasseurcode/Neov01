@@ -2,7 +2,6 @@ package com.neo.utility;
 
 public class TrouverChemin {
 	
-
 	public static String cheminImg(){
 	String chemin;
 	ClassLoader classLoader;

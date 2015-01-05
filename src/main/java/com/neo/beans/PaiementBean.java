@@ -15,12 +15,16 @@ import com.neo.domaine.Paiement;
 @ManagedBean
 @RequestScoped
 public class PaiementBean {
+	private String idAbonne;
 	private Paiement paiement;
 	private PaiementDAO paiementDAO;
 	private List<Paiement> paiements;
 	private AbonneeDAO abonneeDAO;
 	private Abonne abonne;
 
+	public void load() {
+		abonne=abonneeDAO.findById(new Long(idAbonne));
+	}
 
 	public PaiementBean() {
 		setPaiementDAO(new PaiementDaoImpl());
@@ -86,6 +90,12 @@ public class PaiementBean {
 		this.abonne = abonne;
 	}
 
+	public String getIdAbonne() {
+		return idAbonne;
+	}
 
+	public void setIdAbonne(String idAbonne) {
+		this.idAbonne = idAbonne;
+	}
 
 }
