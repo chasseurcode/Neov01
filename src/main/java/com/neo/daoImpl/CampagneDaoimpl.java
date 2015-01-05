@@ -98,6 +98,15 @@ public class CampagneDaoimpl implements CampagneDAO{
 		return camps;
 	}
 
+	@Override
+	public Campagne findLastCamp() {
+		Session session=HibernateUtil.getSession();
+		return (Campagne) session.createQuery("from Campagne ORDER BY created DESC")
+				.setMaxResults(1)
+				.uniqueResult();
+
+	}
+
 
 
 

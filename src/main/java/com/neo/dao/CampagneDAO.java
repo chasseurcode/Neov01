@@ -17,5 +17,6 @@ public interface CampagneDAO {
 	public List<Campagne> listerCampTerminees();
 	public void creer(Facture facture);
 	public Facture findLastRecord();
+	public Campagne findLastCamp();
 
 }
