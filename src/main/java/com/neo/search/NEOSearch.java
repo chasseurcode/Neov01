@@ -3,6 +3,7 @@ package com.neo.search;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 
 
 public class NEOSearch {
@@ -10,20 +11,17 @@ public class NEOSearch {
 	private NEOSearch suivant=null;
 	@SuppressWarnings("rawtypes")
 	private Map<String,List> resultat;
-	
+
 	@SuppressWarnings("rawtypes")
 	public NEOSearch() {
 		resultat=new HashMap<String, List>();
 	}
 
 	@SuppressWarnings("rawtypes")
-	protected Map<String, List> requete(String requete) {
-
-		if(suivant!=null)
+	protected void requete(String requete) {
+		if(suivant!=null){
 			suivant.requete(requete);
-
-		this.resultat.put(nomEntite, chercher(requete));
-		return this.resultat;
+		}
 	}
 
 	public void setSuivant(NEOSearch suivant) {
@@ -31,8 +29,7 @@ public class NEOSearch {
 	}
 
 	@SuppressWarnings("rawtypes")
-	protected List chercher(String requete) {
-		return null;
+	protected void chercher(String requete) {
 	}
 
 	public String getNomEntite() {
@@ -51,6 +48,10 @@ public class NEOSearch {
 	@SuppressWarnings("rawtypes")
 	public void setResultat(Map<String,List> resultat) {
 		this.resultat = resultat;
+	}
+
+	public NEOSearch getSuivant() {
+		return suivant;
 	}
 
 }

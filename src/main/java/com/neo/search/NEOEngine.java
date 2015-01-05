@@ -15,7 +15,10 @@ public class NEOEngine {
 		clientSearch.setSuivant(campSearch);
 		campSearch.setSuivant(pubSearch);
 		pubSearch.setSuivant(abonneSearch);
-		return clientSearch.requete(requete);
+		
+		clientSearch.requete(requete);
+		//retourner le resultat au bout de la chaine
+		return pubSearch.getResultat();
 	}
 	
 	public static String[] suggestion(String mot) {
