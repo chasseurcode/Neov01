@@ -20,8 +20,16 @@
 					<div class="user-heading alt green-bg">
 						<a href="#"> <h:graphicImage library="img"
 								name="profile-avatar.jpg" /></a>
-						<h1>Jonathan Smith</h1>
-						<p>jsmith@flatlab.com</p>
+						<h1>#{paiementBean.abonne.prenom} #{paiementBean.abonne.nom}</h1>
+						<p><h:outputLabel value="Date de naissance : "/> &#160;<h:outputText value="#{paiementBean.abonne.dateDeNaissance}">
+									<f:convertDateTime type="date" pattern="dd-MM-yyyy" />
+							</h:outputText></p>
+						<p>EMAIL : #{paiementBean.abonne.email}</p>
+						<p>COMPTE : #{paiementBean.abonne.compte}</p>
+						<p style="position: absolute; right: 490px; top: 150px;">CODE PARRAINAGE : #{paiementBean.abonne.codeParrainege}</p>
+						<p style="position: absolute; right: 510px; top: 180px;">CODE FILLEULE : #{paiementBean.abonne.codeFilleule}</p>
+						
+						
 					</div>
 
 					<ul class="nav nav-pills nav-stacked">
@@ -34,9 +42,7 @@
 			</aside>
 
 			<section class="panel">
-				<header class="panel-heading">
-					<h3>Paiements</h3>
-				</header>
+
 				<div class="panel-body">
 					<div class="adv-table editable-table ">
 

@@ -9,5 +9,6 @@ public interface PaiementDAO {
 	public void modifier(Paiement paiement);
 	public Paiement  findById(long id);
 	public List<Paiement> lister();
+	public List<Paiement> lister(Long id);
 
 }

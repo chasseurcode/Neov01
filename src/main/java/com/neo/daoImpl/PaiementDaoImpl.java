@@ -1,5 +1,6 @@
 package com.neo.daoImpl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.hibernate.Session;
@@ -37,6 +38,16 @@ public class PaiementDaoImpl implements PaiementDAO{
 	public List<Paiement> lister() {
 		Session session=HibernateUtil.getSession();
 		return session.createQuery("from Paiement").list();
+	}
+
+	@Override
+	public List<Paiement> lister(Long id) {
+		List<Paiement> paids=new ArrayList<Paiement>();
+		for(Paiement pa: lister()){
+			if(pa.getAbonne().getId()!=null && pa.getAbonne().getId()==id)
+				paids.add(pa);
+		}
+		return paids;
 	}
 
 }

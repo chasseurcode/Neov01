@@ -18,36 +18,32 @@ public class PaiementBean {
 	private String idAbonne;
 	private Paiement paiement;
 	private PaiementDAO paiementDAO;
-	private List<Paiement> paiements;
+	private List<Paiement> paiements,AllPaiements;
 	private AbonneeDAO abonneeDAO;
 	private Abonne abonne;
 
 	public void load() {
 		abonne=abonneeDAO.findById(new Long(idAbonne));
+		setPaiements(paiementDAO.lister(abonne.getId()));
 	}
 
 	public PaiementBean() {
 		setPaiementDAO(new PaiementDaoImpl());
 		setAbonneeDAO(new AbonneDAOImpl());
 		paiement=new Paiement();
-		//refreshList();
+		setAllPaiements(paiementDAO.lister());
 	}
 
 
 	public void addPaiement(){
-	  abonne=abonneeDAO.findById(new Long(6));
 		paiement.setAbonne(abonne);
 		paiementDAO.creer(paiement);
-	//	refreshList();
+		setPaiements(paiementDAO.lister(abonne.getId()));
+		setAllPaiements(paiementDAO.lister());
 	}
 
-//	private void refreshList(){    
-//		for(Paiement pa: paiementDAO.lister()){
-//			if(pa.getAbonne().getId()==6)
-//				paiements.add(pa);
-//		}
-//		
-//	}
+	
+	
 
 
 
@@ -97,5 +93,14 @@ public class PaiementBean {
 	public void setIdAbonne(String idAbonne) {
 		this.idAbonne = idAbonne;
 	}
+
+	public List<Paiement> getAllPaiements() {
+		return AllPaiements;
+	}
+
+	public void setAllPaiements(List<Paiement> allPaiements) {
+		AllPaiements = allPaiements;
+	}
+	
 
 }

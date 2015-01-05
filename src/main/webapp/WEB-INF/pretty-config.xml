@@ -131,11 +131,6 @@
 		<view-id value="/tresorerie/ficheReglement.xhtml" />
 	</url-mapping>
 
-	<url-mapping id="ficheabonne">
-		<pattern value="/abonnes/#{paiementBean.idAbonne}" />
-		<view-id value="/abonne/ficheAbonne.xhtml" />
-		<action>#{paiementBean.load()}</action>
-	</url-mapping>
 
 	<!-- ********* Gestion des cartes de recharges ********** -->
 	<!-- page gestion de carte -->
@@ -166,6 +161,13 @@
 	<url-mapping id="paiement">
 		<pattern value="/paiements" />
 		<view-id value="/tresorerie/paiement.xhtml" />
+	</url-mapping>
+	
+	
+	<url-mapping id="ficheabonne">
+		<pattern value="/abonnes/#{paiementBean.idAbonne}" />
+		<view-id value="/abonne/ficheAbonne.xhtml" />
+		<action>#{paiementBean.load()}</action>
 	</url-mapping>
 
 
