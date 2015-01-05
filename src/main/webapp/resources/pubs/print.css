@@ -1,0 +1,4 @@
+@media print {  
+    #btnprint,#header,#footer,#aside {  
+        display: none;  
+    } 

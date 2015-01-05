@@ -19,6 +19,7 @@ import com.neo.dao.ClientDAO;
 import com.neo.dao.PubliciteDAO;
 import com.neo.dao.TarifDAO;
 import com.neo.daoImpl.CampagneDaoimpl;
+import com.neo.daoImpl.ClientDaoImpl;
 import com.neo.daoImpl.PubliciteDaoImpl;
 import com.neo.daoImpl.TarifDaoImpl;
 import com.neo.domaine.Banniere;
@@ -132,10 +133,14 @@ public class CampagneBean {
 				banniere.addDomaine(d);
 				d=new Domaine();
 			}
+			if(campagne.getId()==null)
+			campagne=campagneDAO.findLastCamp();
 			campagne.addPublicite(banniere);
 			campagneDAO.modifier(campagne);
 			banniere=new Banniere();
 			domainesSelected.clear();
+			setParAppel(false);
+			setParNotification(false);
 			outputStream.close();  
 			inputStream.close();
 
@@ -254,7 +259,9 @@ public class CampagneBean {
 
 	//ajout de la campagne
 	public void addCampagne(){
-		Client cli=clientDAO.findLastRecord();
+		setClientDAO(new ClientDaoImpl());
+		Client cli= clientDAO.findLastRecord();
+		System.out.println(cli.getId());
 		campagne.setClient(cli);
 		campagneDAO.creer(campagne);
 		setShowPubMenu(true);
