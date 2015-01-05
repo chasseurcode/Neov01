@@ -1,12 +1,14 @@
 package com.neo.domaine;
 
 import javax.persistence.Entity;
+import javax.xml.bind.annotation.XmlRootElement;
 
 import org.hibernate.search.annotations.Field;
 import org.hibernate.search.annotations.Indexed;
 
 @Entity
 @Indexed
+@XmlRootElement
 public class Textuelle extends Publicite{
 
 	/**

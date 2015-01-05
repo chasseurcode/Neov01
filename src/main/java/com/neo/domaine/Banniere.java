@@ -3,11 +3,13 @@ package com.neo.domaine;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
+import javax.xml.bind.annotation.XmlRootElement;
 
 import org.hibernate.search.annotations.Indexed;
 
 @Entity
 @Indexed
+@XmlRootElement
 public class Banniere extends Publicite{
 
 	/**
