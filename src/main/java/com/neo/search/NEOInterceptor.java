@@ -40,6 +40,7 @@ public class NEOInterceptor extends EmptyInterceptor {
 	
 	
 
+	@SuppressWarnings("unused")
 	private void verifyAndIndex(Object entity) {
 		setEntite(entity);
 		Reflections reflection=new Reflections("com.neo.domaine");
