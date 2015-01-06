@@ -38,7 +38,7 @@
 						<ui:repeat var="client" value="#{rechercheBean.clients}">
                      	<div class="classic-search">
                           <h3>
-                          <pretty:link mappingId="ficheabonne">
+                          <pretty:link mappingId="ficheclient">
 									<f:param value="#{client.id}" />
 									#{client.nom}
 								</pretty:link>
@@ -47,7 +47,7 @@
                          	<address>
 							<h:link value="#{client.email}" outcome="#{client.email}"/>
 								<i>Adresse:</i> #{client.adresse}<br />
-								Tel : #{client.telehone}
+								Tel : #{client.telephone}
 							 </address>
                           <p>#{client.raisonSociale} </p>
                       	</div>  
@@ -92,7 +92,7 @@
 								</pretty:link>
 	                          </h3>
 	                         <i>E-mail : </i>#{abonne.email} <br />
-	                         <i>Telephone :</i>#{abonne.telehone}
+	                         <i>Telephone :</i>#{abonne.telephone}
 	                      	</div>  
 	                      	<hr />
                       	</ui:repeat>   

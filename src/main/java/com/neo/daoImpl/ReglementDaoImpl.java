@@ -43,10 +43,12 @@ public class ReglementDaoImpl implements ReglementDAO{
 	@Override
 	public List<Reglement> lister(Long id) {
 		List<Reglement> regs=new ArrayList<Reglement>();
-		for(Reglement reg: lister()){
-			if(reg.getClient().getId()!=null && reg.getClient().getId()==id)
-				regs.add(reg);
-		}
+		try {
+			for(Reglement reg: lister()){
+				if(reg.getClient().getId()!=null && reg.getClient().getId()==id)
+					regs.add(reg);
+			}
+		} catch (Exception e) {}
 		return regs;
 	}
 

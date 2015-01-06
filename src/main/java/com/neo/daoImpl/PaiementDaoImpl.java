@@ -43,10 +43,12 @@ public class PaiementDaoImpl implements PaiementDAO{
 	@Override
 	public List<Paiement> lister(Long id) {
 		List<Paiement> paids=new ArrayList<Paiement>();
-		for(Paiement pa: lister()){
-			if(pa.getAbonne().getId()!=null && pa.getAbonne().getId()==id)
-				paids.add(pa);
-		}
+		try {
+			for(Paiement pa: lister()){
+				if(pa.getAbonne().getId()!=null && pa.getAbonne().getId()==id)
+					paids.add(pa);
+			}
+		} catch (Exception e) {}
 		return paids;
 	}
 
