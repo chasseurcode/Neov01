@@ -12,9 +12,15 @@ import org.apache.shiro.crypto.RandomNumberGenerator;
 import org.apache.shiro.crypto.SecureRandomNumberGenerator;
 import org.apache.shiro.crypto.hash.Sha256Hash;
 
+import com.neo.dao.CampagneDAO;
 import com.neo.dao.ClientDAO;
+import com.neo.dao.ReglementDAO;
+import com.neo.daoImpl.CampagneDaoimpl;
 import com.neo.daoImpl.ClientDaoImpl;
+import com.neo.daoImpl.ReglementDaoImpl;
+import com.neo.domaine.Campagne;
 import com.neo.domaine.Client;
+import com.neo.domaine.Reglement;
 import com.neo.domaine.Role;
 import com.neo.utility.Generateur;
 import com.neo.utility.Generateur.Mode;
@@ -23,14 +29,21 @@ import com.neo.utility.Generateur.Mode;
 @SessionScoped
 public class ClientBean {
 	private Client client;
+	private String idClient;
 	private List<Client> listClient;
+	private List<Reglement> reglements;
+	private List<Campagne> campagnes;
 	private String compte,motDePasse;
 	private ClientDAO clientDAO;
+	private CampagneDAO campDAO;
+	private ReglementDAO regDAO;
 	
 	@PostConstruct
 	public void init() {
 		client=new Client();
 		clientDAO=new ClientDaoImpl();
+		campDAO=new CampagneDaoimpl();
+		regDAO=new ReglementDaoImpl();
 		setListClient(clientDAO.lister());
 	}
 	
@@ -38,6 +51,13 @@ public class ClientBean {
 
 	}
 
+	public void load() {
+		client=clientDAO.findById(new Long(idClient));
+		setCampagnes(campDAO.lister(client.getId()));
+		setReglements(regDAO.lister(client.getId()));
+	}
+
+	
 	public String saveClient() {
 		//génération du compte client
 		generateAccount();
@@ -47,6 +67,7 @@ public class ClientBean {
 			client.addRole(new Role("Client"));
 			clientDAO.creer(client);
 			client=new Client();
+			setListClient(clientDAO.lister());
 			return "pretty:listeclient";
 		} catch (AddressException e) {
 			System.out.println("Problem de mail");
@@ -106,6 +127,30 @@ public class ClientBean {
 
 	public void setListClient(List<Client> listClient) {
 		this.listClient = listClient;
+	}
+
+	public String getIdClient() {
+		return idClient;
+	}
+
+	public void setIdClient(String idClient) {
+		this.idClient = idClient;
+	}
+
+	public List<Reglement> getReglements() {
+		return reglements;
+	}
+
+	public void setReglements(List<Reglement> reglements) {
+		this.reglements = reglements;
+	}
+
+	public List<Campagne> getCampagnes() {
+		return campagnes;
+	}
+
+	public void setCampagnes(List<Campagne> campagnes) {
+		this.campagnes = campagnes;
 	}
 
 

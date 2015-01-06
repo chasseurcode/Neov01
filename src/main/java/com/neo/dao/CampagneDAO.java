@@ -12,6 +12,7 @@ public interface CampagneDAO {
 	public void supprimer(Campagne campagne);
 	public Campagne findById(long id);
 	public List<Campagne> lister();
+	public List<Campagne> lister(Long id);
 	public List<Campagne> listerCampAttente();
 	public List<Campagne> listerCampEncours();
 	public List<Campagne> listerCampTerminees();

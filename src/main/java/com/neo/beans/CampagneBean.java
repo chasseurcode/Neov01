@@ -46,6 +46,8 @@ public class CampagneBean {
 	private PubliciteDAO pubDAO;
 	private TarifDAO tarifDAO;
 	private ClientDAO clientDAO;
+	public List<Client> clients;
+	private String idClient;
 	private Campagne campagne;
 	private String campListe;
 	private Reglement reglement;
@@ -66,9 +68,11 @@ public class CampagneBean {
 		domaine=new Domaine();
 		reglement=new Reglement();
 		setCampagneDAO(new CampagneDaoimpl());
+		setClientDAO(new ClientDaoImpl());
 		setPubDAO(new PubliciteDaoImpl());
 		setTarifDAO(new TarifDaoImpl());
 		setDomaines(pubDAO.listerDomaine());
+		setClients(clientDAO.lister());
 
 	}
 
@@ -259,9 +263,7 @@ public class CampagneBean {
 
 	//ajout de la campagne
 	public void addCampagne(){
-		setClientDAO(new ClientDaoImpl());
-		Client cli= clientDAO.findLastRecord();
-		System.out.println(cli.getId());
+		Client cli= clientDAO.findById(new Long(idClient));
 		campagne.setClient(cli);
 		campagneDAO.creer(campagne);
 		setShowPubMenu(true);
@@ -303,7 +305,7 @@ public class CampagneBean {
 		return "pretty:detailcamp";
 	}
 
-
+	
 	//chargement des pubs pour les detail
 	public String chargementPubTexte(Textuelle texte){
 		setTextuelle(texte);
@@ -376,7 +378,7 @@ public class CampagneBean {
 		setCurrent(domaine);
 	}
 
-
+    //RAZ de tous les objet
 	public void annuler(){
 		campagne=new Campagne();
 		textuelle=new Textuelle();
@@ -386,8 +388,10 @@ public class CampagneBean {
 		pubDAO=new PubliciteDaoImpl();
 		tarifDAO=new TarifDaoImpl();
 		reglement=new Reglement();
+		idClient="";
 	}
 
+	
 	//passage de la campagne a la facturation
 	public String campToFacturation(Campagne camp){
 		try {
@@ -650,6 +654,34 @@ public class CampagneBean {
 
 	public void setParNotification(boolean parNotification) {
 		this.parNotification = parNotification;
+	}
+
+
+
+
+	public List<Client> getClients() {
+		return clients;
+	}
+
+
+
+
+	public void setClients(List<Client> clients) {
+		this.clients = clients;
+	}
+
+
+
+
+	public String getIdClient() {
+		return idClient;
+	}
+
+
+
+
+	public void setIdClient(String idClient) {
+		this.idClient = idClient;
 	}
 
 

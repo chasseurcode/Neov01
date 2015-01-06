@@ -76,11 +76,23 @@
 		<pattern value="/liste" />
 		<view-id value="/client/liste.xhtml" />
 	</url-mapping>
+	
+	<url-mapping id="ficheclient">
+		<pattern value="/client/#{clientBean.idClient}" />
+		<view-id value="/client/ficheClient.xhtml" />
+		<action>#{clientBean.load()}</action>
+	</url-mapping>
 
 	<!-- ********* Gestion de campagne ********** -->
 	<!-- page nouvelle campagne -->
 	<url-mapping id="newcampagne">
 		<pattern value="/nouvelleCampagne" />
+		<view-id value="/campagne/nouveauCamp.xhtml" />
+	</url-mapping>
+	
+	<!-- page nouvelle campagne depuis fiche client -->
+	<url-mapping id="newcampagne2">
+		<pattern value="/nouvelleCampagne/#{campagneBean.idClient}" />
 		<view-id value="/campagne/nouveauCamp.xhtml" />
 	</url-mapping>
 

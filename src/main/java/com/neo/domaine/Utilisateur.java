@@ -27,7 +27,7 @@ public class Utilisateur extends Model implements Serializable{
 	@Field(analyze=Analyze.NO)
 	private String email;
 	@Field
-	private String telehone;
+	private String telephone;
 	private String saltMotDePasse;
 	private boolean actif=true;
 	@ManyToMany(cascade=CascadeType.ALL,fetch=FetchType.EAGER)
@@ -69,11 +69,13 @@ public class Utilisateur extends Model implements Serializable{
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	public String getTelehone() {
-		return telehone;
+
+	public String getTelephone() {
+		return telephone;
 	}
-	public void setTelehone(String telehone) {
-		this.telehone = telehone;
+
+	public void setTelephone(String telephone) {
+		this.telephone = telephone;
 	}
 
 	public boolean isActif() {
@@ -118,7 +120,7 @@ public class Utilisateur extends Model implements Serializable{
 	
 	@Override
 	public String toString() {
-		return "["+getCompte()+"] - ["+getEmail()+"] - ["+getTelehone()+"] - ["+getTelehone()+"]";
+		return "["+getCompte()+"] - ["+getEmail()+"] - ["+getTelephone()+"] - ["+getTelephone()+"]";
 	}
 	
 	public List<Message> getLastMessages() {

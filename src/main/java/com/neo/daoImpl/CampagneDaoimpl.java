@@ -107,6 +107,16 @@ public class CampagneDaoimpl implements CampagneDAO{
 
 	}
 
+	@Override
+	public List<Campagne> lister(Long id) {
+		List<Campagne> camps=new ArrayList<Campagne>();
+		for(Campagne ca: lister()){
+			if(ca.getClient().getId()!=null && ca.getClient().getId()==id)
+				camps.add(ca);
+		}
+		return camps;
+	}
+
 
 
 

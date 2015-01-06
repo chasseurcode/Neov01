@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:pretty="http://ocpsoft.com/prettyfaces">
+<h:head>
+
+</h:head>
+
+<h:body>
+	<ui:composition template="/template/backend.xhtml">
+		<ui:define name="titre">Nouvelle campagne</ui:define>
+
+		<ui:define name="contenu">
+			<!-- page start-->
+
+			<aside class="profile-nav alt green-border">
+				<section class="panel">
+					<div class="user-heading alt green-bg">
+						<a href="#"> <h:graphicImage library="img"
+								name="profile-avatar.jpg" /></a>
+						<h1>#{clientBean.client.nom}</h1>
+						<p>
+							<h:outputLabel value="Raison Sociale: " />
+							&#160;
+							<h:outputText value="#{clientBean.client.raisonSociale}" />
+						</p>
+						<p>TÉLÉPHONE : #{clientBean.client.telehone}</p>
+						<p>ADRESSE : #{clientBean.client.adresse}</p>
+						<p style="position: absolute; right: 380px; top: 150px;">EMAIL
+							: #{clientBean.client.email}</p>
+						<p style="position: absolute; right: 404px; top: 180px;">COMPTE
+							: #{clientBean.client.compte}</p>
+
+
+					</div>
+            
+					<ul class="nav nav-pills nav-stacked">
+					<h:form>
+						<li> <pretty:link mappingId="newcampagne2">
+									<f:param value="#{clientBean.client.id}" />
+									<h:outputText value="Nouvelle campagne" styleClass="label label-primary pull-right r-activity"/>
+								</pretty:link>
+						</li>
+					</h:form>	
+					</ul>
+
+				</section>
+			</aside>
+			<hr />
+			<header class="panel-heading tab-bg-dark-navy-blue ">
+				<ul class="nav nav-tabs">
+					<li class=" "><a data-toggle="tab" href="#Lcamps">Liste des campagnes</a></li>
+					<li class=""><a data-toggle="tab" href="#Lregs">Liste des règlements</a></li>
+					
+				</ul>
+			</header>
+                        <div class="panel-body">
+ 	                              <div class="tab-content">
+ 	                              
+	                                  <div id="Lcamps" class="tab-pane">
+	                                  <table class="table">
+				                              <thead>
+				                              <tr>
+				                                  <th>Intitulé</th>
+				                                  <th>Date de début</th>
+				                                  <th>Date de fin</th>
+				                                  <th></th>
+				                              </tr>
+				                              </thead>
+				                              <tbody>
+				                              <ui:repeat var="camp" value="#{clientBean.campagnes}">
+					                              <tr>
+					                                  <td>#{camp.intitule}</td>
+					                                  <td>
+					                                  <h:outputText value="#{camp.dateDebut}">
+                                                      <f:convertDateTime type="date" pattern="dd-MM-yyyy"/>
+                                                      </h:outputText>
+                                                      </td>
+                                                      <td>
+					                                  <h:outputText value="#{camp.dateFin}">
+                                                      <f:convertDateTime type="date" pattern="dd-MM-yyyy"/>
+                                                      </h:outputText>
+                                                      </td>
+					                                  
+					                              </tr>
+				                              </ui:repeat>
+				                              </tbody>
+				                          </table>
+                                  </div>
+                                  
+                                   <div id="Lregs" class="tab-pane">
+                                  <table class="table">
+				                              <thead>
+				                              <tr>
+				                                  <th>Date</th>
+				                                  <th>Mode</th>
+				                                  <th>Montant</th>
+				                              </tr>
+				                              </thead>
+				                              <tbody>
+				                              <ui:repeat var="reg" value="#{clientBean.reglements}">
+					                              <tr>
+					                                  <td>
+					                                  <h:outputText value="#{reg.dateReglement}">
+                                                      <f:convertDateTime type="date" pattern="dd-MM-yyyy"/>
+                                                      </h:outputText>
+                                                      </td>
+					                                  <td>#{reg.type}</td>					                             
+					                                  <td><h:outputText value="#{reg.montant}" >
+										                  	<f:convertNumber pattern="#0.00" />
+											               </h:outputText>
+											         </td>
+					                              </tr>
+				                              </ui:repeat>
+				                              </tbody>
+				                          </table>
+                                  </div>
+                                 
+                              </div>
+                          </div>
+
+
+			<!-- page end-->
+		</ui:define>
+	</ui:composition>
+
+</h:body>
+</html>

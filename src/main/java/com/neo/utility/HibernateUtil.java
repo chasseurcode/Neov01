@@ -17,6 +17,7 @@ import com.neo.domaine.Paiement;
 import com.neo.domaine.Permission;
 import com.neo.domaine.Reglement;
 import com.neo.domaine.Role;
+import com.neo.domaine.Seuil;
 import com.neo.domaine.TarifAppel;
 import com.neo.domaine.TarifNotification;
 import com.neo.domaine.TarifTextuelle;
@@ -53,6 +54,7 @@ public class HibernateUtil {
 			conf.addAnnotatedClass(Textuelle.class);
 			conf.addAnnotatedClass(Domaine.class);
 			conf.addAnnotatedClass(Facture.class);
+			conf.addAnnotatedClass(Seuil.class);
 
 
 			conf.configure();
