@@ -29,7 +29,6 @@ public class CampagneSearch extends NEOSearch {
 			        .createQuery();
 		org.hibernate.Query fullTextQuery = fullTextSession.createFullTextQuery(luceneQuery);
 		List resultat = fullTextQuery.list();
-		
 		return resultat;
 	}
 	

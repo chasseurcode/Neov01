@@ -17,15 +17,18 @@ public class AbonneSearch extends NEOSearch {
 	@SuppressWarnings("rawtypes")
 	@Override
 	protected List chercher(String requete) {
+		System.out.println("rech abn");
 		FullTextSession fullTextSession = Search.getFullTextSession(HibernateUtil.getSession()); 
 		QueryBuilder builder = fullTextSession.getSearchFactory()
 			    .buildQueryBuilder().forEntity(Abonne.class).get();
+		
 		org.apache.lucene.search.Query luceneQuery =
 			    builder.keyword()
-			        .onFields("prenom","dateDeNaissance","codeParrainege","codeFilleule")
+			        .onFields("nom","dateDeNaissance","codeParrainege","codeFilleule")
 			        .ignoreFieldBridge()
 			        .matching(requete)
 			        .createQuery();
+		
 		org.hibernate.Query fullTextQuery = fullTextSession.createFullTextQuery(luceneQuery);
 		List resultat = fullTextQuery.list();
 		return resultat;

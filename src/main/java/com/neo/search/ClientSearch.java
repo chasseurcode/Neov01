@@ -30,6 +30,7 @@ public class ClientSearch extends NEOSearch {
 		org.hibernate.Query fullTextQuery = fullTextSession.createFullTextQuery(luceneQuery);
 		List resultat = fullTextQuery.list();
 		return resultat;
+		
 	}
 
 }

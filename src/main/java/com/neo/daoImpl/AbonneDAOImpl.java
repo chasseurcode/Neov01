@@ -45,4 +45,11 @@ public class AbonneDAOImpl implements AbonneeDAO{
 		return session.createQuery("from Abonne a").list();
 	}
 
+	@Override
+	public Abonne findByCompte(String compte) {
+		Session session=HibernateUtil.getSession();
+		return (Abonne) session.createQuery("FROM Abonne where compte= :nom")
+				.setString("nom", compte).uniqueResult();
+	}
+
 }

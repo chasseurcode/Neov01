@@ -4,6 +4,7 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:c="http://java.sun.com/jsp/jstl/core"
 	xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:pretty="http://ocpsoft.com/prettyfaces"
 	xmlns:h="http://java.sun.com/jsf/html">
 <h:head>
 
@@ -36,9 +37,13 @@
 						</c:if>
 						<ui:repeat var="client" value="#{rechercheBean.clients}">
                      	<div class="classic-search">
-                          <h4>
-                          	#{client.nom}
-                          </h4>
+                          <h3>
+                          <pretty:link mappingId="ficheabonne">
+									<f:param value="#{client.id}" />
+									#{client.nom}
+								</pretty:link>
+                          	
+                          </h3>
                          	<address>
 							<h:link value="#{client.email}" outcome="#{client.email}"/>
 								<i>Adresse:</i> #{client.adresse}<br />
@@ -54,9 +59,9 @@
 						</c:if>
 						<ui:repeat var="camp" value="#{rechercheBean.campagnes}">
                      	<div class="classic-search">
-                          <h4>
+                          <h3>
                           	#{camp.intitule}
-                          </h4>
+                          </h3>
                          
                       	</div>  
                       	<hr />
@@ -67,9 +72,9 @@
 						</c:if>
 						<ui:repeat var="pub" value="#{rechercheBean.publicites}">
                      	<div class="classic-search">
-                          <h4>
+                          <h3>
                           	#{pub.intitule}
-                          </h4>
+                          </h3>
                          
                       	</div>  
                       	<hr />
@@ -79,14 +84,17 @@
 						<span class="label label-primary">Correspondance abonnés</span>
 						</c:if>
 						<ui:repeat var="abonne" value="#{rechercheBean.abonnes}">
-                     	<div class="classic-search">
-                          <h4>
-                          	#{abonne.compte} - #{abonne.prenom}
-                          </h4>
-                         <i>E-mail : </i>#{abonne.email} <br />
-                         <i>Telephone :</i>#{abonne.telehone}
-                      	</div>  
-                      	<hr />
+	                     	<div class="classic-search">
+	                          <h3>
+	                          	<pretty:link mappingId="ficheabonne">
+									<f:param value="#{abonne.id}" />
+									#{abonne.nom} 
+								</pretty:link>
+	                          </h3>
+	                         <i>E-mail : </i>#{abonne.email} <br />
+	                         <i>Telephone :</i>#{abonne.telehone}
+	                      	</div>  
+	                      	<hr />
                       	</ui:repeat>   
                   </div>
               </section>

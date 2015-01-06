@@ -13,7 +13,6 @@ public class PubSearch extends NEOSearch{
 
 	public PubSearch() {
 		setNomEntite(Publicite.class.getName());
-		System.out.println(getResultat().size());
 	}
 	
 	@SuppressWarnings("rawtypes")

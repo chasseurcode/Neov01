@@ -1,5 +1,6 @@
 package com.neo.search;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -15,7 +16,7 @@ public class NEOEngine {
 		clientSearch.setSuivant(campSearch);
 		campSearch.setSuivant(pubSearch);
 		pubSearch.setSuivant(abonneSearch);
-		return clientSearch.requete(requete);
+		return clientSearch.requete(requete, new HashMap<String, List>());
 	}
 	
 	public static String[] suggestion(String mot) {

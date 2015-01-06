@@ -27,14 +27,14 @@ public class NEOInterceptor extends EmptyInterceptor {
 			Object[] currentState, Object[] previousState,
 			String[] propertyNames, Type[] types) {
 		((Model) entity).setUpdated(new Date());
-		verifyAndIndex(entity);
+		//verifyAndIndex(entity);
 		return super.onFlushDirty(entity, id, currentState, previousState,propertyNames, types);
 	}
 
 	@Override
 	public boolean onSave(Object entity, Serializable id, Object[] state,
 			String[] propertyNames, Type[] types) {
-		verifyAndIndex(entity);
+		//verifyAndIndex(entity);
 		return super.onSave(entity, id, state, propertyNames, types);
 	}	
 	

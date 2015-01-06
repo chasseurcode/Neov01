@@ -5,7 +5,10 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.print.attribute.standard.Media;
+import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -14,17 +17,48 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.ResponseBuilder;
 import javax.xml.bind.annotation.XmlRootElement;
 
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.subject.Subject;
+
+import com.neo.dao.AbonneeDAO;
 import com.neo.dao.PubliciteDAO;
+import com.neo.dao.VueDao;
+import com.neo.daoImpl.AbonneDAOImpl;
 import com.neo.daoImpl.PubliciteDaoImpl;
+import com.neo.daoImpl.VueDaoImpl;
+import com.neo.domaine.Abonne;
 import com.neo.domaine.Banniere;
+import com.neo.domaine.Publicite;
 import com.neo.domaine.Textuelle;
+import com.neo.domaine.Vue;
 import com.neo.utility.TrouverChemin;
 
 @Path("/")
 public class PubliciteRessource {
 	private PubliciteDAO pubDao=new PubliciteDaoImpl(); 
-
-
+	private VueDao daoVue=new VueDaoImpl();
+	private AbonneeDAO abnDao=new AbonneDAOImpl();
+	
+	@Path("gains")
+	@POST
+	@Produces(MediaType.APPLICATION_JSON)
+	@Consumes(MediaType.APPLICATION_JSON)
+	public Response updateGain(Pub pub){
+		Vue vue=new Vue();
+		Subject sujet=SecurityUtils.getSubject();
+		Publicite publicite=pubDao.findBanniereById(pub.getPubId());
+		Abonne abonne=abnDao.findByCompte(sujet.getPrincipal().toString());
+		if(pub.getVueEffectue()>0){
+			vue.setPublicite(publicite);
+			vue.setAbonne(abonne);
+			vue.setNbreVue(pub.getVueEffectue());
+			vue.setGain((float) (pub.getVueEffectue()*pub.getPrixAuvue()));
+			System.out.println(vue.getGain()+" - "+vue.getNbreVue());
+			daoVue.creer(vue);
+		}
+		
+		return Response.ok().build();
+	}
 	
 	@Path("bannieres")
 	@GET
@@ -93,6 +127,7 @@ public class PubliciteRessource {
 	/**
 	 * Class utilitaires
 	 */
+	@XmlRootElement
 	public static class Pub {
 		private Long pubId;
 		private String intitule;
@@ -154,6 +189,10 @@ public class PubliciteRessource {
 
 		public void setPrixAuvue(double prixAuvue) {
 			this.prixAuvue = prixAuvue;
+		}
+		@Override
+		public String toString() {
+			return pubId+" - "+vueEffectue;
 		}
 	}
 

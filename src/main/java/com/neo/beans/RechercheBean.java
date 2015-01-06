@@ -95,6 +95,7 @@ public class RechercheBean {
 			}
 
 			if(mResultat.getKey().equalsIgnoreCase(Abonne.class.getName())){
+				System.out.println("recup: "+mResultat.getValue().size());
 				setAbonnes(mResultat.getValue());
 				nbrResultat=nbrResultat+mResultat.getValue().size();
 			}
