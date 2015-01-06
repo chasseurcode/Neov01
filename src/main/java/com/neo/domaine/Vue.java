@@ -13,6 +13,7 @@ public class Vue extends Model implements Serializable{
 	private static final long serialVersionUID = 1L;
 	private int nbreVue;
 	private float gain;
+	private boolean regler=false;
 	@ManyToOne
 	private Abonne abonne;
 	@ManyToOne
@@ -57,6 +58,14 @@ public class Vue extends Model implements Serializable{
 
 	public void setPublicite(Publicite publicite) {
 		this.publicite = publicite;
+	}
+
+	public boolean isRegler() {
+		return regler;
+	}
+
+	public void setRegler(boolean regler) {
+		this.regler = regler;
 	}	
 
 }
