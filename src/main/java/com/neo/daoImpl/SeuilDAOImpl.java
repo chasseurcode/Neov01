@@ -44,5 +44,22 @@ public class SeuilDAOImpl implements SeuilDAO{
 		Session session=HibernateUtil.getSession();
 		return session.createQuery("from Seuil").list();
 	}
+	
+	@Override
+	public void updateAll(){
+		Session session=HibernateUtil.getSession();
+		session.beginTransaction();
+		session.createQuery("UPDATE Seuil tn SET tn.enVigueur = :etat ").setBoolean("etat", false)
+		.executeUpdate();
+		session.getTransaction().commit();
+	}
+
+	@Override
+	public Seuil findSeuilEnVigueur() {
+		Session session=HibernateUtil.getSession();
+		return (Seuil) session.createQuery("from Seuil where enVigueur = :etat")
+				.setBoolean("etat", true)
+				.uniqueResult();
+	}
 
 }

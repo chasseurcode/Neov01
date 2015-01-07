@@ -6,7 +6,7 @@ import javax.persistence.Entity;
 public class Cible extends Model{
 	private String ageMin;
 	private String ageMax;
-	private String ville;
+	private String sexe;
 	
 	public Cible() {
 		
@@ -33,12 +33,14 @@ public class Cible extends Model{
 		this.ageMax = ageMax;
 	}
 
-	public String getVille() {
-		return ville;
+	public String getSexe() {
+		return sexe;
 	}
 
-	public void setVille(String ville) {
-		this.ville = ville;
+	public void setSexe(String sexe) {
+		this.sexe = sexe;
 	}
+
+
 	
 }

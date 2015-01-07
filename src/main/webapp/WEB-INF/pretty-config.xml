@@ -38,6 +38,12 @@
 		<pattern value="/facture" />
 		<view-id value="/template/facture.xhtml" />
 	</url-mapping>
+	
+	<!-- page du seuil -->
+	<url-mapping id="seuile">
+		<pattern value="/seuil" />
+		<view-id value="/seuils/nouveauSeuil.xhtml" />
+	</url-mapping>
 
 	<!-- ********* Frontend pages ************ -->
 	<!-- page contact -->

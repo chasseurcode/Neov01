@@ -11,5 +11,8 @@ public interface SeuilDAO {
 	public void supprimer(Seuil seuil);
 	public Seuil findById(Long id);
 	public List<Seuil> lister();
+	public void updateAll();
+	public Seuil findSeuilEnVigueur();
+
 
 }
