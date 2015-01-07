@@ -44,6 +44,12 @@ public class CarteDaoImpl implements CarteDAO{
 		return session.createQuery("from Carte where active= :stat").setBoolean("stat", true).list();
 	}
 
+	@Override
+	public Carte getValideCarte() {
+		Session session=HibernateUtil.getSession();
+		return (Carte) session.createQuery("from Carte where active= :stat").setBoolean("stat", true).uniqueResult();
+	}
+
 	
 
 	

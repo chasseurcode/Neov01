@@ -6,14 +6,20 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 
 import com.neo.dao.AbonneeDAO;
+import com.neo.dao.MessageDAO;
 import com.neo.dao.PaiementDAO;
 import com.neo.dao.SeuilDAO;
+import com.neo.dao.VueDao;
 import com.neo.daoImpl.AbonneDAOImpl;
+import com.neo.daoImpl.MessageDAOImpl;
 import com.neo.daoImpl.PaiementDaoImpl;
 import com.neo.daoImpl.SeuilDAOImpl;
+import com.neo.daoImpl.VueDaoImpl;
 import com.neo.domaine.Abonne;
+import com.neo.domaine.Message;
 import com.neo.domaine.Paiement;
 import com.neo.domaine.Seuil;
+import com.neo.domaine.Vue;
 
 @ManagedBean
 @RequestScoped
@@ -26,6 +32,8 @@ public class PaiementBean {
 	private Abonne abonne;
 	private Seuil seuil;
 	private SeuilDAO seuilDAO;
+	private MessageDAO messageDAO;
+	private VueDao vueDao;
 	private List<Seuil> seuils;
 
 	public void load() {
@@ -37,6 +45,8 @@ public class PaiementBean {
 		setPaiementDAO(new PaiementDaoImpl());
 		setAbonneeDAO(new AbonneDAOImpl());
 		setSeuilDAO(new SeuilDAOImpl());
+		setMessageDAO(new MessageDAOImpl());
+		setVueDao(new VueDaoImpl());
 		paiement=new Paiement();
 		seuil=new Seuil();
 		setAllPaiements(paiementDAO.lister());
@@ -47,8 +57,24 @@ public class PaiementBean {
 	public void addPaiement(){
 		paiement.setAbonne(abonne);
 		paiementDAO.creer(paiement);
-		setPaiements(paiementDAO.lister(abonne.getId()));
-		setAllPaiements(paiementDAO.lister());
+		double total= vueDao.getTotalgain(abonne);
+		seuil=seuilDAO.findSeuilEnVigueur();
+		if(total>=seuil.getSeuil()){
+			double reste= total- paiement.getMontant();
+			vueDao.updateVue();
+			Vue vue=new Vue();
+			vue.setGain(Float.parseFloat(""+reste));
+			vue.setAbonne(abonne);
+			vueDao.creer(vue);
+			Message msg=new Message();
+			msg.setUtilisateur(abonne);
+			msg.setCorps("Votre paiement à été effectué du montant de : "+paiement.getMontant()+". Il vous reste :"+ reste);
+			msg.setObjet("Notification de paiement");
+			messageDAO.creer(msg);
+			setPaiements(paiementDAO.lister(abonne.getId()));
+			setAllPaiements(paiementDAO.lister());
+		}
+
 	}
 
 	public void addSeuil(){
@@ -57,7 +83,7 @@ public class PaiementBean {
 		seuil=new Seuil();
 		setSeuils(seuilDAO.lister());
 	}
-	
+
 
 
 
@@ -139,6 +165,22 @@ public class PaiementBean {
 	public void setSeuils(List<Seuil> seuils) {
 		this.seuils = seuils;
 	}
-	
+
+	public MessageDAO getMessageDAO() {
+		return messageDAO;
+	}
+
+	public void setMessageDAO(MessageDAO messageDAO) {
+		this.messageDAO = messageDAO;
+	}
+
+	public VueDao getVueDao() {
+		return vueDao;
+	}
+
+	public void setVueDao(VueDao vueDao) {
+		this.vueDao = vueDao;
+	}
+
 
 }

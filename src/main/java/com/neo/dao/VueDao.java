@@ -7,4 +7,5 @@ public interface VueDao {
 
 	public void creer(Vue vue);
 	public Double getTotalgain(Abonne abonne);
+	public void updateVue();
 }

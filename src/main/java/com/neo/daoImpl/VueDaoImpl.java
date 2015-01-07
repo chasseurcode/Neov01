@@ -23,6 +23,14 @@ public class VueDaoImpl  implements VueDao{
 		return (Double) session.createQuery("SELECT SUM(v.gain) From Vue as v where v.abonne.id =:ab")
 				.setLong("ab", abonne.getId()).list().get(0);
 	}
+
+	@Override
+	public void updateVue() {
+		Session session=HibernateUtil.getSession();
+		session.beginTransaction();
+		session.createQuery("UPDATE vue tn SET tn.regler = :etat ").setBoolean("etat", true);
+		session.getTransaction().commit();
+	}
 	
 
 }
