@@ -10,6 +10,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+import org.apache.shiro.authz.annotation.RequiresGuest;
 import org.apache.shiro.crypto.RandomNumberGenerator;
 import org.apache.shiro.crypto.SecureRandomNumberGenerator;
 import org.apache.shiro.crypto.hash.Sha256Hash;
@@ -28,11 +29,11 @@ public class AbonneRessource {
 		setDaoAbonne(new AbonneDAOImpl());
 	}
 
-	@Path("/{id}")
+	@Path("/{email}")
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response  getAbonne(@PathParam("id") String numAbonne) {
-		Abonne abonne=daoAbonne.findById(new Long(numAbonne));
+	public Response  getAbonne(@PathParam("email") String mailAbonne) {
+		Abonne abonne=daoAbonne.findByEmail(mailAbonne);
 		if(abonne!=null){
 			return Response.ok().entity(abonne).build();
 		}
@@ -42,6 +43,7 @@ public class AbonneRessource {
 	@PUT
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
+	@RequiresGuest
 	public Response updateAbonne(Abonne abonne){
 		if(abonne!=null){
 			daoAbonne.modifier(abonne);
@@ -58,6 +60,10 @@ public class AbonneRessource {
 	public Response incription(Abonne abonne){
 		try {
 			if(abonne!=null){
+				Abonne existAbonne=daoAbonne.findByEmail(abonne.getEmail());
+				if(existAbonne!=null){
+					return Response.status(406).entity("Vous etes déja membre, vous avez juste besoin d'activer votre compte").build();	
+				}
 				//Generer le compte
 				String compte = "NEONE"+Generateur.generateRandomString(5, Mode.ALPHANUMERIC).toUpperCase();
 				String motDePasse=Generateur.generateRandomString(8, Mode.ALPHANUMERIC);

@@ -23,6 +23,7 @@ import com.neo.domaine.Client;
 import com.neo.domaine.Reglement;
 import com.neo.domaine.Role;
 import com.neo.utility.Generateur;
+import com.neo.utility.SendMail;
 import com.neo.utility.Generateur.Mode;
 
 @ManagedBean

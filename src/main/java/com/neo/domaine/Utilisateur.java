@@ -10,8 +10,6 @@ import javax.persistence.FetchType;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
-import org.hibernate.annotations.Fetch;
-import org.hibernate.annotations.FetchMode;
 import org.hibernate.search.annotations.Analyze;
 import org.hibernate.search.annotations.Field;
 
@@ -31,11 +29,9 @@ public class Utilisateur extends Model implements Serializable{
 	private String saltMotDePasse;
 	private boolean actif=true;
 	@ManyToMany(cascade=CascadeType.ALL,fetch=FetchType.EAGER)
-	@Fetch(value=FetchMode.SUBSELECT)
 	private List<Role> roles=new ArrayList<Role>();
 	
 	@OneToMany(cascade=CascadeType.ALL,fetch=FetchType.EAGER)
-	@Fetch(value=FetchMode.SUBSELECT)
 	private List<Message> messages=new ArrayList<Message>();
 	
 	public Utilisateur() {
