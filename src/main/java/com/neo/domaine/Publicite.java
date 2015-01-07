@@ -36,15 +36,17 @@ public  abstract class Publicite extends Model implements Serializable{
 	private Tarif tarif;
 	@ManyToMany(cascade=CascadeType.ALL)
 	private List<Domaine> domaines=new ArrayList<Domaine>();
-	
+	@ManyToOne(cascade=CascadeType.ALL)
+	private Cible cible;
+
 	public Publicite() {
-		
+
 	}
 
-/**
- * 
- * Getters and Setters
- */
+	/**
+	 * 
+	 * Getters and Setters
+	 */
 
 	public String getIntitule() {
 		return intitule;
@@ -100,11 +102,11 @@ public  abstract class Publicite extends Model implements Serializable{
 	public void setTarif(Tarif tarif) {
 		this.tarif = tarif;
 	}
-	
+
 	public double getTotal() {
 		return nbreVue*tarif.getTarifclient();
 	}
-	
+
 	public void addDomaine(Domaine domaine){
 		domaines.add(domaine);
 	}
@@ -116,6 +118,14 @@ public  abstract class Publicite extends Model implements Serializable{
 	public void setDomaines(List<Domaine> domaines) {
 		this.domaines = domaines;
 	}
-	
-	
+
+	public Cible getCible() {
+		return cible;
+	}
+
+	public void setCible(Cible cible) {
+		this.cible = cible;
+	}
+
+
 }

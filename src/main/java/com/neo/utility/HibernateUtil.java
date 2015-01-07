@@ -8,6 +8,7 @@ import com.neo.domaine.Abonne;
 import com.neo.domaine.Banniere;
 import com.neo.domaine.Campagne;
 import com.neo.domaine.Carte;
+import com.neo.domaine.Cible;
 import com.neo.domaine.Client;
 import com.neo.domaine.Depense;
 import com.neo.domaine.Domaine;
@@ -55,6 +56,7 @@ public class HibernateUtil {
 			conf.addAnnotatedClass(Domaine.class);
 			conf.addAnnotatedClass(Facture.class);
 			conf.addAnnotatedClass(Seuil.class);
+			conf.addAnnotatedClass(Cible.class);
 
 
 			conf.configure();

@@ -76,13 +76,42 @@
 							<div class="form-group">
 								<label class="col-lg-2 col-sm-2 control-label">Domaine</label>
 								<div class="col-lg-6">
-									<h:selectManyCheckbox value="#{campagneBean.domainesSelected}">
+									<h:selectManyCheckbox value="#{campagneBean.domainesSelected}" layout="pageDirection">
 										<f:selectItems value="#{campagneBean.domaines}" var="dom"
 											itemValue="#{dom.id}" itemLabel="#{dom.libelle}" />
 									</h:selectManyCheckbox>
 								</div>
 							</div>
-							
+							<div class="form-group" style="position: absolute; left: 410px;">
+										<label class="col-lg-2 col-sm-2 control-label">Cibles:</label>
+										<div class="col-lg-6">
+										<label for="exampleInputFile">Age min</label>
+											<h:inputText styleClass="form-control" id="agemin" p:placeholder="0"
+											label="Age min" value="#{campagneBean.cible.ageMin}"
+											required="true" />
+											<p class="help-block">
+											<h:message for="agemin" style="color:red" />
+										</p>
+										<label for="exampleInputFile">Age max</label>
+										<h:inputText styleClass="form-control" id="agemax" p:placeholder="0"
+											label="Age max" value="#{campagneBean.cible.ageMax}"
+											required="true" />
+											<p class="help-block">
+											<h:message for="agemax" style="color:red" />
+										</p>
+								          	<label for="exampleInputFile">Sexe</label>
+										<h:selectOneMenu layout="pageDirection" id="sexe" required="true" 
+												value="#{campagneBean.cible.sexe}" label="Le sexe" styleClass="form-control">
+												<f:selectItem itemValue="Unisexe" itemLabel="Unisexe" />
+												<f:selectItem itemValue="Masculin" itemLabel="Masculin" />
+												<f:selectItem itemValue="Féminin" itemLabel="Féminin" />
+									     </h:selectOneMenu>
+											<p class="help-block">
+											<h:message for="sexe" style="color:red" />
+										</p>
+										</div>
+									</div>
+							<div style="margin-top: 150px;">
 							<h:link styleClass="btn btn-warning pull-right"
 								style="margin-top: 130px" value="Quitter"
 								outcome="pretty:detailcamp" />&#160;
@@ -90,7 +119,7 @@
 								style="margin-top: 130px" value="Enregistrer"
 								actionListener="#{campagneBean.editPubTextuelle}" />
 								
-								
+							</div>	
 						</h:form>
 
 

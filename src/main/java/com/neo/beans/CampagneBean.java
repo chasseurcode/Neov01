@@ -24,6 +24,7 @@ import com.neo.daoImpl.PubliciteDaoImpl;
 import com.neo.daoImpl.TarifDaoImpl;
 import com.neo.domaine.Banniere;
 import com.neo.domaine.Campagne;
+import com.neo.domaine.Cible;
 import com.neo.domaine.Client;
 import com.neo.domaine.Domaine;
 import com.neo.domaine.Facture;
@@ -58,6 +59,7 @@ public class CampagneBean {
 	private Domaine domaine,current;
 	private Textuelle textuelle;
 	private Banniere banniere;
+	private Cible cible;
 
 
 
@@ -66,6 +68,7 @@ public class CampagneBean {
 		textuelle=new Textuelle();
 		banniere=new Banniere();
 		domaine=new Domaine();
+		cible=new Cible();
 		reglement=new Reglement();
 		setCampagneDAO(new CampagneDaoimpl());
 		setClientDAO(new ClientDaoImpl());
@@ -99,10 +102,12 @@ public class CampagneBean {
 			d=new Domaine();
 		}
 		textuelle.setTarif(tarifDAO.tarifTextuelleEnvigueur());
+     	textuelle.setCible(cible);
 		campagne.addPublicite(textuelle);
 		campagneDAO.modifier(campagne);
 		textuelle=new Textuelle();
 		domainesSelected.clear();
+		cible=new Cible();
 
 	}
 
@@ -127,6 +132,7 @@ public class CampagneBean {
 				}                         
 			}  
 			banniere.setImage(nomFichier);
+			banniere.setCible(cible);
 			if(isParAppel())
 				banniere.setTarif(tarifDAO.tarifAppelEnvigueur());
 			if(isParNotification())
@@ -142,6 +148,7 @@ public class CampagneBean {
 			campagne.addPublicite(banniere);
 			campagneDAO.modifier(campagne);
 			banniere=new Banniere();
+			cible=new Cible();
 			domainesSelected.clear();
 			setParAppel(false);
 			setParNotification(false);
@@ -202,6 +209,7 @@ public class CampagneBean {
 			setLesCampagnes(campagneDAO.lister());
 			domainesSelected.clear();
 			banniere=new Banniere();
+			cible=new Cible();
 
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
@@ -231,6 +239,7 @@ public class CampagneBean {
 		pubDAO.modifier(textuelle);
 		setLesCampagnes(campagneDAO.lister());
 		textuelle=new Textuelle();
+		cible=new Cible();
 		return null;
 	}
 
@@ -238,6 +247,7 @@ public class CampagneBean {
 	//chargement publicite banniere
 	public void loadPubBanniere(Banniere banni){
 		setBanniere(banni);	
+		setCible(banniere.getCible());
 		for(Domaine d: banni.getDomaines()){
 			domainesSelected.add(String.valueOf(d.getId()));
 		}
@@ -253,6 +263,7 @@ public class CampagneBean {
 	//chargement publicite textuelle
 	public String loadPubTextuelle(Textuelle texte){
 		setTextuelle(texte);
+		setCible(textuelle.getCible());
 		for(Domaine d: texte.getDomaines()){
 			domainesSelected.add(String.valueOf(d.getId()));
 		}
@@ -682,6 +693,20 @@ public class CampagneBean {
 
 	public void setIdClient(String idClient) {
 		this.idClient = idClient;
+	}
+
+
+
+
+	public Cible getCible() {
+		return cible;
+	}
+
+
+
+
+	public void setCible(Cible cible) {
+		this.cible = cible;
 	}
 
 

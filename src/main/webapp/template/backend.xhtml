@@ -156,20 +156,7 @@
 									Campagnes terminées
 								</pretty:link></li>
 						</ul></li>
-					<li><h:link outcome="pretty:recharge">
-							<i class="icon-ticket"></i>
-							<span>Gérer les Recharges</span>
-						</h:link></li>
-
-					<li><h:link outcome="pretty:domaines">
-							<i class="icon-bullhorn"></i>
-							<span>Définition des domaines</span>
-						</h:link></li>
-
-					<li><h:link outcome="pretty:tarifs">
-							<i class="icon-eur"></i>
-							<span>Definition des tarifs</span>
-						</h:link></li>
+					
 
 					<!-- Menu de la trésorerie -->
 					<li class="sub-menu"><a href="javascript:;"><i
@@ -200,6 +187,17 @@
 									outcome="pretty:userslist" /></li>
 							<li><h:link value="Gérer les roles" outcome="pretty:roles" />
 							</li>
+						</ul></li>
+						
+						<!-- Menu des parametrages -->
+					<li class="sub-menu"><a href="javascript:;"><i
+							class="icon-cog"></i> <span>Paramètrage</span></a>
+						<ul class="sub">
+							<li><h:link outcome="pretty:domaines" value="Définition des domaines" /></li>
+							<li><h:link outcome="pretty:tarifs" value="Definition des tarifs" /></li>
+							<li><h:link outcome="pretty:seuile" value="Definition du seuil" /></li>
+							<li><h:link outcome="pretty:recharge" value="Gérer les Recharges"/></li>
+							
 						</ul></li>
 
 				</ul>
