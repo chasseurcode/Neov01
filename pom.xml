@@ -72,14 +72,10 @@
 		<!-- Apache Shiro -->
 		<dependency>
 			<groupId>org.apache.shiro</groupId>
-			<artifactId>shiro-core</artifactId>
+			<artifactId>shiro-all</artifactId>
 			<version>1.2.3</version>
 		</dependency>
-		<dependency>
-			<groupId>org.apache.shiro</groupId>
-			<artifactId>shiro-web</artifactId>
-			<version>1.2.3</version>
-		</dependency>
+
 		<dependency>
 			<groupId>commons-logging</groupId>
 			<artifactId>commons-logging</artifactId>
@@ -134,7 +130,7 @@
 			<artifactId>javax.mail</artifactId>
 			<version>1.5.2</version>
 		</dependency>
-		
+
 		<!-- Reflection api -->
 		<dependency>
 			<groupId>org.reflections</groupId>

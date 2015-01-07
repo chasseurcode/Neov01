@@ -12,4 +12,5 @@ public interface AbonneeDAO {
 	public void supprimer(Abonne abonne);
 	public Abonne findById(Long long1);
 	public List<Abonne> lister();
+	Abonne findByEmail(String email);
 }

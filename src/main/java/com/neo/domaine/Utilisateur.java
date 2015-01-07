@@ -31,11 +31,9 @@ public class Utilisateur extends Model implements Serializable{
 	private String saltMotDePasse;
 	private boolean actif=true;
 	@ManyToMany(cascade=CascadeType.ALL,fetch=FetchType.EAGER)
-	@Fetch(value=FetchMode.SUBSELECT)
 	private List<Role> roles=new ArrayList<Role>();
 	
 	@OneToMany(cascade=CascadeType.ALL,fetch=FetchType.EAGER)
-	@Fetch(value=FetchMode.SUBSELECT)
 	private List<Message> messages=new ArrayList<Message>();
 	
 	public Utilisateur() {
