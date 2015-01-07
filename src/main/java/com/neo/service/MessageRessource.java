@@ -11,9 +11,7 @@ import javax.ws.rs.core.MediaType;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.subject.Subject;
 
-import com.neo.dao.AbonneeDAO;
 import com.neo.dao.UtilisateurDAO;
-import com.neo.daoImpl.AbonneDAOImpl;
 import com.neo.daoImpl.UtilisateurDAOImpl;
 import com.neo.domaine.Message;
 import com.neo.domaine.Utilisateur;
