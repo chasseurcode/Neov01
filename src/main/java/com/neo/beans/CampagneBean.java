@@ -59,7 +59,8 @@ public class CampagneBean {
 	private Textuelle textuelle;
 	private Banniere banniere;
 	private Cible cible;
-
+	private int nbreCampEncours=0;
+    private int nbrePubs=0;
 
 
 	public CampagneBean() {
@@ -75,7 +76,8 @@ public class CampagneBean {
 		setTarifDAO(new TarifDaoImpl());
 		setDomaines(pubDAO.listerDomaine());
 		setClients(clientDAO.lister());
-
+		setNbreCampEncours(campagneDAO.listerCampEncours().size());
+		setNbrePubs(pubDAO.listerBanniere().size()+pubDAO.listerTextuelle().size());
 	}
 
 
@@ -101,7 +103,7 @@ public class CampagneBean {
 			d=new Domaine();
 		}
 		textuelle.setTarif(tarifDAO.tarifTextuelleEnvigueur());
-     	textuelle.setCible(cible);
+		textuelle.setCible(cible);
 		campagne.addPublicite(textuelle);
 		campagneDAO.modifier(campagne);
 		textuelle=new Textuelle();
@@ -142,7 +144,7 @@ public class CampagneBean {
 				d=new Domaine();
 			}
 			if(campagne.getId()==null)
-			campagne=campagneDAO.findLastCamp();
+				campagne=campagneDAO.findLastCamp();
 			campagne.addPublicite(banniere);
 			campagneDAO.modifier(campagne);
 			banniere=new Banniere();
@@ -312,7 +314,7 @@ public class CampagneBean {
 		return "pretty:detailcamp";
 	}
 
-	
+
 	//chargement des pubs pour les detail
 	public String chargementPubTexte(Textuelle texte){
 		setTextuelle(texte);
@@ -385,7 +387,7 @@ public class CampagneBean {
 		setCurrent(domaine);
 	}
 
-    //RAZ de tous les objet
+	//RAZ de tous les objet
 	public void annuler(){
 		campagne=new Campagne();
 		textuelle=new Textuelle();
@@ -395,7 +397,7 @@ public class CampagneBean {
 		idClient="";
 	}
 
-	
+
 	//passage de la campagne a la facturation
 	public String campToFacturation(Campagne camp){
 		try {
@@ -670,6 +672,36 @@ public class CampagneBean {
 	public void setCible(Cible cible) {
 		this.cible = cible;
 	}
+
+
+
+
+	public int getNbreCampEncours() {
+		return nbreCampEncours;
+	}
+
+
+
+
+	public void setNbreCampEncours(int nbreCampEncours) {
+		this.nbreCampEncours = nbreCampEncours;
+	}
+
+
+
+
+	public int getNbrePubs() {
+		return nbrePubs;
+	}
+
+
+
+
+	public void setNbrePubs(int nbrePubs) {
+		this.nbrePubs = nbrePubs;
+	}
+
+
 
 
 
