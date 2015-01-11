@@ -41,7 +41,6 @@ public class CampagneBean {
 
 	private boolean showEditCamp=false;
 	private boolean showPubMenu=false;
-	private boolean parAppel,parNotification;
 	private Part fichier;
 	private CampagneDAO campagneDAO;
 	private PubliciteDAO pubDAO;
@@ -133,9 +132,8 @@ public class CampagneBean {
 			}  
 			banniere.setImage(nomFichier);
 			banniere.setCible(cible);
-			if(isParAppel())
-				banniere.setTarif(tarifDAO.tarifAppelEnvigueur());
-			if(isParNotification())
+			banniere.setTarif(tarifDAO.tarifAppelEnvigueur());
+			if(banniere.getNbreNotification()!=0)
 				banniere.setTarifNotification(tarifDAO.tarifNotificationEnvigueur());
 
 			for(String check: domainesSelected){
@@ -150,8 +148,6 @@ public class CampagneBean {
 			banniere=new Banniere();
 			cible=new Cible();
 			domainesSelected.clear();
-			setParAppel(false);
-			setParNotification(false);
 			outputStream.close();  
 			inputStream.close();
 
@@ -248,10 +244,6 @@ public class CampagneBean {
 	public void loadPubBanniere(Banniere banni){
 		setBanniere(banni);	
 		setCible(banniere.getCible());
-		if(banni.getNbreAppel()>0)
-			setParAppel(true);
-		if(banni.getNbreNotification()>0)
-			setParNotification(true);
 		for(Domaine d: banni.getDomaines()){
 			domainesSelected.add(String.valueOf(d.getId()));
 		}
@@ -639,37 +631,6 @@ public class CampagneBean {
 	public void setClientDAO(ClientDAO clientDAO) {
 		this.clientDAO = clientDAO;
 	}
-
-
-
-
-	public boolean isParAppel() {
-		return parAppel;
-	}
-
-
-
-
-	public void setParAppel(boolean parAppel) {
-		this.parAppel = parAppel;
-	}
-
-
-
-
-	public boolean isParNotification() {
-		return parNotification;
-	}
-
-
-
-
-	public void setParNotification(boolean parNotification) {
-		this.parNotification = parNotification;
-	}
-
-
-
 
 	public List<Client> getClients() {
 		return clients;
