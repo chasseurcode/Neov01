@@ -1,0 +1,62 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:h="http://java.sun.com/jsf/html">
+<h:head>
+
+</h:head>
+
+<h:body>
+	<ui:composition template="/template/espaceClient.xhtml">
+		<ui:define name="titre">factures</ui:define>
+
+		<ui:define name="contenu">
+			<section class="panel">
+				<header class="panel-heading">
+					<h4 style="text-align: center;">Vos factures</h4>
+				</header>
+				<h:link styleClass="btn btn-info pull-right"
+					style="margin-right: 20px" value="Quitter"
+					outcome="pretty:espaceClient" />
+				<hr />
+				<table class="table">
+					<thead>
+						<tr>
+							<th>Nº Facture</th>
+							<th>Date</th>
+							<th>Montant à payer</th>
+							<th>Montant reglé</th>
+							<th>Reste à payer</th>
+							<th></th>
+						</tr>
+					</thead>
+					<tbody>
+						<ui:repeat var="fact" value="#{clientBean.factures}">
+							<tr>
+								<td>#{fact.numero}</td>
+								<td><h:outputText value="#{fact.date}">
+										<f:convertDateTime pattern="dd / MM / yyyy" />
+									</h:outputText></td>
+								<td><h:outputText value="#{fact.campagne.total}">
+										<f:convertNumber pattern="#0.00" />
+									</h:outputText></td>
+								<td><h:outputText value="#{fact.campagne.totalReglement()}">
+										<f:convertNumber pattern="#0.00" />
+									</h:outputText></td>
+								<td><h:outputText value="#{fact.campagne.resteAPayer()}">
+										<f:convertNumber pattern="#0.00" />
+									</h:outputText></td>
+							</tr>
+						</ui:repeat>
+					</tbody>
+				</table>
+
+				
+			</section>
+		</ui:define>
+	</ui:composition>
+
+
+</h:body>
+</html>

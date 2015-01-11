@@ -15,9 +15,11 @@ public interface CampagneDAO {
 	public List<Campagne> lister(Long id);
 	public List<Campagne> listerCampAttente();
 	public List<Campagne> listerCampEncours();
+	public List<Campagne> listerEncours(Long id);
 	public List<Campagne> listerCampTerminees();
 	public void creer(Facture facture);
 	public Facture findLastRecord();
+	public List<Facture> listerFacture(Long id);
 	public Campagne findLastCamp();
 
 }

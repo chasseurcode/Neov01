@@ -1,5 +1,6 @@
 package com.neo.beans;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -14,51 +15,91 @@ import org.apache.shiro.crypto.hash.Sha256Hash;
 
 import com.neo.dao.CampagneDAO;
 import com.neo.dao.ClientDAO;
-import com.neo.dao.ReglementDAO;
 import com.neo.daoImpl.CampagneDaoimpl;
 import com.neo.daoImpl.ClientDaoImpl;
-import com.neo.daoImpl.ReglementDaoImpl;
+import com.neo.domaine.Banniere;
 import com.neo.domaine.Campagne;
 import com.neo.domaine.Client;
+import com.neo.domaine.Facture;
+import com.neo.domaine.Publicite;
 import com.neo.domaine.Reglement;
 import com.neo.domaine.Role;
+import com.neo.domaine.Textuelle;
 import com.neo.utility.Generateur;
-import com.neo.utility.SendMail;
 import com.neo.utility.Generateur.Mode;
+import com.neo.utility.SendMail;
 
 @ManagedBean
 @SessionScoped
 public class ClientBean {
-	private Client client;
+	private Client client,current;
 	private String idClient;
+	private Long idCamp;
 	private List<Client> listClient;
-	private List<Reglement> reglements;
-	private List<Campagne> campagnes;
+	private List<Reglement> LesReglements;
+	private List<Campagne> campagnes,camps,campsEncours;
+	private List<Publicite> pubTextuelle,pubBaniere;
 	private String compte,motDePasse;
 	private ClientDAO clientDAO;
 	private CampagneDAO campDAO;
-	private ReglementDAO regDAO;
-	
+	private List<Facture>factures;
+
 	@PostConstruct
 	public void init() {
 		client=new Client();
 		clientDAO=new ClientDaoImpl();
 		campDAO=new CampagneDaoimpl();
-		regDAO=new ReglementDaoImpl();
 		setListClient(clientDAO.lister());
+		current=new Client();
+		current=clientDAO.findByCompte("neone1");
+		setCamps(campDAO.lister(current.getId()));
+		setCampsEncours(campDAO.listerEncours(current.getId()));
 	}
-	
+
 	public ClientBean() {
 
 	}
 
+	//chargement de la fiche client
 	public void load() {
 		client=clientDAO.findById(new Long(idClient));
 		setCampagnes(campDAO.lister(client.getId()));
-		setReglements(regDAO.lister(client.getId()));
+		listereg();
 	}
 
-	
+	//liste des reglemetns de la fiche client
+	private void listereg(){
+		LesReglements=new ArrayList<Reglement>();
+		for(Campagne camp: campagnes){
+			LesReglements.addAll(camp.getReglements());
+		}
+	}
+
+	//load publicite pour detail
+	public String loadPubs(Campagne campagne){
+		pubBaniere=new ArrayList<Publicite>();
+		pubTextuelle=new ArrayList<Publicite>();
+		if(campagne!=null){
+			for(Publicite p:campagne.getPublicites()){
+				if(p instanceof Banniere){
+					pubBaniere.add(p);
+				}
+				if(p instanceof Textuelle){
+					pubTextuelle.add(p);
+				}
+			}
+			return "pretty:detailPubs";
+		}
+		return null;
+	}
+
+
+	//load facture du client
+	public void loadFactures(){
+		Campagne c=campDAO.findById(idCamp);
+		setFactures(campDAO.listerFacture(c.getId()));
+	}
+
 	public String saveClient() {
 		//génération du compte client
 		generateAccount();
@@ -92,28 +133,29 @@ public class ClientBean {
 			client.setMotDePasse(hashPass);
 			client.setSaltMotDePasse(salt.toString());
 		} catch (Exception e) {
-				e.printStackTrace();
+			e.printStackTrace();
 		}
 	}
-	
+
+
 	public String editClient(Client client) {
 		setClient(client);
 		System.out.println("oui");
 		return "pretty:modifclient";
 	}
-	
+
 	public String update() {
 		clientDAO.modifier(client);
 		return "pretty:listeclient";
 	}
-	
-	
-	
+
+
+
 	/*
 	 * 
 	 * Getter and Setter
 	 */
-	
+
 	public Client getClient() {
 		return client;
 	}
@@ -138,12 +180,12 @@ public class ClientBean {
 		this.idClient = idClient;
 	}
 
-	public List<Reglement> getReglements() {
-		return reglements;
+	public List<Reglement> getLesReglements() {
+		return LesReglements;
 	}
 
-	public void setReglements(List<Reglement> reglements) {
-		this.reglements = reglements;
+	public void setLesReglements(List<Reglement> lesReglements) {
+		LesReglements = lesReglements;
 	}
 
 	public List<Campagne> getCampagnes() {
@@ -152,6 +194,54 @@ public class ClientBean {
 
 	public void setCampagnes(List<Campagne> campagnes) {
 		this.campagnes = campagnes;
+	}
+
+	public List<Campagne> getCamps() {
+		return camps;
+	}
+
+	public void setCamps(List<Campagne> camps) {
+		this.camps = camps;
+	}
+
+	public List<Campagne> getCampsEncours() {
+		return campsEncours;
+	}
+
+	public void setCampsEncours(List<Campagne> campsEncours) {
+		this.campsEncours = campsEncours;
+	}
+
+	public List<Publicite> getPubTextuelle() {
+		return pubTextuelle;
+	}
+
+	public void setPubTextuelle(List<Publicite> pubTextuelle) {
+		this.pubTextuelle = pubTextuelle;
+	}
+
+	public List<Publicite> getPubBaniere() {
+		return pubBaniere;
+	}
+
+	public void setPubBaniere(List<Publicite> pubBaniere) {
+		this.pubBaniere = pubBaniere;
+	}
+
+	public List<Facture> getFactures() {
+		return factures;
+	}
+
+	public void setFactures(List<Facture> factures) {
+		this.factures = factures;
+	}
+
+	public Long getIdCamp() {
+		return idCamp;
+	}
+
+	public void setIdCamp(Long idCamp) {
+		this.idCamp = idCamp;
 	}
 
 

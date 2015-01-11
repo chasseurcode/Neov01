@@ -108,6 +108,14 @@ public class Campagne extends Model {
 	public void removeReglement(Reglement reglement) {
 		reglements.remove(reglement);
 	}
+	
+	public long nombreDeVues(){
+		long somme=0;
+		for(Publicite p: publicites){
+			somme=somme+p.getNbreVue();
+		}
+		return somme;
+	}
 
 	public double totalReglement() {
 		double somme=0;
@@ -120,6 +128,8 @@ public class Campagne extends Model {
 	public double resteAPayer() {
 		return getTotal()-totalReglement();
 	}
+	
+	
 	public double getTotal() {
 		double somme=0;
 		for(Publicite p: publicites){
@@ -138,4 +148,6 @@ public class Campagne extends Model {
 		}
 		return somme;
 	}
+
+
 }

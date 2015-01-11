@@ -52,6 +52,13 @@ public class ClientDaoImpl implements ClientDAO{
                 .uniqueResult();
 	}
 
+	@Override
+	public Client findByCompte(String compte) {
+		Session session=HibernateUtil.getSession();
+		return (Client) session.createQuery("FROM Client where compte= :nom")
+				.setString("nom", compte).uniqueResult();
+	}
+
 
 
 	

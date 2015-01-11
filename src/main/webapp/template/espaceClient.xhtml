@@ -13,7 +13,7 @@
 	<meta name="keyword"
 		content="FlatLab, Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina" />
 
-	<title>Society name::<ui:insert name="titre" />
+	<title>NEONE::<ui:insert name="titre" />
 	</title>
 
 	<!-- Bootstrap core CSS -->
@@ -25,7 +25,9 @@
 		name="font-awesome.css" />
 	<h:outputStylesheet library="css" name="style.css" />
 	<h:outputStylesheet library="css" name="style-responsive.css" />
-
+	<h:outputStylesheet library="css" name="gallery.css" />
+	<h:outputStylesheet library="assets/fancybox/source"
+		name="jquery.fancybox.css" />
 </h:head>
 
 <h:body>
@@ -36,27 +38,19 @@
 			<div class="sidebar-toggle-box"></div>
 			<!--logo start-->
 			<h:link styleClass="logo" outcome="pretty:home">
-				NEO<span>ONE</span>
+				NE<span>ONE</span>
 			</h:link>
 			<!--logo end-->
 			<div class="nav notify-row" id="top_menu">
 				<!--  notification start -->
-				<ul class="nav top-menu">
-					<!-- notification dropdown start-->
-					<li id="header_notification_bar" class="dropdown"><h:link
-							outcome="pretty:userhome">
-							<i class="icon-dashboard"></i>
-							<span>Tableau de Bord</span>
-						</h:link>
-					</li>
-					<li id="header_inbox_bar" class="dropdown"><h:link
-							outcome="pretty:userhome">
-							<i class="icon-truck"></i>
-							<span>Campagnes</span>
-						</h:link>
-					</li>
-					<!-- notification dropdown end -->
-				</ul>
+				<header class="panel-heading tab-bg-dark-navy-blue ">
+					<ul class="nav nav-tabs">
+						<li class="active"><a data-toggle="tab" href="#tBord">Tableau
+								de Bord</a></li>
+						<li class=""><a data-toggle="tab" href="#camp">Campagne</a></li>
+					</ul>
+				</header>
+				<!-- notification dropdown end -->
 			</div>
 			<div class="top-nav ">
 				<ul class="nav pull-right top-menu">
@@ -84,13 +78,11 @@
 		<!--header end-->
 
 		<!--main content start-->
-		<section id="main-content">
-			<section class="wrapper site-min-height">
-				<!-- page start-->
-				<ui:insert name="contenu" />
+		<section class="wrapper site-min-height">
+			<!-- page start-->
+			<ui:insert name="contenu" />
 
-				<!-- page end-->
-			</section>
+			<!-- page end-->
 		</section>
 		<!--main content end-->
 		<!--footer start-->
@@ -111,6 +103,10 @@
 	<h:outputScript library="js" name="jquery.scrollTo.min.js" />
 	<h:outputScript library="js" name="jquery.nicescroll.js" />
 	<h:outputScript library="js" name="respond.min.js" />
+	<h:outputScript library="assets/fancybox/source"
+		name="jquery.fancybox.js" />
+	<h:outputScript library="js" name="toucheffects.js" />
+	<h:outputScript library="js" name="modernizr.custom.js" />
 
 	<!--common script for all pages-->
 	<h:outputScript library="js" name="common-scripts.js" />

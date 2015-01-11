@@ -10,7 +10,7 @@
 
 <h:body>
 	<ui:composition template="/template/backend.xhtml">
-		<ui:define name="titre">Nouvelle campagne</ui:define>
+		<ui:define name="titre">Campagne</ui:define>
 
 		<ui:define name="contenu">
 			<!-- page start-->
@@ -77,7 +77,7 @@
 
 								<div class="col-lg-offset-2 col-lg-10">
 									<h:commandButton styleClass="btn btn-danger pull-right"
-										style="margin-left:5px" value="Annuler"
+										style="margin-left:5px" value="Annuler" type="reset"
 										actionListener="#{campagneBean.annuler}" />
 									<h:commandButton styleClass="btn btn-info pull-right"
 										value="Enregistrer"

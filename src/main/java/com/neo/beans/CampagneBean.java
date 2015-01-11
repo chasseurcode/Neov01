@@ -248,6 +248,10 @@ public class CampagneBean {
 	public void loadPubBanniere(Banniere banni){
 		setBanniere(banni);	
 		setCible(banniere.getCible());
+		if(banni.getNbreAppel()>0)
+			setParAppel(true);
+		if(banni.getNbreNotification()>0)
+			setParNotification(true);
 		for(Domaine d: banni.getDomaines()){
 			domainesSelected.add(String.valueOf(d.getId()));
 		}
@@ -395,9 +399,6 @@ public class CampagneBean {
 		textuelle=new Textuelle();
 		banniere=new Banniere();
 		domaine=new Domaine();
-		campagneDAO=new CampagneDaoimpl();
-		pubDAO=new PubliciteDaoImpl();
-		tarifDAO=new TarifDaoImpl();
 		reglement=new Reglement();
 		idClient="";
 	}

@@ -10,6 +10,7 @@ public interface ClientDAO {
 	public void modifier(Client client);
 	public void supprimer(Client client);
 	public Client findById(Long long1);
+	public Client findByCompte(String compte);
 	public List<Client> lister();
 	public Client findLastRecord();
 }

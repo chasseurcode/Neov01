@@ -10,5 +10,4 @@ public interface ReglementDAO {
 	public void modifier(Reglement reglement);
 	public Reglement findById(long id);
 	public List<Reglement> lister();
-	public List<Reglement> lister(Long id);
 }
