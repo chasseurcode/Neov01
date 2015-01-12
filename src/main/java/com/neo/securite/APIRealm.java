@@ -1,5 +1,7 @@
 package com.neo.securite;
 
+import java.util.Date;
+
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationInfo;
 import org.apache.shiro.authc.AuthenticationToken;
@@ -30,13 +32,14 @@ public class APIRealm extends AuthorizingRealm{
 	@Override
 	protected AuthenticationInfo doGetAuthenticationInfo(
 			AuthenticationToken token) throws AuthenticationException {
-		System.out.println("Connection abonnée");
 		UsernamePasswordToken mToken=(UsernamePasswordToken) token;
 		
 		Utilisateur utilisateur=UtilisateurDAO.findByCompte(mToken.getUsername());
 		if(utilisateur==null){
 			throw new AuthenticationException("Ce compte n'existe pas");
 		}
+		utilisateur.setUpdated(new Date());
+		UtilisateurDAO.modifier(utilisateur);
 		SimpleAuthenticationInfo info=new SimpleAuthenticationInfo(utilisateur.getCompte(), utilisateur.getMotDePasse(), getName());
 		return info;
 	}

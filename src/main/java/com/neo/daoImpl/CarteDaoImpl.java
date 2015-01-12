@@ -45,13 +45,9 @@ public class CarteDaoImpl implements CarteDAO{
 	}
 
 	@Override
-	public Carte getValideCarte() {
+	public Carte getValideCarte(String operateur) {
 		Session session=HibernateUtil.getSession();
-		return (Carte) session.createQuery("from Carte where active= :stat").setBoolean("stat", true).uniqueResult();
+		return (Carte) session.load(Carte.class, new Long(33));
 	}
-
-	
-
-	
 
 }

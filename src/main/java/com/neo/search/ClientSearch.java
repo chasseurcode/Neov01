@@ -19,18 +19,21 @@ public class ClientSearch extends NEOSearch {
 	@SuppressWarnings("rawtypes")
 	@Override
 	protected List chercher(String requete) {
+		System.out.println(requete);
 		FullTextSession fullTextSession = Search.getFullTextSession(HibernateUtil.getSession()); 
 		QueryBuilder builder = fullTextSession.getSearchFactory()
 			    .buildQueryBuilder().forEntity(Client.class).get();
+		
 		org.apache.lucene.search.Query luceneQuery =
 			    builder.keyword()
 			        .onFields("nom","adresse","raisonSociale")
 			        .matching(requete)
 			        .createQuery();
+		
 		org.hibernate.Query fullTextQuery = fullTextSession.createFullTextQuery(luceneQuery);
 		List resultat = fullTextQuery.list();
+		System.out.println(resultat.size());
 		return resultat;
-		
 	}
 
 }

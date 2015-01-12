@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.print.attribute.standard.Media;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -20,13 +21,21 @@ import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.subject.Subject;
 
 import com.neo.dao.AbonneeDAO;
+import com.neo.dao.CarteDAO;
+import com.neo.dao.MessageDAO;
 import com.neo.dao.PubliciteDAO;
+import com.neo.dao.SeuilDAO;
 import com.neo.dao.VueDao;
 import com.neo.daoImpl.AbonneDAOImpl;
+import com.neo.daoImpl.CarteDaoImpl;
+import com.neo.daoImpl.MessageDAOImpl;
 import com.neo.daoImpl.PubliciteDaoImpl;
+import com.neo.daoImpl.SeuilDAOImpl;
 import com.neo.daoImpl.VueDaoImpl;
 import com.neo.domaine.Abonne;
 import com.neo.domaine.Banniere;
+import com.neo.domaine.Carte;
+import com.neo.domaine.Message;
 import com.neo.domaine.Publicite;
 import com.neo.domaine.Textuelle;
 import com.neo.domaine.Vue;
@@ -34,30 +43,70 @@ import com.neo.utility.TrouverChemin;
 
 @Path("/")
 public class PubliciteRessource {
-	private PubliciteDAO pubDao=new PubliciteDaoImpl(); 
+	private PubliciteDAO pubDao=new PubliciteDaoImpl();
+	private SeuilDAO daoSeuil=new SeuilDAOImpl();
 	private VueDao daoVue=new VueDaoImpl();
+	private MessageDAO msgDao=new MessageDAOImpl();
+	private CarteDAO carteDAO=new CarteDaoImpl();
 	private AbonneeDAO abnDao=new AbonneDAOImpl();
 	
-	@Path("gains")
+	@Path("updategains")
 	@POST
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response updateGain(Pub pub){
 		Vue vue=new Vue();
 		Subject sujet=SecurityUtils.getSubject();
-		Publicite publicite=pubDao.findBanniereById(pub.getPubId());
+		Publicite publicite=pubDao.findPubliciteById(pub.getPubId());
+		pub.setVueEffectue(2);
 		Abonne abonne=abnDao.findByCompte(sujet.getPrincipal().toString());
 		if(pub.getVueEffectue()>0){
 			vue.setPublicite(publicite);
 			vue.setAbonne(abonne);
 			vue.setNbreVue(pub.getVueEffectue());
 			vue.setGain((float) (pub.getVueEffectue()*pub.getPrixAuvue()));
-			System.out.println(vue.getGain()+" - "+vue.getNbreVue());
 			daoVue.creer(vue);
 		}
-		
 		return Response.ok().build();
 	}
+	
+	@Path("gains/{paiement}")
+	@GET
+	@Produces(MediaType.APPLICATION_JSON)
+	@Consumes(MediaType.APPLICATION_JSON)
+	public String getGain(@PathParam("paiement") String mode) {
+		Subject sujet=SecurityUtils.getSubject();
+		Abonne abonne=abnDao.findByCompte(sujet.getPrincipal().toString());
+		System.out.println(mode);
+		double total=daoVue.getTotalgain(abonne);
+		if((total>10) && mode.equalsIgnoreCase("carte")){
+			return sendCarte(abonne, total);
+		}
+		return daoVue.getTotalgain(abonne).toString();
+	}
+	
+	private String sendCarte(Abonne abonne, double total) {
+		//annuler les autre vues
+		daoVue.updateVue();
+		double rest=total-10;
+		//Creer le reste des vues
+		Vue restVue=new Vue();
+		restVue.setAbonne(abonne);
+		restVue.setGain((float) rest);
+		//recuperer une carte active
+		Carte carte=carteDAO.getValideCarte("meditel");
+		//envoyer une carte de recharge
+		Message msg=new Message();
+		msg.setObjet("Carte de recharge");
+		msg.setCorps("Code :"+carte.getNumero());
+		msg.setUtilisateur(abonne);
+		carte.setActive(false);
+		carteDAO.modifier(carte);
+		msgDao.creer(msg);
+		daoVue.creer(restVue);
+		return daoVue.getTotalgain(abonne).toString();
+	}
+	
 	
 	@Path("bannieres")
 	@GET
@@ -222,4 +271,7 @@ public class PubliciteRessource {
 		}	
 	}
 
+	private String getOperateurAbonne(String numero) {
+		return null;
+	}
 }

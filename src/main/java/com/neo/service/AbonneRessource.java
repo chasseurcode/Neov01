@@ -16,14 +16,18 @@ import org.apache.shiro.crypto.SecureRandomNumberGenerator;
 import org.apache.shiro.crypto.hash.Sha256Hash;
 
 import com.neo.dao.AbonneeDAO;
+import com.neo.dao.MessageDAO;
 import com.neo.daoImpl.AbonneDAOImpl;
+import com.neo.daoImpl.MessageDAOImpl;
 import com.neo.domaine.Abonne;
+import com.neo.domaine.Message;
 import com.neo.utility.Generateur;
 import com.neo.utility.Generateur.Mode;
 
 @Path("/abonnes")
 public class AbonneRessource {
 	private AbonneeDAO daoAbonne;
+	private MessageDAO daoMsg=new MessageDAOImpl();
 
 	public AbonneRessource() {
 		setDaoAbonne(new AbonneDAOImpl());
@@ -78,8 +82,13 @@ public class AbonneRessource {
 				abonne.setSaltMotDePasse(salt.toString());
 				abonne.setActif(true);
 				abonne.setCodeParrainege(codeParain);
+				Message msg=new Message();
+				msg.setUtilisateur(abonne);
+				msg.setObjet("Bienvenu sur WARI");
+				msg.setCorps("Félicitation! désormais vous etes membre de WARI...");
 				//Sauvegarder l'abonné
 				daoAbonne.creer(abonne);
+				daoMsg.creer(msg);
 				return Response.status(201).entity(abonne).build();
 			}else {
 				return Response.status(406).entity("Erreur lors de l'inscription").build();	

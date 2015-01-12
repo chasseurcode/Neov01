@@ -1,7 +1,7 @@
 package com.neo.search;
 
-import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 
 public class NEOSearch {
@@ -12,11 +12,12 @@ public class NEOSearch {
 	}
 
 	@SuppressWarnings("rawtypes")
-	protected HashMap<String,List> requete(String requete,HashMap<String,List> listeR) {
-		listeR.put(getNomEntite(),chercher(requete));
+	protected Map<String,List> requete(String requete,Map<String,List> resultat) {
+
 		if(suivant!=null)
-			suivant.requete(requete,listeR);	
-		return listeR;
+			suivant.requete(requete,resultat);	
+		resultat.put(getNomEntite(), chercher(requete));
+		return resultat;
 	}
 
 	public void setSuivant(NEOSearch suivant) {
@@ -25,6 +26,7 @@ public class NEOSearch {
 
 	@SuppressWarnings("rawtypes")
 	protected List chercher(String requete) {
+		
 		return null;
 	}
 

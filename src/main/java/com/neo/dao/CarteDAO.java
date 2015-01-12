@@ -11,5 +11,5 @@ public interface CarteDAO {
 	public void supprimer(Carte carte);
 	public Carte findById(long id);
 	public List<Carte> lister();
-	public Carte getValideCarte();
+	Carte getValideCarte(String operateur);
 }

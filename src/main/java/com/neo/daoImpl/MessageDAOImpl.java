@@ -37,11 +37,20 @@ public class MessageDAOImpl implements MessageDAO {
 	@Override
 	public List<Message> lister(Utilisateur utilisateur) {
 		Session session=HibernateUtil.getSession();
-		return session.createQuery("SELECT msg FROM Message msg "
+		List<Message> msgs=session.createQuery("SELECT msg FROM Message msg "
 									+ "where vue= :etat and msg.utilisateur= :userid")
 					  .setBoolean("etat", false)
 					  .setLong("userid", new Long(utilisateur.getId()))
 				      .list();
+		
+		if(msgs.size()>0){
+		session.createQuery("UPDATE Message m SET m.vue = :etat where m.utilisateur = :userid")
+				.setBoolean("etat", true)
+				.setLong("userid", utilisateur.getId())
+				.executeUpdate();
+		}
+		
+		return msgs;
 	}
 
 }

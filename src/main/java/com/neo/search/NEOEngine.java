@@ -7,12 +7,10 @@ import java.util.Map;
 public class NEOEngine {
 	@SuppressWarnings({ "rawtypes" })
 	public static Map<String, List> chercher(String requete) {
-		
 		NEOSearch clientSearch=new ClientSearch();
 		NEOSearch campSearch=new CampagneSearch();
 		NEOSearch pubSearch=new PubSearch();
-		NEOSearch abonneSearch=new AbonneSearch(); 
-		
+		NEOSearch abonneSearch=new AbonneSearch();
 		clientSearch.setSuivant(campSearch);
 		campSearch.setSuivant(pubSearch);
 		pubSearch.setSuivant(abonneSearch);

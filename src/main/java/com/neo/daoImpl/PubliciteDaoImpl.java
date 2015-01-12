@@ -7,6 +7,7 @@ import org.hibernate.Session;
 import com.neo.dao.PubliciteDAO;
 import com.neo.domaine.Banniere;
 import com.neo.domaine.Domaine;
+import com.neo.domaine.Publicite;
 import com.neo.domaine.Textuelle;
 import com.neo.utility.HibernateUtil;
 
@@ -115,6 +116,13 @@ public class PubliciteDaoImpl implements PubliciteDAO{
 	public void supprmer(Domaine domaine) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public Publicite findPubliciteById(long id) {
+		Session session=HibernateUtil.getSession();
+		
+		return (Publicite) session.get(Publicite.class, id);
 	}
 
 }

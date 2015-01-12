@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.neo.domaine.Banniere;
 import com.neo.domaine.Domaine;
+import com.neo.domaine.Publicite;
 import com.neo.domaine.Textuelle;
 
 public interface PubliciteDAO {
@@ -23,4 +24,6 @@ public interface PubliciteDAO {
 	public void supprmer(Domaine domaine);
 	public Domaine findDomaineById(long id);
 	public List<Domaine> listerDomaine();
+	public Publicite findPubliciteById(long id);
+	
 }
