@@ -139,5 +139,12 @@ public  abstract class Publicite extends Model implements Serializable{
 		this.vues = vues;
 	}
 
+	public long NombreDeVueParPub(){
+       long somme=0;
+       for(Vue v:vues){
+    	   somme=somme+v.getNbreVue();
+       }
+       return somme;
+	}
 
 }

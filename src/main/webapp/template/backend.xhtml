@@ -133,9 +133,7 @@
 							<li><h:link outcome="pretty:listeclient"
 									value="Liste client">
 								</h:link></li>
-								<li><h:link outcome="pretty:espaceClient"
-									value="Espace client">
-								</h:link></li>
+
 						</ul></li>
 
 					<!-- Menu des campagnes -->
@@ -257,7 +255,34 @@
               EditableTable.init();
           });
       </script>
-      
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script type="text/javascript">
+      google.load("visualization", "1", {packages:["gauge"]});
+      google.setOnLoadCallback(drawChart);
+      function drawChart() {
+
+        var data = google.visualization.arrayToDataTable([
+          ['Label', 'Value'],
+          ['Vues', #{appBean.nombreTotalDeVueReel()}],
+        ]);
+
+        var options = {
+          width: 400, height: 220,
+          max: #{appBean.nombreTotalDeVue()},
+          minorTicks: 5
+        };
+
+        var chart = new google.visualization.Gauge(document.getElementById('chart_div'));
+
+        chart.draw(data, options);
+
+        setInterval(function() {
+          data.setValue(0, 1,#{appBean.nombreTotalDeVueReel()});
+          chart.draw(data, options);
+        }, 5000);
+        
+      }
+    </script>  
 
 </h:body>
 </html>

@@ -15,7 +15,7 @@
 		
 			<div class="col-lg-6">
 				<section class="panel">
-					<header class="panel-heading"> Nombre de vues </header>
+					<header class="panel-heading"> Nombre de vues de la campagne</header>
 					<div class="panel-body">
 						<div id="chart_div"  class="graph" style="margin-left: 180px"></div>
 					</div>
@@ -27,6 +27,33 @@
 					<header class="panel-heading"></header>
 					<div class="panel-body">
 						<div id="piechart"  class="graph" style="margin-left: 180px"></div>
+					</div>
+				</section>
+			</div>
+			
+			<div class="col-lg-6" style="position: relative; right: 340px;">
+				<section class="panel">
+					<header class="panel-heading"> Nombre de vues / publicité </header>
+					<div class="panel-body">
+					<table class="table table-striped table-advance table-hover">
+                              <thead>
+                              <tr>
+                                  <th> Intitulé</th>                
+                                  <th> Nombre de vues souhaitées</th>
+                                  <th> Nombre de vues réelles</th>
+                              </tr>
+                              </thead>
+                              <tbody>
+                              <ui:repeat var="pub" value="#{clientBean.pubs}">
+	                              <tr>
+	                                  <td><STRONG>#{pub.intitule}</STRONG></td>
+	                                  <TD style="text-align: center;"> #{pub.nbreVue}</TD>
+	                                  <TD style="text-align: center;"> #{pub.NombreDeVueParPub()}</TD>
+	                                  
+	                              </tr>
+                              </ui:repeat>
+                              </tbody>
+                     </table>
 					</div>
 				</section>
 			</div>

@@ -125,7 +125,7 @@
         setInterval(function() {
           data.setValue(0, 1,#{clientBean.campagne.nombreDeVues()});
           chart.draw(data, options);
-        }, 10000);
+        }, 5000);
         
       }
     </script>
@@ -138,13 +138,13 @@
 
         var data = google.visualization.arrayToDataTable([
           ['Task', 'Hours per Day'],
-          ['Vues réele',     #{clientBean.campagne.nombreDeVues()}],
-          ['Vues demandée',  #{clientBean.campagne.nombreDeVueTotal()}]        
+          ['Vues réelles',     #{clientBean.campagne.nombreDeVues()}],
+          ['Vues souhaitées',  #{clientBean.campagne.nombreDeVueTotal()}]        
         ]);
 
         var options = {
-          title: 'Le Nombre de vues',
-          height: 220
+          title: 'Le Nombre de vues de la campagne',
+          height: 231
         };
 
         var chart = new google.visualization.PieChart(document.getElementById('piechart'));

@@ -38,7 +38,7 @@ public class ClientBean {
 	private List<Client> listClient;
 	private List<Reglement> LesReglements;
 	private List<Campagne> campagnes,camps,campsEncours;
-	private List<Publicite> pubTextuelle,pubBaniere;
+	private List<Publicite> pubTextuelle,pubBaniere,pubs;
 	private String compte,motDePasse;
 	private ClientDAO clientDAO;
 	private CampagneDAO campDAO;
@@ -103,6 +103,7 @@ public class ClientBean {
 	
 	public String gauge(Campagne camp){
 		setCampagne(camp);
+		setPubs(camp.getPublicites());
 		return "pretty:stats";
 	}
 
@@ -256,6 +257,14 @@ public class ClientBean {
 
 	public void setCampagne(Campagne campagne) {
 		this.campagne = campagne;
+	}
+
+	public List<Publicite> getPubs() {
+		return pubs;
+	}
+
+	public void setPubs(List<Publicite> pubs) {
+		this.pubs = pubs;
 	}
 
 

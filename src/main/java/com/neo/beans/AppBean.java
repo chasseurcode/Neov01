@@ -24,6 +24,7 @@ import com.neo.daoImpl.MessageDAOImpl;
 import com.neo.daoImpl.UtilisateurDAOImpl;
 import com.neo.domaine.Campagne;
 import com.neo.domaine.Message;
+import com.neo.domaine.Publicite;
 import com.neo.domaine.Utilisateur;
 
 @ManagedBean
@@ -69,7 +70,25 @@ public class AppBean {
 		}
 	}
 	
-	private void nbrePubs(){
+	public long nombreTotalDeVue(){
+		long somme=0;
+		for(Campagne c: campDao.listerCampEncours()){
+			for(Publicite p: c.getPublicites()){
+				somme=somme+p.getNbreVue();
+			}
+		}
+		return somme;
+	}
+	
+	public long nombreTotalDeVueReel(){
+		long somme=0;
+		for(Campagne c: campDao.listerCampEncours()){
+			somme=somme+c.nombreDeVues();
+		}
+		return somme;
+	}
+	
+ 	private void nbrePubs(){
 		int val=0;
 		for(Campagne c:campDao.listerCampEncours()){
 			val=val+c.getPublicites().size();
