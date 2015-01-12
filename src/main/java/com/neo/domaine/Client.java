@@ -6,11 +6,8 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 
-import org.hibernate.annotations.Fetch;
-import org.hibernate.annotations.FetchMode;
 import org.hibernate.search.annotations.Field;
 import org.hibernate.search.annotations.Indexed;
 
@@ -25,11 +22,9 @@ public class Client extends Utilisateur implements Serializable{
 	private String adresse;
 	@Field
 	private String raisonSociale;
-	@OneToMany(cascade=CascadeType.ALL,fetch=FetchType.EAGER)
-	@Fetch(value=FetchMode.SUBSELECT)
+	@OneToMany(cascade=CascadeType.ALL)
 	private List<Reglement> reglements=new ArrayList<Reglement>();
-	@OneToMany(cascade=CascadeType.ALL,fetch=FetchType.EAGER)
-	@Fetch(value=FetchMode.SUBSELECT)
+	@OneToMany(cascade=CascadeType.ALL)
 	private List<Campagne> campagnes=new ArrayList<Campagne>();
 	
 	public Client() {

@@ -6,6 +6,7 @@ import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 
+import org.hibernate.search.annotations.Analyze;
 import org.hibernate.search.annotations.Field;
 import org.hibernate.search.annotations.Indexed;
 
@@ -21,7 +22,7 @@ public class Reglement extends Model implements Serializable{
 	private Date dateReglement;
 	@Field
 	private String type;
-	@Field
+	@Field(analyze=Analyze.NO)
 	private float montant;
 	@ManyToOne
 	private Client client;

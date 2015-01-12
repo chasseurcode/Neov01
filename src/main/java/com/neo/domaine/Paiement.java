@@ -6,6 +6,7 @@ import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 
+import org.hibernate.search.annotations.Analyze;
 import org.hibernate.search.annotations.Field;
 import org.hibernate.search.annotations.Indexed;
 
@@ -20,6 +21,7 @@ public class Paiement extends Model implements Serializable{
 
 	@Field
 	private Date date;
+	@Field(analyze=Analyze.NO)
 	private double montant;
 	@ManyToOne
 	private Abonne abonne;

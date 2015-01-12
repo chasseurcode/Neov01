@@ -6,12 +6,12 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
 import org.hibernate.search.annotations.Analyze;
 import org.hibernate.search.annotations.Field;
+import org.hibernate.search.annotations.Index;
 
 @Entity
 public class Utilisateur extends Model implements Serializable{
@@ -24,14 +24,14 @@ public class Utilisateur extends Model implements Serializable{
 	private String motDePasse;
 	@Field(analyze=Analyze.NO)
 	private String email;
-	@Field
+	@Field(analyze=Analyze.NO)
 	private String telephone;
 	private String saltMotDePasse;
 	private boolean actif=true;
-	@ManyToMany(cascade=CascadeType.ALL,fetch=FetchType.EAGER)
+	@ManyToMany(cascade=CascadeType.ALL)
 	private List<Role> roles=new ArrayList<Role>();
 	
-	@OneToMany(cascade=CascadeType.ALL,fetch=FetchType.EAGER)
+	@OneToMany(cascade=CascadeType.ALL)
 	private List<Message> messages=new ArrayList<Message>();
 	
 	public Utilisateur() {

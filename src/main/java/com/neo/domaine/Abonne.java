@@ -9,6 +9,7 @@ import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import javax.xml.bind.annotation.XmlRootElement;
 
+import org.hibernate.search.annotations.Analyze;
 import org.hibernate.search.annotations.DateBridge;
 import org.hibernate.search.annotations.Field;
 import org.hibernate.search.annotations.Indexed;
@@ -30,9 +31,9 @@ public class Abonne extends Utilisateur {
 	@Field
 	@DateBridge(resolution=Resolution.DAY)
 	private Date dateDeNaissance;
-	@Field
+	@Field(analyze=Analyze.NO)
 	private String codeParrainege;
-	@Field
+	@Field(analyze=Analyze.NO)
 	private String codeFilleule;
 	@OneToMany(cascade=CascadeType.ALL)
 	private List<Paiement>paiements=new ArrayList<Paiement>();

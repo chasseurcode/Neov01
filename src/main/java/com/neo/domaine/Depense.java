@@ -5,6 +5,7 @@ import java.util.Date;
 
 import javax.persistence.Entity;
 
+import org.hibernate.search.annotations.Analyze;
 import org.hibernate.search.annotations.Field;
 import org.hibernate.search.annotations.Indexed;
 
@@ -22,6 +23,7 @@ public class Depense extends Model implements Serializable {
 	private String fournisseur;
 	@Field
 	private Date date;
+	@Field(analyze=Analyze.NO)
 	private float montant;
 	
 	public Depense() {

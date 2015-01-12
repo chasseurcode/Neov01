@@ -6,7 +6,6 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
@@ -30,7 +29,7 @@ public class Campagne extends Model {
 	private List<Reglement> reglements=new ArrayList<Reglement>();
 	@ManyToOne(cascade=CascadeType.ALL)
 	private Client client;
-	@OneToMany(cascade=CascadeType.ALL,fetch=FetchType.EAGER)
+	@OneToMany(cascade=CascadeType.ALL)
 	private List<Publicite> publicites=new ArrayList<Publicite>();
 
 	public Campagne() {

@@ -6,6 +6,7 @@ import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 
+import org.hibernate.search.annotations.Analyze;
 import org.hibernate.search.annotations.Field;
 import org.hibernate.search.annotations.Indexed;
 
@@ -13,7 +14,7 @@ import org.hibernate.search.annotations.Indexed;
 @Indexed
 public class Facture extends Model {
 	
-	@Field
+	@Field(analyze=Analyze.NO)
 	private String numero;
 	private Date date;
 	@ManyToOne(cascade=CascadeType.ALL)
