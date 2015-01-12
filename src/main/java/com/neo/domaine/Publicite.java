@@ -7,8 +7,10 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 import org.hibernate.search.annotations.DateBridge;
 import org.hibernate.search.annotations.Field;
@@ -38,6 +40,8 @@ public  abstract class Publicite extends Model implements Serializable{
 	private List<Domaine> domaines=new ArrayList<Domaine>();
 	@ManyToOne(cascade=CascadeType.ALL)
 	private Cible cible;
+	@OneToMany(cascade=CascadeType.ALL,fetch=FetchType.EAGER)
+	private List<Vue> vues=new ArrayList<Vue>();
 
 	public Publicite() {
 
@@ -125,6 +129,14 @@ public  abstract class Publicite extends Model implements Serializable{
 
 	public void setCible(Cible cible) {
 		this.cible = cible;
+	}
+
+	public List<Vue> getVues() {
+		return vues;
+	}
+
+	public void setVues(List<Vue> vues) {
+		this.vues = vues;
 	}
 
 

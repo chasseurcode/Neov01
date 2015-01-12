@@ -28,6 +28,7 @@ public class UserBean {
 	private List<String> selectRole;
 	private List<Utilisateur> users;
 	private RoleDAO roleDAO;
+
 	
 	@PostConstruct
 	public void init() {
@@ -36,13 +37,14 @@ public class UserBean {
 		selectRole=new ArrayList<String>();
 		roleDipo=roleDAO.lister();
 		user=new Utilisateur();
-		refreshListe();
+		refreshListe();	
 	}
 
+
 	private void refreshListe() {
-		setUsers(userDAO.lister());
+		setUsers(userDAO.lister());	
 	}
-	
+
 	public String  addUser() {
 		RandomNumberGenerator rng = new SecureRandomNumberGenerator();
 		Object salt = rng.nextBytes();
@@ -61,7 +63,7 @@ public class UserBean {
 		refreshListe();
 		return "pretty:userslist";
 	}
-	
+
 	public String desactiverCompte(Utilisateur user) {
 		if(user.isActif()){
 			user.setActif(false);	
@@ -72,7 +74,7 @@ public class UserBean {
 		refreshListe();
 		return null;
 	}
-	
+
 	public String editUser(Utilisateur user) {
 		setUser(user);
 		return "pretty:edituser";
@@ -132,4 +134,13 @@ public class UserBean {
 	public void setUsers(List<Utilisateur> users) {
 		this.users = users;
 	}
+
+
+
+
+
+
+
+
+
 }

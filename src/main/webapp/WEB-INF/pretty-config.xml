@@ -38,7 +38,7 @@
 		<pattern value="/facture" />
 		<view-id value="/template/facture.xhtml" />
 	</url-mapping>
-	
+
 	<!-- page du seuil -->
 	<url-mapping id="seuile">
 		<pattern value="/seuil" />
@@ -82,11 +82,36 @@
 		<pattern value="/liste" />
 		<view-id value="/client/liste.xhtml" />
 	</url-mapping>
+
+	<!-- page d'espace client -->
+	<url-mapping id="espaceClient">
+		<pattern value="/espace" />
+		<view-id value="/client/espace.xhtml" />
+	</url-mapping>
 	
+	<!-- page des stats client -->
+	<url-mapping id="stats">
+		<pattern value="/stats" />
+		<view-id value="/client/dashBord.xhtml" />
+	</url-mapping>
+
 	<url-mapping id="ficheclient">
 		<pattern value="/client/#{clientBean.idClient}" />
 		<view-id value="/client/ficheClient.xhtml" />
 		<action>#{clientBean.load()}</action>
+	</url-mapping>
+
+	<!-- page de detail pub -->
+	<url-mapping id="detailPubs">
+		<pattern value="/detailsPub" />
+		<view-id value="/client/detailPub.xhtml" />
+	</url-mapping>
+
+	<!-- page de la liste de facture d'un client -->
+	<url-mapping id="detailfacture">
+		<pattern value="/mesfactures/#{clientBean.idCamp}" />
+		<view-id value="/client/detailFacture.xhtml" />
+		<action>#{clientBean.loadFactures()}</action>	
 	</url-mapping>
 
 	<!-- ********* Gestion de campagne ********** -->
@@ -95,7 +120,7 @@
 		<pattern value="/nouvelleCampagne" />
 		<view-id value="/campagne/nouveauCamp.xhtml" />
 	</url-mapping>
-	
+
 	<!-- page nouvelle campagne depuis fiche client -->
 	<url-mapping id="newcampagne2">
 		<pattern value="/nouvelleCampagne/#{campagneBean.idClient}" />
@@ -180,8 +205,8 @@
 		<pattern value="/paiements" />
 		<view-id value="/tresorerie/paiement.xhtml" />
 	</url-mapping>
-	
-	
+
+
 	<url-mapping id="ficheabonne">
 		<pattern value="/abonnes/#{paiementBean.idAbonne}" />
 		<view-id value="/abonne/ficheAbonne.xhtml" />

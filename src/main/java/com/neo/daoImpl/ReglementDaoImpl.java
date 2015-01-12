@@ -1,6 +1,5 @@
 package com.neo.daoImpl;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.hibernate.Session;
@@ -38,18 +37,6 @@ public class ReglementDaoImpl implements ReglementDAO{
 	public List<Reglement> lister() {
 		Session session=HibernateUtil.getSession();
 		return session.createQuery("from Reglement").list();
-	}
-
-	@Override
-	public List<Reglement> lister(Long id) {
-		List<Reglement> regs=new ArrayList<Reglement>();
-		try {
-			for(Reglement reg: lister()){
-				if(reg.getClient().getId()!=null && reg.getClient().getId()==id)
-					regs.add(reg);
-			}
-		} catch (Exception e) {}
-		return regs;
 	}
 
 }

@@ -1,0 +1,139 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:h="http://java.sun.com/jsf/html">
+<h:head>
+
+</h:head>
+
+<h:body>
+	<ui:composition template="/template/espaceClient.xhtml">
+		<ui:define name="titre">détails pub</ui:define>
+
+		<ui:define name="contenu">
+
+			<section class="panel">
+				<header class="panel-heading"> Publicités Textuelles </header>
+				<div class="panel-body">
+
+					<ui:repeat var="pub" value="#{clientBean.pubTextuelle}">
+						<section class="panel post-wrap pro-box">
+							<aside class="post-highlight terques v-align">
+								<div class="panel-body">
+									<h2>
+										<h:outputLabel value="Intitulé:" />
+										&#160;
+										<h:outputLabel value="#{pub.intitule}"
+											style="color:black; margin-left:70px;" />
+									</h2>
+									<h2>
+										<h:outputLabel value="Date de début:" />
+										&#160;
+										<h:outputLabel value="#{pub.dateDebut}"
+											style="color:black; margin-left:10px;">
+											<f:convertDateTime type="date" pattern="dd-MM-yyyy" />
+										</h:outputLabel>
+									</h2>
+									<h2>
+										<h:outputLabel value="Date de fin:" />
+										&#160;
+										<h:outputLabel value="#{pub.dateFin}"
+											style="color:black; margin-left:30px;">
+											<f:convertDateTime type="date" pattern="dd-MM-yyyy" />
+										</h:outputLabel>
+									</h2>
+									<h2>
+										<h:outputLabel value="Nombre de vue:" />
+										&#160;
+										<h:outputLabel value="#{pub.nbreVue}"
+											style="color:black ;margin-left:5px;" />
+									</h2>
+									<h2>
+										<h:outputLabel value="Domaine:" />
+										&#160;
+										<ui:repeat var="dom" value="#{pub.domaines}">
+											<h:outputLabel value="#{dom.libelle}"
+												style="color:black ;margin-left:5px;" />
+											<br />
+										</ui:repeat>
+									</h2>
+
+								</div>
+
+							</aside>
+							<aside>
+								<div class="post-info">
+									<span class="arrow-pro left"></span>
+									<div class="panel-body">
+										<div class="text-center ">
+											<h1>Contenu</h1>
+										</div>
+
+										<footer class="social-footer">
+											<h:outputLabel value="#{pub.contenu}" />
+										</footer>
+									</div>
+								</div>
+							</aside>
+						</section>
+
+					</ui:repeat>
+
+				</div>
+			</section>
+
+
+			<section class="panel">
+				<header class="panel-heading"> Publicités Bannières </header>
+				<div class="panel-body">
+					<ul class="grid cs-style-3">
+						<ui:repeat var="pub" value="#{clientBean.pubBaniere}">
+							<li>
+								<figure>
+									<h:graphicImage library="pubs" name="#{pub.image}" />
+									<figcaption style="height: 156px">
+										<h3 style="text-align: center">
+											<h:outputLabel value="#{pub.intitule}" />
+										</h3>
+										<br />
+										<h3>
+											date de debut :
+											<h:outputLabel value="#{pub.dateDebut}">
+												<f:convertDateTime type="date" pattern="dd-MM-yyyy" />
+											</h:outputLabel>
+										</h3>
+										<h3>
+											date de fin :
+											<h:outputLabel value="#{pub.dateFin}">
+												<f:convertDateTime type="date" pattern="dd-MM-yyyy" />
+											</h:outputLabel>
+										</h3>
+										<h3>
+											Nombre de vue :
+											<h:outputLabel value="#{pub.nbreVue}" />
+										</h3>
+										<h3>
+											Domaine :
+											<ui:repeat var="dom" value="#{pub.domaines}">
+												<h:outputLabel value="#{dom.libelle}" />
+											</ui:repeat>
+										</h3>
+									</figcaption>
+								</figure>
+							</li>
+						</ui:repeat>
+
+					</ul>
+                               <h:link styleClass="btn btn-info pull-right"
+							style="margin-right: 20px" value="Quitter"
+							outcome="pretty:espaceClient" />
+				</div>
+			</section>
+
+		</ui:define>
+	</ui:composition>
+
+
+</h:body>
+</html>

@@ -3,6 +3,7 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:pretty="http://ocpsoft.com/prettyfaces"
 	xmlns:h="http://java.sun.com/jsf/html">
 <h:head>
 
@@ -10,10 +11,114 @@
 
 <h:body>
 	<ui:composition template="/template/espaceClient.xhtml">
-	<ui:define name="titre">Liste des clients</ui:define>
-	
+		<ui:define name="titre">Dashbord client</ui:define>
+
 		<ui:define name="contenu">
-         	 Mon espace
+		<div class="nav notify-row" id="top_menu" style="margin-left: 500px">
+				<!--  notification start -->
+				<header class="panel-heading tab-bg-dark-navy-blue" style="center;">
+					<ul class="nav nav-tabs">
+						<li class="active"><a data-toggle="tab" href="#tBord">Tableau
+								de Bord</a></li>
+						<li class=""><a data-toggle="tab" href="#camp">Campagne</a></li>
+					</ul>
+				</header>
+				<!-- notification dropdown end -->
+			</div><br /><br />
+			
+			<div class="panel-body">
+				<div class="tab-content">
+
+					<div id="tBord" class="tab-pane active">
+						<section class="panel">
+							<header class="panel-heading">
+								<h4 style="text-align: center;"></h4>
+							</header>
+							<hr />
+							
+							<table class="table">
+								<thead>
+									<tr>
+										<th>Campagne</th>
+										<th>Date de début</th>
+										<th>Date de fin</th>
+										<th>Nombre de vues</th>
+										<th></th>
+									</tr>
+								</thead>
+								<tbody>
+									<ui:repeat var="camp" value="#{clientBean.camps}">
+										<tr>
+											<td>#{camp.intitule}</td>
+											<td><h:outputText value="#{camp.dateDebut}">
+													<f:convertDateTime type="date" pattern="dd-MM-yyyy" />
+												</h:outputText></td>
+											<td><h:outputText value="#{camp.dateFin}">
+													<f:convertDateTime type="date" pattern="dd-MM-yyyy" />
+												</h:outputText></td>
+											<td>#{camp.nombreDeVues()}</td>
+											<td>
+                                          <h:form>
+							            	 <h:commandButton styleClass="btn btn-success btn-xs" value="Détail" action="#{clientBean.gauge(camp)}"  />
+										</h:form>
+										   </td>
+
+										</tr>
+									</ui:repeat>
+								</tbody>
+							</table>
+						</section>
+					</div>
+
+					<div id="camp" class="tab-pane">
+						<section class="panel">
+							<header class="panel-heading">
+								<h4 style="text-align: center;"></h4>
+							</header>
+							<hr />
+							<table class="table">
+								<thead>
+									<tr>
+										<th>Intitulé de la campagne</th>
+										<th>Date de début</th>
+										<th>Date de fin</th>
+										<th>Nombre de vues</th>
+										<th></th>
+									</tr>
+								</thead>
+								<tbody>
+									<ui:repeat var="camp" value="#{clientBean.camps}">
+										<tr>
+											<td>#{camp.intitule}</td>
+											<td><h:outputText value="#{camp.dateDebut}">
+													<f:convertDateTime type="date" pattern="dd-MM-yyyy" />
+												</h:outputText></td>
+											<td><h:outputText value="#{camp.dateFin}">
+													<f:convertDateTime type="date" pattern="dd-MM-yyyy" />
+												</h:outputText></td>
+											<td>#{camp.nombreDeVues()}</td>
+											<h:form>									
+										<td style="text-align: center">
+										   <h:commandButton styleClass="btn btn-success btn-xs" value="Publicités" 
+										   action="#{clientBean.loadPubs(camp)}" />&#160; 
+										   <pretty:link mappingId="detailfacture" styleClass="btn btn-primary  btn-xs" >
+									               <f:param value="#{camp.id}" />
+									               Factures
+							            	</pretty:link> 
+										  
+										</td>
+									</h:form>	
+								
+										</tr>
+									</ui:repeat>
+								</tbody>
+							</table>
+							
+						</section>
+					</div>
+
+				</div>
+			</div>
 		</ui:define>
 	</ui:composition>
 </h:body>

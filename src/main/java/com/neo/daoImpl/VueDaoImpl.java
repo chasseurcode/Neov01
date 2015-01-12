@@ -45,4 +45,13 @@ public class VueDaoImpl  implements VueDao{
 		session.getTransaction().commit();
 	}
 
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Vue> lister(Long id) {
+		Session session=HibernateUtil.getSession();
+		return session.createQuery("From Vue v where v.publicite.id = :pub ").setLong("pub", id).list();
+	}
+
+
+
 }

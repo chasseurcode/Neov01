@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:h="http://java.sun.com/jsf/html">
+<h:head>
+
+</h:head>
+
+<h:body>
+	<ui:composition template="/template/espaceClient.xhtml">
+		<ui:define name="titre"> Stats</ui:define>
+		<ui:define name="contenu">
+		
+			<div class="col-lg-6">
+				<section class="panel">
+					<header class="panel-heading"> Nombre de vues </header>
+					<div class="panel-body">
+						<div id="chart_div"  class="graph" style="margin-left: 180px"></div>
+					</div>
+				</section>
+			</div>
+			
+			<div class="col-lg-6">
+				<section class="panel">
+					<header class="panel-heading"></header>
+					<div class="panel-body">
+						<div id="piechart"  class="graph" style="margin-left: 180px"></div>
+					</div>
+				</section>
+			</div>
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>

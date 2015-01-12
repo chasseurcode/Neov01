@@ -117,6 +117,33 @@ public class CampagneDaoimpl implements CampagneDAO{
 		return camps;
 	}
 
+	@Override
+	public List<Campagne> listerEncours(Long id) {
+		List<Campagne> camps=new ArrayList<Campagne>();
+		for(Campagne ca:lister()){
+			if(((ca.getDateFin().compareTo(new Date()) >0) || (ca.getDateFin().compareTo(new Date()) ==0))
+					&& (ca.getReglements().size()>0) && ca.getClient().getId()==id){
+				camps.add(ca);
+			}
+		}
+		return camps;
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Facture> listerFacture(Long id) {
+		Session session=HibernateUtil.getSession();
+		List<Facture> facts=new ArrayList<Facture>();
+		List<Facture> factures=new ArrayList<Facture>();
+		facts.addAll(session.createQuery("From Facture").list());
+		for(Facture f: facts){
+			if(f.getCampagne().getId()==id){
+				factures.add(f);
+			}
+		}
+		return factures;
+	}
+
 
 
 

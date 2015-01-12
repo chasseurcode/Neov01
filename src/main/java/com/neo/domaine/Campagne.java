@@ -108,6 +108,23 @@ public class Campagne extends Model {
 		reglements.remove(reglement);
 	}
 
+	public int nombreDeVues(){
+		int somme=0;
+		for(Publicite p: publicites){
+			for(Vue v:p.getVues()){
+				somme=somme+v.getNbreVue();
+			}	
+		}
+		return somme;
+	}
+	public long nombreDeVueTotal(){
+		long somme=0;
+		for(Publicite p:publicites){
+			somme=somme+p.getNbreVue();
+		}
+		return somme;
+	}
+
 	public double totalReglement() {
 		double somme=0;
 		for(Reglement r: reglements){
@@ -115,10 +132,12 @@ public class Campagne extends Model {
 		}
 		return somme;
 	}
-	
+
 	public double resteAPayer() {
 		return getTotal()-totalReglement();
 	}
+
+
 	public double getTotal() {
 		double somme=0;
 		for(Publicite p: publicites){
@@ -137,4 +156,6 @@ public class Campagne extends Model {
 		}
 		return somme;
 	}
+
+
 }

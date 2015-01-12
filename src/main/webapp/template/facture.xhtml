@@ -23,7 +23,7 @@
                                   <p>
                                   	  #{facturationBean.facture.campagne.client.nom} <br/>
                                        #{facturationBean.facture.campagne.client.adresse} <br/>
-                                       Tel: #{facturationBean.facture.campagne.client.telehone} 
+                                       Tel: #{facturationBean.facture.campagne.client.telephone} 
                                   </p>
                               </div>
                               <div class="col-lg-4 col-sm-4">
@@ -61,7 +61,7 @@
 	                                  <td class="">#{pub.tarif.tarifclient}</td>
 	                                  <td class="">#{pub.nbreVue}</td>
 	                                  <td>
-	                                  <h:outputText value="#{pub.total }" >
+	                                  <h:outputText value="#{facturationBean.facture.campagne.total}" >
 										<f:convertNumber pattern="#0.00" />
 									</h:outputText>
 									</td>
@@ -72,9 +72,15 @@
                           <div class="row">
                               <div class="col-lg-4 invoice-block pull-right">
                                   <ul class="unstyled amounts">
-                                      <li><strong>Montant reglé :</strong> #{facturationBean.facture.campagne.totalReglement()}</li>
-                                      <li><strong>Reste à payer :</strong>#{facturationBean.facture.campagne.resteAPayer()}</li>
-                                      <li><strong>Grand Total :</strong> #{facturationBean.facture.campagne.total}</li>
+                                      <li><strong>Montant reglé : </strong> <h:outputText value="#{facturationBean.facture.campagne.totalReglement()}" >
+										<f:convertNumber pattern="#0.00" />
+									</h:outputText> </li>
+                                      <li><strong>Reste à payer : </strong><h:outputText value="#{facturationBean.facture.campagne.resteAPayer()}" >
+										<f:convertNumber pattern="#0.00" />
+									</h:outputText></li>
+                                      <li><strong>Grand Total : </strong> <h:outputText value="#{facturationBean.facture.campagne.total}" >
+										<f:convertNumber pattern="#0.00" />
+									</h:outputText></li>
                                   </ul>
                               </div>
                           </div>

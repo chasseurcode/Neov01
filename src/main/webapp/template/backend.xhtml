@@ -14,13 +14,13 @@
 	<meta name="keyword"
 		content="FlatLab, Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina" />
 
-	<title>NEONE-<ui:insert name="titre" />
+	<title>NEONE::<ui:insert name="titre" />
 	</title>
 	<!-- 	 print css -->
 	<h:outputStylesheet library="css" name="print.css" media="print" />
 	<!-- Bootstrap core CSS -->
 	<h:outputStylesheet library="css" name="bootstrap.min.css" />
-	<h:outputStylesheet library="css" name="bootstrap-reset.css" />
+	<h:outputStylesheet library="css" name="bootstrap-reset.css" />	
 
 	<!--external css-->
 	<h:outputStylesheet library="assets/font-awesome/css"
@@ -32,7 +32,6 @@
 	<h:outputStylesheet library="css" name="gallery.css" />
 	<h:outputStylesheet library="assets/fancybox/source"
 		name="jquery.fancybox.css" />
-
 
 	<h:outputStylesheet library="css" name="neostyle.css" />
 
@@ -133,6 +132,9 @@
 								</h:link></li>
 							<li><h:link outcome="pretty:listeclient"
 									value="Liste client">
+								</h:link></li>
+								<li><h:link outcome="pretty:espaceClient"
+									value="Espace client">
 								</h:link></li>
 						</ul></li>
 
@@ -245,6 +247,8 @@
 	<h:outputScript library="js" name="toucheffects.js" />
 	<h:outputScript library="js" name="modernizr.custom.js" />
 
+		
+
 	<!--common script for all pages-->
 	<h:outputScript library="js" name="common-scripts.js" />
 	<!-- script pour la table -->
@@ -253,6 +257,7 @@
               EditableTable.init();
           });
       </script>
+      
 
 </h:body>
 </html>

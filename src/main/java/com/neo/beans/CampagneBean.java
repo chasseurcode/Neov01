@@ -41,7 +41,6 @@ public class CampagneBean {
 
 	private boolean showEditCamp=false;
 	private boolean showPubMenu=false;
-	private boolean parAppel,parNotification;
 	private Part fichier;
 	private CampagneDAO campagneDAO;
 	private PubliciteDAO pubDAO;
@@ -76,7 +75,6 @@ public class CampagneBean {
 		setTarifDAO(new TarifDaoImpl());
 		setDomaines(pubDAO.listerDomaine());
 		setClients(clientDAO.lister());
-
 	}
 
 
@@ -102,7 +100,7 @@ public class CampagneBean {
 			d=new Domaine();
 		}
 		textuelle.setTarif(tarifDAO.tarifTextuelleEnvigueur());
-     	textuelle.setCible(cible);
+		textuelle.setCible(cible);
 		campagne.addPublicite(textuelle);
 		campagneDAO.modifier(campagne);
 		textuelle=new Textuelle();
@@ -133,9 +131,8 @@ public class CampagneBean {
 			}  
 			banniere.setImage(nomFichier);
 			banniere.setCible(cible);
-			if(isParAppel())
-				banniere.setTarif(tarifDAO.tarifAppelEnvigueur());
-			if(isParNotification())
+			banniere.setTarif(tarifDAO.tarifAppelEnvigueur());
+			if(banniere.getNbreNotification()!=0)
 				banniere.setTarifNotification(tarifDAO.tarifNotificationEnvigueur());
 
 			for(String check: domainesSelected){
@@ -144,14 +141,12 @@ public class CampagneBean {
 				d=new Domaine();
 			}
 			if(campagne.getId()==null)
-			campagne=campagneDAO.findLastCamp();
+				campagne=campagneDAO.findLastCamp();
 			campagne.addPublicite(banniere);
 			campagneDAO.modifier(campagne);
 			banniere=new Banniere();
 			cible=new Cible();
 			domainesSelected.clear();
-			setParAppel(false);
-			setParNotification(false);
 			outputStream.close();  
 			inputStream.close();
 
@@ -316,7 +311,7 @@ public class CampagneBean {
 		return "pretty:detailcamp";
 	}
 
-	
+
 	//chargement des pubs pour les detail
 	public String chargementPubTexte(Textuelle texte){
 		setTextuelle(texte);
@@ -389,20 +384,17 @@ public class CampagneBean {
 		setCurrent(domaine);
 	}
 
-    //RAZ de tous les objet
+	//RAZ de tous les objet
 	public void annuler(){
 		campagne=new Campagne();
 		textuelle=new Textuelle();
 		banniere=new Banniere();
 		domaine=new Domaine();
-		campagneDAO=new CampagneDaoimpl();
-		pubDAO=new PubliciteDaoImpl();
-		tarifDAO=new TarifDaoImpl();
 		reglement=new Reglement();
 		idClient="";
 	}
 
-	
+
 	//passage de la campagne a la facturation
 	public String campToFacturation(Campagne camp){
 		try {
@@ -639,37 +631,6 @@ public class CampagneBean {
 		this.clientDAO = clientDAO;
 	}
 
-
-
-
-	public boolean isParAppel() {
-		return parAppel;
-	}
-
-
-
-
-	public void setParAppel(boolean parAppel) {
-		this.parAppel = parAppel;
-	}
-
-
-
-
-	public boolean isParNotification() {
-		return parNotification;
-	}
-
-
-
-
-	public void setParNotification(boolean parNotification) {
-		this.parNotification = parNotification;
-	}
-
-
-
-
 	public List<Client> getClients() {
 		return clients;
 	}
@@ -708,6 +669,8 @@ public class CampagneBean {
 	public void setCible(Cible cible) {
 		this.cible = cible;
 	}
+
+
 
 
 
