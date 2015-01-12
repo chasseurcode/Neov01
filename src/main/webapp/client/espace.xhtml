@@ -14,15 +14,28 @@
 		<ui:define name="titre">Dashbord client</ui:define>
 
 		<ui:define name="contenu">
+		<div class="nav notify-row" id="top_menu" style="margin-left: 500px">
+				<!--  notification start -->
+				<header class="panel-heading tab-bg-dark-navy-blue" style="center;">
+					<ul class="nav nav-tabs">
+						<li class="active"><a data-toggle="tab" href="#tBord">Tableau
+								de Bord</a></li>
+						<li class=""><a data-toggle="tab" href="#camp">Campagne</a></li>
+					</ul>
+				</header>
+				<!-- notification dropdown end -->
+			</div><br /><br />
+			
 			<div class="panel-body">
 				<div class="tab-content">
 
 					<div id="tBord" class="tab-pane active">
 						<section class="panel">
 							<header class="panel-heading">
-								<h4 style="text-align: center;">Vos Campagnes</h4>
+								<h4 style="text-align: center;"></h4>
 							</header>
 							<hr />
+							
 							<table class="table">
 								<thead>
 									<tr>
@@ -44,8 +57,11 @@
 													<f:convertDateTime type="date" pattern="dd-MM-yyyy" />
 												</h:outputText></td>
 											<td>#{camp.nombreDeVues()}</td>
-											<td> <h:commandButton styleClass="btn btn-success btn-xs" value="Détail" 
-										   /></td>
+											<td>
+                                          <h:form>
+							            	 <h:commandButton styleClass="btn btn-success btn-xs" value="Détail" action="#{clientBean.gauge(camp)}"  />
+										</h:form>
+										   </td>
 
 										</tr>
 									</ui:repeat>
@@ -57,7 +73,7 @@
 					<div id="camp" class="tab-pane">
 						<section class="panel">
 							<header class="panel-heading">
-								<h4 style="text-align: center;">Vos Campagnes</h4>
+								<h4 style="text-align: center;"></h4>
 							</header>
 							<hr />
 							<table class="table">

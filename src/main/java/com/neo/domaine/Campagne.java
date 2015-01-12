@@ -118,6 +118,13 @@ public class Campagne extends Model {
 		}
 		return somme;
 	}
+	public long nombreDeVueTotal(){
+		long somme=0;
+		for(Publicite p:publicites){
+			somme=somme+p.getNbreVue();
+		}
+		return somme;
+	}
 
 	public double totalReglement() {
 		double somme=0;

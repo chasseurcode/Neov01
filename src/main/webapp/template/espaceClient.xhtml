@@ -28,6 +28,7 @@
 	<h:outputStylesheet library="css" name="gallery.css" />
 	<h:outputStylesheet library="assets/fancybox/source"
 		name="jquery.fancybox.css" />
+		
 </h:head>
 
 <h:body>
@@ -41,17 +42,7 @@
 				NE<span>ONE</span>
 			</h:link>
 			<!--logo end-->
-			<div class="nav notify-row" id="top_menu">
-				<!--  notification start -->
-				<header class="panel-heading tab-bg-dark-navy-blue ">
-					<ul class="nav nav-tabs">
-						<li class="active"><a data-toggle="tab" href="#tBord">Tableau
-								de Bord</a></li>
-						<li class=""><a data-toggle="tab" href="#camp">Campagne</a></li>
-					</ul>
-				</header>
-				<!-- notification dropdown end -->
-			</div>
+			
 			<div class="top-nav ">
 				<ul class="nav pull-right top-menu">
 					<li><input type="text" class="form-control search"
@@ -110,7 +101,56 @@
 
 	<!--common script for all pages-->
 	<h:outputScript library="js" name="common-scripts.js" />
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script type="text/javascript">
+      google.load("visualization", "1", {packages:["gauge"]});
+      google.setOnLoadCallback(drawChart);
+      function drawChart() {
 
+        var data = google.visualization.arrayToDataTable([
+          ['Label', 'Value'],
+          ['Vues', 0],
+        ]);
 
+        var options = {
+          width: 400, height: 220,
+          max: #{clientBean.campagne.nombreDeVueTotal()},
+          minorTicks: 5
+        };
+
+        var chart = new google.visualization.Gauge(document.getElementById('chart_div'));
+
+        chart.draw(data, options);
+
+        setInterval(function() {
+          data.setValue(0, 1,#{clientBean.campagne.nombreDeVues()});
+          chart.draw(data, options);
+        }, 10000);
+        
+      }
+    </script>
+
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script type="text/javascript">
+      google.load("visualization", "1", {packages:["corechart"]});
+      google.setOnLoadCallback(drawChart);
+      function drawChart() {
+
+        var data = google.visualization.arrayToDataTable([
+          ['Task', 'Hours per Day'],
+          ['Vues réele',     #{clientBean.campagne.nombreDeVues()}],
+          ['Vues demandée',  #{clientBean.campagne.nombreDeVueTotal()}]        
+        ]);
+
+        var options = {
+          title: 'Le Nombre de vues',
+          height: 220
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+
+        chart.draw(data, options);
+      }
+    </script>
 </h:body>
 </html>

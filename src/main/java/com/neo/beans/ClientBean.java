@@ -42,6 +42,7 @@ public class ClientBean {
 	private String compte,motDePasse;
 	private ClientDAO clientDAO;
 	private CampagneDAO campDAO;
+	private Campagne campagne;
 	private List<Facture>factures;
 
 	@PostConstruct
@@ -98,6 +99,11 @@ public class ClientBean {
 	public void loadFactures(){
 		Campagne c=campDAO.findById(idCamp);
 		setFactures(campDAO.listerFacture(c.getId()));
+	}
+	
+	public String gauge(Campagne camp){
+		setCampagne(camp);
+		return "pretty:stats";
 	}
 
 	public String saveClient() {
@@ -242,6 +248,14 @@ public class ClientBean {
 
 	public void setIdCamp(Long idCamp) {
 		this.idCamp = idCamp;
+	}
+
+	public Campagne getCampagne() {
+		return campagne;
+	}
+
+	public void setCampagne(Campagne campagne) {
+		this.campagne = campagne;
 	}
 
 

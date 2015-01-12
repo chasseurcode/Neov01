@@ -11,9 +11,25 @@
 <h:body>
 	<ui:composition template="/template/espaceClient.xhtml">
 		<ui:define name="titre"> Stats</ui:define>
-
 		<ui:define name="contenu">
+		
+			<div class="col-lg-6">
+				<section class="panel">
+					<header class="panel-heading"> Nombre de vues </header>
+					<div class="panel-body">
+						<div id="chart_div"  class="graph" style="margin-left: 180px"></div>
+					</div>
+				</section>
+			</div>
 			
+			<div class="col-lg-6">
+				<section class="panel">
+					<header class="panel-heading"></header>
+					<div class="panel-body">
+						<div id="piechart"  class="graph" style="margin-left: 180px"></div>
+					</div>
+				</section>
+			</div>
 		</ui:define>
 	</ui:composition>
 </h:body>
