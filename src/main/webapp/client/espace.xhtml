@@ -29,7 +29,7 @@
 										<th>Campagne</th>
 										<th>Date de début</th>
 										<th>Date de fin</th>
-										<th>Nombre réel de vues</th>
+										<th>Nombre de vues</th>
 										<th></th>
 									</tr>
 								</thead>
@@ -43,7 +43,7 @@
 											<td><h:outputText value="#{camp.dateFin}">
 													<f:convertDateTime type="date" pattern="dd-MM-yyyy" />
 												</h:outputText></td>
-											<td>0</td>
+											<td>#{camp.nombreDeVues()}</td>
 											<td> <h:commandButton styleClass="btn btn-success btn-xs" value="Détail" 
 										   /></td>
 

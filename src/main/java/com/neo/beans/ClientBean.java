@@ -43,7 +43,6 @@ public class ClientBean {
 	private ClientDAO clientDAO;
 	private CampagneDAO campDAO;
 	private List<Facture>factures;
-	private int nbre=10;
 
 	@PostConstruct
 	public void init() {
@@ -55,7 +54,6 @@ public class ClientBean {
 		current=clientDAO.findByCompte("neone1");
 		setCamps(campDAO.lister(current.getId()));
 		setCampsEncours(campDAO.listerEncours(current.getId()));
-		setNbre(listClient.size());
 	}
 
 	public ClientBean() {
@@ -246,14 +244,7 @@ public class ClientBean {
 		this.idCamp = idCamp;
 	}
 
-	public int getNbre() {
-		return nbre;
-	}
 
-	public void setNbre(int nbre) {
-		this.nbre = nbre;
-	}
 
-	
 
 }

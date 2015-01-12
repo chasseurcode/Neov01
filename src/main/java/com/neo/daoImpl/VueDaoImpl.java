@@ -1,5 +1,7 @@
 package com.neo.daoImpl;
 
+import java.util.List;
+
 import org.hibernate.Session;
 
 import com.neo.dao.VueDao;
@@ -31,6 +33,15 @@ public class VueDaoImpl  implements VueDao{
 		session.createQuery("UPDATE vue tn SET tn.regler = :etat ").setBoolean("etat", true);
 		session.getTransaction().commit();
 	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Vue> lister(Long id) {
+		Session session=HibernateUtil.getSession();
+		return session.createQuery("From Vue v where v.publicite.id = :pub ").setLong("pub", id).list();
+	}
+
+
 	
 
 }

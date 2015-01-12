@@ -59,8 +59,7 @@ public class CampagneBean {
 	private Textuelle textuelle;
 	private Banniere banniere;
 	private Cible cible;
-	private int nbreCampEncours=0;
-    private int nbrePubs=0;
+
 
 
 	public CampagneBean() {
@@ -76,8 +75,6 @@ public class CampagneBean {
 		setTarifDAO(new TarifDaoImpl());
 		setDomaines(pubDAO.listerDomaine());
 		setClients(clientDAO.lister());
-		setNbreCampEncours(campagneDAO.listerCampEncours().size());
-		setNbrePubs(pubDAO.listerBanniere().size()+pubDAO.listerTextuelle().size());
 	}
 
 
@@ -671,34 +668,6 @@ public class CampagneBean {
 
 	public void setCible(Cible cible) {
 		this.cible = cible;
-	}
-
-
-
-
-	public int getNbreCampEncours() {
-		return nbreCampEncours;
-	}
-
-
-
-
-	public void setNbreCampEncours(int nbreCampEncours) {
-		this.nbreCampEncours = nbreCampEncours;
-	}
-
-
-
-
-	public int getNbrePubs() {
-		return nbrePubs;
-	}
-
-
-
-
-	public void setNbrePubs(int nbrePubs) {
-		this.nbrePubs = nbrePubs;
 	}
 
 
