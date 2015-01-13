@@ -12,8 +12,8 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
 public class SendMail {
-	final static String username = "rabatmiage@gmail.com";
-	final static String password = "miagerabat1314";
+	final static String username = "abd.bodie.diallo@gmail.com";
+	final static String password = "abdoulaye11";
 
 	public static void envoyer(String mail,String compte, String pass) throws AddressException, MessagingException {
 
